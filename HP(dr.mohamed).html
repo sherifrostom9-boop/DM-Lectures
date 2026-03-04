@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DigitalMarketing – Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+  <link href="DrSherif.css" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-left">
+    <a href="index.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+    <img src="logo.jpeg" alt="Logo" class="logo">
+    <h2 style="color: white; margin: 0;">Dr.Mohamed</h2>
+    </a>
+  </div>
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+    <svg class="sun-icon" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+    </svg>
+    <svg class="moon-icon" fill="currentColor" viewBox="0 0 24 24" style="display: none;">
+      <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+    </svg>
+  </button>
+</nav>
+
+<header class="hero">
+  <a href="index.html" class="back-btn" id="exitBtn">← EXIT</a>
+  <h1>Dr Mohamed Thabet <br>in Digital Marketing</h1>
+  <p>Interactive Academic Learning Platform</p>
+</header>
+
+<div class="selection-section">
+    <h1 class="selection-title">Select Your Academic Level</h1>
+
+    <div class="carousel-view">
+      <a href="Year1/year1Mohamed.html" class="year-slide" style="animation-delay: 0.1s;">
+        <span class="icon">🌱</span>
+        <span class="label">Foundation</span>
+        <div class="name">Year 1</div>
+        <p class="description">Master the basics of marketing and data structure.</p>
+      </a>
+
+      <a href="Year2/year2Mohamed.html" class="year-slide active" style="animation-delay: 0.3s;">
+        <span class="icon">🚀</span>
+        <span class="label">Professional</span>
+        <div class="name">Year 2</div>
+        <p class="description">SEO, Copywriting & Advanced Analytics</p>
+      </a>
+
+      <a href="Year3/year3Mohamed.html" class="year-slide" style="animation-delay: 0.5s;">
+        <span class="icon">🏆</span>
+        <span class="label">Specialized</span>
+        <div class="name">Year 3</div>
+        <p class="description">Strategic Management & Career Planning</p>
+      </a>
+    </div>
+
+</div>
+
+<script>
+  // Petite fonction pour le défilement (optionnel si tu as beaucoup de cartes)
+  function scrollCarousel(direction) {
+    const view = document.querySelector('.carousel-view');
+    view.scrollBy({ left: direction * 300, behavior: 'smooth' });
+  }
+</script>
+
+<script>
+  // Dynamic Exit Button - changes based on user role stored in localStorage
+  (function() {
+    const exitBtn = document.getElementById('exitBtn');
+    const userRole = localStorage.getItem('userRole');
+    
+    // Check if user is admin or doctor
+    if (userRole === 'admin') {
+      exitBtn.href = 'admin page/doctorsportal.html';
+    } else {
+      // Default to index.html (login page) for doctors and others
+      exitBtn.href = 'index.html';
+    }
+  })();
+</script>
+
+<script src="theme.js"></script>
+</body>
+</html>

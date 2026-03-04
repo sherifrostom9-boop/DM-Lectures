@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Marketing | Academic Portal</title>
+  <link href="DrHanan.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</head>
+<body>
+
+  <aside class="sidebar">
+    <div class="logo-section">
+      <a href="index.html">
+        <img src="logo.jpeg" alt="Logo" class="logo">
+        <h2>Dr. Hanan</h2>
+      </a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <svg class="sun-icon" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+        </svg>
+        <svg class="moon-icon" fill="currentColor" viewBox="0 0 24 24" style="display: none;">
+          <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+        </svg>
+      </button>
+    </div>
+        
+    <a href="HP(dr.hanan).html" class="nav-item active"><i class="fas fa-home"></i> <span>Home</span></a>
+    
+    <a href="index.html" class="nav-item" id="exitBtn"><i class="fas fa-exit"></i><span>← EXIT</span></a>
+    
+    <div class="nav-section">
+      <div class="nav-section-title">Academic Levels</div>
+      <a href="Year1/year1Hanan.html" class="nav-item"><i class="fas fa-seedling"></i> <span>Year 1</span></a>
+      <a href="year2.html" class="nav-item"><i class="fas fa-rocket"></i> <span>Year 2</span></a>
+      <a href="year3.html" class="nav-item"><i class="fas fa-trophy"></i> <span>Year 3</span></a>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-section-title">Resources</div>
+      <a href="#" class="nav-item"><i class="fas fa-book"></i> <span>Library</span></a>
+      <a href="#" class="nav-item"><i class="fas fa-calendar"></i> <span>Schedule</span></a>
+      <a href="#" class="nav-item"><i class="fas fa-envelope"></i> <span>Contact</span></a>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <header class="header-section">
+      <p>Academic Year 2026 • Interactive Learning Platform</p>
+      <h1>Digital Marketing Education</h1>
+      <p>Select your academic level to access tailored courses and learning materials.</p>
+    </header>
+
+    <div class="topics-grid">
+      
+      <a href="Year1/year1Hanan.html" class="topic-card">
+        <div class="badge foundation">Foundation Level</div>
+        <div class="icon-wrapper"><i class="fas fa-seedling"></i></div>
+        <h3>Year 1</h3>
+        <p>Build your foundation in digital marketing with essential concepts, tools, and strategies. Perfect for beginners starting their marketing journey.</p>
+        <ul class="course-list">
+          <li>Marketing Fundamentals</li>
+          <li>Digital Tools & Platforms</li>
+          <li>Content Creation Basics</li>
+          <li>Analytics Introduction</li>
+        </ul>
+      </a>
+
+      <a href="year2/year2Hanan.html" class="topic-card">
+        <div class="badge professional">Professional Level</div>
+        <div class="icon-wrapper"><i class="fas fa-rocket"></i></div>
+        <h3>Year 2</h3>
+        <p>Advance your skills with SEO, copywriting, and data-driven marketing strategies. Develop professional competencies for real-world applications.</p>
+        <ul class="course-list">
+          <li>SEO & SEM Mastery</li>
+          <li>Advanced Copywriting</li>
+          <li>Marketing Analytics</li>
+          <li>Brand Strategy & Communication</li>
+        </ul>
+      </a>
+
+      <a href="year3/year3Hanan" class="topic-card">
+        <div class="badge specialized">Specialized Level</div>
+        <div class="icon-wrapper"><i class="fas fa-trophy"></i></div>
+        <h3>Year 3</h3>
+        <p>Master strategic management, leadership in marketing, and career development. Prepare for senior roles and specialized marketing positions.</p>
+        <ul class="course-list">
+          <li>Strategic Marketing Management</li>
+          <li>Digital Transformation</li>
+          <li>Crisis & Reputation Management</li>
+          <li>Career Development & Leadership</li>
+        </ul>
+      </a>
+
+    </div>
+  </main>
+
+  <script>
+    // Dynamic Exit Button - changes based on user role stored in localStorage
+    (function() {
+      const exitBtn = document.getElementById('exitBtn');
+      const userRole = localStorage.getItem('userRole');
+      
+      // Check if user is admin or doctor
+      if (userRole === 'admin') {
+        exitBtn.href = 'admin page/doctorsportal.html';
+      } else {
+        // Default to index.html (login page) for doctors and others
+        exitBtn.href = 'index.html';
+      }
+    })();
+  </script>
+
+<script src="theme hanan.js"></script>
+</body>
+</html>

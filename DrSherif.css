@@ -1,0 +1,2107 @@
+/* ========================================
+   GLOBAL CSS VARIABLES & THEME
+   ======================================== */
+   :root {
+    /* Colors */
+    --primary-blue: #3b82f6;
+    --primary-purple: #7c3aed;
+    --accent-cyan: #4ed9c2;
+    --accent-green: #10b981;
+    --accent-orange: #f59e0b;
+    
+    /* Backgrounds */
+    --bg: #071426;
+    --bg-primary: #050a18;
+    --dark-bg: #020617;
+    --surface: #0b1f3a;
+    --card-bg: #0b1122;
+    --card-bg-alpha: rgba(255, 255, 255, 0.05);
+    --bg-card-hover: #0e162d;
+    
+    /* Text */
+    --text: #eaf2ff;
+    --text-main: #ffffff;
+    --text-muted: #94a3b8;
+    --text-dim: #8fa0bc;
+    --text-subtitle: #8fa0bc;
+    --muted: #b7c6dd;
+    
+    /* Borders & Effects */
+    --border: rgba(234, 242, 255, 0.12);
+    --border-color: #1e293b;
+    --border-light: rgba(255, 255, 255, 0.1);
+    --accent-glow: rgba(59, 130, 246, 0.25);
+    --shadow: 0 20px 60px rgba(0,0,0,0.45);
+    
+    /* UI Elements */
+    --primary: #3b82f6;
+    --primary-2: #06b6d4;
+    --danger: #fb7185;
+    --success: #34d399;
+    --color-title-blue: #92a9ff;
+    --radius: 18px;
+  }
+  
+  [data-theme="light"] {
+    /* Backgrounds */
+    --bg: #f8fafc;
+    --bg-primary: #f8fafc;
+    --dark-bg: #f8fafc;
+    --surface: #ffffff;
+    --card-bg: #ffffff;
+    --card-bg-alpha: rgba(59, 130, 246, 0.08);
+    --bg-card-hover: #f1f5f9;
+    
+    /* Text */
+    --text: #0f172a;
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --text-dim: #64748b;
+    --text-subtitle: #475569;
+    --muted: #64748b;
+    
+    /* Borders & Effects */
+    --border: rgba(15, 23, 42, 0.12);
+    --border-color: rgba(15, 23, 42, 0.12);
+    --border-light: rgba(15, 23, 42, 0.12);
+    --accent-glow: rgba(37,99,235,0.18);
+    --shadow: 0 16px 50px rgba(0,0,0,0.12);
+    
+    /* UI Elements */
+    --primary: #2563eb;
+    --primary-blue: #2563eb;
+    --primary-purple: #7c3aed;
+    --primary-2: #0891b2;
+    --color-title-blue: #3b82f6;
+    --danger: #fb7185;
+    --success: #34d399;
+  }
+  
+  /* ========================================
+     GLOBAL STYLES
+     ======================================== */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+    transition: background 0.3s ease, color 0.3s ease;
+    background-image: 
+      radial-gradient(circle at 15% 20%, rgba(59,130,246,0.14), transparent 40%),
+      radial-gradient(circle at 85% 15%, rgba(6,182,212,0.12), transparent 45%);
+  }
+  
+  /* ========================================
+     NAVIGATION & TOP BAR
+     ======================================== */
+  .navbar,
+  .nav,
+  .top-bar {
+    background: var(--surface);
+    backdrop-filter: blur(12px);
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+  }
+  
+  .nav {
+    position: fixed;
+    inset: 0 0 auto 0;
+    padding: 1.2rem 5%;
+  }
+  
+  [data-theme="light"] .nav {
+    background: rgba(248,250,252,0.8);
+  }
+  
+  .nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .nav-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .nav-left h2,
+  .top-bar h2 {
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin: 0;
+    letter-spacing: 1px;
+    color: var(--text);
+  }
+  
+  /* Logo */
+  .logo,
+  .site-logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    object-fit: cover;
+    border: 2px solid var(--primary-blue);
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.35rem;
+  }
+  
+  .logo img {
+    height: 52px;
+    width: auto;
+    border-radius: 10px;
+  }
+  
+  /* Theme Toggle */
+  .theme-toggle {
+    background: var(--card-bg-alpha);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 8px 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text);
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    margin-left: auto;
+  }
+  
+  .theme-toggle:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+  }
+  
+  .theme-toggle svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  /* ========================================
+     HERO SECTION
+     ======================================== */
+  .hero {
+    text-align: center;
+    padding: 80px 20px 60px;
+  }
+  
+  .hero h1 {
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
+    line-height: 1.1;
+    margin-bottom: 20px;
+    color: var(--text);
+    font-weight: 800;
+    background: linear-gradient(90deg, var(--text), var(--primary-2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .hero p {
+    font-size: 1.2rem;
+    color: var(--muted);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.55;
+  }
+  
+  .syllabus-label {
+    color: var(--accent-cyan);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  
+  /* ========================================
+     NAVIGATION LINKS & BUTTONS
+     ======================================== */
+  .exit-link,
+  .back-link,
+  .back-btn {
+    color: var(--text);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+  }
+  
+  .exit-link {
+    margin-top: 90px;
+  }
+  
+  .back-link,
+  .back-btn {
+    color: var(--primary);
+    text-transform: none;
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+  
+  .exit-link:hover,
+  .back-link:hover,
+  .back-btn:hover {
+    opacity: 0.7;
+    transform: translateX(-4px);
+  }
+  
+  .module-btn {
+    text-decoration: none;
+    color: var(--text);
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: 0.3s;
+    border: 1px solid var(--border);
+    background: var(--card-bg-alpha);
+    display: inline-block;
+  }
+  
+  .module-btn:hover {
+    background: rgba(59, 130, 246, 0.2);
+    transform: translateX(-5px);
+    border-color: var(--primary-blue);
+  }
+  
+  /* ========================================
+     CAROUSEL & SELECTION SECTIONS
+     ======================================== */
+  .selection-section,
+  .carousel-section {
+    padding: 40px 5% 100px;
+    text-align: center;
+  }
+  
+  .carousel-section {
+    padding: 140px 5% 60px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  .selection-title {
+    font-size: 1.5rem;
+    margin-bottom: 50px;
+    color: var(--primary-blue);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+  }
+  
+  .carousel-view,
+  .carousel-viewport {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    perspective: 1000px;
+    overflow: visible;
+    width: 100%;
+  }
+  
+  .carousel-track {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 2rem;
+    width: 100%;
+  }
+  
+  /* Year Slide Cards */
+  .year-slide {
+    background: var(--card-bg-alpha);
+    border: 1px solid var(--border);
+    padding: 40px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    color: var(--text);
+    width: 280px;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    backdrop-filter: blur(10px);
+    position: relative;
+  }
+  
+  .year-slide .icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 20px;
+  }
+  
+  .year-slide .label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .year-slide .name {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+    color: var(--text);
+  }
+  
+  .year-slide .description {
+    font-size: 0.95rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  
+  .year-slide:hover,
+  .year-slide.active {
+    background: var(--surface);
+    border-color: var(--primary-blue);
+    transform: translateY(-15px) scale(1.05);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3), 0 0 20px rgba(59, 130, 246, 0.2);
+  }
+  
+  .year-slide.active {
+    border-color: var(--primary-purple);
+  }
+  
+  /* Navigation Arrows */
+  .nav-arrows {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .arrow {
+    background: var(--card-bg-alpha);
+    border: 1px solid var(--border);
+    color: var(--text);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .arrow:hover {
+    background: var(--primary-blue);
+    border-color: var(--primary-blue);
+    transform: scale(1.1);
+    color: white;
+  }
+  
+  /* ========================================
+     SEMESTER PICKER
+     ======================================== */
+  .semester-picker {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+  }
+  
+  .picker-btn {
+    text-decoration: none;
+    padding: 12px 30px;
+    border-radius: 30px;
+    background: var(--card-bg-alpha);
+    color: var(--text);
+    font-weight: 700;
+    border: 1px solid var(--border);
+    transition: all 0.3s ease;
+  }
+  
+  .picker-btn:hover {
+    background: rgba(59, 130, 246, 0.2);
+    border-color: var(--primary-blue);
+    transform: translateY(-2px);
+  }
+  
+  .picker-btn.active {
+    background: var(--primary-blue);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+    border-color: var(--primary-blue);
+    color: white;
+  }
+  
+  /* ========================================
+     TIMELINE LAYOUT
+     ======================================== */
+  .timeline-wrapper {
+    position: relative;
+    padding-left: 50px;
+    margin-top: 40px;
+  }
+  
+  .timeline-wrapper::before {
+    content: "";
+    position: absolute;
+    left: 14px;
+    top: 10px;
+    bottom: 10px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--accent-blue), var(--accent-purple), var(--accent-green));
+  }
+  
+  .lesson-item,
+  .topic-row {
+    position: relative;
+    margin-bottom: 25px;
+  }
+  
+  .indicator,
+  .dot {
+    position: absolute;
+    left: -53px;
+    top: 25px;
+    width: 18px;
+    height: 18px;
+    background-color: var(--bg-primary);
+    border: 3px solid;
+    border-radius: 50%;
+    z-index: 2;
+  }
+  
+  .blue-glow { 
+    border-color: var(--accent-blue); 
+    box-shadow: 0 0 12px var(--accent-blue); 
+  }
+  
+  .purple-glow { 
+    border-color: var(--accent-purple); 
+    box-shadow: 0 0 12px var(--accent-purple); 
+  }
+  
+  .green-glow { 
+    border-color: var(--accent-green); 
+    box-shadow: 0 0 12px var(--accent-green); 
+  }
+  
+  .orange-glow { 
+    border-color: var(--accent-orange); 
+    box-shadow: 0 0 12px var(--accent-orange); 
+  }
+  
+  /* ========================================
+     CARDS & CONTENT
+     ======================================== */
+  .container,
+  .year1-container {
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  .year1-container {
+    max-width: 1000px;
+    padding: 50px 20px;
+  }
+  
+  .section-header {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  
+  .english-word,
+  .label {
+    letter-spacing: 5px;
+    color: var(--primary-blue);
+    font-weight: 800;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+  }
+  
+  .label {
+    letter-spacing: 2px;
+    font-size: 0.8rem;
+    color: var(--accent-green);
+  }
+  
+  /* Card Styles */
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    padding: 25px 35px;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .card:hover {
+    transform: scale(1.02);
+    border-color: var(--accent-blue);
+    background: var(--bg-card-hover);
+  }
+  
+  .content-area {
+    max-width: 80%;
+  }
+  
+  .card h3 {
+    margin: 0 0 8px 0;
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+  
+  .card p {
+    margin: 0;
+    color: var(--text-muted);
+    line-height: 1.6;
+    font-size: 0.95rem;
+  }
+  
+  /* Title Colors */
+  .html-title { color: var(--accent-blue); }
+  .css-title { color: var(--accent-purple); }
+  .standard-title { color: var(--accent-green); }
+  .prog-title { color: var(--accent-orange); }
+  
+  /* View Topic/Lesson Button */
+  .view-topic,
+  .view-link {
+    color: var(--accent-cyan);
+    font-weight: bold;
+    font-size: 0.85rem;
+    border: 1px solid var(--accent-cyan);
+    padding: 8px 15px;
+    border-radius: 5px;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+  }
+  
+  .view-topic:hover,
+  .view-link:hover,
+  .card:hover .view-topic {
+    background-color: var(--accent-cyan);
+    color: var(--bg-primary);
+  }
+  
+  .view-link {
+    background-color: var(--accent-cyan);
+    color: #020617;
+  }
+  
+  .view-link:hover {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+  }
+  
+  
+  /* ========================================
+     STATS & PROGRESS
+     ======================================== */
+  .stats-container {
+    max-width: 900px;
+    margin: 60px auto 40px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 24px;
+    border: 1px solid var(--border-light);
+  }
+  
+  [data-theme="light"] .stats-container {
+    background: rgba(0, 0, 0, 0.02);
+  }
+  
+  .stats-grid {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+  
+  .stat-item {
+    text-align: center;
+    min-width: 150px;
+  }
+  
+  .stat-value {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--primary-blue);
+    margin-bottom: 5px;
+  }
+  
+  .stat-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--muted);
+  }
+  
+  /* Progress Circle */
+  .progress-circle-box {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+  }
+  
+  .progress-svg {
+    transform: rotate(-90deg);
+  }
+  
+  .progress-svg circle {
+    fill: none;
+    stroke-width: 8;
+    stroke-linecap: round;
+  }
+  
+  .progress-svg circle.bg {
+    stroke: rgba(255, 255, 255, 0.05);
+  }
+  
+  [data-theme="light"] .progress-svg circle.bg {
+    stroke: rgba(0, 0, 0, 0.05);
+  }
+  
+  .progress-svg circle.meter {
+    stroke: var(--primary-purple);
+    stroke-dasharray: 283;
+    transition: stroke-dashoffset 1s ease-out;
+  }
+  
+  .progress-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 800;
+    font-size: 1rem;
+    color: var(--text);
+  }
+  
+  /* ========================================
+     SECTION GRID & CONTENT BLOCKS
+     ======================================== */
+  .section-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+  
+  .full-width {
+    grid-column: 1 / -1;
+  }
+  
+  h1 {
+    font-size: 3.5rem;
+    margin: 0;
+    color: var(--color-title-blue);
+    font-weight: 800;
+  }
+  
+  h2 {
+    color: var(--primary-blue);
+    margin-top: 0;
+    border-left: 4px solid var(--primary-blue);
+    padding-left: 15px;
+  }
+  
+  .subtitle {
+    color: var(--text-subtitle);
+    margin-top: 10px;
+    font-size: 1.1rem;
+  }
+  
+  ul {
+    padding-left: 20px;
+    color: var(--text-dim);
+  }
+  
+  li {
+    margin-bottom: 10px;
+  }
+  
+  /* ========================================
+     TABLES
+     ======================================== */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: rgba(255, 255, 255, 0.02);
+  }
+  
+  th,
+  td {
+    border: 1px solid var(--border);
+    padding: 15px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: var(--primary-blue);
+    color: white;
+  }
+  
+  /* ========================================
+     CODE BLOCKS
+     ======================================== */
+  .code-block {
+    background: #000;
+    padding: 20px;
+    border-radius: 8px;
+    font-family: 'Courier New', 'Fira Code', monospace;
+    color: #dcdccc;
+    overflow-x: auto;
+    border: 1px dashed var(--primary-blue);
+  }
+  
+  .tag {
+    color: #569cd6;
+  }
+  
+  .comment {
+    color: #6a9955;
+  }
+  
+  /* ========================================
+     FOOTER
+     ======================================== */
+  footer {
+    margin-top: 60px;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+  }
+  
+  /* ========================================
+     ANIMATIONS
+     ======================================== */
+  .year-slide {
+    animation: slideUp 0.8s ease-out forwards;
+    opacity: 0;
+  }
+  
+  @keyframes slideUp {
+    from {
+      transform: translateY(50px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  /* ========================================
+     RESPONSIVE DESIGN
+     ======================================== */
+  @media (max-width: 768px) {
+    .hero {
+      padding: 120px 5% 0;
+    }
+    
+    .hero h1,
+    h1 {
+      font-size: 2.5rem;
+    }
+    
+    main {
+      padding: 120px 5% 80px;
+    }
+    
+    .year1-container {
+      padding: 0 5% 40px;
+    }
+    
+    .carousel-section {
+      padding: 120px 5% 40px;
+    }
+    
+    
+    .semester-picker {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .card {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 15px;
+    }
+    
+    .content-area {
+      max-width: 100%;
+    }
+    
+    .view-topic,
+    .view-link {
+      align-self: flex-end;
+      width: 100%;
+      text-align: center;
+      box-sizing: border-box;
+    }
+    
+    .section-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .stats-container {
+      margin: 40px auto 30px;
+      padding: 20px;
+    }
+    
+    .stat-value {
+      font-size: 2rem;
+    }
+    
+    .theme-toggle span {
+      display: none;
+    }
+  }
+
+      /* ── Module Grid ── */
+      .course-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+        gap: 2rem;
+      }
+  
+      .course-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        overflow: hidden;
+        backdrop-filter: blur(12px);
+        transition: all 0.35s ease;
+        text-decoration: none;
+        color: inherit;
+        display: flex;
+        flex-direction: column;
+      }
+  
+      .course-card:hover {
+        transform: translateY(-12px);
+        border-color: var(--primary);
+        box-shadow: var(--shadow);
+      }
+  
+      .card-image {
+        height: 180px;
+        overflow: hidden;
+      }
+  
+      .card-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s ease;
+      }
+  
+      .course-card:hover .card-image img {
+        transform: scale(1.08);
+      }
+  
+      .card-content {
+        padding: 1.8rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+  
+      .module-tag {
+        display: inline-block;
+        padding: 0.35rem 0.9rem;
+        border-radius: 10px;
+        background: rgba(59,130,246,0.12);
+        color: var(--primary);
+        font-size: 0.8rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        width: fit-content;
+      }
+  
+      .card-content h3 {
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin-bottom: 0.8rem;
+      }
+  
+      .card-content p {
+        color: var(--muted);
+        font-size: 0.97rem;
+        line-height: 1.55;
+        margin-top: auto;
+      }
+  
+      /* Responsive */
+      @media (max-width: 768px) {
+        .hero h1 { font-size: 2.6rem; }
+        main { padding: 120px 5% 80px; }
+      }
+  
+      /* ========================================
+   LESSON PAGE SPECIFIC STYLES
+   ======================================== */
+/* These styles apply to lesson content pages (topic1.html, topic2.html, etc.) */
+
+  
+  /* Lesson container override */
+  .container:has(.back-btn) {
+    max-width: 1000px;
+    padding: 40px 20px;
+  }
+  
+  /* Lesson back button */
+  .container .back-btn {
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+    display: inline-block;
+    margin-bottom: 30px;
+    transition: color 0.3s;
+    text-transform: none;
+  }
+  
+  .container .back-btn:hover {
+    color: var(--primary-blue);
+    opacity: 1;
+    transform: none;
+  }
+  
+  /* Lesson header */
+  .container header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 20px;
+    margin-bottom: 40px;
+    text-align: left;
+  }
+  
+  /* Lesson label */
+  .container header .label {
+    color: var(--accent-green);
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+  }
+  
+  /* Lesson h1 */
+  .container header h1 {
+    font-size: 2.5rem;
+    margin: 10px 0;
+    color: #92a9ff;
+    background: none;
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: unset;
+  }
+  
+  /* Lesson section grid - prevent card hover effects */
+  .container .section-grid .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 25px;
+    display: block;
+    transform: none;
+  }
+  
+  .container .section-grid .card:hover {
+    transform: none;
+    border-color: var(--border-color);
+    background: var(--card-bg);
+  }
+  
+  /* Lesson card h2 */
+  .container .section-grid .card h2 {
+    color: var(--primary-blue);
+    margin-top: 0;
+    border-left: 4px solid var(--primary-blue);
+    padding-left: 15px;
+  }
+  
+  /* Lesson card paragraphs and lists */
+  .container .section-grid .card p,
+  .container .section-grid .card ul,
+  .container .section-grid .card li {
+    color: var(--text-dim);
+  }
+  
+  /* Lesson tables */
+  .container table td {
+    color: var(--text-dim);
+  }
+  
+  /* Lesson code blocks */
+  .container .code-block {
+    line-height: 1.6;
+  }
+  
+  /* Lesson footer */
+  .container footer {
+    margin-top: 60px;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+  }
+  
+  .container footer p {
+    margin: 5px 0;
+  }
+  
+  /* Responsive for lesson pages */
+  @media (max-width: 768px) {
+    .container header h1 {
+      font-size: 2rem;
+    }
+  }
+
+  /* ========================================
+   TIMELINE LESSON PAGE STYLES
+   ======================================== */
+/* For pages with timeline navigation (step-by-step lessons) */
+
+  
+  /* Timeline Navigation */
+  .timeline-nav {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    position: relative;
+    margin: 50px 0 70px;
+    padding: 0 5%;
+    flex-wrap: wrap;
+  }
+  
+  .timeline-line {
+    position: absolute;
+    top: 20px;
+    left: 10%;
+    right: 10%;
+    height: 3px;
+    background: var(--border-light);
+    z-index: 1;
+  }
+  
+  .step-node {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    cursor: pointer;
+    min-width: 100px;
+  }
+  
+  .step-node .dot {
+    width: 48px;
+    height: 48px;
+    background: var(--bg-primary);
+    border: 3px solid var(--border-light);
+    border-radius: 50%;
+    margin: 0 auto 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1.3rem;
+    color: var(--text-dim);
+    transition: all 0.35s ease;
+    position: static;
+    left: auto;
+    top: auto;
+  }
+  
+  .step-node.active .dot,
+  .step-node:hover .dot {
+    background: var(--primary-blue);
+    border-color: var(--primary-blue);
+    color: white;
+    box-shadow: 0 0 24px rgba(59, 130, 246, 0.5);
+    transform: scale(1.12);
+  }
+  
+  .node-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .step-node.active .node-label {
+    color: var(--text-main);
+  }
+  
+/* Timeline page hero - reduced spacing */
+.hero:has(.badge) {
+    text-align: center;
+    padding: 30px 20px 20px; /* Reduced from 80px 20px 60px */
+  }
+  
+  .hero .badge {
+    color: var(--accent-cyan);
+    font-weight: 800;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 8px; /* Reduced from 12px */
+    display: block;
+  }
+  
+  .hero h1 {
+    font-size: 3.2rem;
+    font-weight: 800;
+    background: linear-gradient(to right, var(--text-main), var(--primary-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px; /* Reduced from 12px */
+  }
+  
+  .hero p {
+    color: var(--text-dim);
+    font-size: 1.15rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  /* Exit link in timeline pages */
+  .hero .exit-link {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+    display: inline-block;
+    margin-bottom: 15px;
+  }
+  
+  .hero .exit-link:hover {
+    color: var(--text-main);
+  }
+  
+  /* Timeline Navigation */
+.timeline-nav {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    position: relative;
+    margin: 30px 0 50px; /* Reduced from 50px 0 70px */
+    padding: 0 5%;
+    flex-wrap: wrap;
+  }
+  
+  /* Step Content */
+  .step-content {
+    display: none;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 25px 80px;
+    animation: fadeIn 0.5s ease;
+  }
+  
+  .step-content.active {
+    display: block;
+  }
+  
+  @keyframes fadeIn {
+    from { 
+      opacity: 0; 
+      transform: translateY(20px); 
+    }
+    to { 
+      opacity: 1; 
+      transform: translateY(0); 
+    }
+  }
+  
+  .step-content h2 {
+    font-size: 2.4rem;
+    margin-bottom: 28px;
+    color: var(--text-main);
+    font-weight: 800;
+    border: none;
+    padding: 0;
+  }
+  
+  .theory-box {
+    background: var(--card-bg-alpha);
+    border: 1px solid var(--border-light);
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 36px;
+    color: var(--text-dim);
+    font-size: 1.1rem;
+    line-height: 1.8;
+  }
+  
+  .theory-box strong {
+    color: var(--text-main);
+  }
+  
+  .highlight-box {
+    background: rgba(59, 130, 246, 0.12);
+    border-left: 5px solid var(--primary-blue);
+    padding: 22px;
+    margin: 28px 0;
+    border-radius: 8px;
+    font-size: 1.05rem;
+    color: var(--text-main);
+  }
+  
+  [data-theme="light"] .highlight-box {
+    background: rgba(59, 130, 246, 0.08);
+  }
+  
+  .details-list {
+    padding-left: 24px;
+    color: var(--text-dim);
+  }
+  
+  .details-list li {
+    margin-bottom: 8px;
+  }
+  
+  .step-content p {
+    color: var(--text-dim);
+    margin-bottom: 16px;
+    font-size: 1.05rem;
+  }
+  
+  .step-content strong {
+    color: var(--text-main);
+  }
+  
+  .step-content ul {
+    color: var(--text-dim);
+    padding-left: 24px;
+  }
+  
+  .step-content ul li {
+    margin-bottom: 12px;
+    line-height: 1.6;
+  }
+  
+  /* Timeline page tables */
+  .step-content table {
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  
+  .step-content th {
+    background: rgba(59, 130, 246, 0.2);
+    color: var(--text-main);
+    font-weight: 600;
+  }
+  
+  [data-theme="light"] .step-content th {
+    background: rgba(59, 130, 246, 0.1);
+  }
+  
+  .step-content td {
+    color: var(--text-dim);
+  }
+  
+  .step-content td strong {
+    color: var(--text-main);
+  }
+  
+  /* Code in timeline pages */
+  code {
+    font-family: 'Fira Code', 'Courier New', monospace;
+    background: rgba(0,0,0,0.3);
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: var(--accent-cyan);
+  }
+  
+  [data-theme="light"] code {
+    background: rgba(0,0,0,0.08);
+    color: #0891b2;
+  }
+  
+  /* Responsive for timeline pages */
+  @media (max-width: 768px) {
+    .timeline-nav {
+      gap: 20px;
+    }
+    
+    .step-node {
+      min-width: 80px;
+    }
+    
+    .step-node .dot {
+      width: 40px;
+      height: 40px;
+      font-size: 1.1rem;
+    }
+    
+    .node-label {
+      font-size: 0.7rem;
+    }
+    
+    .step-content h2 {
+      font-size: 2rem;
+    }
+    
+    .hero h1 {
+      font-size: 2.5rem;
+    }
+  }
+
+  /* ========================================
+   INTEGRATION SYLLABUS PAGE (SEMESTER 2)
+   ======================================== */
+/* For pages with different class naming convention */
+
+/* Main container for timeline pages */
+main:has(.timeline-wrapper) {
+    padding: 40px 5% 100px; /* Small gap instead of large 140px gap */
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  /* Hero section adjustments */
+  .hero .subtitle {
+    color: var(--text-subtitle);
+    margin-top: 10px;
+    font-size: 1.1rem;
+  }
+  
+  /* Timeline wrapper alternative styling */
+  main .timeline-wrapper {
+    position: relative;
+    padding-left: 50px;
+    margin-top: 40px;
+  }
+  
+  main .timeline-wrapper::before {
+    content: "";
+    position: absolute;
+    left: 14px;
+    top: 10px;
+    bottom: 10px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--primary-blue), var(--primary-purple), var(--accent-green));
+  }
+  
+  /* Lesson items */
+  main .lesson-item {
+    position: relative;
+    margin-bottom: 25px;
+  }
+  
+  /* Color-coded indicators */
+  main .lesson-item .indicator {
+    position: absolute;
+    left: -43px;
+    top: 25px;
+    width: 18px;
+    height: 18px;
+    background-color: var(--bg-primary);
+    border: 3px solid;
+    border-radius: 50%;
+    z-index: 2;
+  }
+  
+  main .indicator.blue {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 12px var(--primary-blue);
+  }
+  
+  main .indicator.purple {
+    border-color: var(--primary-purple);
+    box-shadow: 0 0 12px var(--primary-purple);
+  }
+  
+  main .indicator.green {
+    border-color: var(--accent-green);
+    box-shadow: 0 0 12px var(--accent-green);
+  }
+  
+  main .indicator.orange {
+    border-color: var(--accent-orange);
+    box-shadow: 0 0 12px var(--accent-orange);
+  }
+  
+  /* Topic link cards */
+  .topic-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  
+  main .lesson-item .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    padding: 25px 35px;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  main .lesson-item .card:hover {
+    transform: scale(1.02);
+    border-color: var(--primary-blue);
+    background: var(--bg-card-hover);
+  }
+  
+  /* Card content area */
+  main .lesson-item .card .content {
+    max-width: 80%;
+  }
+  
+  main .lesson-item .card h3 {
+    margin: 0 0 8px 0;
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+  
+  main .lesson-item .card p {
+    margin: 0;
+    color: var(--text-muted);
+    line-height: 1.6;
+    font-size: 0.95rem;
+  }
+  
+  /* Title color variations */
+  main .card h3.html {
+    color: var(--primary-blue);
+  }
+  
+  main .card h3.css {
+    color: var(--primary-purple);
+  }
+  
+  main .card h3.prog {
+    color: var(--accent-orange);
+  }
+  
+  /* View button */
+  main .view-btn {
+    color: var(--accent-cyan);
+    font-weight: bold;
+    font-size: 0.85rem;
+    border: 1px solid var(--accent-cyan);
+    padding: 8px 15px;
+    border-radius: 5px;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+  }
+  
+  main .view-btn:hover,
+  main .card:hover .view-btn {
+    background-color: var(--accent-cyan);
+    color: var(--bg-primary);
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    main:has(.timeline-wrapper) {
+      padding: 120px 5% 80px;
+    }
+  
+    main .lesson-item .card {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 15px;
+    }
+  
+    main .lesson-item .card .content {
+      max-width: 100%;
+    }
+  
+    main .view-btn {
+      align-self: flex-end;
+      width: 100%;
+      text-align: center;
+    }
+  
+    main .lesson-item .indicator {
+      left: -33px;
+    }
+  
+    main .timeline-wrapper {
+      padding-left: 30px;
+    }
+  }
+
+  /* ========================================
+   TOPIC LESSON PAGE (Alternative Format)
+   ======================================== */
+/* For lesson pages with different structure */
+
+/* Main container for topic lessons */
+main:has(.back-link-container) {
+    padding: 0 5%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding-bottom: 80px;
+  }
+  
+  /* Back link container */
+  .back-link-container {
+    padding-top: 100px;
+    margin-bottom: 20px;
+  }
+  
+  .back-link-container .back-link {
+    color: var(--primary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 700;
+    display: inline-block;
+    transition: all 0.3s ease;
+  }
+  
+  .back-link-container .back-link:hover {
+    opacity: 0.7;
+    transform: translateX(-4px);
+  }
+  
+  /* Header for topic lessons */
+  main header {
+    text-align: center;
+    margin-bottom: 50px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 20px;
+  }
+  
+  main header .label {
+    color: var(--accent-green);
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+  }
+  
+  main header h1 {
+    font-size: 3rem;
+    margin: 10px 0;
+    color: var(--color-title-blue);
+    background: none;
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: unset;
+  }
+  
+  main header .subtitle {
+    color: var(--text-subtitle);
+    margin-top: 10px;
+    font-size: 1.1rem;
+  }
+  
+  /* Code block elements */
+  .code-block {
+    background: #000;
+    padding: 20px;
+    border-radius: 8px;
+    font-family: 'Courier New', 'Fira Code', monospace;
+    color: #dcdccc;
+    overflow-x: auto;
+    border: 1px dashed var(--primary-blue);
+    line-height: 1.8;
+    margin-top: 15px;
+  }
+  
+  .code-block .tag {
+    color: #569cd6;
+  }
+  
+  .code-block .attr {
+    color: #9cdcfe;
+  }
+  
+  .code-block .val {
+    color: #ce9178;
+  }
+  
+  /* Tip box */
+  .tip-box {
+    background: rgba(78, 217, 194, 0.1);
+    border-left: 4px solid var(--accent-cyan);
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+  }
+  
+  .tip-box strong {
+    color: var(--accent-cyan);
+  }
+  
+  .tip-box ul {
+    margin-top: 10px;
+    padding-left: 20px;
+  }
+  
+  .tip-box li {
+    margin-bottom: 8px;
+    color: var(--text-dim);
+  }
+  
+  .tip-box em {
+    color: var(--text-muted);
+    font-style: italic;
+  }
+  
+  /* Exercise card */
+  .exercise-card {
+    background: var(--card-bg-alpha);
+    border: 2px solid var(--primary-blue);
+    border-radius: 16px;
+    padding: 35px;
+    margin-top: 50px;
+  }
+  
+  .exercise-card h2 {
+    color: var(--primary-blue);
+    margin-top: 0;
+    margin-bottom: 15px;
+    border: none;
+    padding: 0;
+  }
+  
+  .exercise-card p {
+    color: var(--text-dim);
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+  
+  .exercise-card strong {
+    color: var(--text-main);
+  }
+  
+  .exercise-card input[type="text"] {
+    background: #1e293b;
+    color: #94a3b8;
+    border: 1px solid #334155;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+  }
+  
+  [data-theme="light"] .exercise-card input[type="text"] {
+    background: #f1f5f9;
+    color: #475569;
+    border: 1px solid #cbd5e1;
+  }
+  
+  .btn-check {
+    background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 25px;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-check:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+  }
+  
+  /* Code inline */
+  main code {
+    font-family: 'Fira Code', 'Courier New', monospace;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: var(--accent-cyan);
+    font-size: 0.9em;
+  }
+  
+  [data-theme="light"] main code {
+    background: rgba(0, 0, 0, 0.08);
+    color: #0891b2;
+  }
+  
+  /* Section grid for topic lessons */
+  main .section-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+  
+  main .section-grid .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 25px;
+    display: block;
+  }
+  
+  main .section-grid .card h2 {
+    color: var(--primary-blue);
+    margin-top: 0;
+    margin-bottom: 15px;
+    border-left: 4px solid var(--primary-blue);
+    padding-left: 15px;
+    font-size: 1.3rem;
+  }
+  
+  main .section-grid .card p {
+    color: var(--text-dim);
+    line-height: 1.6;
+    margin-bottom: 15px;
+  }
+  
+  main .section-grid .card ul {
+    padding-left: 20px;
+    color: var(--text-dim);
+  }
+  
+  main .section-grid .card li {
+    margin-bottom: 10px;
+  }
+  
+  main .section-grid .card strong {
+    color: var(--text-main);
+  }
+  
+  /* Footer for topic lessons */
+  main footer {
+    margin-top: 60px;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+  }
+  
+  main footer p {
+    margin: 5px 0;
+  }
+  
+  /* Responsive for topic lessons */
+  @media (max-width: 768px) {
+    .back-link-container {
+      padding-top: 80px;
+    }
+  
+    main header h1 {
+      font-size: 2rem;
+    }
+  
+    main .section-grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .exercise-card {
+      padding: 25px;
+    }
+  }
+
+  /* ========================================
+   TOPIC LESSON PAGE (Top Bar Variant)
+   ======================================== */
+/* For lesson pages using top-bar and direct back-link */
+
+/* Main container for lessons with direct back-link */
+main:has(> .back-link) {
+    padding: 100px 5% 80px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  /* Direct back link (not in container) */
+  main > .back-link {
+    color: var(--primary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 700;
+    display: inline-block;
+    margin-bottom: 30px;
+    transition: all 0.3s ease;
+  }
+  
+  main > .back-link:hover {
+    opacity: 0.7;
+    transform: translateX(-4px);
+  }
+  
+  /* Additional code block selector styles */
+  .code-block .selector {
+    color: #d7ba7d;
+    font-weight: 600;
+  }
+  
+  .code-block .property {
+    color: #9cdcfe;
+  }
+  
+  .code-block .value {
+    color: #ce9178;
+  }
+  
+  /* Exercise input styling */
+  .ex-input {
+    background: #1e293b;
+    color: #94a3b8;
+    border: 1px solid #334155;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+  }
+  
+  .ex-input:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    background: #0f172a;
+  }
+  
+  [data-theme="light"] .ex-input {
+    background: #f1f5f9;
+    color: #475569;
+    border: 1px solid #cbd5e1;
+  }
+  
+  [data-theme="light"] .ex-input:focus {
+    background: #e2e8f0;
+    border-color: var(--primary-blue);
+  }
+  
+  /* Result message styling */
+  #result-msg {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-align: center;
+    display: none;
+  }
+  
+  #result-msg.show {
+    display: block;
+  }
+  
+  #result-msg.correct {
+    background: rgba(16, 185, 129, 0.15);
+    color: var(--accent-green);
+    border: 1px solid var(--accent-green);
+  }
+  
+  #result-msg.incorrect {
+    background: rgba(251, 113, 133, 0.15);
+    color: var(--danger);
+    border: 1px solid var(--danger);
+  }
+  
+  /* Nested grid inside cards */
+  .card > div[style*="grid"] {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+  
+  /* Small text styling */
+  .card small {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    display: block;
+    margin-top: 10px;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    main:has(> .back-link) {
+      padding: 80px 5% 60px;
+    }
+    
+    .card > div[style*="grid"] {
+      grid-template-columns: 1fr !important;
+    }
+  }
+
+  /* ========================================
+   DIV TAG LESSON PAGE (Special Layout)
+   ======================================== */
+/* For pages with CSS art demonstrations */
+
+/* Container sections styling */
+.container section {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 20px;
+  }
+  
+  .container section h3 {
+    color: var(--primary-blue);
+    margin-top: 0;
+    margin-bottom: 15px;
+    border-left: 4px solid var(--primary-blue);
+    padding-left: 15px;
+    font-size: 1.4rem;
+  }
+  
+  .container section h4 {
+    color: var(--text-main);
+    margin-top: 25px;
+    margin-bottom: 12px;
+    font-size: 1.1rem;
+  }
+  
+  .container section p {
+    color: var(--text-dim);
+    line-height: 1.6;
+    margin-bottom: 15px;
+  }
+  
+  /* Code blocks in sections */
+  .container section .code-block {
+    background: #000;
+    padding: 20px;
+    border-radius: 8px;
+    font-family: 'Courier New', 'Fira Code', monospace;
+    color: #dcdccc;
+    overflow-x: auto;
+    border: 1px dashed var(--primary-blue);
+    line-height: 1.8;
+    margin: 15px 0;
+  }
+  
+  .container section .code-block p {
+    margin: 0;
+    color: #dcdccc;
+    line-height: 1.8;
+  }
+  
+  /* Art demonstration area */
+  .art-demo {
+    background: var(--bg-primary);
+    border: 2px solid var(--border-light);
+    border-radius: 12px;
+    padding: 40px;
+    margin: 25px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+  }
+  
+  [data-theme="light"] .art-demo {
+    background: #e2e8f0;
+    border-color: #cbd5e1;
+  }
+  
+  /* Square demo */
+  .art-demo .square {
+    background-color: #6600CC;
+    width: 200px;
+    height: 200px;
+  }
+  
+  /* Circle demo */
+  .art-demo .circle {
+    background-color: #2ecc71;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+  }
+  
+  /* Egyptian flag demo */
+  .art-demo .egypt-flag {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+  
+  .art-demo .first-red {
+    height: 100px;
+    width: 500px;
+    background-color: #CE1126;
+  }
+  
+  .art-demo .white-stripe {
+    height: 100px;
+    width: 500px;
+    background-color: #FFFFFF;
+  }
+  
+  .art-demo .second-black {
+    height: 100px;
+    width: 500px;
+    background-color: #000000;
+  }
+  
+  /* Section grid layout for this page */
+  .container .section-grid section {
+    grid-column: 1 / -1;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .art-demo {
+      padding: 20px;
+    }
+  
+    .art-demo .square,
+    .art-demo .circle {
+      width: 150px;
+      height: 150px;
+    }
+  
+    .art-demo .first-red,
+    .art-demo .white-stripe,
+    .art-demo .second-black {
+      width: 100%;
+      max-width: 300px;
+      height: 60px;
+    }
+  
+    .container section .code-block {
+      font-size: 0.85rem;
+      padding: 15px;
+    }
+  }
+  
+  /* Mobile - very small screens */
+  @media (max-width: 480px) {
+    .art-demo .first-red,
+    .art-demo .white-stripe,
+    .art-demo .second-black {
+      max-width: 250px;
+      height: 50px;
+    }
+  }
+
+  
