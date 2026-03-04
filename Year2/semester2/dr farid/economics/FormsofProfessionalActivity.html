@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deep Dive: Professional Activity Regulations</title>
+  <style>
+    :root {
+      --primary: #1f4ed8;
+      --secondary: #3f63ff;
+      --accent: #ffde59;
+      --dark: #0f172a;
+      --text: #334155;
+      --light-bg: #f8faff;
+      --border: #e2e8f0;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--light-bg);
+      color: var(--text);
+      line-height: 1.8;
+    }
+
+    /* PROGRESS BAR */
+    .progress-bar {
+      position: fixed;
+      top: 0; left: 0;
+      height: 8px;
+      background: var(--accent);
+      z-index: 1000;
+      width: 0%;
+    }
+
+    /* HEADER */
+    .hero {
+      height: 60vh;
+      background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)), 
+                  url('https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=1500') center/cover fixed;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+      padding: 40px;
+    }
+
+    .hero h1 { font-size: 3.5rem; margin: 0; border-bottom: 5px solid var(--accent); padding-bottom: 10px; }
+
+    /* CONTENT LAYOUT */
+    .container { max-width: 1200px; margin: 0 auto; padding: 60px 20px; }
+
+    .lecture-section {
+      background: white;
+      border-radius: 40px;
+      padding: 60px;
+      margin-bottom: 80px;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.05);
+      border: 1px solid var(--border);
+    }
+
+    .badge {
+      padding: 8px 20px;
+      background: var(--primary);
+      color: white;
+      border-radius: 50px;
+      font-weight: bold;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+    }
+
+    h2 { font-size: 2.5rem; color: var(--dark); margin-top: 20px; }
+    h3 { color: var(--primary); font-size: 1.8rem; margin-top: 40px; }
+
+    /* DETAILED INFO BOXES */
+    .detail-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .info-card {
+      background: #f1f5f9;
+      padding: 30px;
+      border-radius: 20px;
+      border-top: 4px solid var(--primary);
+    }
+
+    .info-card ul { padding-left: 20px; }
+    .info-card li { margin-bottom: 12px; }
+
+    /* PRO-TIP/DOCTOR NOTE */
+    .doctor-note {
+      background: #fff9db;
+      border-left: 10px solid var(--accent);
+      padding: 30px;
+      margin: 40px 0;
+      font-style: italic;
+      border-radius: 0 20px 20px 0;
+    }
+
+    /* TABLE STYLES */
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 40px;
+      background: white;
+    }
+
+    .comparison-table th, .comparison-table td {
+      border: 1px solid var(--border);
+      padding: 20px;
+      text-align: left;
+    }
+
+    .comparison-table th { background: var(--dark); color: white; }
+    .comparison-table tr:nth-child(even) { background: #f8fafc; }
+
+    footer { background: var(--dark); color: white; padding: 60px; text-align: center; }
+
+    @media (max-width: 900px) {
+      .detail-grid { grid-template-columns: 1fr; }
+      .lecture-section { padding: 30px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="progress-bar" id="bar"></div>
+
+  <header class="hero">
+    <span class="badge">Masterclass R 4.02</span>
+    <h1>Professional Activity & Digital Law</h1>
+    <p>A Complete Guide to Regulations, Labor Relations, and Legal Statuses</p>
+  </header>
+
+  <div class="container">
+
+    <section class="lecture-section">
+      <span class="badge">Part 01</span>
+      <h2>I. The Salaried Employee (Employee Status)</h2>
+      <p>The salaried status is defined by the existence of a <strong>Labor Contract</strong>. This status is not just about getting paid; it is defined by a legal "Subordination Link."</p>
+      
+      <div class="detail-grid">
+        <div class="info-card">
+          <h3>The Triple Criteria of Subordination</h3>
+          <ul>
+            <li><strong>The Power to Give Orders:</strong> The employer decides what work is done and how.</li>
+            <li><strong>The Power to Monitor:</strong> The employer supervises the execution of the work in real-time.</li>
+            <li><strong>The Power to Sanction:</strong> The employer can punish or fire the employee for professional faults.</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h3>Social & Legal Protections</h3>
+          <ul>
+            <li><strong>Unemployment Insurance:</strong> Access to state funds if let go.</li>
+            <li><strong>Paid Leave:</strong> Minimum legal requirements for vacation (e.g., 5 weeks in many EU jurisdictions).</li>
+            <li><strong>Retirement:</strong> Mandatory employer contributions to the pension system.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="doctor-note">
+        <strong>Doctor Farid's Key Insight:</strong> "In Digital Law, the subordination link is often challenged by remote work. Does an employer still have 'power to monitor' if you are working from a beach? Yes, through digital tracking and KPI management."
+      </div>
+    </section>
+
+    <section class="lecture-section">
+      <span class="badge">Part 02</span>
+      <h2>II. The Self-Employed & Freelance Status</h2>
+      <p>Self-employment is based on <strong>Economic Independence</strong>. There is no subordination link; instead, there is a "Commercial Relationship" governed by a Service Contract.</p>
+      
+      <div class="detail-grid">
+        <div class="info-card">
+          <h3>Legal Characteristics</h3>
+          <ul>
+            <li><strong>Asset Ownership:</strong> The freelancer owns their tools (Laptop, Software licenses, Office).</li>
+            <li><strong>Risk Management:</strong> If the client doesn't pay, the freelancer bears the financial loss.</li>
+            <li><strong>Fiscal Autonomy:</strong> The individual is responsible for their own VAT, Income Tax, and Social contributions.</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h3>Regulatory Frameworks</h3>
+          <ul>
+            <li><strong>Commercial Code:</strong> Governs the business transactions.</li>
+            <li><strong>No Labor Law:</strong> Freelancers are not protected by the "Labor Code" (No minimum wage, no paid leave).</li>
+            <li><strong>Intellectual Property:</strong> Contracts must explicitly state who owns the code or design produced.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="lecture-section">
+      <h2>III. Comparative Analysis</h2>
+      <p>This table is essential for the exam. It summarizes the core differences between the two professional paths.</p>
+      
+      
+      
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Salaried Employee</th>
+            <th>Self-Employed / Freelancer</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Legal Link</strong></td>
+            <td>Subordination (Boss/Subordinate)</td>
+            <td>Independence (Client/Provider)</td>
+          </tr>
+          <tr>
+            <td><strong>Remuneration</strong></td>
+            <td>Fixed Salary (Monthly)</td>
+            <td>Fees / Invoices (Per Project)</td>
+          </tr>
+          <tr>
+            <td><strong>Working Tools</strong></td>
+            <td>Provided by Employer</td>
+            <td>Owned by Freelancer</td>
+          </tr>
+          <tr>
+            <td><strong>Social Protection</strong></td>
+            <td>Full (Unemployment, Health, Pension)</td>
+            <td>Limited (Private insurance required)</td>
+          </tr>
+          <tr>
+            <td><strong>Termination</strong></td>
+            <td>Dismissal / Resignation (Strict Rules)</td>
+            <td>Contract Termination (Notice period only)</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="lecture-section">
+      <span class="badge">Part 04</span>
+      <h2>IV. Workplace Evolution & The "Gig Economy"</h2>
+      <p>The rise of platforms (Uber, Upwork, Deliveroo) has created a "Third Way." This is a major topic in Digital Law today.</p>
+      <h3>The Risk of "False Self-Employment"</h3>
+      <p>Many companies hire "freelancers" but treat them like employees to avoid paying taxes. Digital Law now uses <strong>Reclassification</strong>. If a court finds a subordination link, the company must pay years of back-taxes and benefits.</p>
+      
+      <div class="info-card" style="background: var(--dark); color: white;">
+        <h3 style="color: var(--accent);">Case Study: Social Network Law</h3>
+        <p>How does law govern influencers? Are they employees of the platform (Instagram/TikTok)? No, they are considered independent contractors, but new regulations (like the French Influencer Law) are creating specific "Professional Activities" rules for them.</p>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <h3>R 4.02 • Economics Management & Digital Law</h3>
+    <p>Designed by Doctor Farid | Academic Session 2026</p>
+  </footer>
+
+  <script>
+    window.onscroll = function() {
+      let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      let scrolled = (winScroll / height) * 100;
+      document.getElementById("bar").style.width = scrolled + "%";
+    };
+  </script>
+</body>
+</html>

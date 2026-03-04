@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Economics Management & Digital Law</title>
+    <style>
+        /* ========== GLOBAL & THEME: INTEGRATION DARK ========== */
+        :root {
+            --bg-dark: #050a18;
+            --card-bg: #0c1226;
+            --primary-blue: #3b82f6;
+            --legal-teal: #2dd4bf; /* A fresh color for Law & Economics */
+            --text-main: #ffffff;
+            --text-dim: #8fa0bc;
+            --border: #1e293b;
+        }
+
+        body { 
+            margin: 0; 
+            font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* ========== NAVIGATION ========== */
+        .navbar { 
+            background: rgba(12, 18, 38, 0.95); 
+            backdrop-filter: blur(12px); 
+            padding: 15px 40px; 
+            border-bottom: 1px solid var(--border); 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .nav-left { display: flex; align-items: center; gap: 15px; }
+        .logo { width: 40px; height: 40px; border-radius: 6px; object-fit: cover; }
+        .navbar h2 { margin: 0; color: var(--text-main); font-size: 1.1rem; letter-spacing: 1px; }
+
+        /* ========== HERO SECTION ========== */
+        .hero { 
+            text-align: center; 
+            padding: 110px 20px 80px;
+            background: radial-gradient(circle at top, #111a33 0%, #050a18 100%);
+        }
+        .hero h1 { 
+            font-size: 48px; 
+            margin: 0;
+            background: linear-gradient(135deg, #ffffff 0%, var(--legal-teal) 100%);
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            line-height: 1.2;
+        }
+        .hero p { 
+            margin-top: 20px; 
+            color: var(--text-dim); 
+            max-width: 700px; 
+            margin-left: auto; 
+            margin-right: auto; 
+            font-size: 1.1rem;
+        }
+
+        /* ========== TIMELINE LAYOUT ========== */
+        .block { width: 90%; max-width: 950px; margin: 0 auto 100px; }
+        .timeline { position: relative; }
+        
+        /* The Vertical Line */
+        .timeline::before { 
+            content: ""; 
+            position: absolute; 
+            left: 30px; 
+            top: 0; 
+            bottom: 0; 
+            width: 2px; 
+            background: linear-gradient(to bottom, var(--legal-teal), var(--primary-blue)); 
+        }
+
+        .module { 
+            display: flex; 
+            gap: 40px; 
+            margin-bottom: 60px; 
+            position: relative; 
+            align-items: flex-start; 
+        }
+
+        /* CIRCLE INDICATOR */
+        .module-number { 
+            min-width: 60px; 
+            height: 60px; 
+            background: var(--bg-dark);
+            border: 2px solid var(--legal-teal);
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-weight: bold; 
+            color: var(--legal-teal); 
+            box-shadow: 0 0 15px rgba(45, 212, 191, 0.2);
+            font-size: 1.2rem; 
+            z-index: 2;
+        }
+
+        /* CARD CONTENT */
+        .module-content { 
+            background: var(--card-bg); 
+            border: 1px solid var(--border); 
+            border-radius: 16px; 
+            padding: 30px; 
+            width: 100%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            gap: 30px; 
+            transition: all 0.3s ease; 
+        }
+        
+        .module-content:hover { 
+            border-color: var(--legal-teal);
+            transform: translateX(10px);
+            background: #0f172a;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .module-text { flex: 1; }
+        .module-text h3 { margin: 0 0 12px 0; color: #fff; font-size: 1.4rem; }
+        .module-text p { margin: 0 0 20px 0; color: var(--text-dim); font-size: 1rem; }
+
+        /* ACTION BUTTONS */
+        .module-btn { 
+            display: inline-block; 
+            padding: 10px 20px; 
+            background: rgba(45, 212, 191, 0.1);
+            color: var(--legal-teal); 
+            border: 1px solid var(--legal-teal);
+            border-radius: 8px; 
+            text-decoration: none; 
+            font-weight: 600; 
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .module-btn:hover {
+            background: var(--legal-teal);
+            color: #000;
+            box-shadow: 0 0 15px rgba(45, 212, 191, 0.4);
+        }
+
+        /* ========== FOOTER ========== */
+        .footer { 
+            padding: 60px 20px; 
+            text-align: center; 
+            background: #020617; 
+            color: var(--text-dim);
+            border-top: 1px solid var(--border);
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* ========== BARRE DE NAVIGATION (TOP BAR) ========== */
+        .top-bar {
+            background: rgba(2, 6, 23, 0.8);
+            backdrop-filter: blur(12px);
+            padding: 10px 5%;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            border-bottom: 1px solid var(--border-light);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        /* CORRECTION DU LOGO */
+        .site-logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            object-fit: cover;
+            border: 2px solid var(--primary-blue);
+        }
+
+    </style>
+</head>
+<body>
+
+    <nav class="top-bar">
+        <a href="../../../../index.html" class="logo-link">
+            <img src="../../../../logo.jpeg" alt="Logo" class="site-logo">
+        </a>
+        <a href="../../../../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <h2 style="color: white; margin: 0;">R 4.02 • Economics & Digital Law</h2>
+        </a>
+    </nav>
+
+<header class="hero">
+    <h1>Digital Law &<br>Business Management</h1>
+    <p>Discover the concept of contracts and regulations governing modern business activities, professional rights, and social network laws.</p>
+</header>
+
+<section class="block">
+    <div class="timeline">
+
+        <div class="module">
+            <span class="module-number">01</span>
+            <div class="module-content">
+                <div class="module-text">
+                    <h3>Forms of Professional Activity</h3>
+                    <p>Regulations governing employees vs. self-employed status. Understanding legal frameworks for freelancers and corporate staff.</p>
+                    <a href="FormsofProfessionalActivity.html" class="module-btn">Explore Regulations</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="module">
+            <span class="module-number">02</span>
+            <div class="module-content">
+                <div class="module-text">
+                    <h3>Formation & Validity of Contracts</h3>
+                    <p>Analysis of contract exploitation, legal validity, and the essential components of digital and physical agreements.</p>
+                    <a href="Formation&ValidityofContracts.html" class="module-btn">Open Contract Analysis</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="module">
+            <span class="module-number">03</span>
+            <div class="module-content">
+                <div class="module-text">
+                    <h3>Individual Labor Relations</h3>
+                    <p>The status of the employee within a legal framework. Rights, obligations, and the social network law impact on workers.</p>
+                    <a href="individualLaborRelations.html" class="module-btn">View Labor Status</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="module">
+            <span class="module-number">04</span>
+            <div class="module-content">
+                <div class="module-text">
+                    <h3>Workplace Evolution</h3>
+                    <p>Changes in the modern workplace environment, digital transformation, and professional activity adaptability.</p>
+                    <a href="workplaceEvolution.html" class="module-btn">Open Evolution Module</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<footer class="footer">
+    R 4.02 Course Material – Regulations, Social Network Law, Legal Contracts <br>
+    <div style="margin-top: 15px; font-size: 0.8rem; opacity: 0.7;">
+        
+    </div>
+</footer>
+
+</body>
+</html>

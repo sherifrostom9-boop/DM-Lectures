@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Development Course | Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        /* --- 1. DYNAMIC THEME VARIABLES (Fusionnées) --- */
+        :root {
+            --primary-pink: #e2a008;
+            --bg: #030014;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --text-color: #ffffff;
+            --text-muted: #94a3b8;
+            --text-dim: #94a3b8;
+            --border: rgba(255,255,255,0.1);
+            --accent-blue: #3b82f6;
+            --dot-bg: #030014; /* Couleur du centre des points */
+        }
+
+        [data-theme="light"] {
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #1e293b;
+            --text-muted: #64748b;
+            --text-dim: #64748b;
+            --border: rgba(0,0,0,0.1);
+            --dot-bg: #f8fafc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-color);
+            display: flex; 
+            flex-direction: column; 
+            align-items: center;
+            min-height: 100vh;
+            transition: all 0.3s ease;
+        }
+
+        /* --- NAVIGATION BAR --- */
+        .nav {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .logo img {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            object-fit: cover;
+            border: 2px solid var(--primary-pink);
+        }
+
+        .theme-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 8px 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-color);
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .theme-toggle svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        header { 
+            text-align: center; 
+            padding: 80px 5% 40px 5%; 
+            width: 100%; 
+        }
+
+        .exit-link {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .exit-link:hover {
+            color: var(--text-color);
+        }
+        
+        .badge { 
+            background: rgba(226, 160, 8, 0.1); 
+            color: var(--primary-pink); 
+            padding: 6px 14px; 
+            border-radius: 20px; 
+            font-weight: 800; 
+            font-size: 0.7rem; 
+            text-transform: uppercase; 
+            letter-spacing: 1px;
+            border: 1px solid var(--primary-pink); 
+            margin-bottom: 20px; 
+            display: inline-block;
+        }
+
+        h1 { 
+            font-size: 3.5rem; 
+            margin: 10px 0; 
+            font-weight: 800; 
+            letter-spacing: -2px;
+            background: linear-gradient(to right, var(--text-color), var(--primary-pink), var(--text-color));
+            background-size: 200% auto; 
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; 
+            animation: shine 4s linear infinite;
+        }
+
+        @keyframes shine { 
+            to { background-position: 200% center; } 
+        }
+
+        /* --- 3. TIMELINE STRUCTURE --- */
+        .timeline-container {
+            width: 90%; 
+            max-width: 800px; 
+            position: relative; 
+            padding: 60px 0;
+        }
+
+        .timeline-container::before {
+            content: ''; 
+            position: absolute; 
+            left: 31px; 
+            top: 0; 
+            bottom: 0;
+            width: 2px; 
+            background: linear-gradient(to bottom, var(--primary-pink), var(--accent-blue), var(--primary-pink));
+            opacity: 0.5;
+        }
+
+        .timeline-item {
+            display: flex; 
+            align-items: flex-start; 
+            margin-bottom: 50px;
+            position: relative; 
+            text-decoration: none; 
+            color: inherit;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .timeline-dot {
+            min-width: 24px; 
+            height: 24px; 
+            background: var(--dot-bg);
+            border: 4px solid var(--primary-pink); 
+            border-radius: 50%;
+            z-index: 2; 
+            margin-right: 40px; 
+            margin-top: 25px;
+            box-shadow: 0 0 15px rgba(226, 160, 8, 0.3);
+            transition: 0.3s;
+        }
+
+        .timeline-card {
+            background: var(--card-bg); 
+            border: 1px solid var(--border);
+            padding: 30px; 
+            border-radius: 24px; 
+            width: 100%;
+            backdrop-filter: blur(10px); 
+            position: relative; 
+            overflow: hidden;
+        }
+
+        .timeline-card h3 { 
+            margin: 0 0 10px 0; 
+            font-size: 1.4rem; 
+            font-weight: 800; 
+            color: var(--text-color);
+        }
+
+        .timeline-card p { 
+            margin: 0; 
+            color: var(--text-muted); 
+            font-size: 0.95rem; 
+            line-height: 1.5;
+        }
+
+        .timeline-card .time-estimate {
+            position: absolute; 
+            top: 20px; 
+            right: 25px;
+            font-size: 0.7rem; 
+            font-weight: 800; 
+            color: var(--primary-pink);
+            background: rgba(226, 160, 8, 0.1); 
+            padding: 4px 10px; 
+            border-radius: 10px;
+        }
+
+        /* HOVER EFFECTS */
+        .timeline-item:hover { 
+            transform: translateX(15px); 
+        }
+        
+        .timeline-item:hover .timeline-dot { 
+            background: var(--primary-pink); 
+            box-shadow: 0 0 25px var(--primary-pink);
+        }
+        
+        .timeline-card:hover { 
+            border-color: var(--primary-pink);
+            background: rgba(226, 160, 8, 0.05);
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2.2rem; }
+            .timeline-dot { margin-right: 20px; }
+            .timeline-container::before { left: 11px; }
+            .nav-container {
+                padding: 15px 4%;
+            }
+            .logo {
+                font-size: 1rem;
+                gap: 10px;
+            }
+            .logo img {
+                width: 40px;
+                height: 40px;
+            }
+            .theme-toggle {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="../../../../index.html" class="logo">
+                <img src="../../../../logo.jpeg" alt="Logo">
+                Digital Marketing
+            </a>
+
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                <svg class="sun" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                </svg>
+                <svg class="moon" viewBox="0 0 24 24" fill="currentColor" style="display:none;">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <header>
+        <a href="../year2-sem2.html" class="exit-link">← EXIT COURSE</a>
+        <br>
+        <div class="badge">Curriculum 2026</div>
+        <h1>Web Development</h1>
+        <p>Select a module to start your learning journey</p>
+    </header>
+
+    <main class="timeline-container">
+        <a href="part1.html" class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+                <span class="time-estimate">7.5 H</span>
+                <h3>01. Architecture & Core Tools</h3>
+                <p>Design and develop a web application using server-side and client-side tools. Bridge the gap between Frontend and Backend.</p>
+            </div>
+        </a>
+
+        <a href="part2.html" class="timeline-item">
+            <div class="timeline-dot" style="border-color: var(--accent-blue);"></div>
+            <div class="timeline-card">
+                <span class="time-estimate">7.5 H</span>
+                <h3>02. Data Manipulation</h3>
+                <p>Set up a back office for data processing accompanied by a rich client interface for real-time interaction.</p>
+            </div>
+        </a>
+
+        <a href="part3.html" class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+                <span class="time-estimate">7.5 H</span>
+                <h3>03. Experience & UI Design</h3>
+                <p>Design and implement ergonomic user experiences for both end-users and site administrators.</p>
+            </div>
+        </a>
+
+        <a href="part4.html" class="timeline-item">
+            <div class="timeline-dot" style="border-color: var(--accent-blue);"></div>
+            <div class="timeline-card">
+                <span class="time-estimate">6 H</span>
+                <h3>04. Security & Performance</h3>
+                <p>Ensure the security and performance of the application and its hosting. Master JWT and encryption.</p>
+            </div>
+        </a>
+
+        <a href="part5.html" class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+                <span class="time-estimate">1.5 H</span>
+                <h3>05. Legal & Deployment</h3>
+                <p>International constraints, documentation, and final deployment plan in the cloud.</p>
+            </div>
+        </a>
+    </main>
+
+    <script>
+    // Apply theme IMMEDIATELY to prevent flash
+    (function() {
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    })();
+    </script>
+
+    <script>
+    const themeToggle = document.getElementById('themeToggle');
+    const sun = document.querySelector('.sun');
+    const moon = document.querySelector('.moon');
+    const html = document.documentElement;
+
+    // Check for saved theme preference or default to 'dark'
+    let theme = localStorage.getItem('theme') || 'dark';
+    html.setAttribute('data-theme', theme);
+    
+    // Update icon visibility based on current theme
+    if (theme === 'light') {
+        sun.style.display = 'none';
+        moon.style.display = 'block';
+    }
+
+    // Theme toggle click handler
+    themeToggle.addEventListener('click', function() {
+        theme = theme === 'dark' ? 'light' : 'dark';
+        html.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        
+        // Toggle icons
+        sun.style.display = theme === 'dark' ? 'block' : 'none';
+        moon.style.display = theme === 'light' ? 'block' : 'none';
+    });
+    </script>
+</body>
+</html>

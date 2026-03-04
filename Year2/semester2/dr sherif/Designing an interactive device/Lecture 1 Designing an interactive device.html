@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conceptualization & User-Centric Design - Part 1</title>
+    <link rel="stylesheet" href="../../../../DrSherif.css">
+    <link href="Information System.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({startOnLoad: true});
+    </script>
+</head>
+<body>
+    <nav class="top-bar">
+        <a href="../../../../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <img src="../../../../logo.jpeg" alt="Logo" class="site-logo">
+            <h2>Digital Marketing</h2>
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="sun-icon" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <svg class="moon-icon" fill="currentColor" viewBox="0 0 24 24" style="display: none;">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+            </svg>
+        </button>
+    </nav>
+
+    <main>
+        <div class="container">
+            <a href="Designing an interactive device.html" class="back-link">← EXIT LESSON</a>
+            
+            <header>
+                <div class="syllabus-label">Lecture 1</div>
+                <h1>Conceptualization & User-Centric Design</h1>
+                <p class="subtitle">Part 1</p>
+            </header>
+
+            <p style="color: var(--text-dim); margin-bottom: 30px; line-height: 1.6;">Today, we move away from the keyboard and focus on the architecture of the experience. The goal is to shift our mindset from "What features can I code?" to "What experience is the user having?"</p>
+
+            <div class="timeline-wrapper">
+                <div class="lesson-item">
+                    <div class="indicator blue-glow"></div>
+                    <div class="card">
+                        <div class="content-area">
+                            <h3 class="html-title"><b>Module 1.1: The Human-Centered Blueprint</b></h3>
+                            
+                            <h4 style="color: var(--primary-blue); margin-top: 25px; margin-bottom: 12px;"><b>1. The "User-First" Philosophy</b></h4>
+                            
+                            <p style="margin-bottom: 12px;">We begin by addressing the core question: How to develop an interactive application that puts users at the center?</p>
+                            
+                            <div style="margin-top: 20px; margin-bottom: 15px;">
+                                <p style="margin-bottom: 10px;"><b>The Shift:</b></p>
+                                <p style="margin-left: 20px;">In traditional developing, the user adapts to the tool. In user-centric developing, the tool adapts to the user's mental models.</p>
+                            </div>
+                            
+                            <div style="margin-bottom: 15px;">
+                                <p style="margin-bottom: 10px;"><b>Affordances & Signifiers:</b></p>
+                                <p style="margin-left: 20px;">Theoretical look at how objects "tell" a user how to interact (e.g., a button that looks clickable vs. a hidden gesture).</p>
+                            </div>
+                            
+                            <div style="padding: 20px; background: rgba(59, 130, 246, 0.1); border-left: 4px solid var(--primary-blue); border-radius: 8px; margin-top: 20px;">
+                                <p style="margin-bottom: 12px;"><b>The Three Pillars:</b></p>
+                                <ul style="margin-left: 20px; color: var(--text-dim);">
+                                    <li style="margin-bottom: 8px;"><b>Utility:</b> Does it solve the promotion / art / fun objective?</li>
+                                    <li style="margin-bottom: 8px;"><b>Usability:</b> Can the user navigate without frustration?</li>
+                                    <li><b>Desirability:</b> Does the aesthetic quality keep them engaged?</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-item">
+                    <div class="indicator purple-glow"></div>
+                    <div class="card">
+                        <div class="content-area">
+                            <h4 style="color: var(--primary-purple); margin-top: 0; margin-bottom: 15px;"><b>2. Identifying the Core Objective</b></h4>
+                            
+                            <ul style="margin-left: 20px; color: var(--text-dim);">
+                                <li style="margin-bottom: 12px;"><b>Students must choose their path.</b> A "device" for art is built differently than one for a product launch.</li>
+                                <li style="margin-bottom: 12px;"><b>The Creative Brief:</b> You need to define your project's primary goal.</li>
+                            </ul>
+                            
+                            <div style="margin-top: 25px; padding: 20px; background: rgba(124, 58, 237, 0.1); border-left: 4px solid var(--primary-purple); border-radius: 8px;">
+                                <h5 style="color: var(--primary-purple); margin-top: 0; margin-bottom: 12px;">Artistic Path:</h5>
+                                <p style="margin-bottom: 10px;"><b>Focus on emotion and unconventional interaction.</b></p>
+                                <ul style="margin-left: 20px; margin-top: 10px;">
+                                    <li style="margin-bottom: 8px;">In the realm of artistic interactive devices, the developer moves beyond traditional utility to prioritize emotional resonance and poetic engagement.</li>
+                                    <li style="margin-bottom: 8px;">Unlike commercial apps that seek the path of least resistance, artistic devices often employ unconventional interaction - using sensors, bio-data, or abstract physics - to challenge the user's expectations.</li>
+                                    <li style="margin-bottom: 8px;">The "User-at-the-Center" philosophy here focuses on how the person feels while interacting with the medium; the code serves as a bridge between a physical gesture and a digital metaphor.</li>
+                                </ul>
+                            </div>
+                            
+                            <div style="margin-top: 25px; padding: 20px; background: rgba(16, 185, 129, 0.1); border-left: 4px solid var(--accent-green); border-radius: 8px;">
+                                <h5 style="color: var(--accent-green); margin-top: 0; margin-bottom: 12px;">Entertainment Path:</h5>
+                                <p style="margin-bottom: 10px;"><b>Focus on "The Loop" (Challenge → Action → Reward).</b></p>
+                                <ul style="margin-left: 20px; margin-top: 10px;">
+                                    <li style="margin-bottom: 8px;">In the context of entertainment, putting the user at the center means mastering the <b>Engagement Loop</b>, a psychological cycle designed to keep the participant in a state of "flow."</li>
+                                    <li style="margin-bottom: 8px;">This loop hinges on a clear, repeating sequence: a <b>Challenge</b> is presented (an obstacle, a puzzle, or a goal), the user performs an <b>Action</b> (a jump, a strategic choice, or a physical gesture), and the system provides an immediate, satisfying <b>Reward</b> (visual effects, progress, or points).</li>
+                                    <li style="margin-bottom: 8px;">Unlike artistic devices that may embrace ambiguity, entertainment-focused devices must provide high-clarity feedback to ensure the user feels powerful and competent.</li>
+                                    <li>The developer's goal is to balance the difficulty of the challenge with the user's skill level, ensuring that the interaction feels like a "dialogue" where every input from the user results in a meaningful and entertaining output from the machine.</li>
+                                </ul>
+                            </div>
+                            
+                            <div style="margin-top: 25px; padding: 20px; background: rgba(78, 217, 194, 0.1); border-left: 4px solid var(--accent-cyan); border-radius: 8px;">
+                                <h5 style="color: var(--accent-cyan); margin-top: 0; margin-bottom: 12px;">Promotion Path:</h5>
+                                <p><b>Focus on clarity, brand identity, and the "Call to Action."</b></p>
+                            </div>
+                            
+                            <div style="margin-top: 30px;">
+                                <h5 style="color: var(--text-main); margin-bottom: 12px;"><b>Target Audience Personas:</b></h5>
+                                <p style="margin-bottom: 10px;">Briefly defining who the "User" is. Are they tech-savvy gamers or casual museum visitors?</p>
+                                <ul style="margin-left: 20px;">
+                                    <li style="margin-bottom: 8px;"><b>Defining a Target Audience Persona</b> is the process of creating a "fictional profile" of your ideal user to guide every design decision.</li>
+                                    <li style="margin-bottom: 8px;">In a 30-hour sprint, this prevents junior developers from building for "everyone" and instead focuses them on specific needs: a tech-savvy gamer expects high-speed responsiveness, complex controls, and deep systems, whereas a casual museum visitor may only have 60 seconds to interact and requires an interface that is instantly intuitive without a tutorial.</li>
+                                    <li>By identifying the user's age, tech-literacy, and physical environment (e.g., a quiet home vs. a noisy public gallery), you can tailor the ergonomics and aesthetic quality of your device - ensuring the interaction feels natural rather than frustrating for that specific individual.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-item">
+                    <div class="indicator green-glow"></div>
+                    <div class="card">
+                        <div class="content-area">
+                            <h4 style="color: var(--accent-green); margin-top: 0; margin-bottom: 15px;"><b>3. Interaction Mapping</b></h4>
+                            
+                            <p style="margin-bottom: 15px;"><b>Before drawing screens, we map the User Journey.</b></p>
+                            
+                            <div style="padding: 20px; background: rgba(16, 185, 129, 0.1); border-radius: 8px;">
+                                <div style="margin-bottom: 15px;">
+                                    <p style="margin-bottom: 8px;"><b>The Entry Point:</b></p>
+                                    <p style="margin-left: 20px;">How does the user know the device is interactive?</p>
+                                </div>
+                                
+                                <div style="margin-bottom: 15px;">
+                                    <p style="margin-bottom: 8px;"><b>The Interaction Loop:</b></p>
+                                    <ul style="margin-left: 20px;">
+                                        <li><b>Action:</b> User moves, clicks, or speaks.</li>
+                                        <li><b>Reaction:</b> The system provides immediate feedback (sound, light, movement).</li>
+                                    </ul>
+                                </div>
+                                
+                                <div>
+                                    <p style="margin-bottom: 8px;"><b>The Exit Point:</b></p>
+                                    <p style="margin-left: 20px;">How does the experience conclude or reset for the next user?</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-item">
+                    <div class="indicator blue-glow"></div>
+                    <div class="card">
+                        <div class="content-area">
+                            <h4 style="color: var(--primary-blue); margin-top: 0; margin-bottom: 15px;"><b>4. Professional Issue: Scope vs. Vision</b></h4>
+                            
+                            <p style="margin-bottom: 15px;">A "Professional Issue" discussion on Feasibility.</p>
+                            
+                            <div style="padding: 15px; background: rgba(251, 113, 133, 0.15); border-left: 4px solid var(--danger); border-radius: 8px; margin-bottom: 15px;">
+                                <p style="margin-bottom: 8px;"><b>⚠️ The Developer's Trap:</b></p>
+                                <p style="margin-left: 20px;">Junior developers often over-promise features (e.g., "A full VR RPG") and under-deliver on quality.</p>
+                            </div>
+                            
+                            <div style="padding: 15px; background: rgba(78, 217, 194, 0.1); border-left: 4px solid var(--accent-cyan); border-radius: 8px;">
+                                <p style="margin-bottom: 8px;"><b>💡 The "One-In, One-Out" Rule:</b></p>
+                                <p style="margin-left: 20px;">If you add a complex interaction (like voice recognition), you must simplify another area (like 3D assets) to maintain the 30-hour timeline.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-item">
+                    <div class="indicator purple-glow"></div>
+                    <div class="card">
+                        <div class="content-area">
+                            <h4 style="color: var(--primary-purple); margin-top: 0; margin-bottom: 15px;"><b>Summary of Part 1 Deliverable</b></h4>
+                            
+                            <p style="margin-bottom: 15px;">Today, our discussion mentioned some types of devices:</p>
+                            <ul style="margin-left: 20px; color: var(--text-dim);">
+                                <li style="margin-bottom: 8px;">Artistic devices</li>
+                                <li style="margin-bottom: 8px;">Commercial devices</li>
+                                <li>Entertainment focus devices</li>
+                            </ul>
+                            
+                            <p style="margin-top: 20px; margin-bottom: 15px;">And two types of users:</p>
+                            <ul style="margin-left: 20px; color: var(--text-dim);">
+                                <li style="margin-bottom: 8px;">Tech savvy gamers</li>
+                                <li>Casual museum visitor</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quiz-section" style="margin-top: 50px; padding: 30px; background: var(--card-bg-alpha); border: 1px solid var(--border-light); border-radius: 16px;">
+                <h3 style="color: var(--primary-blue); margin-top: 0;">Test Your Knowledge</h3>
+                
+                <div class="quiz-item" style="margin-bottom: 30px;">
+                    <div class="quiz-question">
+                        <h4 style="color: var(--text-main);">Q1: What are the Three Pillars of a successful interactive experience?</h4>
+                        <ul style="list-style-type: none; padding-left: 0;">
+                            <li style="padding: 8px 0;">A) Speed, Cost, Innovation</li>
+                            <li style="padding: 8px 0;">B) Utility, Usability, Desirability</li>
+                            <li style="padding: 8px 0;">C) Design, Code, Testing</li>
+                            <li style="padding: 8px 0;">D) Functionality, Graphics, Sound</li>
+                        </ul>
+                    </div>
+                    <button class="show-answer-btn" type="button" onclick="this.nextElementSibling.style.display='block'; this.style.display='none';" style="background: var(--primary-blue); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; margin-top: 10px;">Show Answer</button>
+                    <p class="quiz-answer" style="display: none; margin-top: 15px; padding: 15px; background: rgba(16, 185, 129, 0.15); color: var(--accent-green); border: 1px solid var(--accent-green); border-radius: 8px; font-weight: 600;">Answer: B - Utility, Usability, Desirability</p>
+                </div>
+
+                <div class="quiz-item" style="margin-bottom: 30px;">
+                    <div class="quiz-question">
+                        <h4 style="color: var(--text-main);">Q2: How do artistic devices often create unconventional interaction compared to commercial apps?</h4>
+                        <ul style="list-style-type: none; padding-left: 0;">
+                            <li style="padding: 8px 0;">A) By simplifying all interactions</li>
+                            <li style="padding: 8px 0;">B) By using sensors, bio-data, or abstract physics</li>
+                            <li style="padding: 8px 0;">C) By removing user control</li>
+                            <li style="padding: 8px 0;">D) By focusing only on efficiency</li>
+                        </ul>
+                    </div>
+                    <button class="show-answer-btn" type="button" onclick="this.nextElementSibling.style.display='block'; this.style.display='none';" style="background: var(--primary-blue); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; margin-top: 10px;">Show Answer</button>
+                    <p class="quiz-answer" style="display: none; margin-top: 15px; padding: 15px; background: rgba(16, 185, 129, 0.15); color: var(--accent-green); border: 1px solid var(--accent-green); border-radius: 8px; font-weight: 600;">Answer: B - By using sensors, bio-data, or abstract physics</p>
+                </div>
+
+                <div class="quiz-item" style="margin-bottom: 30px;">
+                    <div class="quiz-question">
+                        <h4 style="color: var(--text-main);">Q3: Why do artistic devices use unconventional interactions?</h4>
+                        <ul style="list-style-type: none; padding-left: 0;">
+                            <li style="padding: 8px 0;">A) To reduce development time</li>
+                            <li style="padding: 8px 0;">B) To copy commercial apps</li>
+                            <li style="padding: 8px 0;">C) To challenge expectations and create wonder or introspection</li>
+                            <li style="padding: 8px 0;">D) To make navigation easier</li>
+                        </ul>
+                    </div>
+                    <button class="show-answer-btn" type="button" onclick="this.nextElementSibling.style.display='block'; this.style.display='none';" style="background: var(--primary-blue); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; margin-top: 10px;">Show Answer</button>
+                    <p class="quiz-answer" style="display: none; margin-top: 15px; padding: 15px; background: rgba(16, 185, 129, 0.15); color: var(--accent-green); border: 1px solid var(--accent-green); border-radius: 8px; font-weight: 600;">Answer: C - To challenge expectations and create wonder or introspection</p>
+                </div>
+
+                <div class="quiz-item" style="margin-bottom: 30px;">
+                    <div class="quiz-question">
+                        <h4 style="color: var(--text-main);">Q4: Entertainment-focused experiences rely on "The Loop" (Challenge → Action → Reward).</h4>
+                        <ul style="list-style-type: none; padding-left: 0;">
+                            <li style="padding: 8px 0;">A) True</li>
+                            <li style="padding: 8px 0;">B) False</li>
+                        </ul>
+                    </div>
+                    <button class="show-answer-btn" type="button" onclick="this.nextElementSibling.style.display='block'; this.style.display='none';" style="background: var(--primary-blue); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; margin-top: 10px;">Show Answer</button>
+                    <p class="quiz-answer" style="display: none; margin-top: 15px; padding: 15px; background: rgba(16, 185, 129, 0.15); color: var(--accent-green); border: 1px solid var(--accent-green); border-radius: 8px; font-weight: 600;">Answer: A - True</p>
+                </div>
+
+                <div class="quiz-item" style="margin-bottom: 30px;">
+                    <div class="quiz-question">
+                        <h4 style="color: var(--text-main);">Q5: Balancing challenge difficulty with the user's skill level helps the interaction feel like a meaningful dialogue between user and machine.</h4>
+                        <ul style="list-style-type: none; padding-left: 0;">
+                            <li style="padding: 8px 0;">A) True</li>
+                            <li style="padding: 8px 0;">B) False</li>
+                        </ul>
+                    </div>
+                    <button class="show-answer-btn" type="button" onclick="this.nextElementSibling.style.display='block'; this.style.display='none';" style="background: var(--primary-blue); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; margin-top: 10px;">Show Answer</button>
+                    <p class="quiz-answer" style="display: none; margin-top: 15px; padding: 15px; background: rgba(16, 185, 129, 0.15); color: var(--accent-green); border: 1px solid var(--accent-green); border-radius: 8px; font-weight: 600;">Answer: A - True</p>
+                </div>
+
+                <div class="quiz-item" style="margin-bottom: 30px;">
+                    <div class="quiz-question">
+                        <h4 style="color: var(--text-main);">Q6: What does defining a Target Audience Persona mean?</h4>
+                        <ul style="list-style-type: none; padding-left: 0;">
+                            <li style="padding: 8px 0;">A) Creating a real user survey</li>
+                            <li style="padding: 8px 0;">B) Designing for everyone</li>
+                            <li style="padding: 8px 0;">C) Creating a fictional profile of the ideal user to guide design decisions</li>
+                            <li style="padding: 8px 0;">D) Writing technical documentation</li>
+                        </ul>
+                    </div>
+                    <button class="show-answer-btn" type="button" onclick="this.nextElementSibling.style.display='block'; this.style.display='none';" style="background: var(--primary-blue); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; margin-top: 10px;">Show Answer</button>
+                    <p class="quiz-answer" style="display: none; margin-top: 15px; padding: 15px; background: rgba(16, 185, 129, 0.15); color: var(--accent-green); border: 1px solid var(--accent-green); border-radius: 8px; font-weight: 600;">Answer: C - Creating a fictional profile of the ideal user</p>
+                </div>
+
+                <div class="quiz-item" style="margin-bottom: 30px;">
+                    <div class="quiz-question">
+                        <h4 style="color: var(--text-main);">Q7: Which comes FIRST in Interaction Mapping?</h4>
+                        <ul style="list-style-type: none; padding-left: 0;">
+                            <li style="padding: 8px 0;">A) The Interaction Loop</li>
+                            <li style="padding: 8px 0;">B) The Exit Point</li>
+                            <li style="padding: 8px 0;">C) Drawing screens</li>
+                            <li style="padding: 8px 0;">D) The Entry Point (How the user knows it's interactive)</li>
+                        </ul>
+                    </div>
+                    <button class="show-answer-btn" type="button" onclick="this.nextElementSibling.style.display='block'; this.style.display='none';" style="background: var(--primary-blue); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; margin-top: 10px;">Show Answer</button>
+                    <p class="quiz-answer" style="display: none; margin-top: 15px; padding: 15px; background: rgba(16, 185, 129, 0.15); color: var(--accent-green); border: 1px solid var(--accent-green); border-radius: 8px; font-weight: 600;">Answer: D - The Entry Point</p>
+                </div>
+
+                <div class="quiz-item" style="margin-bottom: 30px;">
+                    <div class="quiz-question">
+                        <h4 style="color: var(--text-main);">Q8: What does the "One-In, One-Out" rule help developers manage?</h4>
+                        <ul style="list-style-type: none; padding-left: 0;">
+                            <li style="padding: 8px 0;">A) User feedback</li>
+                            <li style="padding: 8px 0;">B) Visual aesthetics</li>
+                            <li style="padding: 8px 0;">C) Scope vs. Vision within feasibility and time limits</li>
+                            <li style="padding: 8px 0;">D) Marketing strategy</li>
+                        </ul>
+                    </div>
+                    <button class="show-answer-btn" type="button" onclick="this.nextElementSibling.style.display='block'; this.style.display='none';" style="background: var(--primary-blue); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; margin-top: 10px;">Show Answer</button>
+                    <p class="quiz-answer" style="display: none; margin-top: 15px; padding: 15px; background: rgba(16, 185, 129, 0.15); color: var(--accent-green); border: 1px solid var(--accent-green); border-radius: 8px; font-weight: 600;">Answer: C - Scope vs. Vision within feasibility and time limits</p>
+                </div>
+
+                <div class="quiz-item" style="margin-bottom: 30px;">
+                    <div class="quiz-question">
+                        <h4 style="color: var(--text-main);">Q9: In user-centric design, what does "Affordances & Signifiers" refer to?</h4>
+                        <ul style="list-style-type: none; padding-left: 0;">
+                            <li style="padding: 8px 0;">A) The device's power consumption and battery life</li>
+                            <li style="padding: 8px 0;">B) How objects communicate what actions they allow to the user</li>
+                            <li style="padding: 8px 0;">C) How fast a user completes a task</li>
+                            <li style="padding: 8px 0;">D) The project timeline and budget</li>
+                        </ul>
+                    </div>
+                    <button class="show-answer-btn" type="button" onclick="this.nextElementSibling.style.display='block'; this.style.display='none';" style="background: var(--primary-blue); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; margin-top: 10px;">Show Answer</button>
+                    <p class="quiz-answer" style="display: none; margin-top: 15px; padding: 15px; background: rgba(16, 185, 129, 0.15); color: var(--accent-green); border: 1px solid var(--accent-green); border-radius: 8px; font-weight: 600;">Answer: B - How objects communicate what actions they allow</p>
+                </div>
+
+                <div class="quiz-item" style="margin-bottom: 0;">
+                    <div class="quiz-question">
+                        <h4 style="color: var(--text-main);">Q10: In the user-first philosophy, the tool adapts to the user's mental models, not the other way around.</h4>
+                        <ul style="list-style-type: none; padding-left: 0;">
+                            <li style="padding: 8px 0;">A) True</li>
+                            <li style="padding: 8px 0;">B) False</li>
+                        </ul>
+                    </div>
+                    <button class="show-answer-btn" type="button" onclick="this.nextElementSibling.style.display='block'; this.style.display='none';" style="background: var(--primary-blue); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; margin-top: 10px;">Show Answer</button>
+                    <p class="quiz-answer" style="display: none; margin-top: 15px; padding: 15px; background: rgba(16, 185, 129, 0.15); color: var(--accent-green); border: 1px solid var(--accent-green); border-radius: 8px; font-weight: 600;">Answer: A - True</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../../../../theme.js"></script>
+</body>
+</html>

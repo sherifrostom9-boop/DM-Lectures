@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 03 | Web Services Mastery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-pink: #e2a008; /* Gold Theme */
+            --bg: #030014;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --text-color: #ffffff;
+            --text-muted: #94a3b8;
+            --border: rgba(255,255,255,0.1);
+            --accent-blue: #3b82f6;
+            --navbar-bg: rgba(3, 0, 20, 0.8);
+        }
+
+        [data-theme="light"] {
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #1e293b;
+            --text-muted: #64748b;
+            --border: rgba(0,0,0,0.1);
+            --navbar-bg: rgba(248, 250, 252, 0.8);
+        }
+
+        body {
+            margin: 0; 
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+            line-height: 1.6;
+        }
+
+        /* ── Navigation ── */
+        .nav {
+            position: fixed;
+            inset: 0 0 auto 0;
+            z-index: 1000;
+            padding: 1.2rem 5%;
+            background: var(--navbar-bg);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            transition: all 0.4s ease;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.35rem;
+        }
+
+        .logo img {
+            height: 52px;
+            width: auto;
+            border-radius: 10px;
+        }
+
+        .theme-toggle {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 0.6rem 1rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            transition: all 0.25s ease;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255,255,255,0.14);
+            color: var(--text-color);
+            transform: translateY(-2px);
+        }
+
+        .theme-toggle svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* --- HEADER --- */
+        header { 
+            text-align: center; 
+            padding: 120px 5% 20px 5%; /* Added top padding for fixed navbar */
+        }
+        
+        h1 { 
+            font-size: 2.5rem; 
+            font-weight: 800; 
+            color: var(--text-color); 
+            margin: 10px 0; 
+        }
+        
+        h2 { 
+            color: var(--primary-pink); 
+            margin-top: 0; 
+        }
+        
+        b, strong { 
+            color: var(--text-color); 
+        }
+        
+        .badge { 
+            background: rgba(226, 160, 8, 0.1);
+            color: var(--primary-pink); 
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-weight: 800; 
+            font-size: 0.7rem; 
+            text-transform: uppercase;
+            border: 1px solid var(--primary-pink);
+        }
+
+        .exit-link {
+            display: inline-block;
+            color: var(--primary-pink);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            transition: all 0.25s ease;
+        }
+
+        .exit-link:hover {
+            color: var(--text-color);
+            transform: translateX(-4px);
+        }
+
+        /* --- STEPS NAVIGATION --- */
+        .steps-nav {
+            display: flex; 
+            gap: 12px; 
+            margin: 30px auto; 
+            padding: 10px;
+            overflow-x: auto; 
+            width: 90%; 
+            max-width: 800px;
+            justify-content: center;
+        }
+        
+        .step {
+            min-width: 40px; 
+            height: 40px; 
+            border-radius: 50%;
+            background: var(--card-bg); 
+            border: 1px solid var(--border);
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            cursor: pointer; 
+            font-weight: 800; 
+            color: var(--text-muted);
+            transition: 0.3s;
+        }
+
+        .step:hover {
+            background: rgba(226, 160, 8, 0.1);
+            border-color: var(--primary-pink);
+        }
+
+        .step.active {
+            background: var(--primary-pink); 
+            color: #000;
+            border-color: var(--primary-pink);
+            box-shadow: 0 4px 15px rgba(226, 160, 8, 0.3);
+        }
+
+        /* --- CONTENT --- */
+        .content-container { 
+            width: 90%; 
+            max-width: 800px; 
+            margin: 0 auto 100px auto; 
+        }
+        
+        .step-content {
+            display: none;
+            background: var(--card-bg); 
+            border: 1px solid var(--border);
+            padding: 40px; 
+            border-radius: 24px;
+            animation: fadeIn 0.4s ease;
+        }
+        
+        .step-content.active { 
+            display: block; 
+        }
+
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(10px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+
+        .code-block {
+            background: #010409; 
+            padding: 20px; 
+            border-radius: 12px;
+            font-family: 'Fira Code', monospace; 
+            font-size: 0.85rem;
+            color: #d1d5db; 
+            border: 1px solid var(--border); 
+            margin: 20px 0;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+
+        .step-content img {
+            width: 100%; 
+            border-radius: 12px; 
+            margin: 20px 0;
+            border: 1px solid var(--border);
+        }
+
+        .step-content ul {
+            padding-left: 20px;
+        }
+
+        .step-content li {
+            margin: 10px 0;
+        }
+
+        .tip-box {
+            background: rgba(226, 160, 8, 0.1);
+            border-left: 3px solid var(--primary-pink);
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .highlight-box {
+            background: var(--card-bg);
+            border: 1px solid var(--primary-pink);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .image-container {
+            margin: 20px 0;
+        }
+
+        h4 {
+            color: var(--primary-pink);
+            margin-top: 25px;
+            font-size: 1.1rem;
+        }
+
+        code {
+            background: rgba(226, 160, 8, 0.1);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'Fira Code', monospace;
+            color: var(--primary-pink);
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 100px 5% 20px 5%;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .step-content {
+                padding: 25px;
+            }
+
+            .steps-nav {
+                justify-content: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="../../../../index.html" class="logo">
+                <img src="../../../../logo.jpeg" alt="Logo">
+                Digital Marketing
+            </a>
+    
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                <svg class="sun-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                </svg>
+                <svg class="moon-icon" viewBox="0 0 24 24" fill="currentColor" style="display:none;">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <header>
+        <a href="backend.html" class="exit-link">← EXIT COURSE</a>
+        <br>
+        <span class="badge">Learning Path</span>
+        <h1>Web Services Mastery</h1>
+        <p style="color: var(--text-muted)">Lesson 03: Communication between applications.</p>
+    </header>
+
+    <nav class="steps-nav">
+        <div class="step active" onclick="showStep(1, this)">1</div>
+        <div class="step" onclick="showStep(2, this)">2</div>
+        <div class="step" onclick="showStep(3, this)">3</div>
+        <div class="step" onclick="showStep(4, this)">4</div>
+        <div class="step" onclick="showStep(5, this)">5</div>
+        <div class="step" onclick="showStep(6, this)">6</div>
+        <div class="step" onclick="showStep(7, this)">7</div>
+        <div class="step" onclick="showStep(8, this)">8</div>
+        <div class="step" onclick="showStep(9, this)">9</div>
+        <div class="step" onclick="showStep(10, this)">10</div>
+    </nav>
+
+    <main class="content-container">
+
+        <div id="step1" class="step-content active">
+            <h2>01. Objectives</h2>
+            <div class="text">
+                <ul>
+                    <li><b>Enable Interoperability:</b> Bridge Java, .NET, and Python.</li>
+                    <li><b>Standardize Communication:</b> Use HTTP/HTTPS protocols.</li>
+                    <li><b>Promote Reusability:</b> Share logic across platforms.</li>
+                    <li><b>Integrate Systems:</b> Connect to external services (Payment/Maps).</li>
+                    <li><b>Ensure Scalability:</b> Implement loose coupling.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="step2" class="step-content">
+            <h2>02. APIs</h2>
+            <div class="text">
+                An <b>API</b> is the general interface for interaction. A <b>Web Service</b> is a specific API accessed over a network.
+            </div>
+        </div>
+
+        <div id="step3" class="step-content">
+            <h2>03. REST Architecture</h2>
+            <div class="text">
+                <p>REST is an architectural style, not a strict protocol, that uses standard HTTP methods (GET, POST, PUT, DELETE) to interact with resources identified by unique URLs (URIs). It is lightweight and widely used for modern web and mobile applications due to its simplicity and performance <b>HTTP methods</b>:</p>
+                <div class="image-container">
+                    <img src="pycodeREST.png" alt="REST Architecture Diagram">
+                </div>
+            </div>
+        </div>
+
+        <div id="step4" class="step-content">
+            <h2>04. SOAP Protocol</h2>
+            <div class="text">
+                <p><b>SOAP</b> is a more rigid, protocol-based approach that relies on XML for its messaging format. It is transport-independent but typically uses HTTP or SMTP for communication, often preferred in enterprise scenarios with strict contracts and security requirements (WS-Security).</p>
+                <p><strong>Note:</strong> SOAP examples are more complex due to the extensive XML structure and usually require specific libraries (like zeep in Python) to handle WSDL files and SOAP envelopes.</p>
+            </div>
+        </div>
+
+        <div id="step5" class="step-content">
+            <h2>05. JSON Example</h2>
+            <div class="text">
+                <p>JSON is a lightweight, human-readable, and language-independent text format that is the de facto standard for REST APIs</p>
+                <div class="image-container">
+                    <img src="jscodeJSON.png" alt="JSON Example">
+                </div>
+            </div>
+        </div>
+
+        <div id="step6" class="step-content">
+            <h2>06. HTML / JS Parsing</h2>
+            <div class="text">
+                <p>Converting JSON strings to objects:</p>
+                <div class="code-block">const jsonString = '{"name": "John", "age": 30}';
+const user = JSON.parse(jsonString);
+console.log(user.name); // John</div>
+            </div>
+        </div>
+
+        <div id="step7" class="step-content">
+            <h2>07. XML Format</h2>
+            <div class="text">
+                <p>XML uses a tag-based structure to define, transmit, and validate data between applications, making it universally understood by various programming languages. It is verbose compared to JSON.</p>
+                <div class="image-container">
+                    <img src="XMLcode.png" alt="XML Example">
+                </div>
+            </div>
+        </div>
+
+        <div id="step8" class="step-content">
+            <h2>08. RESTful Principles</h2>
+            <div class="text">
+                <ul>
+                    <li><b>Platform Independence:</b> The client doesn't care about the server's OS.</li>
+                    <li><b>Service Evolution:</b> Change the backend without breaking the frontend.</li>
+                </ul>
+                <p>Uses <b>HTTP</b> for transport and <b>JSON</b> for exchange.</p>
+            </div>
+        </div>
+
+        <div id="step9" class="step-content">
+            <h2>09. Resource URIs & Naming Conventions</h2>
+            <div class="text">
+                <p>In a RESTful web API, a resource is an object or service that the client can access. Each resource must have a <b>unique identifier (URI)</b>. Well-designed URIs improve API intuitive use and maintainability.</p>
+
+                <h4>1. Use Nouns, Not Verbs</h4>
+                <p>The URI should identify the resource itself, not the action being performed. The action is determined by the <b>HTTP Method</b> (GET, POST, PUT, DELETE). Avoid "operation" names in your paths.</p>
+                <div class="code-block"><span style="color: #ef4444;">✗ BAD:</span>  /get-customers or /createNewOrder
+<span style="color: #10b981;">✓ GOOD:</span> /customers or /orders</div>
+
+                <h4>2. Pluralization for Collections</h4>
+                <p>Use plural nouns for collection URIs to maintain consistency. This makes it clear whether you are interacting with a list or a specific item.</p>
+                <ul>
+                    <li><code>/customers</code> : Refers to the entire collection of customers.</li>
+                    <li><code>/customers/5</code> : Refers to a specific customer with ID 5.</li>
+                </ul>
+
+                <h4>3. Representing Hierarchy & Relationships</h4>
+                <p>When resources are related, use the URI structure to show that hierarchy. This provides a logical navigation path for developers.</p>
+                <div class="highlight-box">
+                    <b>Standard Pattern:</b> /collection/{id}/sub-collection/{id}
+                </div>
+                <ul>
+                    <li><code>/customers/5/orders</code> : Retrieves all orders belonging specifically to customer #5.</li>
+                    <li><code>/customers/5/orders/12</code> : Accesses order #12, verifying it belongs to customer #5.</li>
+                </ul>
+
+                <h4>4. Filtering, Sorting, and Searching</h4>
+                <p>Don't create new URIs for simple variations of a resource. Use <b>Query Strings</b> (parameters) to filter or sort the data returned from a collection.</p>
+                <div class="code-block">FILTER: /customers?region=europe&status=active
+SORT:   /orders?sort=date_desc
+SEARCH: /products?search=laptop</div>
+
+                <h4>5. Interface Consistency</h4>
+                <p>Ensure that URIs are consistent across the entire API. If a user is identified by a numerical ID in one endpoint, don't use a "username" for the same resource type elsewhere. The naming style (like <i>kebab-case</i> or <i>camelCase</i>) should also be uniform throughout the API.</p>
+
+                <div class="tip-box">
+                    <strong>Important:</strong> A REST API should be an <b>abstraction</b> of your data. Avoid mapping URIs directly to your internal database table names to prevent security leaks and maintain flexibility.
+                </div>
+            </div>
+        </div>
+
+        <div id="step10" class="step-content">
+            <h2>10. Performance Tips</h2>
+            <div class="text">
+                <p>Avoid <b>Chatty APIs</b>. Model <b>business entities</b>, not database tables.</p>
+                <div class="tip-box">
+                    <b>Tip:</b> Use pseudo-resources for logic like calculations:
+                    <br><code>/add?operand1=99&operand2=1</code>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        function showStep(n, el) {
+            document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+            el.classList.add('active');
+            document.querySelectorAll('.step-content').forEach(p => p.classList.remove('active'));
+            const target = document.getElementById('step' + n);
+            if(target) target.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+    <script src="../../../../theme.js"></script>
+</body>
+</html>

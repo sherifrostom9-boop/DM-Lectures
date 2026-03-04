@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 01 - System Architecture & Clean Code</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Palette Bleue harmonisée avec tes autres pages */
+            --primary-blue: #3b82f6; 
+            --bg: #050a18; 
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --text-color: #ffffff;
+            --text-muted: #94a3b8;
+            --border: rgba(59, 130, 246, 0.2);
+            --navbar-bg: rgba(5, 10, 24, 0.8);
+            --accent-blue: #3b82f6;
+            --border-color: #1e293b;
+        }
+
+        [data-theme="light"] {
+            --bg: #f0f4ff;
+            --card-bg: #ffffff;
+            --text-color: #1e293b;
+            --text-muted: #64748b;
+            --border: rgba(59, 130, 246, 0.1);
+            --navbar-bg: rgba(240, 244, 255, 0.8);
+            --border-color: rgba(0,0,0,0.1);
+        }
+
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+        
+        body { 
+            background-color: var(--bg); 
+            color: var(--text-color); 
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        /* ── Navigation ── */
+        .nav {
+            position: fixed;
+            inset: 0 0 auto 0;
+            z-index: 2000;
+            padding: 1.2rem 5%;
+            background: var(--navbar-bg);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            transition: all 0.4s ease;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.35rem;
+        }
+
+        .logo img {
+            height: 52px;
+            width: auto;
+            border-radius: 10px;
+        }
+
+        .theme-toggle {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 0.6rem 1rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            transition: all 0.25s ease;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255,255,255,0.14);
+            color: var(--text-color);
+            transform: translateY(-2px);
+        }
+
+        .theme-toggle svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .exit-link {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            margin-left: 20px;
+            transition: all 0.25s ease;
+        }
+
+        .exit-link:hover {
+            color: var(--text-color);
+            transform: translateX(-4px);
+        }
+
+        /* --- STRUCTURE DU LAB --- */
+        .overlay-lab { 
+            display: flex; 
+            min-height: 100vh; 
+            padding-top: 70px; /* Space for fixed navbar */
+        }
+
+        /* SIDEBAR */
+        .sidebar { 
+            width: 300px; 
+            background: var(--card-bg); 
+            border-right: 1px solid var(--border-color); 
+            padding: 20px; 
+            position: sticky; 
+            top: 70px; 
+            height: calc(100vh - 70px); 
+            overflow-y: auto; 
+        }
+        
+        .sidebar h2 { 
+            font-size: 1rem; 
+            margin-bottom: 25px; 
+            color: var(--primary-blue); 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            font-weight: 800; 
+        }
+        
+        .nav-item { 
+            padding: 12px 15px; 
+            border-radius: 10px; 
+            cursor: pointer; 
+            color: var(--text-muted); 
+            font-weight: 600; 
+            font-size: 0.85rem; 
+            margin-bottom: 8px; 
+            transition: 0.3s; 
+        }
+        
+        .nav-item:hover { 
+            background: rgba(59, 130, 246, 0.1); 
+            color: var(--text-color); 
+        }
+        
+        .nav-item.active { 
+            background: var(--primary-blue); 
+            color: white; 
+        }
+
+        /* MAIN CONTENT */
+        .main-content { 
+            flex: 1; 
+            padding: 40px; 
+            max-width: 1000px; 
+            margin: 0 auto; 
+        }
+        
+        .section-content { 
+            display: none; 
+            animation: fadeIn 0.5s ease; 
+        }
+        
+        .section-content.active { 
+            display: block; 
+        }
+        
+        h1 { 
+            font-weight: 800; 
+            font-size: 2.2rem; 
+            margin-bottom: 20px; 
+            color: var(--text-color); 
+        }
+
+        /* TIMELINE */
+        .timeline-nav { 
+            display: flex; 
+            justify-content: space-between; 
+            position: relative; 
+            margin: 40px 0; 
+        }
+        
+        .timeline-line { 
+            position: absolute; 
+            top: 20px; 
+            left: 5%; 
+            right: 5%; 
+            height: 2px; 
+            background: var(--border-color); 
+            z-index: 1; 
+        }
+        
+        .step-node { 
+            position: relative; 
+            z-index: 2; 
+            text-align: center; 
+            cursor: pointer; 
+            flex: 1; 
+        }
+        
+        .dot { 
+            width: 40px; 
+            height: 40px; 
+            background: var(--bg); 
+            border: 2px solid var(--border-color); 
+            border-radius: 50%; 
+            margin: 0 auto 8px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-weight: 800; 
+            transition: 0.4s; 
+            color: var(--text-muted); 
+        }
+        
+        .step-node:hover .dot {
+            background: rgba(59, 130, 246, 0.1);
+            border-color: var(--primary-blue);
+        }
+        
+        .step-node.active .dot { 
+            background: var(--primary-blue); 
+            border-color: var(--primary-blue); 
+            color: white; 
+            transform: scale(1.1); 
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.4); 
+        }
+        
+        .node-label { 
+            font-size: 0.65rem; 
+            font-weight: 700; 
+            color: var(--text-muted); 
+            text-transform: uppercase; 
+            white-space: nowrap; 
+        }
+        
+        .step-node.active .node-label { 
+            color: var(--text-color); 
+        }
+
+        /* THEME BOXES */
+        .theory-box { 
+            background: var(--card-bg); 
+            padding: 25px; 
+            border-radius: 16px; 
+            color: var(--text-muted); 
+            line-height: 1.7; 
+            margin-bottom: 20px; 
+            border-left: 4px solid var(--primary-blue); 
+            font-size: 0.95rem;
+            border-top: 1px solid var(--border); 
+            border-right: 1px solid var(--border); 
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .theory-box strong { 
+            color: var(--text-color); 
+        }
+        
+        .code-comparison { 
+            display: grid; 
+            grid-template-columns: 1fr; 
+            gap: 20px; 
+            margin: 20px 0; 
+        }
+        
+        @media (min-width: 768px) { 
+            .code-comparison { 
+                grid-template-columns: 1fr 1fr; 
+            } 
+        }
+        
+        .code-window { 
+            background: #0f172a; 
+            border-radius: 12px; 
+            overflow: hidden; 
+            border: 1px solid var(--border-color); 
+        }
+        
+        .code-header { 
+            padding: 8px 15px; 
+            font-size: 0.7rem; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            color: white; 
+        }
+        
+        .header-bad { 
+            background: #450a0a; 
+            color: #fca5a5; 
+        }
+        
+        .header-good { 
+            background: #064e3b; 
+            color: #6ee7b7; 
+        }
+        
+        pre { 
+            margin: 0; 
+            padding: 15px; 
+            font-family: 'Fira Code', monospace; 
+            font-size: 0.8rem; 
+            color: #e2e8f0; 
+            overflow-x: auto; 
+            white-space: pre-wrap; 
+        }
+
+        .sub-step-content { 
+            display: none; 
+        }
+        
+        .sub-step-content.active { 
+            display: block; 
+            animation: fadeIn 0.3s ease; 
+        }
+
+        @keyframes fadeIn { 
+            from { 
+                opacity: 0; 
+                transform: translateY(10px); 
+            } 
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            } 
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 968px) {
+            .sidebar {
+                display: none;
+            }
+
+            .main-content {
+                padding: 20px;
+            }
+
+            .timeline-nav {
+                overflow-x: auto;
+                justify-content: flex-start;
+                gap: 10px;
+            }
+
+            .step-node {
+                flex: 0 0 auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .node-label {
+                font-size: 0.55rem;
+            }
+
+            .exit-link {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="../../../../index.html" class="logo">
+                <img src="../../../../logo.jpeg" alt="Logo">
+                Digital Marketing
+            </a>
+    
+            <div style="display: flex; align-items: center;">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <svg class="sun-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                    </svg>
+                    <svg class="moon-icon" viewBox="0 0 24 24" fill="currentColor" style="display:none;">
+                        <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="overlay-lab">
+        <aside class="sidebar">
+            <h2>Architecture Course</h2>
+            <div class="nav-item active" onclick="switchMainSection(0)">1. Key Principles</div>
+            <div class="nav-item" onclick="switchMainSection(1)">2. Reuse Strategies</div>
+            <div class="nav-item" onclick="switchMainSection(2)">3. Maintenance BP</div>
+            <div class="nav-item" onclick="switchMainSection(3)">4. Practical Guide</div>
+            <div class="nav-item" onclick="switchMainSection(4)">5. What is "Clean"?</div>
+            <div class="nav-item" onclick="switchMainSection(5)">6. Characteristics</div>
+            <div class="nav-item" onclick="switchMainSection(6)">7. Practical Principles</div>
+        </aside>
+
+        <main class="main-content">
+            <section id="section-0" class="section-content active">
+                <a href="backend.html" class="exit-link">← EXIT LESSON</a>
+                <h1>Key Principles for Reusability and Clean Code</h1>
+                <nav class="timeline-nav">
+                    <div class="timeline-line"></div>
+                    <div class="step-node active" onclick="showSubStep(0, 0)"><div class="dot">1</div><div class="node-label">DRY</div></div>
+                    <div class="step-node" onclick="showSubStep(0, 1)"><div class="dot">2</div><div class="node-label">SRP</div></div>
+                    <div class="step-node" onclick="showSubStep(0, 2)"><div class="dot">3</div><div class="node-label">COHESION</div></div>
+                    <div class="step-node" onclick="showSubStep(0, 3)"><div class="dot">4</div><div class="node-label">OPEN/CLOSED</div></div>
+                    <div class="step-node" onclick="showSubStep(0, 4)"><div class="dot">5</div><div class="node-label">KISS/YAGNI</div></div>
+                </nav>
+                <div class="sub-steps-container">
+                    <div class="sub-step-content active">
+                        <div class="theory-box"><strong>DRY (Don't Repeat Yourself):</strong> Extract common functionality into reusable functions, classes, or modules to avoid duplicating code. The "Rule of Three" suggests refactoring after the third instance of similar code appears.</div>
+                    </div>
+                    <div class="sub-step-content">
+                        <div class="theory-box"><strong>Single Responsibility Principle (SRP):</strong> Design each function, class, or component to have only one, clearly defined purpose or reason to change. This makes components easier to test, understand, and reuse in different contexts.</div>
+                    </div>
+                    <div class="sub-step-content">
+                        <div class="theory-box"><strong>High Cohesion and Low Coupling:</strong> Ensure that related code lives together (high cohesion) and components are independent of other modules (low coupling). This reduces the risk of unintended side effects when a change is made.</div>
+                    </div>
+                    <div class="sub-step-content">
+                       <div class="theory-box"><strong>Open/Closed Principle:</strong> Software entities should be open for extension but closed for modification. This means you should be able to add new functionality without altering the existing code, often achieved through interfaces and abstract classes.</div>
+                    </div>
+                    <div class="sub-step-content">
+                       <div class="theory-box"><strong>KISS & YAGNI:</strong> Avoid unnecessary complexity and resist adding features based on speculative future needs. Simpler code is easier to maintain and faster to develop.</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="section-1" class="section-content">
+                <h1>Strategies for Reusing Components</h1>
+                <nav class="timeline-nav">
+                    <div class="timeline-line"></div>
+                    <div class="step-node active" onclick="showSubStep(1, 0)"><div class="dot">1</div><div class="node-label">MODULAR</div></div>
+                    <div class="step-node" onclick="showSubStep(1, 1)"><div class="dot">2</div><div class="node-label">ABSTRACTION</div></div>
+                    <div class="step-node" onclick="showSubStep(1, 2)"><div class="dot">3</div><div class="node-label">LIBRARIES</div></div>
+                    <div class="step-node" onclick="showSubStep(1, 3)"><div class="dot">4</div><div class="node-label">PARAMS</div></div>
+                    <div class="step-node" onclick="showSubStep(1, 4)"><div class="dot">5</div><div class="node-label">REPOSITORY</div></div>
+                </nav>
+                <div class="sub-steps-container">
+                    <div class="sub-step-content active">
+                        <div class="theory-box"><strong>Design Modular Components:</strong> Break down complex systems into smaller, independent modules during the design phase.</div>
+                    </div>
+                    <div class="sub-step-content">
+                      <div class="theory-box"><strong>Leverage Abstraction and Interfaces:</strong> Program to interfaces rather than concrete implementations to reduce dependencies and increase flexibility.</div>
+                    </div>
+                    <div class="sub-step-content">
+                       <div class="theory-box"><strong>Use Libraries and Frameworks:</strong> Utilize pre-written and tested code collections (libraries) and structural guidelines (frameworks) to implement common functionalities like authentication or data handling.</div>
+                    </div>
+                    <div class="sub-step-content">
+                       <div class="theory-box"><strong>Parameterize for Flexibility:</strong> Design components to accept parameters (props in UI development) to customize behavior and appearance without changing the source code.</div>
+                    </div>
+                    <div class="sub-step-content">
+                       <div class="theory-box"><strong>Create a Component Repository:</strong> Store approved, certified, and well-documented components in a central, searchable repository for easy access by all team members.</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="section-2" class="section-content">
+                <h1>Best Practices for Maintaining Clean Code</h1>
+                <nav class="timeline-nav">
+                    <div class="timeline-line"></div>
+                    <div class="step-node active" onclick="showSubStep(2, 0)"><div class="dot">1</div><div class="node-label">NAMING</div></div>
+                    <div class="step-node" onclick="showSubStep(2, 1)"><div class="dot">2</div><div class="node-label">STANDARDS</div></div>
+                    <div class="step-node" onclick="showSubStep(2, 2)"><div class="dot">3</div><div class="node-label">TESTS</div></div>
+                    <div class="step-node" onclick="showSubStep(2, 3)"><div class="dot">4</div><div class="node-label">DOC</div></div>
+                    <div class="step-node" onclick="showSubStep(2, 4)"><div class="dot">5</div><div class="node-label">REFACTOR</div></div>
+                    <div class="step-node" onclick="showSubStep(2, 5)"><div class="dot">6</div><div class="node-label">REVIEWS</div></div>
+                    <div class="step-node" onclick="showSubStep(2, 6)"><div class="dot">7</div><div class="node-label">VERSION</div></div>
+                </nav>
+                <div class="sub-steps-container">
+                    <div class="sub-step-content active">
+                       <div class="theory-box"><strong>Use Meaningful Names:</strong> Variables, functions, and classes should have descriptive names that clearly convey their purpose and functionality.</div>
+                    </div>
+                    <div class="sub-step-content">
+                       <div class="theory-box"><strong>Follow Consistent Coding Standards:</strong> Adhere to established style guides (e.g., PEP 8 for Python, Google's Style Guide for Java) across the entire codebase to ensure uniformity and readability.</div>
+                    </div>
+                    <div class="sub-step-content">
+                      <div class="theory-box"><strong>Write Automated Tests:</strong> Rigorous unit and integration testing ensures that components work as expected and that future changes do not introduce bugs. Tests also serve as living documentation.</div>
+                    </div>
+                    <div class="sub-step-content">
+                      <div class="theory-box"><strong>Document Thoroughly:</strong> Provide clear, concise documentation and comments, especially for APIs, libraries, and complex logic, explaining why the code exists, not just what it does.</div>
+                    </div>
+                    <div class="sub-step-content">
+                       <div class="theory-box"><strong>Refactor Regularly:</strong> Continuously improve the internal structure of existing code in small, incremental steps without changing its external behavior.</div>
+                    </div>
+                    <div class="sub-step-content">
+                       <div class="theory-box"><strong>Conduct Code Reviews:</strong> Use peer code reviews to enforce standards, catch bugs, and share knowledge among the development team.</div>
+                    </div>
+                    <div class="sub-step-content">
+                        <div class="theory-box"><strong>Use Version Control:</strong> Utilize systems like Git to track changes, manage different versions, and collaborate effectively.</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="section-3" class="section-content">
+                <h1>How to Write Clean Code: A Practical Guide</h1>
+                <div class="theory-box">
+                    Clean code means writing software that's easy to read, understand, and maintain. This guide covers simple principles like clear names, small functions, testing, refactoring, and writing code that future developers can work with confidently.<br><br>
+                    Every developer has opened a file and immediately regretted it. Spaghetti logic, cryptic variable names, functions that stretch for pages—it's a mess. Clean code isn't about aesthetics. It's about creating software that other humans can actually work with, including your future self.<br><br>
+                   Clean habits scale across software development teams because clarity compounds over time. The conversation around clean code sparks fierce debates in developer communities. Some treat it like gospel, others dismiss it as theoretical nonsense. A programmer and a software engineer might disagree on style, but both benefit when the team keeps code readable for the next person.
+                </div>
+            </section>
+
+            <section id="section-4" class="section-content">
+                <h1>What Makes Code "Clean"?</h1>
+                <div class="theory-box">
+                    <strong>Readability:</strong> Clean code reads almost like plain English. You open a function, understand what it does within seconds, and move on. No detective work required. Consistent indentation and naming keep readable code intact.<br><br>
+                    At its core, clean code can be read and enhanced by any developer, not just its original author. You're writing for humans first, machines second. The compiler doesn't care about naming, but your colleagues and your future self do.<br><br>
+                    <strong>Code is communication:</strong> Every function, every class, every variable name is a message to another developer about what this software does and why it exists. Write accordingly.
+                </div>
+            </section>
+
+            <section id="section-5" class="section-content">
+                <h1>Characteristics of Clean Code</h1>
+                <nav class="timeline-nav">
+                    <div class="timeline-line"></div>
+                    <div class="step-node active" onclick="showSubStep(5, 0)"><div class="dot">1</div><div class="node-label">READABILITY</div></div>
+                    <div class="step-node" onclick="showSubStep(5, 1)"><div class="dot">2</div><div class="node-label">FOCUS</div></div>
+                    <div class="step-node" onclick="showSubStep(5, 2)"><div class="dot">3</div><div class="node-label">COUPLING</div></div>
+                    <div class="step-node" onclick="showSubStep(5, 3)"><div class="dot">4</div><div class="node-label">TESTS</div></div>
+                </nav>
+                <div class="sub-steps-container">
+                    <div class="sub-step-content active">
+                       <div class="theory-box"><strong>Readability comes first:</strong> Clear names, logical structure, and formatting that guides the eye naturally through the flow. Team conventions on coding standards reduce guesswork.</div>
+                    </div>
+                    <div class="sub-step-content">
+                       <div class="theory-box"><strong>Each piece does one thing:</strong> Functions handle single responsibilities. Classes represent coherent concepts. This is SRP applied in practice – fewer reasons for a file to change.</div>
+                    </div>
+                    <div class="sub-step-content">
+                       <div class="theory-box"><strong>Dependencies stay minimal:</strong> Tightly coupled code creates dominoes—change one piece, break five others. Loose coupling gives you flexibility.</div>
+                    </div>
+                    <div class="sub-step-content">
+                        <div class="theory-box"><strong>Tests provide a safety net:</strong> Clean code includes tests that document expected behavior and catch breakage. Code without tests becomes legacy code the moment you write it.</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="section-6" class="section-content">
+                <h1>Practical Principles That Actually Matter</h1>
+                <nav class="timeline-nav">
+                    <div class="timeline-line"></div>
+                    <div class="step-node active" onclick="showSubStep(6, 0)"><div class="dot">1</div><div class="node-label">KISS/YAGNI</div></div>
+                    <div class="step-node" onclick="showSubStep(6, 1)"><div class="dot">2</div><div class="node-label">DRY</div></div>
+                    <div class="step-node" onclick="showSubStep(6, 2)"><div class="dot">3</div><div class="node-label">NAMING</div></div>
+                    <div class="step-node" onclick="showSubStep(6, 3)"><div class="dot">4</div><div class="node-label">COMMENTS</div></div>
+                    <div class="step-node" onclick="showSubStep(6, 4)"><div class="dot">5</div><div class="node-label">FUNCTIONS</div></div>
+                    <div class="step-node" onclick="showSubStep(6, 5)"><div class="dot">6</div><div class="node-label">ERRORS/LOGS</div></div>
+                    <div class="step-node" onclick="showSubStep(6, 6)"><div class="dot">7</div><div class="node-label">DEAD CODE</div></div>
+                </nav>
+                <div class="sub-steps-container">
+                    <div class="sub-step-content active">
+                        <div class="theory-box">
+                         <strong>KISS – Keep It Simple:</strong> Complexity kills projects. The simplest solution wins. Design patterns are tools, not trophies.<br><br>
+                         <strong>YAGNI – You Aren't Gonna Need It:</strong> Don't build features you think you might need someday. Build what you need now. Speculative development wastes time.
+                        </div>
+                    </div>
+                    <div class="sub-step-content">
+                        <div class="theory-box"><strong>DRY – Don't Repeat Yourself:</strong> Duplication creates maintenance nightmares. Extract common functionality. Wait until you have three instances of similar code before abstracting.</div>
+                    </div>
+                    <div class="sub-step-content">
+                        <div class="theory-box"><strong>Write Meaningful Names:</strong> Good names eliminate questions. Names should reveal intent. For functions, use verbs. For classes, use nouns. For booleans, phrase as questions.</div>
+                        <div class="code-comparison">
+                            <div class="code-window"><div class="code-header header-bad">Unclear</div><pre>def process(d): return d * 1.1</pre></div>
+                            <div class="code-window"><div class="code-header header-good">Clear</div><pre>def calculate_price_with_tax(base_price): return base_price * 1.1</pre></div>
+                        </div>
+                    </div>
+                    <div class="sub-step-content">
+                        <div class="theory-box"><strong>Comment the Why, Not the What:</strong> Code explains what is happening; comments should explain why. Document edge cases and cite ticket numbers. Update comments when code changes.</div>
+                        <div class="code-comparison">
+                            <div class="code-window"><div class="code-header header-bad">Poor</div><pre>x = x + 1 # Increment x</pre></div>
+                            <div class="code-window"><div class="code-header header-good">Good</div><pre>x = x + 1 # Offset by 1 for zero-based index</pre></div>
+                        </div>
+                    </div>
+                    <div class="sub-step-content">
+                       <div class="theory-box"><strong>Keep Functions Short and Focused:</strong> A function should do one thing and do it well. Aim for functions that fit on one screen (20-30 lines). Limit parameters to three; more than that, use an object.</div>
+                    </div>
+                    <div class="sub-step-content">
+                        <div class="theory-box">
+                            <strong>Handle Errors Explicitly:</strong> Handle errors close to where they occur.<br><br>
+                            <strong>Log Thoughtfully:</strong> Logging is communication with your future self. Use levels (ERROR, WARN, INFO, DEBUG). Avoid logging in tight loops; log progress instead.
+                        </div>
+                    </div>
+                    <div class="sub-step-content">
+                      <div class="theory-box"><strong>Delete Dead Code:</strong> Commented-out code rots. Version control preserves history, so if it's unused, delete it. Don't maintain code that doesn't run.</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        /* TES SCRIPTS ORIGINAUX (Gardés tels quels) */
+        function switchMainSection(index) {
+            document.querySelectorAll('.nav-item').forEach((item, i) => {
+                item.classList.toggle('active', i === index);
+            });
+            document.querySelectorAll('.section-content').forEach((sec, i) => {
+                sec.classList.toggle('active', i === index);
+            });
+        }
+
+        function showSubStep(sectionIndex, subStepIndex) {
+            const section = document.getElementById(`section-${sectionIndex}`);
+            section.querySelectorAll('.step-node').forEach((node, i) => {
+                node.classList.toggle('active', i === subStepIndex);
+            });
+            section.querySelectorAll('.sub-step-content').forEach((content, i) => {
+                content.classList.toggle('active', i === subStepIndex);
+            });
+        }
+    </script>
+    <script src="../../../../theme.js"></script>
+</body>
+</html>

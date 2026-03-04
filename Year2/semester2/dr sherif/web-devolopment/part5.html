@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 5 | Deployment</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        /* --- DYNAMIC THEME VARIABLES --- */
+        :root {
+            --primary-pink: #e2a008;
+            --bg: #030014;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --text-color: #ffffff;
+            --text-muted: #94a3b8;
+            --border: rgba(255,255,255,0.1);
+            --step-circle-bg: #000;
+        }
+
+        [data-theme="light"] {
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #1e293b;
+            --text-muted: #64748b;
+            --border: rgba(0,0,0,0.1);
+            --step-circle-bg: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-color);
+            display: flex; 
+            flex-direction: column; 
+            align-items: center;
+            min-height: 100vh;
+            transition: all 0.3s ease;
+        }
+
+        /* --- NAVIGATION BAR --- */
+        .nav {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .logo img {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            object-fit: cover;
+            border: 2px solid var(--primary-pink);
+        }
+
+        .theme-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 8px 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-color);
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .theme-toggle svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        header { 
+            text-align: center; 
+            padding: 40px 5%; 
+            width: 100%; 
+        }
+
+        .exit-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .exit-link:hover {
+            color: var(--text-color);
+        }
+
+        .exit-link {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .exit-link:hover {
+            color: var(--text-color);
+        }
+
+        h1 { 
+            font-size: 3rem; 
+            margin: 20px 0; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            background: linear-gradient(to right, var(--text-color), var(--primary-pink)); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+        }
+
+        /* STEPPER INTERACTIF */
+        .stepper { 
+            display: flex; 
+            justify-content: center; 
+            gap: 15px; 
+            margin-bottom: 50px; 
+            flex-wrap: wrap; 
+        }
+
+        .step { 
+            cursor: pointer; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            opacity: 0.6;
+            transition: 0.3s;
+        }
+
+        .step.active { 
+            opacity: 1; 
+        }
+
+        .circle {
+            width: 40px; 
+            height: 40px; 
+            border-radius: 50%;
+            border: 2px solid var(--border); 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            font-weight: 800; 
+            margin-bottom: 10px; 
+            background: var(--step-circle-bg);
+        }
+
+        .step.active .circle { 
+            border-color: var(--primary-pink); 
+            background: var(--primary-pink); 
+            color: #000; 
+        }
+
+        .step-label { 
+            font-size: 0.55rem; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            color: var(--text-muted); 
+        }
+
+        /* PANNEAUX DE CONTENU */
+        .content-container { 
+            width: 90%; 
+            max-width: 900px; 
+            padding-bottom: 100px; 
+        }
+
+        .content-panel { 
+            display: none; 
+            animation: fadeIn 0.5s ease-out; 
+        }
+
+        .content-panel.active { 
+            display: block; 
+        }
+
+        .bp-card { 
+            background: var(--card-bg); 
+            padding: 25px; 
+            border-radius: 15px; 
+            border: 1px solid var(--border); 
+            margin-bottom: 20px; 
+        }
+
+        .bp-card strong { 
+            color: var(--primary-pink); 
+            display: block; 
+            margin-bottom: 15px; 
+            font-size: 1.2rem; 
+        }
+
+        /* IMAGE STYLING */
+        .content-img {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            display: block;
+            margin: 20px auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin: 20px 0; 
+        }
+
+        th, td { 
+            border: 1px solid var(--border); 
+            padding: 15px; 
+            text-align: left; 
+        }
+
+        th { 
+            background: rgba(226, 160, 8, 0.1); 
+            color: var(--primary-pink); 
+            font-size: 0.9rem; 
+            text-transform: uppercase; 
+        }
+
+        td { 
+            color: var(--text-muted); 
+            font-size: 0.9rem; 
+        }
+
+        ul { 
+            padding-left: 1.2rem; 
+            color: var(--text-muted); 
+        }
+
+        li { 
+            margin-bottom: 10px; 
+        }
+
+        p { 
+            color: var(--text-muted); 
+            line-height: 1.6; 
+        }
+
+        .congrats { 
+            color: #e2a008; 
+            font-weight: 800; 
+            font-size: 1.5rem; 
+            text-decoration: underline; 
+            margin-bottom: 20px; 
+            display: block; 
+        }
+
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(10px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 15px 4%;
+            }
+            .logo {
+                font-size: 1rem;
+                gap: 10px;
+            }
+            .logo img {
+                width: 40px;
+                height: 40px;
+            }
+            .theme-toggle {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav class="nav">
+    <div class="nav-container">
+        <a href="../../../../index.html" class="logo">
+            <img src="../../../../logo.jpeg" alt="Logo">
+            Digital Marketing
+        </a>
+
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="sun" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <svg class="moon" viewBox="0 0 24 24" fill="currentColor" style="display:none;">
+                <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+            </svg>
+        </button>
+    </div>
+</nav>
+
+<header>
+    <a href="webdevelopment.html" class="exit-link">← EXIT LESSON</a>
+    <h1>Deployment Plan</h1>
+</header>
+
+<div class="stepper">
+    <div class="step active" onclick="showPanel(0)">
+        <div class="circle">0</div>
+        <div class="step-label">Intro</div>
+    </div>
+    <div class="step active" onclick="showPanel(1)">
+        <div class="circle">1</div>
+        <div class="step-label">Preparation</div>
+    </div>
+    <div class="step" onclick="showPanel(2)">
+        <div class="circle">2</div>
+        <div class="step-label">Hosting Stack</div>
+    </div>
+    <div class="step" onclick="showPanel(3)">
+        <div class="circle">3</div>
+        <div class="step-label">Workflow</div>
+    </div>
+    <div class="step" onclick="showPanel(4)">
+        <div class="circle">4</div>
+        <div class="step-label">Final Checklist</div>
+    </div>
+    <div class="step" onclick="showPanel(5)">
+        <div class="circle">5</div>
+        <div class="step-label">Congratulations</div>
+    </div>
+</div>
+
+<div class="content-container">
+    <div class="content-panel active">
+        <div class="bp-card">
+            <strong> Introduction to Security</strong>
+            <p>deployment plan—specifically, how to put this live on the internet using a platform like Vercel or Render</p>
+            <p>Deploying your application is the final step where you move your code from your "Local Machine</p>
+            <p>For modern full-stack apps (React + Node + MongoDB), the most efficient approach is using Platform-as-a-Service (PaaS) providers.</p>
+        </div>
+    </div>
+    
+    <div class="content-panel active">
+        <div class="bp-card">
+            <strong>1. Preparing for the Cloud</strong>
+            <p>Before clicking "Deploy," you must make your code "environment-aware."</p>
+            <ul>
+                <li><strong>Port Configuration:</strong> Servers in the cloud choose their own ports. You must update your code to use an environment variable: <code style="color: #e2a008;">const PORT = process.env.PORT || 5000;</code></li>
+                <li><strong>Environment Variables:</strong> Move your Database URL and JWT Secret to a .env file. Do not upload this file to GitHub.</li>
+                <li><strong>CORS (Cross-Origin Resource Sharing):</strong> You must tell your backend that it is allowed to accept requests from your new frontend URL.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="content-panel">
+        <div class="bp-card">
+            <strong>2. Recommended Hosting Stack</strong>
+            <p>Since your app has two parts (Client and Server), you can host them together or separately.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Component</th>
+                        <th>Recommended Tool</th>
+                        <th>Why?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Frontend</td>
+                        <td>Vercel or Netlify</td>
+                        <td>Fast, global CDN, and connects directly to your GitHub.</td>
+                    </tr>
+                    <tr>
+                        <td>Backend</td>
+                        <td>Render or Railway</td>
+                        <td>Handles persistent Node.js processes and auto-scales.</td>
+                    </tr>
+                    <tr>
+                        <td>Database</td>
+                        <td>MongoDB Atlas</td>
+                        <td>A fully managed cloud database with a generous free tier.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="content-panel">
+        <div class="bp-card">
+            <strong>3. The "Git-Push" Workflow</strong>
+            <p>Modern deployment is automated. Once you set it up, the process looks like this:</p>
+            <ul>
+                <li><strong>Commit:</strong> You save your changes in Git (git commit -m "Add login feature").</li>
+                <li><strong>Push:</strong> You send your code to GitHub.</li>
+                <li><strong>Trigger:</strong> Vercel or Render detects the new code on GitHub.</li>
+                <li><strong>Build:</strong> The cloud provider installs your dependencies (npm install) and builds your project.</li>
+                <li><strong>Live:</strong> Your website is updated automatically at your-app.vercel.app.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="content-panel">
+        <div class="bp-card">
+            <strong>4. Final Checklist for Launch</strong>
+            <ul>
+                <li><strong>[ ] Database Access:</strong> Ensure your MongoDB Atlas "IP Access List" allows connections from "Anywhere" (0.0.0.0/0) so the cloud server can reach it.</li>
+                <li><strong>[ ] Build Scripts:</strong> Ensure your package.json has a "start": "node server.js" script.</li>
+                <li><strong>[ ] Health Check:</strong> Create a simple route like /api/health that returns "OK" so you can verify the server is breathing.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="content-panel">
+        <div class="bp-card" style="text-align: center;">
+            <span class="congrats">Congratulations!</span>
+            <p>You've just walked through the entire lifecycle of a web application:</p>
+            <ul style="display: inline-block; text-align: left;">
+                <li>Design (Architecture)</li>
+                <li>Client-Side (React)</li>
+                <li>Server-Side (Node/Express)</li>
+                <li>Database (MongoDB)</li>
+                <li>Security (JWT)</li>
+                <li>Deployment (Cloud)</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // Apply theme IMMEDIATELY to prevent flash
+    (function() {
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    })();
+</script>
+
+<script>
+    function showPanel(index) {
+        const panels = document.querySelectorAll('.content-panel');
+        const steps = document.querySelectorAll('.step');
+        panels.forEach(p => p.classList.remove('active'));
+        steps.forEach(s => s.classList.remove('active'));
+        panels[index].classList.add('active');
+        steps[index].classList.add('active');
+    }
+
+    const themeToggle = document.getElementById('themeToggle');
+    const sun = document.querySelector('.sun');
+    const moon = document.querySelector('.moon');
+    const html = document.documentElement;
+
+    // Check for saved theme preference or default to 'dark'
+    let theme = localStorage.getItem('theme') || 'dark';
+    html.setAttribute('data-theme', theme);
+    
+    // Update icon visibility based on current theme
+    if (theme === 'light') {
+        sun.style.display = 'none';
+        moon.style.display = 'block';
+    }
+
+    // Theme toggle click handler
+    themeToggle.addEventListener('click', function() {
+        theme = theme === 'dark' ? 'light' : 'dark';
+        html.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        
+        // Toggle icons
+        sun.style.display = theme === 'dark' ? 'block' : 'none';
+        moon.style.display = theme === 'light' ? 'block' : 'none';
+    });
+</script>
+
+</body>
+</html>
