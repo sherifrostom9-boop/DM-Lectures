@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 07: Images, Canvas & SVG</title>
+    <link href="../../../../DrSherif.css" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="top-bar">
+        <a href="../../../../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <img src="../../../../logo.jpeg" alt="Logo" class="site-logo">
+            <h2>Digital Marketing</h2>
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="sun-icon" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <svg class="moon-icon" fill="currentColor" viewBox="0 0 24 24" style="display: none;">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+            </svg>
+        </button>
+    </nav>
+
+<div class="container">
+    <a href="integrationS1.html" class="back-btn">← BACK TO SYLLABUS</a>
+
+    <header>
+        <div class="label">Lesson 07</div>
+        <h1>Images & Graphics</h1>
+        <p class="text-dim">Working with standard images, Canvas drawing, and Scalable Vector Graphics.</p>
+    </header>
+
+    <div class="section-grid">
+        <div class="card">
+            <h2>The &lt;img&gt; Element</h2>
+            <p>Used to embed a simple image file (JPG, PNG, GIF) into the webpage.</p>
+            <div class="code-block">
+                <span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="val">"scream.jpg"</span> <span class="attr">alt</span>=<span class="val">"The Scream"</span> <span class="attr">width</span>=<span class="val">"220"</span> <span class="attr">height</span>=<span class="val">"277"</span><span class="tag">&gt;</span>
+            </div>
+            <ul>
+                <li><strong>src:</strong> Path to the image file.</li>
+                <li><strong>alt:</strong> Alternate text for accessibility.</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>HTML Canvas</h2>
+            <p>The <code>&lt;canvas&gt;</code> element is a container used to draw graphics "on the fly" via <strong>JavaScript</strong>.</p>
+            <ul>
+                <li>Used for paths, boxes, circles, and text.</li>
+                <li>Highly performant for games and real-time data visualization.</li>
+                <li>Requires a script to render content.</li>
+            </ul>
+        </div>
+
+        <div class="card full-width">
+            <h2>Scalable Vector Graphics (SVG)</h2>
+            <p>SVG defines vector-based graphics in XML format. Unlike standard images, they do not lose quality when resized.</p>
+            <div class="code-block">
+                <span class="tag">&lt;svg</span> <span class="attr">width</span>=<span class="val">"100"</span> <span class="attr">height</span>=<span class="val">"100"</span><span class="tag">&gt;</span><br>
+                &nbsp;&nbsp;<span class="tag">&lt;circle</span> <span class="attr">cx</span>=<span class="val">"50"</span> <span class="attr">cy</span>=<span class="val">"50"</span> <span class="attr">r</span>=<span class="val">"40"</span> <span class="attr">stroke</span>=<span class="val">"green"</span> <span class="attr">fill</span>=<span class="val">"yellow"</span> <span class="tag">/&gt;</span><br>
+                <span class="tag">&lt;/svg&gt;</span>
+            </div>
+        </div>
+
+        <div class="card full-width">
+            <h2>Canvas vs. SVG</h2>
+            
+
+[Image of difference between raster and vector graphics]
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Canvas</th>
+                        <th>SVG</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Resolution</strong></td>
+                        <td>Resolution dependent (can blur)</td>
+                        <td>Resolution independent (stays sharp)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Rendering</strong></td>
+                        <td>Via Scripts (JavaScript)</td>
+                        <td>Via XML (Tags)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Interactivity</strong></td>
+                        <td>Poor (no individual element events)</td>
+                        <td>Excellent (supports DOM events)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Performance</strong></td>
+                        <td>Better for large numbers of objects</td>
+                        <td>Slower with too many objects</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <footer>
+        <p>Contact: sherrost@yahoo.com | Tel: 01501827070</p>
+        <p>Integration Course - Module 07</p>
+    </footer>
+</div>
+<script src="../../../../theme.js"></script>
+</body>
+</html>

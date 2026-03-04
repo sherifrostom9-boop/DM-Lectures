@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 01: What is HTML?</title>
+    <link href="../../../../DrSherif.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="top-bar">
+        <a href="../../../../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <img src="../../../../logo.jpeg" alt="Logo" class="site-logo">
+            <h2>Digital Marketing</h2>
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="sun-icon" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <svg class="moon-icon" fill="currentColor" viewBox="0 0 24 24" style="display: none;">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+            </svg>
+        </button>
+    </nav>
+
+    <div class="container">
+        <a href="integrationS1.html" class="back-btn">← BACK TO SYLLABUS</a>
+
+        <header>
+            <div class="label">Lesson 01</div>
+            <h1>What is HTML?</h1>
+            <p class="text-dim">Content structuring, tag semantics, and W3C standards.</p>
+        </header>
+
+        <div class="section-grid">
+            <div class="card">
+                <h2>The Definition</h2>
+                <p><strong>HTML</strong> (HyperText Markup Language) is the standard markup language for creating Web pages. It describes the structure of a Web page and consists of a series of elements that tell the browser how to display content.</p>
+            </div>
+
+            <div class="card">
+                <h2>The Web Browser</h2>
+                <p>A software that allows a user to display web pages. Its main purpose is to <strong>render</strong> HTML code and translate it into text, videos, images, and sound.</p>
+                <ul>
+                    <li>Interprets HTML & Scripts</li>
+                    <li>Manages History & Bookmarks</li>
+                    <li>Stores Cookies for sessions</li>
+                </ul>
+            </div>
+
+            <div class="card full-width">
+                <h2>Structure, Presentation & Behavior</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Structure (HTML)</th>
+                            <th>Presentation (CSS)</th>
+                            <th>Behavior (JS)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>The "Bones": What content it has (Headings, Paragraphs).</td>
+                            <td>The "Skin": How it looks (Fonts, Colors, Alignments).</td>
+                            <td>The "Brain": How it works (Alerts, Buttons, Interactions).</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card">
+                <h2>Standard Page Structure</h2>
+                <p>Every professional website follows this nesting logic:</p>
+                <div class="code-block">
+                    <span class="comment">&lt;!-- Document Type --&gt;</span><br>
+                    <span class="tag">&lt;!DOCTYPE html&gt;</span><br>
+                    <span class="tag">&lt;html&gt;</span><br>
+                    &nbsp;&nbsp;<span class="tag">&lt;head&gt;</span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;title&gt;</span>Page Title<span class="tag">&lt;/title&gt;</span><br>
+                    &nbsp;&nbsp;<span class="tag">&lt;/head&gt;</span><br>
+                    &nbsp;&nbsp;<span class="tag">&lt;body&gt;</span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;h1&gt;</span>Visible Heading<span class="tag">&lt;/h1&gt;</span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;p&gt;</span>Visible Paragraph<span class="tag">&lt;/p&gt;</span><br>
+                    &nbsp;&nbsp;<span class="tag">&lt;/body&gt;</span><br>
+                    <span class="tag">&lt;/html&gt;</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Essential Tags</h2>
+                <ul>
+                    <li><strong>&lt;!DOCTYPE html&gt;</strong>: Informs the browser about the HTML version (HTML5).</li>
+                    <li><strong>&lt;html&gt;</strong>: The root element of the page.</li>
+                    <li><strong>&lt;head&gt;</strong>: Contains metadata (not visible to users).</li>
+                    <li><strong>&lt;body&gt;</strong>: Contains all visible content (images, text, links).</li>
+                </ul>
+            </div>
+        </div>
+
+        <footer>
+            <p>Contact: sherrost@yahoo.com | Tel: 01501827070</p>
+            <p>Integration Course - Module 01</p>
+        </footer>
+    </div>
+    
+    <script src="../../../../theme.js"></script>
+</body>
+</html>

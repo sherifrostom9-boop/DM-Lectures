@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 08: Audio & Multimedia</title>
+    <link href="../../../../DrSherif.css" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="top-bar">
+        <a href="../../../../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <img src="../../../../logo.jpeg" alt="Logo" class="site-logo">
+            <h2>Digital Marketing</h2>
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="sun-icon" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <svg class="moon-icon" fill="currentColor" viewBox="0 0 24 24" style="display: none;">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+            </svg>
+        </button>
+    </nav>
+
+<div class="container">
+    <a href="integrationS1.html" class="back-btn">← BACK TO SYLLABUS</a>
+
+    <header>
+        <div class="label">Lesson 08</div>
+        <h1>Audio & Multimedia</h1>
+        <p class="text-dim">Integrating sound and video content with cross-browser compatibility.</p>
+    </header>
+
+    <div class="section-grid">
+        <div class="card">
+            <h2>The &lt;audio&gt; Element</h2>
+            <p>Used to play sound files like MP3 or OGG. The <code>controls</code> attribute adds play, pause, and volume buttons.</p>
+            <div class="code-block">
+                <span class="tag">&lt;audio</span> <span class="attr">controls</span><span class="tag">&gt;</span><br>
+                &nbsp;&nbsp;<span class="tag">&lt;source</span> <span class="attr">src</span>=<span class="val">"horse.mp3"</span> <span class="attr">type</span>=<span class="val">"audio/mpeg"</span><span class="tag">&gt;</span><br>
+                &nbsp;&nbsp;Your browser does not support audio.<br>
+                <span class="tag">&lt;/audio&gt;</span>
+            </div>
+            <ul>
+                <li><strong>controls:</strong> Displays the audio player interface.</li>
+                <li><strong>&lt;source&gt;:</strong> Allows you to provide multiple file formats.</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>The &lt;video&gt; Element</h2>
+            <p>Similar to audio, but used for visual media. You should always include <code>width</code> and <code>height</code> attributes.</p>
+            <div class="code-block">
+                <span class="tag">&lt;video</span> <span class="attr">width</span>=<span class="val">"320"</span> <span class="attr">height</span>=<span class="val">"240"</span> <span class="attr">controls</span><span class="tag">&gt;</span><br>
+                &nbsp;&nbsp;<span class="tag">&lt;source</span> <span class="attr">src</span>=<span class="val">"movie.mp4"</span> <span class="attr">type</span>=<span class="val">"video/mp4"</span><span class="tag">&gt;</span><br>
+                &nbsp;&nbsp;Your browser does not support video.<br>
+                <span class="tag">&lt;/video&gt;</span>
+            </div>
+        </div>
+
+        <div class="card full-width">
+            <h2>Multimedia Best Practices</h2>
+            <p>To ensure your media plays on all devices, follow these rules:</p>
+            <ul>
+                <li><strong>Fallbacks:</strong> Always include text between the tags (e.g., "Your browser does not support...") for older browsers.</li>
+                <li><strong>Multiple Sources:</strong> The browser will use the first recognized format it finds.</li>
+                <li><strong>Autoplay Note:</strong> Most modern browsers block <code>autoplay</code> unless the media is also <code>muted</code>.</li>
+            </ul>
+            
+            
+        </div>
+
+        <div class="card full-width">
+            <h2>Visual Representation</h2>
+            <div class="multimedia-preview">
+                <p style="color: var(--accent-green); margin-bottom: 10px;">Typical Video Player Layout</p>
+                <div style="width: 100%; max-width: 400px; height: 200px; background: #1e293b; margin: 0 auto; border: 2px solid var(--accent-green); display: flex; align-items: flex-end;">
+                    <div style="width: 100%; height: 40px; background: rgba(0,0,0,0.7); display: flex; justify-content: space-around; align-items: center;">
+                        <span style="color: white; font-size: 1.2rem;">▶</span>
+                        <div style="width: 60%; height: 5px; background: #555; border-radius: 5px;">
+                            <div style="width: 30%; height: 100%; background: var(--accent-green); border-radius: 5px;"></div>
+                        </div>
+                        <span style="color: white; font-size: 0.8rem;">🔊</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Contact: sherrost@yahoo.com | Tel: 01501827070</p>
+        <p>Integration Course - Module 08</p>
+    </footer>
+</div>
+<script src="../../../../theme.js"></script>
+
+</body>
+</html>

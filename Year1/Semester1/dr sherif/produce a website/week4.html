@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 4 - Essential Website Pages</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="../../../../DrSherif.css" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="top-bar">
+        <a href="../../../../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <img src="../../../../logo.jpeg" alt="Logo" class="site-logo">
+            <h2>Digital Marketing</h2>
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="sun-icon" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <svg class="moon-icon" fill="currentColor" viewBox="0 0 24 24" style="display: none;">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+            </svg>
+        </button>
+    </nav>
+
+    <header class="hero">
+        <a href="produce website.html" class="exit-link">← BACK TO SYLLABUS</a>
+        <div class="badge">Week 4</div>
+        <h1>Essential Website Pages</h1>
+        <p>Create conversion-optimized website structure</p>
+    </header>
+
+    <nav class="timeline-nav">
+        <div class="timeline-line"></div>
+        <div class="step-node active" onclick="showStep(0)"><div class="dot">1</div><div class="node-label">Introduction</div></div>
+        <div class="step-node" onclick="showStep(1)"><div class="dot">2</div><div class="node-label">Homepage</div></div>
+        <div class="step-node" onclick="showStep(2)"><div class="dot">3</div><div class="node-label">About Page</div></div>
+        <div class="step-node" onclick="showStep(3)"><div class="dot">4</div><div class="node-label">Services/Products</div></div>
+        <div class="step-node" onclick="showStep(4)"><div class="dot">5</div><div class="node-label">Contact Page</div></div>
+        <div class="step-node" onclick="showStep(5)"><div class="dot">6</div><div class="node-label">Additional Pages</div></div>
+    </nav>
+
+    <div class="step-content active">
+        <h2>Introduction to Essential Pages</h2>
+        <div class="theory-box">
+            Every professional website needs a core set of pages that provide information and guide visitors toward conversion.
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Page Type</th>
+                    <th>Purpose</th>
+                    <th>Priority</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Homepage</strong></td>
+                    <td>First impression, navigation hub</td>
+                    <td>Essential</td>
+                </tr>
+                <tr>
+                    <td><strong>About</strong></td>
+                    <td>Build trust and credibility</td>
+                    <td>Essential</td>
+                </tr>
+                <tr>
+                    <td><strong>Services/Products</strong></td>
+                    <td>Showcase offerings</td>
+                    <td>Essential</td>
+                </tr>
+                <tr>
+                    <td><strong>Contact</strong></td>
+                    <td>Enable communication</td>
+                    <td>Essential</td>
+                </tr>
+                <tr>
+                    <td><strong>Blog</strong></td>
+                    <td>Content marketing, SEO</td>
+                    <td>Important</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="step-content">
+        <h2>🏠 Homepage - Your Digital Storefront</h2>
+        <div class="theory-box">
+            The homepage is often the first page visitors see. It must immediately communicate who you are, what you offer, and why they should care.
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Element</th>
+                    <th>Purpose</th>
+                    <th>Best Practices</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Hero Section</strong></td>
+                    <td>Grab attention immediately</td>
+                    <td>Clear headline, compelling image, CTA button</td>
+                </tr>
+                <tr>
+                    <td><strong>Value Proposition</strong></td>
+                    <td>Explain what you offer</td>
+                    <td>Concise, benefit-focused, above the fold</td>
+                </tr>
+                <tr>
+                    <td><strong>Social Proof</strong></td>
+                    <td>Build credibility</td>
+                    <td>Testimonials, client logos, ratings</td>
+                </tr>
+                <tr>
+                    <td><strong>Features/Benefits</strong></td>
+                    <td>Highlight key offerings</td>
+                    <td>3-6 items, icons, brief descriptions</td>
+                </tr>
+                <tr>
+                    <td><strong>Call-to-Action</strong></td>
+                    <td>Guide next steps</td>
+                    <td>Prominent, action-oriented, repeated</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="step-content">
+        <h2>ℹ️ About Page - Build Trust & Connection</h2>
+        <div class="theory-box">
+            The About page is where you tell your story, showcase your team, and build an emotional connection with visitors.
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Section</th>
+                    <th>Content</th>
+                    <th>Goal</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Company Story</strong></td>
+                    <td>Origin, mission, values</td>
+                    <td>Create emotional connection</td>
+                </tr>
+                <tr>
+                    <td><strong>Team Members</strong></td>
+                    <td>Photos, bios, roles</td>
+                    <td>Humanize your brand</td>
+                </tr>
+                <tr>
+                    <td><strong>Mission & Values</strong></td>
+                    <td>What you stand for</td>
+                    <td>Align with customer values</td>
+                </tr>
+                <tr>
+                    <td><strong>Achievements</strong></td>
+                    <td>Awards, milestones, stats</td>
+                    <td>Build credibility</td>
+                </tr>
+                <tr>
+                    <td><strong>Why Choose Us</strong></td>
+                    <td>Unique differentiators</td>
+                    <td>Stand out from competitors</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="highlight-box">
+            <strong>Tip:</strong> Make your About page personal and authentic. People connect with stories, not corporate jargon.
+        </div>
+    </div>
+
+    <div class="step-content">
+        <h2>🛍️ Services/Products Page</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Element</th>
+                    <th>Description</th>
+                    <th>Examples</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Product/Service Grid</strong></td>
+                    <td>Visual display of offerings</td>
+                    <td>Images, titles, brief descriptions</td>
+                </tr>
+                <tr>
+                    <td><strong>Detailed Descriptions</strong></td>
+                    <td>Features and benefits</td>
+                    <td>Specs, use cases, pricing</td>
+                </tr>
+                <tr>
+                    <td><strong>Pricing Information</strong></td>
+                    <td>Clear pricing structure</td>
+                    <td>Tiered plans, custom quotes</td>
+                </tr>
+                <tr>
+                    <td><strong>Categories/Filters</strong></td>
+                    <td>Easy navigation</td>
+                    <td>Sort by type, price, popularity</td>
+                </tr>
+                <tr>
+                    <td><strong>CTAs</strong></td>
+                    <td>Drive conversions</td>
+                    <td>"Buy Now", "Get Quote", "Learn More"</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="theory-box">
+            For e-commerce: Include shopping cart, product reviews, related items, and secure checkout process.
+        </div>
+    </div>
+
+    <div class="step-content">
+        <h2>📞 Contact Page - Make It Easy to Connect</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Component</th>
+                    <th>Purpose</th>
+                    <th>Best Practices</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Contact Form</strong></td>
+                    <td>Easy message submission</td>
+                    <td>Keep fields minimal, clear labels</td>
+                </tr>
+                <tr>
+                    <td><strong>Email Address</strong></td>
+                    <td>Direct email contact</td>
+                    <td>Use professional domain email</td>
+                </tr>
+                <tr>
+                    <td><strong>Phone Number</strong></td>
+                    <td>Immediate contact option</td>
+                    <td>Include business hours</td>
+                </tr>
+                <tr>
+                    <td><strong>Physical Address</strong></td>
+                    <td>Location transparency</td>
+                    <td>Embed Google Maps if applicable</td>
+                </tr>
+                <tr>
+                    <td><strong>Social Media Links</strong></td>
+                    <td>Alternative contact channels</td>
+                    <td>Icons linking to active profiles</td>
+                </tr>
+                <tr>
+                    <td><strong>Response Time</strong></td>
+                    <td>Set expectations</td>
+                    <td>"We respond within 24 hours"</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="highlight-box">
+            <strong>Important:</strong> Test your contact form regularly to ensure messages are being received!
+        </div>
+    </div>
+
+    <div class="step-content">
+        <h2>➕ Additional Important Pages</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Page</th>
+                    <th>Purpose</th>
+                    <th>When to Include</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Blog</strong></td>
+                    <td>Content marketing, SEO, thought leadership</td>
+                    <td>All businesses (highly recommended)</td>
+                </tr>
+                <tr>
+                    <td><strong>FAQ</strong></td>
+                    <td>Answer common questions, reduce support</td>
+                    <td>Complex products/services</td>
+                </tr>
+                <tr>
+                    <td><strong>Testimonials</strong></td>
+                    <td>Social proof, build trust</td>
+                    <td>Service-based businesses</td>
+                </tr>
+                <tr>
+                    <td><strong>Portfolio/Case Studies</strong></td>
+                    <td>Showcase work, demonstrate results</td>
+                    <td>Agencies, freelancers, consultants</td>
+                </tr>
+                <tr>
+                    <td><strong>Privacy Policy</strong></td>
+                    <td>Legal compliance, data protection</td>
+                    <td>ALL websites (legally required)</td>
+                </tr>
+                <tr>
+                    <td><strong>Terms of Service</strong></td>
+                    <td>Legal protection, user agreements</td>
+                    <td>E-commerce, SaaS, membership sites</td>
+                </tr>
+                <tr>
+                    <td><strong>Sitemap</strong></td>
+                    <td>SEO, easy navigation</td>
+                    <td>Large websites (20+ pages)</td>
+                </tr>
+                <tr>
+                    <td><strong>404 Error Page</strong></td>
+                    <td>Guide lost visitors, maintain UX</td>
+                    <td>ALL websites (custom version)</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="highlight-box">
+            <strong>Key Takeaway:</strong> Start with essential pages, then add others based on your specific business needs and user feedback.
+        </div>
+    </div>
+
+    <footer>
+        <p>Contact: sherrost@yahoo.com | Tel: 01501827070 - 01017776756</p>
+        <p>Produce a Website • Week 4 - Essential Website Pages</p>
+    </footer>
+
+    <script src="../../../../theme.js"></script>
+</body>
+</html>

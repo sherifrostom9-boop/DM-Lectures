@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Year 1 - Digital Marketing</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+    <link href="../DrSherif.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <nav class="top-bar">
+        <a href="../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <img src="../logo.jpeg" alt="Logo" class="site-logo">
+            <h2>Digital Marketing</h2>
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="sun-icon" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <svg class="moon-icon" fill="currentColor" viewBox="0 0 24 24" style="display: none;">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+            </svg>
+        </button>
+    </nav>
+    
+    </nav>
+
+    <header class="hero">
+        <div class="module-nav-top">
+            <a href="../HP(dr.khaled).html" class="module-btn" style="background: rgba(255,255,255,0.1);">← GO BACK</a>
+        </div>
+        <h1>Year 1</h1>
+        <p>Select your semester to view the modules</p>
+        
+        <div class="semester-picker">
+            <a href="Semester1/dr khaled/" id="btn1" class="picker-btn" onclick="showSem(1)">Semester 1</a>
+            <a href="Semester2/dr khaled/" id="btn2" class="picker-btn active" onclick="showSem(2)">Semester 2</a>
+        </div>
+
+        <p style="margin-top: 40px; color: #94a3b8; max-width: 600px; margin-left: auto; margin-right: auto;">
+        </p>
+    </header>
+
+    <section class="year1-container">
+        <header class="section-header" style="text-align: center; margin-bottom: 50px;">
+            <div class="english-word">YEAR 1</div>
+        </header>
+    </section>
+
+    <script>
+        function showSem(num) {
+            // Note: Les IDs content-sem1/2 doivent exister dans tes autres fichiers 
+            // pour que cette fonction soit pleinement utile sur une page unique.
+            const btn1 = document.getElementById('btn1');
+            const btn2 = document.getElementById('btn2');
+            
+            btn1.classList.remove('active');
+            btn2.classList.remove('active');
+
+            document.getElementById('btn' + num).classList.add('active');
+        }
+    </script>
+
+<script src="../theme.js"></script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 03: CSS Basics</title>
+    <link href="../../../../DrSherif.css" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="top-bar">
+        <a href="../../../../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <img src="../../../../logo.jpeg" alt="Logo" class="site-logo">
+            <h2>Digital Marketing</h2>
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="sun-icon" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <svg class="moon-icon" fill="currentColor" viewBox="0 0 24 24" style="display: none;">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+            </svg>
+        </button>
+    </nav>
+
+<div class="container">
+    <a href="integrationS1.html" class="back-btn">← BACK TO SYLLABUS</a>
+
+    <header>
+        <div class="label">Lesson 03</div>
+        <h1>CSS Basics</h1>
+        <p class="text-dim">Mastering selectors, syntax, and the cascading nature of web styling.</p>
+    </header>
+
+    <div class="section-grid">
+        <div class="card">
+            <h2>What is CSS?</h2>
+            <p><strong>Cascading Style Sheets (CSS)</strong> is the language used to style an HTML document[cite: 526, 529]. It describes how HTML elements should be displayed on screen, paper, or in other media[cite: 528, 530].</p>
+            <ul>
+                <li>Saves a lot of work by controlling multiple pages at once[cite: 530, 531].</li>
+                <li>Separates content (HTML) from presentation (CSS)[cite: 566].</li>
+                <li>Created by the W3C to solve formatting nightmares in early HTML[cite: 565].</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>CSS Syntax</h2>
+            <p>A CSS rule consists of a <strong>selector</strong> and a <strong>declaration block</strong>[cite: 575].</p>
+            <div class="code-block">
+                <span class="selector">h1</span> <span class="punctuator">{</span><br>
+                &nbsp;&nbsp;<span class="property">color</span><span class="punctuator">:</span> <span class="value">blue</span><span class="punctuator">;</span><br>
+                &nbsp;&nbsp;<span class="property">font-size</span><span class="punctuator">:</span> <span class="value">12px</span><span class="punctuator">;</span><br>
+                <span class="punctuator">}</span>
+            </div>
+            <ul>
+                <li><strong>Selector:</strong> Points to the HTML element you want to style[cite: 584].</li>
+                <li><strong>Declaration:</strong> Contains a property name and a value[cite: 587].</li>
+            </ul>
+        </div>
+
+        <div class="card full-width">
+            <h2>Types of Selectors</h2>
+            <p>CSS selectors are used to "find" the HTML elements you want to style[cite: 602]. They are divided into five main categories[cite: 603]:</p>
+            <div class="section-grid" style="margin-bottom: 0;">
+                <div>
+                    <ul>
+                        <li><strong>Simple Selectors:</strong> Select based on name, id, or class[cite: 604].</li>
+                        <li><strong>Combinator Selectors:</strong> Select based on relationships between elements[cite: 605].</li>
+                        <li><strong>Pseudo-class Selectors:</strong> Select based on a certain state (e.g., hover)[cite: 606].</li>
+                    </ul>
+                </div>
+                <div>
+                    <ul>
+                        <li><strong>Pseudo-elements Selectors:</strong> Style a specific part of an element[cite: 607].</li>
+                        <li><strong>Attribute Selectors:</strong> Select based on an attribute or its value[cite: 608].</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>The ID Selector (#)</h2>
+            <p>Uses the <code>id</code> attribute to select <strong>one unique</strong> element[cite: 686, 687].</p>
+            <div class="code-block">
+                <span class="selector">#paral</span> <span class="punctuator">{</span><br>
+                &nbsp;&nbsp;<span class="property">text-align</span><span class="punctuator">:</span> <span class="value">center</span><span class="punctuator">;</span><br>
+                &nbsp;&nbsp;<span class="property">color</span><span class="punctuator">:</span> <span class="value">red</span><span class="punctuator">;</span><br>
+                <span class="punctuator">}</span>
+            </div>
+            <p class="text-dim">Note: An ID name cannot start with a number[cite: 700]!</p>
+        </div>
+
+        <div class="card">
+            <h2>The Class Selector (.)</h2>
+            <p>Selects HTML elements with a specific <code>class</code> attribute[cite: 711].</p>
+            <div class="code-block">
+                <span class="selector">.center</span> <span class="punctuator">{</span><br>
+                &nbsp;&nbsp;<span class="property">text-align</span><span class="punctuator">:</span> <span class="value">center</span><span class="punctuator">;</span><br>
+                &nbsp;&nbsp;<span class="property">color</span><span class="punctuator">:</span> <span class="value">red</span><span class="punctuator">;</span><br>
+                <span class="punctuator">}</span>
+            </div>
+            <p class="text-dim">Note: A class name cannot start with a number[cite: 717]!</p>
+        </div>
+
+        <div class="card">
+            <h2>Universal Selector (*)</h2>
+            <p>The universal selector <code>*</code> selects <strong>all</strong> HTML elements on the page[cite: 732].</p>
+            <div class="code-block">
+                <span class="selector">*</span> <span class="punctuator">{</span><br>
+                &nbsp;&nbsp;<span class="property">color</span><span class="punctuator">:</span> <span class="value">blue</span><span class="punctuator">;</span><br>
+                <span class="punctuator">}</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Grouping Selectors</h2>
+            <p>Used to minimize code when multiple elements share the same style[cite: 766]. Separate selectors with a comma[cite: 768].</p>
+            <div class="code-block">
+                <span class="selector">h1, h2, p</span> <span class="punctuator">{</span><br>
+                &nbsp;&nbsp;<span class="property">text-align</span><span class="punctuator">:</span> <span class="value">center</span><span class="punctuator">;</span><br>
+                &nbsp;&nbsp;<span class="property">color</span><span class="punctuator">:</span> <span class="value">red</span><span class="punctuator">;</span><br>
+                <span class="punctuator">}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="summary-box">
+        <h2 style="border: none; padding: 0; color: var(--text-main);">Summary Checklist</h2>
+        <ul style="color: var(--text-main);">
+            <li>CSS stands for <strong>Cascading Style Sheets</strong>[cite: 529].</li>
+            <li>Use <code>#</code> for IDs and <code>.</code> for classes[cite: 688, 712].</li>
+            <li>External stylesheets are stored in <code>.css</code> files[cite: 531].</li>
+            <li>Declaration blocks are surrounded by curly braces <code>{}</code>[cite: 588].</li>
+        </ul>
+    </div>
+
+    <footer>
+        <p>Contact: sherrost@yahoo.com | Tel: 01501827070</p>
+        <p>Integration Course - Module 03</p>
+    </footer>
+</div>
+<script src="../../../../theme.js"></script>
+</body>
+</html>

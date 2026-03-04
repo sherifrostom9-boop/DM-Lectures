@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 02: HTML Attributes</title>
+    <link href="../../../../DrSherif.css" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="top-bar">
+        <a href="../../../../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <img src="../../../../logo.jpeg" alt="Logo" class="site-logo">
+            <h2>Digital Marketing</h2>
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="sun-icon" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <svg class="moon-icon" fill="currentColor" viewBox="0 0 24 24" style="display: none;">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+            </svg>
+        </button>
+    </nav>
+
+<div class="container">
+    <a href="integrationS1.html" class="back-btn">← BACK TO SYLLABUS</a>
+
+    <header>
+        <div class="label">Lesson 02</div>
+        <h1>HTML Attributes</h1>
+        <p class="text-dim">Providing additional information and properties to HTML elements.</p>
+    </header>
+
+    <div class="section-grid">
+        <div class="card full-width">
+            <h2>What are Attributes?</h2>
+            <ul>
+                <li>All HTML elements can have attributes[cite: 8].</li>
+                <li>Attributes provide additional information about elements[cite: 9].</li>
+                <li>They are always specified in the <strong>start tag</strong>[cite: 10].</li>
+                <li>They usually come in name/value pairs: <code style="color: var(--accent-green)">name="value"</code>[cite: 11].</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>The href Attribute</h2>
+            <p>Used with the <code class="tag">&lt;a&gt;</code> tag to define hyperlinks. It specifies the URL of the page the link goes to[cite: 14, 15].</p>
+            <div class="code-block">
+                <span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="val">"https://www.w3schools.com"</span><span class="tag">&gt;</span>Visit W3Schools<span class="tag">&lt;/a&gt;</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>The src Attribute</h2>
+            <p>Used with the <code class="tag">&lt;img&gt;</code> tag to embed images. It specifies the path to the image file[cite: 35, 36].</p>
+            <div class="code-block">
+                <span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="val">"img_girl.jpg"</span><span class="tag">&gt;</span>
+            </div>
+            <div class="tip-box">
+                <strong>Tip:</strong> Relative URLs (like "img_girl.jpg") are usually better because they won't break if you change your domain[cite: 67, 73].
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Size & Alt Attributes</h2>
+            <p>Images should include <code class="attr">width</code> and <code class="attr">height</code> in pixels[cite: 84]. The <code class="attr">alt</code> attribute provides alternate text if the image fails to load[cite: 88].</p>
+            <div class="code-block">
+                <span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="val">"img_girl.jpg"</span> <span class="attr">alt</span>=<span class="val">"Girl with a jacket"</span> <span class="attr">width</span>=<span class="val">"500"</span> <span class="attr">height</span>=<span class="val">"600"</span><span class="tag">&gt;</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>The style Attribute</h2>
+            <p>Used to add inline styles to an element, such as color, font, and size[cite: 93].</p>
+            <div class="code-block">
+                <span class="tag">&lt;p</span> <span class="attr">style</span>=<span class="val">"color:red;"</span><span class="tag">&gt;</span>This is a red paragraph.<span class="tag">&lt;/p&gt;</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>The lang & title Attributes</h2>
+            <p><strong>Lang:</strong> Declares the language of the web page inside the <code class="tag">&lt;html&gt;</code> tag[cite: 100].</p>
+            <div class="code-block">
+                <span class="tag">&lt;html</span> <span class="attr">lang</span>=<span class="val">"en-US"</span><span class="tag">&gt;</span>
+            </div>
+            <p><strong>Title:</strong> Defines extra info shown as a tooltip on hover[cite: 123, 124].</p>
+            <div class="code-block">
+                <span class="tag">&lt;p</span> <span class="attr">title</span>=<span class="val">"I'm a tooltip"</span><span class="tag">&gt;</span>Hover over me!<span class="tag">&lt;/p&gt;</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Chapter Summary</h2>
+            <ul>
+                <li>Attributes provide additional info[cite: 128].</li>
+                <li><code class="attr">href</code> is for links[cite: 129].</li>
+                <li><code class="attr">src</code>, <code class="attr">alt</code>, <code class="attr">width</code>, and <code class="attr">height</code> are for images[cite: 130, 131, 132].</li>
+                <li><code class="attr">style</code> is for inline design[cite: 133].</li>
+                <li><code class="attr">lang</code> assists search engines and browsers[cite: 101, 134].</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <p>Contact: sherrost@yahoo.com | Tel: 01501827070 [cite: 1, 2]</p>
+        <p>Integration Course - Module 02</p>
+    </footer>
+</div>
+<script src="../../../../theme.js"></script>
+</body>
+</html>

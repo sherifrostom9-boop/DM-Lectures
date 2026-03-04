@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Year 1 Sem 1 – Dr. Manal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #071426;
+      --surface: rgba(11, 31, 58, 0.65);
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --border: rgba(148, 163, 184, 0.18);
+      --primary: #3b82f6;
+      --primary-2: #06b6d4;
+      --accent-glow: rgba(59, 130, 246, 0.25);
+      --radius: 20px;
+      --shadow: 0 20px 60px rgba(0,0,0,0.45);
+    }
+
+    [data-theme="light"] {
+      --bg: #f8fafc;
+      --surface: rgba(255,255,255,0.75);
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: rgba(15,23,42,0.12);
+      --primary: #2563eb;
+      --primary-2: #0891b2;
+      --accent-glow: rgba(37,99,235,0.18);
+      --shadow: 0 16px 50px rgba(0,0,0,0.12);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      min-height: 100vh;
+      color: var(--text);
+      background: var(--bg);
+      background-image: 
+        radial-gradient(circle at 15% 20%, rgba(59,130,246,0.14), transparent 40%),
+        radial-gradient(circle at 85% 15%, rgba(6,182,212,0.12), transparent 45%);
+      transition: background 0.5s ease;
+    }
+
+    .nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 1000;
+      padding: 1.2rem 5%;
+      background: rgba(7,20,38,0.7);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.35rem;
+    }
+
+    .logo img { height: 52px; width: auto; border-radius: 10px; }
+
+    .theme-toggle {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.6rem 1rem;
+      color: var(--muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    main { padding: 140px 5% 100px; max-width: 1400px; margin: 0 auto; }
+
+    .hero { text-align: center; margin-bottom: 4rem; }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      background: linear-gradient(90deg, var(--text), var(--primary-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1rem;
+    }
+
+    .hero p { color: var(--muted); font-size: 1.15rem; max-width: 680px; margin: 0 auto; }
+
+    .back-link {
+      display: inline-block;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      transition: all 0.25s ease;
+    }
+
+    .course-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 2rem;
+      justify-content: center;
+    }
+
+    .course-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      backdrop-filter: blur(12px);
+      transition: all 0.35s ease;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .course-card:hover { transform: translateY(-12px); border-color: var(--primary); box-shadow: var(--shadow); }
+
+    .card-image { height: 180px; overflow: hidden; background: #1a2a40; }
+
+    .card-image img { width: 100%; height: 100%; object-fit: cover; }
+
+    .card-content { padding: 1.8rem; flex: 1; display: flex; flex-direction: column; }
+
+    .module-tag {
+      display: inline-block;
+      padding: 0.35rem 0.9rem;
+      border-radius: 10px;
+      background: rgba(59,130,246,0.12);
+      color: var(--primary);
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      width: fit-content;
+    }
+
+    .card-content h3 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.8rem; }
+
+    .card-content p { color: var(--muted); font-size: 0.97rem; line-height: 1.55; }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-container">
+      <a href="../../../index.html" class="logo">
+        <img src="../../../logo.jpeg" alt="Logo">
+        Dr. Manal 
+      </a>
+      <button class="theme-toggle" id="themeToggle">
+        <span class="mode-text">Toggle Theme</span>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+    <div class="hero">
+      <a href="../../year1.html" class="back-link">← BACK TO YEAR 1</a>
+      <h1>Semester 1</h1>
+      <p>Linguistic excellence and cultural immersion. Mastering the French language with Dr. Manal.</p>
+    </div>
+
+    <div class="course-grid">
+      <a href="french-basic/french-basic.html" class="course-card">
+        <div class="card-image">
+          <img src="french-flag.jpg" alt="French Language">
+        </div>
+        <div class="card-content">
+          <span class="module-tag">Module 01</span>
+          <h3>French</h3>
+          <p>Foundations of French grammar, vocabulary, and phonetics. Build confidence in daily conversation and basic written expression.</p>
+        </div>
+      </a>
+
+      <a href="french-advanced/french-advanced.html" class="course-card">
+        <div class="card-image">
+          <img src="french-advanced.jpg" alt="Advanced French">
+        </div>
+        <div class="card-content">
+          <span class="module-tag">Module 02</span>
+          <h3>Advanced French</h3>
+          <p>Complex sentence structures, professional communication, and literary analysis. Refine your fluency and master formal French protocols.</p>
+        </div>
+      </a>
+    </div>
+  </main>
+
+  <script>
+    const toggle = document.getElementById('themeToggle');
+    const html = document.documentElement;
+    let theme = localStorage.getItem('theme') || 'dark';
+    html.setAttribute('data-theme', theme);
+
+    toggle.addEventListener('click', () => {
+      theme = theme === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+    });
+  </script>
+</body>
+</html>

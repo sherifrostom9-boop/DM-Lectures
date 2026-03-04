@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 3 - Datasets & Data Management</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="../../../../DrSherif.css" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="top-bar">
+        <a href="../../../../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <img src="../../../../logo.jpeg" alt="Logo" class="site-logo">
+            <h2>Digital Marketing</h2>
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="sun-icon" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <svg class="moon-icon" fill="currentColor" viewBox="0 0 24 24" style="display: none;">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+            </svg>
+        </button>
+    </nav>
+
+    <header class="hero">
+        <a href="produce website.html" class="exit-link">← BACK TO SYLLABUS</a>
+        <div class="badge">Week 3</div>
+        <h1>Datasets & Data Management</h1>
+        <p>Master data fundamentals for web development</p>
+    </header>
+
+    <nav class="timeline-nav">
+        <div class="timeline-line"></div>
+        <div class="step-node active" onclick="showStep(0)"><div class="dot">1</div><div class="node-label">Introduction</div></div>
+        <div class="step-node" onclick="showStep(1)"><div class="dot">2</div><div class="node-label">Data Types</div></div>
+        <div class="step-node" onclick="showStep(2)"><div class="dot">3</div><div class="node-label">Databases</div></div>
+        <div class="step-node" onclick="showStep(3)"><div class="dot">4</div><div class="node-label">Data Storage</div></div>
+        <div class="step-node" onclick="showStep(4)"><div class="dot">5</div><div class="node-label">Best Practices</div></div>
+        <div class="step-node" onclick="showStep(5)"><div class="dot">6</div><div class="node-label">Security</div></div>
+    </nav>
+
+    <div class="step-content active">
+        <h2>Introduction to Data Management</h2>
+        <div class="theory-box">
+            Effective data management is crucial for websites that collect, store, and process user information.
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Concept</th>
+                    <th>Description</th>
+                    <th>Importance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Dataset</strong></td>
+                    <td>Collection of related data points</td>
+                    <td>Foundation of all data operations</td>
+                </tr>
+                <tr>
+                    <td><strong>Database</strong></td>
+                    <td>Organized collection of structured data</td>
+                    <td>Enables efficient data storage & retrieval</td>
+                </tr>
+                <tr>
+                    <td><strong>Data Management</strong></td>
+                    <td>Process of collecting, storing, and using data</td>
+                    <td>Ensures data quality and accessibility</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="step-content">
+        <h2>🔢 Types of Data</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Data Type</th>
+                    <th>Description</th>
+                    <th>Examples</th>
+                    <th>Use Cases</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Structured Data</strong></td>
+                    <td>Organized in rows and columns</td>
+                    <td>Spreadsheets, SQL databases</td>
+                    <td>Customer records, inventory</td>
+                </tr>
+                <tr>
+                    <td><strong>Unstructured Data</strong></td>
+                    <td>No predefined format</td>
+                    <td>Images, videos, text documents</td>
+                    <td>Media files, social media posts</td>
+                </tr>
+                <tr>
+                    <td><strong>Semi-Structured Data</strong></td>
+                    <td>Some organizational properties</td>
+                    <td>JSON, XML, emails</td>
+                    <td>API responses, configuration files</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="step-content">
+        <h2>🗄️ Database Types</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Database Type</th>
+                    <th>Structure</th>
+                    <th>Best For</th>
+                    <th>Examples</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Relational (SQL)</strong></td>
+                    <td>Tables with relationships</td>
+                    <td>Complex queries, transactions</td>
+                    <td>MySQL, PostgreSQL, SQL Server</td>
+                </tr>
+                <tr>
+                    <td><strong>NoSQL</strong></td>
+                    <td>Flexible, non-tabular</td>
+                    <td>Scalability, flexible schemas</td>
+                    <td>MongoDB, Cassandra, Redis</td>
+                </tr>
+                <tr>
+                    <td><strong>Graph Databases</strong></td>
+                    <td>Nodes and relationships</td>
+                    <td>Social networks, recommendations</td>
+                    <td>Neo4j, Amazon Neptune</td>
+                </tr>
+                <tr>
+                    <td><strong>Time-Series</strong></td>
+                    <td>Time-stamped data</td>
+                    <td>Analytics, monitoring, IoT</td>
+                    <td>InfluxDB, TimescaleDB</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="step-content">
+        <h2>💾 Data Storage Solutions</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Storage Type</th>
+                    <th>Description</th>
+                    <th>Advantages</th>
+                    <th>Disadvantages</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Local Storage</strong></td>
+                    <td>Data stored on web server</td>
+                    <td>Full control, fast access</td>
+                    <td>Limited scalability, maintenance</td>
+                </tr>
+                <tr>
+                    <td><strong>Cloud Storage</strong></td>
+                    <td>Data stored on remote servers</td>
+                    <td>Scalable, accessible anywhere</td>
+                    <td>Ongoing costs, internet dependent</td>
+                </tr>
+                <tr>
+                    <td><strong>Hybrid Storage</strong></td>
+                    <td>Combination of local and cloud</td>
+                    <td>Flexibility, redundancy</td>
+                    <td>Complex setup, higher cost</td>
+                </tr>
+                <tr>
+                    <td><strong>CDN (Content Delivery)</strong></td>
+                    <td>Distributed network of servers</td>
+                    <td>Fast delivery, global reach</td>
+                    <td>Best for static content only</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="step-content">
+        <h2>✅ Data Management Best Practices</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Practice</th>
+                    <th>Description</th>
+                    <th>Benefits</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Regular Backups</strong></td>
+                    <td>Automated daily/weekly backups</td>
+                    <td>Disaster recovery, data protection</td>
+                </tr>
+                <tr>
+                    <td><strong>Data Validation</strong></td>
+                    <td>Verify data accuracy on entry</td>
+                    <td>Maintain data quality</td>
+                </tr>
+                <tr>
+                    <td><strong>Indexing</strong></td>
+                    <td>Create indexes on frequently queried fields</td>
+                    <td>Faster data retrieval</td>
+                </tr>
+                <tr>
+                    <td><strong>Normalization</strong></td>
+                    <td>Organize data to reduce redundancy</td>
+                    <td>Efficient storage, consistency</td>
+                </tr>
+                <tr>
+                    <td><strong>Documentation</strong></td>
+                    <td>Document database schema and processes</td>
+                    <td>Team understanding, maintenance</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="step-content">
+        <h2>🔒 Data Security & Privacy</h2>
+        <div class="theory-box">
+            Protecting user data is not just good practice—it's a legal requirement under regulations like GDPR and CCPA.
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Security Measure</th>
+                    <th>Implementation</th>
+                    <th>Purpose</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Encryption</strong></td>
+                    <td>SSL/TLS for transmission, AES for storage</td>
+                    <td>Protect data from unauthorized access</td>
+                </tr>
+                <tr>
+                    <td><strong>Access Control</strong></td>
+                    <td>Role-based permissions, authentication</td>
+                    <td>Limit who can view/modify data</td>
+                </tr>
+                <tr>
+                    <td><strong>SQL Injection Prevention</strong></td>
+                    <td>Prepared statements, input validation</td>
+                    <td>Prevent malicious database queries</td>
+                </tr>
+                <tr>
+                    <td><strong>Regular Audits</strong></td>
+                    <td>Log monitoring, security scans</td>
+                    <td>Detect and respond to threats</td>
+                </tr>
+                <tr>
+                    <td><strong>Data Privacy Compliance</strong></td>
+                    <td>GDPR, CCPA adherence</td>
+                    <td>Legal compliance, user trust</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="highlight-box">
+            <strong>Remember:</strong> Security is an ongoing process, not a one-time setup. Stay updated on best practices and threats.
+        </div>
+    </div>
+
+    <footer>
+        <p>Contact: sherrost@yahoo.com | Tel: 01501827070 - 01017776756</p>
+        <p>Produce a Website • Week 3 - Datasets & Data Management</p>
+    </footer>
+
+    <script src="../../../../theme.js"></script>
+</body>
+</html>

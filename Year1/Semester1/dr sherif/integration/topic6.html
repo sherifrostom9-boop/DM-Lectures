@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 06: Web Forms</title>
+    <link href="../../../../DrSherif.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="top-bar">
+        <a href="../../../../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <img src="../../../../logo.jpeg" alt="Logo" class="site-logo">
+            <h2>Digital Marketing</h2>
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="sun-icon" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <svg class="moon-icon" fill="currentColor" viewBox="0 0 24 24" style="display: none;">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+            </svg>
+        </button>
+    </nav>
+
+
+<div class="container">
+    <a href="integrationS1.html" class="back-btn">← BACK TO SYLLABUS</a>
+
+    <header>
+        <div class="label">Lesson 06</div>
+        <h1>Forms & Input</h1>
+        <p class="text-dim">Building interactive user interfaces and styling form controls.</p>
+    </header>
+
+    <div class="section-grid">
+        <div class="card">
+            <h2>Essential Elements</h2>
+            <p>Forms allow users to enter data which is then sent to a server for processing.</p>
+            <ul>
+                <li><strong>&lt;form&gt;</strong>: The container for all form elements.</li>
+                <li><strong>&lt;label&gt;</strong>: Defines a caption for an item.</li>
+                <li><strong>&lt;input&gt;</strong>: The most used element; can be text, radio, checkbox, etc.</li>
+                <li><strong>&lt;textarea&gt;</strong>: For multi-line text input.</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>The &lt;button&gt; Element</h2>
+            <p>Accepts a <code>type</code> attribute with three values:</p>
+            <ul>
+                <li><strong>submit</strong>: Sends form data to the page defined in the action.</li>
+                <li><strong>reset</strong>: Returns all widgets to default values.</li>
+                <li><strong>button</strong>: A generic button (used with JavaScript).</li>
+            </ul>
+        </div>
+
+        <div class="card full-width">
+            <h2>Organization: Fieldset & Legend</h2>
+            <p>The <code>&lt;fieldset&gt;</code> tag is used to group related data in a form, and <code>&lt;legend&gt;</code> defines a caption for that group.</p>
+            <div class="code-block">
+                <span class="tag">&lt;fieldset&gt;</span><br>
+                &nbsp;&nbsp;<span class="tag">&lt;legend&gt;</span>Employee Details<span class="tag">&lt;/legend&gt;</span><br>
+                &nbsp;&nbsp;First name: <span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="val">"text"</span><span class="tag">&gt;</span><br>
+                <span class="tag">&lt;/fieldset&gt;</span>
+            </div>
+        </div>
+
+        <div class="card full-width">
+            <h2>Form Styling (CSS)</h2>
+            <p>Forms can be difficult to style. Use these common CSS properties to improve UX:</p>
+            <div class="code-block">
+                <span class="tag">form</span> { <span class="attr">margin</span>: <span class="val">0 auto</span>; <span class="attr">width</span>: <span class="val">400px</span>; }<br>
+                <span class="tag">input, textarea</span> { <span class="attr">font</span>: <span class="val">1em sans-serif</span>; <span class="attr">width</span>: <span class="val">100%</span>; }<br>
+                <span class="tag">button</span> { <span class="attr">padding</span>: <span class="val">5px 10px</span>; <span class="attr">border-radius</span>: <span class="val">2px</span>; }
+            </div>
+        </div>
+
+        <div class="card full-width">
+            <h2>Training Solution: Sample Form</h2>
+            <p>Here is how the markup from your training exercise (Employee Details) would look rendered:</p>
+            <div class="example-form">
+                <form>
+                    <fieldset>
+                        <legend>Employee Details</legend>
+                        <p>First name: <input type="text" name="fname" style="width: auto;"></p>
+                        <p>Last name: <input type="text" name="lname" style="width: auto;"></p>
+                        <p>
+                            <input type="radio" name="Gender" value="Male"> Male
+                            <input type="radio" name="Gender" value="Female"> Female
+                        </p>
+                        <button type="submit">Submit Details</button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Contact: sherrost@yahoo.com | Tel: 01501827070</p>
+        <p>Integration Course - Module 06</p>
+    </footer>
+</div>
+
+<script src="../../../../theme.js"></script>
+
+</body>
+</html>

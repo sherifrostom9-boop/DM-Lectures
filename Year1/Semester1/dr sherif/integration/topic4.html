@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 04: How to add CSS</title>
+    <link href="../../../../DrSherif.css" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="top-bar">
+        <a href="../../../../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <img src="../../../../logo.jpeg" alt="Logo" class="site-logo">
+            <h2>Digital Marketing</h2>
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="sun-icon" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <svg class="moon-icon" fill="currentColor" viewBox="0 0 24 24" style="display: none;">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+            </svg>
+        </button>
+    </nav>
+
+<div class="container">
+    <a href="integrationS1.html" class="back-btn">← BACK TO SYLLABUS</a>
+
+    <header>
+        <div class="label">Lesson 04</div>
+        <h1>How to Add CSS</h1>
+        <p class="text-dim">Exploring the three ways to insert style sheets and understanding cascading priority.</p>
+    </header>
+
+    <div class="section-grid">
+        <div class="card">
+            <h2>1. External CSS</h2>
+            <p>With an external style sheet, you can change the look of an entire website by changing just one file. Each page must include a reference inside a <code>&lt;link&gt;</code> element.</p>
+            <div class="code-block">
+                <span class="tag">&lt;head&gt;</span><br>
+                &nbsp;&nbsp;<span class="tag">&lt;link</span> <span class="attr">rel</span>=<span class="val">"stylesheet"</span> <span class="attr">href</span>=<span class="val">"mystyle.css"</span><span class="tag">&gt;</span><br>
+                <span class="tag">&lt;/head&gt;</span>
+            </div>
+            <p class="text-dim">Note: External files should not contain any HTML tags and must be saved with a <strong>.css</strong> extension.</p>
+        </div>
+
+        <div class="card">
+            <h2>2. Internal CSS</h2>
+            <p>Used if one single HTML page has a unique style. It is defined inside the <code>&lt;style&gt;</code> element, within the head section.</p>
+            <div class="code-block">
+                <span class="tag">&lt;head&gt;</span><br>
+                &nbsp;&nbsp;<span class="tag">&lt;style&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;body { background-color: linen; }<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;h1 { color: maroon; }<br>
+                &nbsp;&nbsp;<span class="tag">&lt;/style&gt;</span><br>
+                <span class="tag">&lt;/head&gt;</span>
+            </div>
+        </div>
+
+        <div class="card full-width">
+            <h2>3. Inline CSS</h2>
+            <p>Used to apply a unique style for a <strong>single element</strong>. It uses the <code>style</code> attribute of the relevant element.</p>
+            <div class="code-block">
+                <span class="tag">&lt;h1</span> <span class="attr">style</span>=<span class="val">"color:blue;text-align:center;"</span><span class="tag">&gt;</span>This is a heading<span class="tag">&lt;/h1&gt;</span>
+            </div>
+        </div>
+
+        <div class="card full-width">
+            <h2>Cascading Order</h2>
+            
+            <p>When multiple styles are specified for an element, they "cascade" into a virtual style sheet based on priority. Rule number one has the highest priority:</p>
+            <ul class="priority-list">
+                <li><strong>Inline style</strong> (inside an HTML element) </li>
+                <li><strong>External and internal style sheets</strong> (in the head section) </li>
+                <li><strong>Browser default</strong> </li>
+            </ul>
+            <p class="text-dim">Note: If the internal style is defined <em>after</em> the link to the external style sheet, the internal style will override the external one.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>Contact: sherrost@yahoo.com | Tel: 01501827070 </p>
+        <p>Integration Course - Module 04</p>
+    </footer>
+</div>
+<script src="../../../../theme.js"></script>
+</body>
+</html>
