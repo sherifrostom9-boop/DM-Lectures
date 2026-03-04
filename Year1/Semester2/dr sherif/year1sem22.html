@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Year 1 – Digital Marketing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="../../../DrSherif.css" rel="stylesheet">
+
+  <style>
+ /* Override the external CSS to match working version */
+ main {
+    padding: 0 5% 100px; /* Changed from 140px 5% 100px */
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .year1-container {
+    max-width: 1400px;
+    padding: 0;
+    margin: 0 auto;
+  }
+    .course-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 2rem;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+    }
+
+    .course-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      backdrop-filter: blur(12px);
+      transition: all 0.35s ease;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .course-card:hover {
+      transform: translateY(-12px);
+      border-color: var(--primary);
+      box-shadow: var(--shadow);
+    }
+
+    .card-image {
+      height: 180px;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(59,130,246,0.1), rgba(6,182,212,0.1));
+    }
+
+    .card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .course-card:hover .card-image img {
+      transform: scale(1.08);
+    }
+
+    .card-content {
+      padding: 1.8rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .module-tag {
+      display: inline-block;
+      padding: 0.35rem 0.9rem;
+      border-radius: 10px;
+      background: rgba(59,130,246,0.12);
+      color: var(--primary);
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      width: fit-content;
+    }
+
+    .card-content h3 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+    }
+
+    .card-content p {
+      color: var(--muted);
+      font-size: 0.97rem;
+      line-height: 1.55;
+      margin-top: auto;
+    }
+
+    @media (max-width: 768px) {
+      .course-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      main {
+        padding: 120px 5% 80px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="top-bar">
+    <a href="../../../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+        <img src="../../../logo.jpeg" alt="Logo" class="site-logo">
+        <h2>Digital Marketing</h2>
+    </a>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <svg class="sun-icon" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+        </svg>
+        <svg class="moon-icon" fill="currentColor" viewBox="0 0 24 24" style="display: none;">
+          <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+        </svg>
+    </button>
+</nav>
+
+  <main>
+    <div class="hero">
+      <a href="../../year1Sherif.html" class="back-link">← EXIT CURRICULUM</a>
+      <h1>Year 1</h1>
+      <p>Master the blueprint of advanced ecosystems. Architecture, scaling, and professional data management.</p>
+    </div>
+
+    <div class="course-grid">
+      <a href="information system/InformationSystem.html" class="course-card">
+        <div class="card-image">
+          <img src="information.jpeg" alt="Information Systems">
+        </div>
+        <div class="card-content">
+          <span class="module-tag">Module 01</span>
+          <h3>Information Systems</h3>
+          <p>Master database fundamentals, SQL querying, entity-relationship modeling, RDBMS tools, and efficient data management & exchange.</p>
+        </div>
+      </a>
+
+      <a href="integration/integrationS2.html" class="course-card">
+        <div class="card-image">
+          <img src="integration.png" alt="Integration in Digital Marketing">
+        </div>
+        <div class="card-content">
+          <span class="module-tag">Module 02</span>
+          <h3>Integration in Digital Marketing</h3>
+          <p>Learn to create unified, cohesive campaigns by integrating SEO, social media, content marketing, email, and paid advertising channels (IMC principles).</p>
+        </div>
+      </a>
+
+            <!-- Existing Module 03 -->
+            <a href="Information Representation/informationrep.html" class="course-card">
+              <div class="card-image">
+                <img src="info.jpg" alt="Information Representation">
+              </div>
+              <div class="card-content">
+                <span class="module-tag">Module 03</span>
+                <h3>Information & Representation</h3>
+                <p>Information Representation covers binary systems, logic gates, and statistical analysis. It explores how digital data is processed, analyzed, and secured.</p>
+              </div>
+            </a>
+
+            <!-- Design a Product or Service and its Communication -->
+<a href="" class="course-card">
+  <div class="card-image">
+    <img src="" alt="Design a Product or Service and its Communication">
+  </div>
+  <div class="card-content">
+    <span class="module-tag">Module 04</span>
+    <h3>Design a Product or Service and its Communication</h3>
+    <p>Learn to design compelling products and services from concept to market. Develop effective communication strategies, branding, messaging, and promotional campaigns to connect with your target audience.</p>
+  </div>
+</a>
+
+<!-- Design a Website with a Data Source -->
+<a href="Design a website with a data source /design a website.html" class="course-card">
+  <div class="card-image">
+    <img src="design a website.jpeg" alt="Design a Website with a Data Source">
+  </div>
+  <div class="card-content">
+    <span class="module-tag">Module 05</span>
+    <h3>Design a Website with a Data Source</h3>
+    <p>Build dynamic, data-driven websites by integrating databases and APIs. Learn to connect front-end interfaces with back-end data sources, perform CRUD operations, and create interactive user experiences.</p>
+  </div>
+</a>
+
+<!-- Web Development - Advanced -->
+<a href="web-development-advanced/web-development-advanced.html" class="course-card">
+  <div class="card-image">
+    <img src="web-development-advanced.png" alt="Advanced Web Development">
+  </div>
+  <div class="card-content">
+    <span class="module-tag">Module 06</span>
+    <h3>Web Development</h3>
+    <p>Dive deeper into modern web technologies. Explore frameworks like React and Vue, RESTful APIs, authentication, performance optimization, and full-stack application architecture for scalable web solutions.</p>
+  </div>
+</a>      
+      
+    </div>
+  </main>
+
+<script src="../../../theme.js"></script>
+</body>
+</html>

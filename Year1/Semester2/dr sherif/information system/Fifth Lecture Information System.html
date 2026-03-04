@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL WHERE Clause - Database Management</title>
+    <link rel="stylesheet" href="DrSherif.css">
+    <link href="Information System.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <link href="../../../../DrSherif.css" rel="stylesheet">
+    <script>
+        mermaid.initialize({startOnLoad: true});
+    </script>
+</head>
+<body>
+    <nav class="top-bar">
+        <a href="../../../../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <img src="../../../../logo.jpeg" alt="Logo" class="site-logo">
+            <h2>Digital Marketing</h2>
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="sun-icon" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <svg class="moon-icon" fill="currentColor" viewBox="0 0 24 24" style="display: none;">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+            </svg>
+        </button>
+    </nav>
+
+    <main>
+        <div class="container">
+            <a href="InformationSystem.html" class="back-link">← EXIT LESSON</a>
+
+            <header>
+                <div class="syllabus-label">Lecture 5</div>
+                <h1>Structure Query Language</h1>
+                <p class="subtitle">The Database Management System (DBMS)</p>
+            </header>
+
+            <p style="color: var(--text-dim); margin-bottom: 30px;">SQL is the programming language provided by a DBMS to support all of the operations associated with a relational database.</p>
+            
+            <div class="timeline-wrapper">
+                <div class="lesson-item">
+                    <div class="indicator blue-glow"></div>
+                    <div class="card">
+                        <div class="content-area">
+                            <h3 class="html-title"><b>SQL WHERE Clause</b></h3>
+                            
+                            <p>The WHERE clause is used to filter records.</p>
+                            <p>It is used to extract only those records that fulfill a specified condition.</p>
+                            
+                            <h4><b>Example</b></h4>
+                            <p>Select all customers from Mexico:</p>
+                            <pre class="code-block"><code>SELECT * FROM Customers WHERE Country='Mexico';</code></pre>
+
+                            <h4><b>Syntax</b></h4>
+                            <pre class="code-block"><code>SELECT column1, column2, ...
+FROM table_name
+WHERE condition;</code></pre>
+
+                            <p><b>Note:</b> The WHERE clause is not only used in SELECT statements, it is also used in UPDATE, DELETE, etc.!</p>
+
+                            <h4><b>Demo Database</b></h4>
+                            <p>Below is a selection from the Customers table used in the examples:</p>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>CustomerID</th>
+                                        <th>CustomerName</th>
+                                        <th>ContactName</th>
+                                        <th>Address</th>
+                                        <th>City</th>
+                                        <th>PostalCode</th>
+                                        <th>Country</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Alfreds Futterkiste</td>
+                                        <td>Maria Anders</td>
+                                        <td>Obere Str. 57</td>
+                                        <td>Berlin</td>
+                                        <td>12209</td>
+                                        <td>Germany</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Ana Trujillo Emparedados y helados</td>
+                                        <td>Ana Trujillo</td>
+                                        <td>Avda. de la Constitución 2222</td>
+                                        <td>México D.F.</td>
+                                        <td>05021</td>
+                                        <td>Mexico</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Antonio Moreno Taquería</td>
+                                        <td>Antonio Moreno</td>
+                                        <td>Mataderos 2312</td>
+                                        <td>México D.F.</td>
+                                        <td>05023</td>
+                                        <td>Mexico</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>Around the Horn</td>
+                                        <td>Thomas Hardy</td>
+                                        <td>120 Hanover Sq.</td>
+                                        <td>London</td>
+                                        <td>WA1 1DP</td>
+                                        <td>UK</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td>Berglunds snabbköp</td>
+                                        <td>Christina Berglund</td>
+                                        <td>Berguvsvägen 8</td>
+                                        <td>Luleå</td>
+                                        <td>S-958 22</td>
+                                        <td>Sweden</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <h4 style="margin-top: 30px;"><b>Text Fields vs. Numeric Fields</b></h4>
+                            <p>SQL requires single quotes around text values (most database systems will also allow double quotes).</p>
+                            <p>However, numeric fields should not be enclosed in quotes:</p>
+                            
+                            <h4><b>Example</b></h4>
+                            <pre class="code-block"><code>SELECT * FROM Customers WHERE CustomerID=1;</code></pre>
+
+                            <h4 style="margin-top: 30px;"><b>Operators in The WHERE Clause</b></h4>
+                            <p>You can use other operators than the = operator to filter the search.</p>
+                            
+                            <h4><b>Example</b></h4>
+                            <p>Select all customers with a CustomerID greater than 80:</p>
+                            <pre class="code-block"><code>SELECT * FROM Customers WHERE CustomerID > 80;</code></pre>
+
+                            <p style="margin-top: 20px;">The following operators can be used in the WHERE clause:</p>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Operator</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>=</td>
+                                        <td>Equal</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&gt;</td>
+                                        <td>Greater than</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&lt;</td>
+                                        <td>Less than</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&gt;=</td>
+                                        <td>Greater than or equal</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&lt;=</td>
+                                        <td>Less than or equal</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&lt;&gt;</td>
+                                        <td>Not equal. Note: In some versions of SQL this operator may be written as !=</td>
+                                    </tr>
+                                    <tr>
+                                        <td>BETWEEN</td>
+                                        <td>Between a certain range</td>
+                                    </tr>
+                                    <tr>
+                                        <td>LIKE</td>
+                                        <td>Search for a pattern</td>
+                                    </tr>
+                                    <tr>
+                                        <td>IN</td>
+                                        <td>To specify multiple possible values for a column</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <div class="quiz-section" style="margin-top: 50px; padding: 30px; background: var(--card-bg-alpha); border: 1px solid var(--border-light); border-radius: 16px;">
+                                <h3 style="color: var(--primary-blue); margin-top: 0;">Test Your Knowledge</h3>
+                                
+                                <div class="quiz-item" style="margin-bottom: 30px;">
+                                    <div class="quiz-question">
+                                        <h4 style="color: var(--text-main);">What is the purpose of the SQL WHERE clause?</h4>
+                                        <ul style="list-style-type: none; padding-left: 0;">
+                                            <li style="padding: 8px 0;">A) To specify the table from which to select data</li>
+                                            <li style="padding: 8px 0;">B) To filter records that meet a specified condition</li>
+                                            <li style="padding: 8px 0;">C) To join multiple tables together</li>
+                                            <li style="padding: 8px 0;">D) To sort records in ascending order</li>
+                                        </ul>
+                                    </div>
+                                    <button class="show-answer-btn" type="button" onclick="this.nextElementSibling.style.display='block'; this.style.display='none';" style="background: var(--primary-blue); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; margin-top: 10px;">Show Answer</button>
+                                    <p class="quiz-answer" style="display: none; margin-top: 15px; padding: 15px; background: rgba(16, 185, 129, 0.15); color: var(--accent-green); border: 1px solid var(--accent-green); border-radius: 8px; font-weight: 600;">Answer: B - To filter records that meet a specified condition</p>
+                                </div>
+
+                                <div class="quiz-item" style="margin-bottom: 30px;">
+                                    <div class="quiz-question">
+                                        <h4 style="color: var(--text-main);">Which of the following SQL statements would return all customers from 'Mexico'?</h4>
+                                        <ul style="list-style-type: none; padding-left: 0;">
+                                            <li style="padding: 8px 0;">A) SELECT * FROM Customers WHERE City='Mexico';</li>
+                                            <li style="padding: 8px 0;">B) SELECT * FROM Customers WHERE Country='Mexico';</li>
+                                            <li style="padding: 8px 0;">C) SELECT * FROM Customers AND Country='Mexico';</li>
+                                            <li style="padding: 8px 0;">D) SELECT * WHERE Country='Mexico';</li>
+                                        </ul>
+                                    </div>
+                                    <button class="show-answer-btn" type="button" onclick="this.nextElementSibling.style.display='block'; this.style.display='none';" style="background: var(--primary-blue); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; margin-top: 10px;">Show Answer</button>
+                                    <p class="quiz-answer" style="display: none; margin-top: 15px; padding: 15px; background: rgba(16, 185, 129, 0.15); color: var(--accent-green); border: 1px solid var(--accent-green); border-radius: 8px; font-weight: 600;">Answer: B - SELECT * FROM Customers WHERE Country='Mexico';</p>
+                                </div>
+
+                                <div class="quiz-item" style="margin-bottom: 30px;">
+                                    <div class="quiz-question">
+                                        <h4 style="color: var(--text-main);">Select all records where the CustomerID column has the value 32.</h4>
+                                    </div>
+                                    <button class="show-answer-btn" type="button" onclick="this.nextElementSibling.style.display='block'; this.style.display='none';" style="background: var(--primary-blue); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; margin-top: 10px;">Show Answer</button>
+                                    <p class="quiz-answer" style="display: none; margin-top: 15px; padding: 15px; background: rgba(16, 185, 129, 0.15); color: var(--accent-green); border: 1px solid var(--accent-green); border-radius: 8px; font-weight: 600;">Answer: SELECT * FROM Customers WHERE CustomerID = 32;</p>
+                                </div>
+
+                                <div class="quiz-item" style="margin-bottom: 0;">
+                                    <div class="quiz-question">
+                                        <h4 style="color: var(--text-main);">How should text values be enclosed in the SQL WHERE clause?</h4>
+                                        <ul style="list-style-type: none; padding-left: 0;">
+                                            <li style="padding: 8px 0;">A) With double quotes</li>
+                                            <li style="padding: 8px 0;">B) With single quotes</li>
+                                            <li style="padding: 8px 0;">C) With no quotes</li>
+                                            <li style="padding: 8px 0;">D) With backticks</li>
+                                        </ul>
+                                    </div>
+                                    <button class="show-answer-btn" type="button" onclick="this.nextElementSibling.style.display='block'; this.style.display='none';" style="background: var(--primary-blue); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; margin-top: 10px;">Show Answer</button>
+                                    <p class="quiz-answer" style="display: none; margin-top: 15px; padding: 15px; background: rgba(16, 185, 129, 0.15); color: var(--accent-green); border: 1px solid var(--accent-green); border-radius: 8px; font-weight: 600;">Answer: B - With single quotes</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const sunIcon = document.querySelector('.sun-icon');
+        const moonIcon = document.querySelector('.moon-icon');
+        
+        // Check for saved theme preference or default to 'dark'
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        
+        if (currentTheme === 'light') {
+            sunIcon.style.display = 'none';
+            moonIcon.style.display = 'block';
+        }
+        
+        themeToggle.addEventListener('click', function() {
+            let theme = document.documentElement.getAttribute('data-theme');
+            
+            if (theme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+                sunIcon.style.display = 'none';
+                moonIcon.style.display = 'block';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                sunIcon.style.display = 'block';
+                moonIcon.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

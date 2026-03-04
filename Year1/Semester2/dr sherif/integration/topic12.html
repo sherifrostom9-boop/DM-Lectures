@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Topic 12: CSS Advanced Layout</title>
+    <link href="../../../../DrSherif.css" rel="stylesheet">
+</head>
+<body>
+
+      <!-- Navigation -->
+      <nav class="top-bar">
+        <a href="../../../../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <img src="../../../../logo.jpeg" alt="Logo" class="site-logo">
+            <h2>Digital Marketing</h2>
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="sun-icon" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <svg class="moon-icon" fill="currentColor" viewBox="0 0 24 24" style="display: none;">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+            </svg>
+        </button>
+    </nav>
+    
+<div class="container">
+    <a href="integrationS2.html" class="back-btn">← EXIT LESSON</a>
+
+    <header>
+        <div class="label">Lesson 12</div>
+        <h1>Advanced Layout: Dropdowns</h1>
+        <p class="text-dim">Creating interactive selection menus using standard and hoverable methods.</p>
+    </header>
+
+    <div class="section-grid">
+        <div class="card">
+            <h2>Standard Dropdown (Select)</h2>
+            <p>The simplest way to create a dropdown is using the <code>&lt;select&gt;</code> and <code>&lt;option&gt;</code> elements.</p>
+            <ul>
+                <li><strong>Label:</strong> Provides context for the menu.</li>
+                <li><strong>Select:</strong> The container for the menu.</li>
+                <li><strong>Option:</strong> Individual items within the list.</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>User Experience</h2>
+            <p>Dropdowns save space by hiding options until they are needed. They are essential for forms and navigation bars.</p>
+            
+        </div>
+
+        <div class="card full-width">
+            <h2>Step-by-Step Implementation</h2>
+            <div class="code-block">
+                <span class="tag">&lt;label</span> <span class="attr">for</span>=<span class="val">"students"</span><span class="tag">&gt;</span>Choose a name:<span class="tag">&lt;/label&gt;</span><br>
+                <span class="tag">&lt;select</span> <span class="attr">name</span>=<span class="val">"students"</span> <span class="attr">id</span>=<span class="val">"students"</span><span class="tag">&gt;</span><br>
+                &nbsp;&nbsp;<span class="tag">&lt;option</span> <span class="attr">value</span>=<span class="val">"Lena"</span><span class="tag">&gt;</span>Lena<span class="tag">&lt;/option&gt;</span><br>
+                &nbsp;&nbsp;<span class="tag">&lt;option</span> <span class="attr">value</span>=<span class="val">"Mohamed"</span><span class="tag">&gt;</span>Mohamed<span class="tag">&lt;/option&gt;</span><br>
+                <span class="tag">&lt;/select&gt;</span>
+            </div>
+        </div>
+
+        <div class="card full-width">
+            <h2>Hoverable CSS Dropdowns</h2>
+            <p>Your document also highlights a more advanced "hoverable" menu used in navigation. This uses <code>position: absolute</code> to show/hide content.</p>
+            
+            <div class="section-grid" style="margin-bottom: 0;">
+                <div>
+                    <h3>The CSS Logic</h3>
+                    <ul>
+                        <li>Set parent to <code>position: relative</code>.</li>
+                        <li>Set content to <code>display: none</code> and <code>position: absolute</code>.</li>
+                        <li>Use <code>:hover</code> to change display to <code>block</code>.</li>
+                    </ul>
+                </div>
+                <div class="preview-box">
+                    <p style="font-size: 0.8rem; color: var(--text-dim);">Example Style:</p>
+                    <code style="color: var(--accent-purple);">.dropdown:hover .content { display: block; }</code>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Contact: sherrost@yahoo.com | Tel: 01501827070</p>
+        <p>Integration Course - Topic 12</p>
+    </footer>
+</div>
+<script src="../../../../theme.js"></script>
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 08 - Digital Images - Part 1</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="../../../../DrSherif.css" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="top-bar">
+        <a href="../../../../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <img src="../../../../logo.jpeg" alt="Logo" class="site-logo">
+            <h2>Digital Marketing</h2>
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="sun-icon" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <svg class="moon-icon" fill="currentColor" viewBox="0 0 24 24" style="display: none;">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+            </svg>
+        </button>
+    </nav>
+
+    <header class="hero">
+        <a href="informationrep.html" class="exit-link">← BACK TO SYLLABUS</a>
+        <div class="badge">LESSON 08</div>
+        <h1>Digital Images - Part 1</h1>
+        <p>Bitmap, Vector, Color Palettes, Transparency, Transmission Mode, Interlacing, Uncompressed and Compressed Formats, Simple Processing</p>
+    </header>
+
+    <!-- Timeline Navigation -->
+    <nav class="timeline-nav">
+        <div class="timeline-line"></div>
+        <div class="step-node active" onclick="showStep(0)"><div class="dot">1</div><div class="node-label">Intro to Deciles</div></div>
+        <div class="step-node" onclick="showStep(1)"><div class="dot">2</div><div class="node-label">What is Decile?</div></div>
+        <div class="step-node" onclick="showStep(2)"><div class="dot">3</div><div class="node-label">Decile Class Rank</div></div>
+        <div class="step-node" onclick="showStep(3)"><div class="dot">4</div><div class="node-label">Decile Formula</div></div>
+        <div class="step-node" onclick="showStep(4)"><div class="dot">5</div><div class="node-label">What is Quartile?</div></div>
+        <div class="step-node" onclick="showStep(5)"><div class="dot">6</div><div class="node-label">Understanding Quartiles</div></div>
+        <div class="step-node" onclick="showStep(6)"><div class="dot">7</div><div class="node-label">Quartile Divisions</div></div>
+        <div class="step-node" onclick="showStep(7)"><div class="dot">8</div><div class="node-label">Conclusion</div></div>
+    </nav>
+
+    <!-- All steps with original content & tables preserved exactly -->
+
+    <div class="step-content active">
+        <h2>Introduction to Deciles</h2>
+        <div class="theory-box">
+            <strong>Decile</strong> is a method that is used to<strong> divide a distribution into ten equal parts</strong>.
+        </div>
+        <div class="theory-box">
+            When data is divided into deciles a<strong> decile rank is assigned to each data point</strong> in order to sort the data into ascending or descending order.
+        </div>
+        <div class="theory-box">
+            A decile has<strong> 10 categorical buckets</strong> while a<strong> quartile has 4</strong> and a<strong> percentile has 100</strong>.
+        </div>
+        <div class="theory-box">
+            The concept of a decile is used widely in the field of finance and economics to perform the<strong> analysis of data</strong>.
+        </div>
+        <div class="theory-box">
+            It can be used to<strong> check the performance</strong> of a portfolio in the field of finance.
+        </div>
+    </div>
+
+    <div class="step-content">
+        <h2>What is Decile?</h2>
+        <div class="theory-box">
+            <strong>Decile</strong>,<strong> percentile</strong>,<strong> quartile</strong>, and<strong> quintile</strong> are different types of quantiles in statistics.
+        </div>
+        <div class="theory-box">
+            A<strong> quantile</strong> refers to a<strong> value that divides the observations in a sample into equal subsections</strong>.
+        </div>
+        <div class="theory-box">
+            There will always be 1 lesser quantile than the number of subsections created.
+        </div>
+
+        <h2>Decile Definition</h2>
+        <div class="theory-box">
+            <strong>Decile</strong> is a type of<strong> quantile</strong> that divides the dataset into 10 equal subsections with the help of 9 data points.
+        </div>
+        <div class="theory-box">
+            Each section of the sorted data represents 1/10 of the original sample or population.
+        </div>
+        <div class="theory-box">
+            <strong>Decile</strong> helps to<strong> order large amounts of data in the increasing or decreasing order</strong>.
+        </div>
+        <div class="theory-box">
+            This ordering is done by using a scale from 1 to 10 where each successive value represents an increase by 10 percentage points.
+        </div>
+    </div>
+
+    <div class="step-content">
+        <h2>Decile Class Rank</h2>
+        <div class="theory-box">
+            To split the given data and order it according to some specified metric, statisticians use the decile rank also known as decile class rank.
+        </div>
+        <div class="theory-box">
+            Once the given data is divided into deciles then<strong> each subsequent data set is assigned a decile rank</strong>.
+        </div>
+        <div class="theory-box">
+            Each rank is<strong> based on an increase by 10 percentage points</strong> and is used to order the deciles in the increasing order.
+        </div>
+        <div class="theory-box">
+            The 5th decile of a distribution will give the<strong> value of the median</strong>.
+        </div>
+    </div>
+
+    <div class="step-content">
+        <h2>Decile Formula</h2>
+        <div class="formula">Ungrouped Data: D(x) = (n + 1) × (x / 10)</div>
+        <div class="formula">Grouped Data: D(x) = 1 + w ((Nx - C) / (f × 10))</div>
+    </div>
+
+    <div class="step-content">
+        <h2>What Is a Quartile?</h2>
+        <div class="theory-box">
+            A<strong> quartile</strong> is a statistical term that describes a division of observations into<strong> four defined intervals</strong> based on the values of the data and how they compare to the entire set of observations. Quartiles are organized into<strong> lower quartiles</strong>,<strong> median quartiles</strong>, and<strong> upper quartiles</strong>.
+        </div>
+        <div class="theory-box">
+            When the data points are arranged in increasing order, data are divided into four<strong> sections of 25% </strong>of the data each.
+        </div>
+        <ul style="padding-left:28px; color:var(--text-dim);">
+            <li>Quartiles organize data into three points—a lower quartile, median, and upper quartile—to form four dataset groups.</li>
+            <li>Along with the minimum and maximum values of the data set, the quartiles divide a set of observations into four sections, each representing 25% of the observations.</li>
+            <li>Quartiles are used to calculate the<strong> interquartile range</strong>, which is<strong> a measure of variability around the median</strong>.</li>
+        </ul>
+    </div>
+
+    <div class="step-content">
+        <h2>Understanding Quartiles</h2>
+        <div class="theory-box">
+            To understand the <strong>quartile</strong>, it is important to understand the median as a measure of central tendency.
+        </div>
+        <div class="theory-box">
+            The median in statistics is the middle value of a set of numbers.
+        </div>
+        <div class="theory-box">
+            It is the point at which exactly half of the data lies below and above the central value.
+        </div>
+        <div class="theory-box">
+            The median is a robust estimator of location but says nothing about how the data on either side of its value is spread or dispersed.
+        </div>
+        <div class="theory-box">
+            That's where the <strong>quartile steps</strong> in.
+        </div>
+        <div class="theory-box">
+            The <strong>quartile measures the spread of values above and below the median</strong> by dividing the distribution into four groups.
+        </div>
+        <div class="theory-box">
+            They are grouped into four sections of 25% of the data, with the second and third groups representing the interquartile range.
+        </div>
+    </div>
+
+    <div class="step-content">
+        <h2>Quartile Divisions</h2>
+        <div class="theory-box">
+            Just like the <strong>median</strong> divides the data into half so that 50% of the measurement lies below the median and 50% lies above it, the <strong>quartile</strong> breaks down the data into quarters so that 25% of the measurements are less than the lower quartile, 50% are less than the median, and 75% are less than the upper quartile.
+        </div>
+        <div class="theory-box">
+            <strong>There are three quartile values</strong> - a <strong>lower quartile</strong>, <strong>median</strong>, and <strong>upper quartile</strong> - which divide the data set into four ranges, each containing 25% of the data points:
+        </div>
+        <ul style="padding-left:28px; color:var(--text-dim);">
+            <li><strong>First quartile</strong>: The set of data points between the minimum value and the first quartile.</li>
+            <li><strong>Second quartile</strong>: The set of data points between the lower quartile and the median.</li>
+            <li><strong>Third quartile</strong>: The set of data between the median and the upper quartile.</li>
+            <li><strong>Fourth quartile</strong>: The set of data points between the upper quartile and the maximum value of the data set.</li>
+        </ul>
+    </div>
+
+    <div class="step-content">
+        <h2>Key Questions on Quartiles</h2>
+        <p><strong>How Do You Find the Lower Quartile of a Data Set?</strong></p>
+        <p><strong>How Do You Find the Upper Quartile of a Data Set?</strong></p>
+        <p><strong>What Is the Interquartile Range of a Data Set?</strong></p>
+        <p><strong>The Bottom Line</strong></p>
+
+        <h2>Conclusion</h2>
+        <p>Deciles and quartiles are essential quantiles for dividing and analyzing data distributions, providing insights into data ordering, performance analysis, and variability.</p>
+        <div class="highlight-box">
+            <strong>Key Insight:</strong> These tools help in sorting data into equal parts for better understanding in fields like finance, economics, and statistics.
+        </div>
+    </div>
+
+    <div class="step-content">
+        <h2>Key Takeaways</h2>
+        <ul>
+            <li>Deciles divide data into 10 equal parts using 9 points, useful for ranking and analysis in finance.</li>
+            <li>Decile ranks order data with 10% increments; the 5th decile is the median.</li>
+            <li>Quartiles divide data into 4 equal parts using 3 points, measuring spread around the median.</li>
+            <li>The interquartile range assesses variability between the lower and upper quartiles.</li>
+            <li>Quantiles like deciles and quartiles always have one less divider than the number of sections created.</li>
+        </ul>
+    </div>
+
+    <footer>
+        <p>Contact: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="592a313c2b2b362a2d192038313636773a3634">[email&#160;protected]</a> | Tel: 01501827070 - 01017776756</p>
+        <p>Information Representation Course • Lesson 08</p>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        function showStep(index) {
+            document.querySelectorAll('.step-node').forEach((node, i) => {
+                node.classList.toggle('active', i === index);
+            });
+
+            document.querySelectorAll('.step-content').forEach((content, i) => {
+                content.classList.toggle('active', i === index);
+            });
+        }
+    </script>
+<script src="../../..//../theme.js"></script>
+</body>
+</html>

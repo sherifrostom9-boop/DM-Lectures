@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 03 - Information Theory - Part 3</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="../../../../DrSherif.css" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="top-bar">
+        <a href="../../../../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <img src="../../../../logo.jpeg" alt="Logo" class="site-logo">
+            <h2>Digital Marketing</h2>
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="sun-icon" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <svg class="moon-icon" fill="currentColor" viewBox="0 0 24 24" style="display: none;">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+            </svg>
+        </button>
+    </nav>
+
+    <header class="hero">
+        <a href="informationrep.html" class="exit-link">← BACK TO SYLLABUS</a>
+        <div class="badge">LESSON 03</div>
+        <h1>Information Theory - Part 3</h1>
+        <p>Information, Entropy, Information Content, Associated Coding</p>
+    </header>
+
+    <!-- Timeline Navigation -->
+    <nav class="timeline-nav">
+        <div class="timeline-line"></div>
+        
+        <div class="step-node active" onclick="showStep(0)"><div class="dot">1</div><div class="node-label">Nyquist Theorem</div></div>
+        <div class="step-node" onclick="showStep(1)"><div class="dot">2</div><div class="node-label">Nyquist Rate</div></div>
+        <div class="step-node" onclick="showStep(2)"><div class="dot">3</div><div class="node-label">Sampling</div></div>
+        <div class="step-node" onclick="showStep(3)"><div class="dot">4</div><div class="node-label">Aliasing</div></div>
+        <div class="step-node" onclick="showStep(4)"><div class="dot">5</div><div class="node-label">Quantization</div></div>
+        <div class="step-node" onclick="showStep(5)"><div class="dot">6</div><div class="node-label">Quant. Error</div></div>
+        <div class="step-node" onclick="showStep(6)"><div class="dot">7</div><div class="node-label">Encoding</div></div>
+        <div class="step-node" onclick="showStep(7)"><div class="dot">8</div><div class="node-label">Companding & Takeaways</div></div>
+    </nav>
+
+    <!-- Step Contents -->
+    <div class="step-content active">
+        <h2>Nyquist-Shannon Sampling Theorem</h2>
+        <div class="theory-box">
+            Foundational rule in signal processing:<br>
+            A band-limited continuous-time signal can be perfectly reconstructed from its samples if sampled at a rate greater than or equal to twice the highest frequency component.
+        </div>
+        <div class="formula">
+            F_s ≥ 2 × F_max
+        </div>
+        <div class="highlight-box">
+            <strong>Core meaning:</strong> Sample fast enough (at least twice the highest frequency) → perfect reconstruction is theoretically possible
+        </div>
+    </div>
+
+    <div class="step-content">
+        <h2>Nyquist Rate</h2>
+        <div class="theory-box">
+            The minimum theoretical sampling frequency required for perfect reconstruction without information loss.
+        </div>
+        <div class="formula">
+            Nyquist Rate = 2 × F_max
+        </div>
+        <div class="warning-box">
+            <strong>Practical note:</strong> Real systems usually use slightly higher sampling rates (e.g. 2.2–2.5×) to account for imperfect filters.
+        </div>
+    </div>
+
+    <div class="step-content">
+        <h2>Sampling Process</h2>
+        <div class="theory-box">
+            Conversion of continuous-time signal x(t) into discrete-time signal x[n] by taking periodic snapshots.
+        </div>
+        <div class="formula">
+            x[n] = x(n · T_s)
+        </div>
+        <div class="theory-box" style="margin-top:28px;">
+            T_s = sampling period<br>
+            f_s = 1 / T_s = sampling frequency
+        </div>
+    </div>
+
+    <div class="step-content">
+        <h2>Sampling Rate & Aliasing</h2>
+        <div class="theory-box">
+            When f_s < 2 × F_max → high frequencies "fold back" into lower frequencies → distortion called **aliasing**
+        </div>
+        <div class="highlight-box">
+            <strong>Prevention:</strong> Apply low-pass anti-aliasing filter before sampling (cutoff ≤ f_s/2)
+        </div>
+    </div>
+
+    <div class="step-content">
+        <h2>Quantization Process</h2>
+        <div class="theory-box">
+            Mapping continuous amplitude values (after sampling) to a finite set of discrete levels.
+        </div>
+        <div class="theory-box">
+            Number of levels = 2^N<br>
+            where N = number of bits (quantization resolution)
+        </div>
+        <div class="formula" style="margin:32px 0;">
+            Example: 8-bit → 256 possible levels
+        </div>
+    </div>
+
+    <div class="step-content">
+        <h2>Quantization Error</h2>
+        <div class="theory-box">
+            Difference between original sample value and nearest quantization level.<br>
+            Behaves like added noise.
+        </div>
+        <div class="formula">
+            Max error ≈ ± (Δ / 2)   where Δ = quantization step size
+        </div>
+        <div class="highlight-box">
+            More bits → smaller Δ → smaller quantization error → better quality
+        </div>
+    </div>
+
+    <div class="step-content">
+        <h2>Encoding Process</h2>
+        <div class="theory-box">
+            Each quantized level is assigned a unique binary code.
+        </div>
+        <div class="formula">
+            N-bit quantizer → 2^N possible binary codes
+        </div>
+        <div class="theory-box" style="margin-top:28px;">
+            Most common: straight binary (natural binary code)<br>
+            MSB = highest power of 2, LSB = lowest
+        </div>
+    </div>
+
+    <div class="step-content">
+        <h2>Companding & Key Takeaways</h2>
+        <div class="theory-box">
+            <strong>Companding</strong> = Compression + Expansion<br>
+            Logarithmic mapping → better resolution for small signals, coarser for large amplitudes
+        </div>
+        <div class="theory-box" style="margin-top:32px;">
+            <strong>Main concepts recap:</strong>
+            <ul style="padding-left:24px; margin-top:16px; color:var(--text-dim);">
+                <li>Nyquist theorem: minimum sampling rate = 2 × highest frequency</li>
+                <li>Aliasing → distortion from undersampling</li>
+                <li>Quantization → approximation error (noise)</li>
+                <li>More bits = better precision, bigger data size</li>
+                <li>Encoding → binary representation of quantized values</li>
+                <li>Companding → efficient for wide dynamic range signals</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <p>Contact: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c3b0aba6b1b1acb0b783baa2abacaceda0acae">[email&#160;protected]</a> | Tel: 01501827070 - 01017776756</p>
+        <p>Information Representation Course • Lesson 03</p>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        function showStep(index) {
+            document.querySelectorAll('.step-node').forEach((node, i) => {
+                node.classList.toggle('active', i === index);
+            });
+
+            document.querySelectorAll('.step-content').forEach((content, i) => {
+                content.classList.toggle('active', i === index);
+            });
+        }
+    </script>
+<script src="../../../../theme.js"></script>
+</body>
+</html>

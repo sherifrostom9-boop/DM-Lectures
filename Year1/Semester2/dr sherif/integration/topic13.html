@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Topic 13: Event Driven Programming</title>
+    <link href="../../../../DrSherif.css" rel="stylesheet">
+</head>
+<body>
+
+      <!-- Navigation -->
+      <nav class="top-bar">
+        <a href="../../../../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <img src="../../../../logo.jpeg" alt="Logo" class="site-logo">
+            <h2>Digital Marketing</h2>
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="sun-icon" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <svg class="moon-icon" fill="currentColor" viewBox="0 0 24 24" style="display: none;">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+            </svg>
+        </button>
+    </nav>
+    
+<div class="container">
+    <a href="integrationS2.html" class="back-btn">← EXIT LESSON</a>
+
+    <header>
+        <div class="label">Lesson 13</div>
+        <h1>Event Driven Programming (EDP)</h1>
+        <p class="text-dim">Building responsive applications that react to user actions and system notifications.</p>
+    </header>
+
+    <div class="section-grid">
+        <div class="card">
+            <h2>What is EDP?</h2>
+            <p>A programming paradigm where the flow of the program is determined by <strong>events</strong>. Instead of following a strict top-to-bottom sequence, the code "waits" for something to happen.</p>
+            <ul>
+                <li><strong>User Actions:</strong> Clicks, key presses.</li>
+                <li><strong>System Events:</strong> Sensor outputs, messages from other programs.</li>
+                <li><strong>Efficiency:</strong> Perfect for GUIs and gaming software.</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>The Event Loop</h2>
+            <p>The heart of EDP. It continuously monitors for events and dispatches them to the appropriate <strong>Event Handlers</strong>.</p>
+            
+        </div>
+
+        <div class="card full-width">
+            <h2>Python: Asyncio & Coroutines</h2>
+            <p>In Python, we use the <code>asyncio</code> module to handle asynchronous tasks. <strong>Coroutines</strong> are specialized functions defined with <code>async def</code>.</p>
+            
+            <div class="code-block">
+                <span class="keyword">import</span> asyncio<br><br>
+                <span class="keyword">async def</span> <span class="func">main</span>():<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="func">print</span>(<span class="string">"Hello..."</span>)<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">await</span> asyncio.<span class="func">sleep</span>(1) <span class="comment"># Simulate a wait</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="func">print</span>(<span class="string">"...World!"</span>)<br><br>
+                asyncio.<span class="func">run</span>(main())
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Tasks (asyncio.Task)</h2>
+            <p>Tasks are used to schedule coroutines concurrently. This allows the program to handle multiple asynchronous units of work at once without stopping the whole script.</p>
+        </div>
+
+        <div class="card">
+            <h2>Key Takeaways</h2>
+            <ul>
+                <li><strong>Responsive:</strong> Apps stay active while waiting for data.</li>
+                <li><strong>Scalable:</strong> Efficiently handles multiple tasks.</li>
+                <li><strong>Modern:</strong> Essential for web servers and interactive desktop apps.</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <p>Contact: sherrost@yahoo.com | Tel: 01501827070</p>
+        <p>Integration Course - Topic 13</p>
+    </footer>
+</div>
+<script src="../../../../theme.js"></script>
+</body>
+</html>

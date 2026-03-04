@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Topic 14: PHP Mastery</title>
+    <style>
+        :root {
+          --bg: #071426;
+          --surface: rgba(11, 31, 58, 0.65);
+          --text: #f1f5f9;
+          --muted: #94a3b8;
+          --border: rgba(148, 163, 184, 0.18);
+          --primary: #3b82f6;
+          --primary-2: #06b6d4;
+          --orange: #f59e0b;
+          --accent-glow: rgba(245, 158, 11, 0.25);
+          --radius: 16px;
+          --shadow: 0 20px 60px rgba(0,0,0,0.42);
+          --code-bg: rgba(0,0,0,0.45);
+          --success: #34d399;
+          --error: #fb7185;
+        }
+    
+        [data-theme="light"] {
+          --bg: #f8fafc;
+          --surface: rgba(255,255,255,0.78);
+          --text: #0f172a;
+          --muted: #64748b;
+          --border: rgba(15,23,42,0.11);
+          --primary: #2563eb;
+          --primary-2: #0891b2;
+          --orange: #d97706;
+          --accent-glow: rgba(245,158,11,0.18);
+          --shadow: 0 16px 48px rgba(0,0,0,0.10);
+          --code-bg: rgba(0,0,0,0.06);
+        }
+    
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+    
+        body {
+          font-family: 'Inter', system-ui, sans-serif;
+          min-height: 100vh;
+          color: var(--text);
+          background: var(--bg);
+          background-image: 
+            radial-gradient(circle at 15% 10%, rgba(59,130,246,0.12), transparent 45%),
+            radial-gradient(circle at 85% 15%, rgba(245,158,11,0.09), transparent 50%);
+          line-height: 1.6;
+          transition: background 0.5s ease;
+        }
+    
+        /* Navigation */
+        .nav {
+          position: fixed;
+          inset: 0 0 auto 0;
+          z-index: 1000;
+          padding: 1.2rem 5%;
+          background: rgba(7,20,38,0.68);
+          backdrop-filter: blur(16px);
+          border-bottom: 1px solid var(--border);
+        }
+    
+        [data-theme="light"] .nav {
+          background: rgba(248,250,252,0.82);
+        }
+    
+        .nav-container {
+          max-width: 1400px;
+          margin: 0 auto;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+    
+        .logo {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          color: var(--text);
+          text-decoration: none;
+          font-weight: 700;
+          font-size: 1.3rem;
+        }
+    
+        .logo img {
+          height: 48px;
+          width: auto;
+          border-radius: 10px;
+        }
+    
+        .theme-toggle {
+          background: rgba(255,255,255,0.07);
+          border: 1px solid var(--border);
+          border-radius: 12px;
+          padding: 0.55rem 1rem;
+          color: var(--muted);
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          font-weight: 600;
+          transition: all 0.25s ease;
+        }
+    
+        .theme-toggle:hover {
+          background: rgba(255,255,255,0.14);
+          color: var(--text);
+          transform: translateY(-2px);
+        }
+    
+        .theme-toggle svg {
+          width: 20px;
+          height: 20px;
+        }
+    
+        /* Main Container */
+        .container {
+          padding: 140px 5% 100px;
+          max-width: 1100px;
+          margin: 0 auto;
+        }
+    
+        /* Back Button */
+        .back-btn {
+          display: inline-block;
+          color: var(--primary);
+          text-decoration: none;
+          font-weight: 600;
+          font-size: 0.95rem;
+          margin-bottom: 1.5rem;
+          transition: all 0.25s ease;
+        }
+    
+        .back-btn:hover {
+          color: var(--orange);
+          transform: translateX(-5px);
+        }
+    
+        .back-link {
+          display: inline-block;
+          color: var(--primary);
+          text-decoration: none;
+          font-weight: 600;
+          font-size: 0.95rem;
+          margin-bottom: 1.5rem;
+          transition: all 0.25s ease;
+        }
+    
+        .back-link:hover {
+          color: var(--orange);
+          transform: translateX(-5px);
+        }
+    
+        header {
+          text-align: center;
+          margin-bottom: 3.5rem;
+        }
+    
+        header h1 {
+          font-size: 3rem;
+          font-weight: 800;
+          background: linear-gradient(90deg, var(--text), var(--orange));
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          margin-bottom: 0.6rem;
+        }
+    
+        .subtitle {
+          color: var(--muted);
+          font-size: 1.15rem;
+        }
+    
+        .text-dim {
+          color: var(--muted);
+          font-size: 1.15rem;
+        }
+    
+        .label {
+          color: var(--orange);
+          text-transform: uppercase;
+          font-size: 0.85rem;
+          font-weight: 700;
+          letter-spacing: 1.5px;
+          margin-bottom: 0.4rem;
+        }
+    
+        .section-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+          gap: 1.8rem;
+          margin-bottom: 3rem;
+        }
+    
+        .card {
+          background: var(--surface);
+          border: 1px solid var(--border);
+          border-radius: var(--radius);
+          padding: 1.8rem 2rem;
+          backdrop-filter: blur(12px);
+          transition: all 0.35s ease;
+        }
+    
+        .card:hover {
+          transform: translateY(-8px);
+          border-color: var(--orange);
+          box-shadow: var(--shadow);
+        }
+    
+        .full-width {
+          grid-column: 1 / -1;
+        }
+    
+        h2 {
+          color: var(--orange);
+          font-size: 1.45rem;
+          font-weight: 700;
+          margin: 0 0 1rem 0;
+          border-left: 4px solid var(--orange);
+          padding-left: 1rem;
+        }
+    
+        ul {
+          padding-left: 1.4rem;
+          color: var(--muted);
+        }
+    
+        li {
+          margin-bottom: 0.8rem;
+        }
+    
+        .code-block {
+          background: var(--code-bg);
+          padding: 1.2rem 1.5rem;
+          border-radius: 10px;
+          font-family: 'Consolas', 'Courier New', monospace;
+          color: #e2e8f0;
+          overflow-x: auto;
+          border: 1px solid rgba(245,158,11,0.25);
+          margin: 1.2rem 0;
+          font-size: 0.94rem;
+          line-height: 1.5;
+        }
+    
+        .tag { color: #60a5fa; }
+        .attr { color: #a5b4fc; }
+        .val  { color: #fbbf24; }
+    
+        .warning-box {
+          background: rgba(245,158,11,0.08);
+          border: 1px solid rgba(245,158,11,0.3);
+          padding: 1.2rem;
+          border-radius: 10px;
+          margin: 1.2rem 0;
+          color: var(--muted);
+        }
+    
+        .warning-box strong {
+          color: var(--orange);
+        }
+    
+        .exercise-card {
+          background: linear-gradient(145deg, var(--surface), rgba(11,31,58,0.8));
+          border: 1px solid var(--orange);
+          border-radius: var(--radius);
+          padding: 2.2rem;
+          margin-top: 3rem;
+          backdrop-filter: blur(12px);
+        }
+    
+        .exercise-card h2 {
+          border: none;
+          padding: 0;
+          margin-bottom: 1.5rem;
+          color: var(--orange);
+          font-size: 1.8rem;
+        }
+    
+        .ex-input {
+          background: rgba(255,255,255,0.06);
+          color: var(--text);
+          border: 1px solid var(--border);
+          padding: 0.35rem 0.6rem;
+          font-family: 'Consolas', monospace;
+          border-radius: 6px;
+          outline: none;
+          transition: all 0.2s ease;
+          width: 140px;
+        }
+    
+        .ex-input:focus {
+          border-color: var(--orange);
+          box-shadow: 0 0 0 3px rgba(245,158,11,0.2);
+        }
+    
+        .ex-input.correct {
+          border-color: var(--success);
+          background: rgba(52,211,153,0.12);
+        }
+    
+        .ex-input.wrong {
+          border-color: var(--error);
+          background: rgba(251,113,133,0.12);
+        }
+    
+        .btn-check {
+          background: linear-gradient(135deg, var(--orange), #fbbf24);
+          color: white;
+          border: none;
+          padding: 0.9rem 1.8rem;
+          border-radius: 10px;
+          font-weight: 700;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          margin-top: 1.8rem;
+        }
+    
+        .btn-check:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 12px 30px rgba(245,158,11,0.35);
+        }
+    
+        #result-msg {
+          margin-top: 1.5rem;
+          font-weight: 600;
+          min-height: 1.4rem;
+        }
+    
+        /* Flag Styling */
+        .flag-container {
+          width: 300px;
+          height: 200px;
+          margin: 1.5rem auto;
+          border: 1px solid var(--border);
+          border-radius: 8px;
+          overflow: hidden;
+          box-shadow: var(--shadow);
+        }
+    
+        .first-red, .white, .second-black {
+          height: 33.33%;
+          width: 100%;
+          position: relative;
+        }
+    
+        .first-red {
+          background-color: #ce1126;
+        }
+    
+        .white {
+          background-color: #ffffff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+    
+        .second-black {
+          background-color: #000000;
+        }
+    
+        .eagle {
+          height: 50px;
+          width: auto;
+        }
+    
+        footer {
+          margin-top: 5rem;
+          padding-top: 2rem;
+          border-top: 1px solid var(--border);
+          text-align: center;
+          color: var(--muted);
+          font-size: 0.9rem;
+        }
+    
+        /* Responsive */
+        @media (max-width: 768px) {
+          .container { padding: 120px 5% 80px; }
+          header h1 { font-size: 2.4rem; }
+          .section-grid { grid-template-columns: 1fr; }
+          .exercise-card { padding: 1.8rem; }
+          .ex-input { width: 120px; }
+          .flag-container { width: 250px; height: 167px; }
+        }
+      </style>
+</head>
+<body>
+
+      <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-container">
+      <a href="../../../../index.html" class="logo">
+        <img src="../../../../logo.jpeg" alt="Logo">
+        Digital Marketing
+      </a>
+
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <svg class="sun" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+        </svg>
+        <svg class="moon" viewBox="0 0 24 24" fill="currentColor" style="display:none;">
+          <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+<div class="container">
+    <a href="integrationS2.html" class="back-btn">← EXIT LESSON</a>
+
+    <header>
+        <div class="label">FINAL MODULE</div>
+        <h1>PHP: Server-Side Power</h1>
+        <p style="font-size: 1.2rem; color: var(--text-dim);">Mastering Dynamic Web Logic & Database Integration</p>
+    </header>
+
+    <div class="grid">
+        <div class="card">
+            <h2>1. Variables & Data</h2>
+            <p>In PHP, variables start with the <code>$</code> sign. Unlike other languages, you don't need a command to declare them; they are created when you assign a value.</p>
+            <div class="code-block">
+                <span class="var">$name</span> = <span class="string">"Sherif"</span>;<br>
+                <span class="var">$age</span> = <span class="keyword">25</span>;
+            </div>
+            <h3>Core Rules:</h3>
+            <ul style="font-size: 0.9rem; color: var(--text-dim);">
+                <li>Must start with a letter or underscore.</li>
+                <li>Cannot start with a number.</li>
+                <li><strong>Case-Sensitive:</strong> <code>$age</code> and <code>$AGE</code> are different.</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>2. GET vs POST</h2>
+            <p>These are superglobals used to collect form data.</p>
+            <div class="code-block">
+                <span class="comment">// Visible in URL (Limited)</span><br>
+                <span class="keyword">$_GET</span>[<span class="string">'user'</span>];<br><br>
+                <span class="comment">// Invisible/Secure (Unlimited)</span><br>
+                <span class="keyword">$_POST</span>[<span class="string">'pass'</span>];
+            </div>
+            <p style="font-size: 0.9rem;">Use <strong>POST</strong> for sensitive data like passwords!</p>
+        </div>
+
+        <div class="card">
+            <h2>3. Arrays & Logic</h2>
+            <p>PHP handles collections of data using <strong>Indexed Arrays</strong> and <strong>Associative Arrays</strong> (key-value pairs).</p>
+            <div class="code-block">
+                <span class="comment">// Associative Array</span><br>
+                <span class="var">$prices</span> = [<span class="string">"Apple"</span> => <span class="string">"2.00"</span>];
+            </div>
+            <p>Control the flow using <code>if/else</code> statements and <code>loops</code> to repeat actions.</p>
+        </div>
+
+        <div class="card full-width">
+            <h2>4. Database Integration (MySQL)</h2>
+            <p>PHP connects your website to a database to store and retrieve records. You can use <strong>MySQLi</strong> or <strong>PDO</strong>.</p>
+            
+            <div class="code-block">
+                <span class="var">$sql</span> = <span class="string">"INSERT INTO MyGuests (firstname, lastname) 
+                VALUES ('John', 'Doe')"</span>;<br>
+                <span class="keyword">if</span> (mysqli_query(<span class="var">$conn</span>, <span class="var">$sql</span>)) { <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">echo</span> <span class="string">"New record created successfully"</span>; <br>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="practical-zone">
+        <h2 style="text-align: center; font-size: 2.2rem; margin-bottom: 40px;">🚀 Student Practice Lab</h2>
+        
+        <div class="challenge-card">
+            <div class="badge">TASK 01</div>
+            <h3>"My First PHP"</h3>
+            <p>Create a standalone PHP file that outputs a greeting on a blank page. This tests your environment setup.</p>
+            <div class="code-block">
+                <span class="tag">&lt;?php</span><br>
+                <span class="keyword">echo</span> <span class="string">"<h1>My First PHP!</h1>"</span>;<br>
+                <span class="tag">?&gt;</span>
+            </div>
+        </div>
+
+        <div class="challenge-card">
+            <div class="badge">TASK 02</div>
+            <h3>PHP inside HTML</h3>
+            <p>Create a standard HTML5 template and use PHP to dynamically output the current date or a variable value inside a paragraph.</p>
+            <div class="code-block">
+                <span class="tag">&lt;body&gt;</span><br>
+                &nbsp;&nbsp;<span class="tag">&lt;p&gt;</span>Today is <span class="tag">&lt;?php</span> <span class="keyword">echo</span> <span class="keyword">date</span>(<span class="string">"Y-m-d"</span>); <span class="tag">?&gt;</span><span class="tag">&lt;/p&gt;</span><br>
+                <span class="tag">&lt;/body&gt;</span>
+            </div>
+        </div>
+
+        <div class="challenge-card">
+            <div class="badge">TASK 03</div>
+            <h3>The Form Handler</h3>
+            <p>Design an HTML form with a text input. Create a second file (<code>action.php</code>) that uses <code>$_POST</code> to display what the user typed.</p>
+            
+            <div class="code-block">
+                <span class="comment">&lt;!-- Form in index.html --&gt;</span><br>
+                <span class="tag">&lt;form</span> <span class="attr">method</span>=<span class="val">"POST"</span> <span class="attr">action</span>=<span class="val">"action.php"</span><span class="tag">&gt;</span><br>
+                &nbsp;&nbsp;Name: <span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="val">"text"</span> <span class="attr">name</span>=<span class="val">"fname"</span><span class="tag">&gt;</span><br>
+                &nbsp;&nbsp;<span class="tag">&lt;button</span> <span class="attr">type</span>=<span class="val">"submit"</span><span class="tag">&gt;</span>Send<span class="tag">&lt;/button&gt;</span><br>
+                <span class="tag">&lt;/form&gt;</span>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p><strong>Integration Path Final Module</strong></p>
+        <p>Contact: sherrost@yahoo.com | Phone: 01501827070 - 01017776756</p>
+        <p>© 2024 Digital Marketing Extension - 1st Year</p>
+    </footer>
+</div>
+
+  <!-- Theme Toggle + Quiz Script -->
+  <script>
+    // Theme Toggle
+    const toggle = document.getElementById('themeToggle');
+    const sun   = document.querySelector('.sun');
+    const moon  = document.querySelector('.moon');
+    const html  = document.documentElement;
+
+    let theme = localStorage.getItem('theme') || 'dark';
+    html.setAttribute('data-theme', theme);
+    if (theme === 'light') {
+      sun.style.display = 'none';
+      moon.style.display = 'block';
+    }
+
+    toggle.addEventListener('click', () => {
+      theme = theme === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+      sun.style.display  = theme === 'dark' ? 'block' : 'none';
+      moon.style.display = theme === 'light' ? 'block' : 'none';
+    });
+
+    // Quiz logic
+    function checkQuiz() {
+      const inputs = document.querySelectorAll('.ex-input');
+      let correct = 0;
+
+      inputs.forEach(input => {
+        const val = input.value.trim().toLowerCase();
+        const answer = input.getAttribute('data-answer').toLowerCase();
+
+        if (val === answer) {
+          input.className = 'ex-input correct';
+          correct++;
+        } else {
+          input.className = 'ex-input wrong';
+        }
+      });
+
+      const msg = document.getElementById('result-msg');
+      if (correct === inputs.length) {
+        msg.style.color = 'var(--success)';
+        msg.textContent = 'Perfect! You’ve mastered all three CSS insertion methods.';
+      } else {
+        msg.style.color = 'var(--error)';
+        msg.textContent = 'Check your answers — especially the linking tag and cascading priority.';
+      }
+    }
+  </script>
+
+</body>
+</html>

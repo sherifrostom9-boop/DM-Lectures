@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 05 - Basics of Compression - Part 2</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="../../../../DrSherif.css" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="top-bar">
+        <a href="../../../../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <img src="../../../../logo.jpeg" alt="Logo" class="site-logo">
+            <h2>Digital Marketing</h2>
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="sun-icon" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <svg class="moon-icon" fill="currentColor" viewBox="0 0 24 24" style="display: none;">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+            </svg>
+        </button>
+    </nav>
+
+    <header class="hero">
+        <a href="informationrep.html" class="exit-link">← BACK TO SYLLABUS</a>
+        <div class="badge">LESSON 05</div>
+        <h1>Basics of Compression - Part 2</h1>
+        <p>Objectives, Types of Redundancy, Compression Ratio, Quality and Speed of Restitution, Dictionary-Based Methods</p>
+    </header>
+
+    <!-- Timeline Navigation -->
+    <nav class="timeline-nav">
+        <div class="timeline-line"></div>
+        
+        <div class="step-node active" onclick="showStep(0)"><div class="dot">1</div><div class="node-label">What is Resolution?</div></div>
+        <div class="step-node" onclick="showStep(1)"><div class="dot">2</div><div class="node-label">Monitor Size & PPI</div></div>
+        <div class="step-node" onclick="showStep(2)"><div class="dot">3</div><div class="node-label">Resolution Types</div></div>
+        <div class="step-node" onclick="showStep(3)"><div class="dot">4</div><div class="node-label">Data Packets</div></div>
+        <div class="step-node" onclick="showStep(4)"><div class="dot">5</div><div class="node-label">Packet Structure</div></div>
+        <div class="step-node" onclick="showStep(5)"><div class="dot">6</div><div class="node-label">Packet Switching</div></div>
+        <div class="step-node" onclick="showStep(6)"><div class="dot">7</div><div class="node-label">Adv vs Disadv</div></div>
+        <div class="step-node" onclick="showStep(7)"><div class="dot">8</div><div class="node-label">Transmission Types & USB</div></div>
+    </nav>
+
+    <!-- Step Contents -->
+    <div class="step-content active">
+        <h2>What is Resolution?</h2>
+        <div class="theory-box">
+            Resolution measures the number of <strong>pixels</strong> (picture elements) in an image or on a display.
+        </div>
+        <div class="highlight-box">
+            Higher resolution = more pixels = <strong>sharper</strong> and <strong>clearer</strong> image
+        </div>
+        <div class="theory-box">
+            Used for: monitors, cameras, TVs, printers, smartphones...
+        </div>
+    </div>
+
+    <div class="step-content">
+        <h2>Monitor Size & Pixel Density (PPI)</h2>
+        <div class="theory-box">
+            Same resolution on <strong>larger screen</strong> → pixels are spread out → image looks less sharp
+        </div>
+        <div class="theory-box">
+            <strong>PPI</strong> (pixels per inch) determines perceived sharpness:<br>
+            • Smaller screen + same resolution = higher PPI = sharper image<br>
+            • Larger screens need higher resolution to maintain quality
+        </div>
+    </div>
+
+    <div class="step-content">
+        <h2>Types of Resolution</h2>
+        <div class="theory-box">
+            <strong>1. Image resolution</strong><br>
+            Pixel density in the image file (PPI)
+        </div>
+        <div class="theory-box">
+            <strong>2. Screen resolution</strong><br>
+            Total pixels the display can show (e.g. 1920×1080 = Full HD)
+        </div>
+        <div class="highlight-box">
+            Common modern standards:<br>
+            • 1920×1080 → Full HD<br>
+            • 2560×1440 → 2K/QHD<br>
+            • 3840×2160 → 4K UHD
+        </div>
+    </div>
+
+    <div class="step-content">
+        <h2>Data Packets in Networks</h2>
+        <div class="theory-box">
+            Large data is broken into small <strong>packets</strong> (typically ~64 KiB) for transmission.
+        </div>
+        <div class="highlight-box">
+            Benefits of packetization:
+            • Packets can take different routes<br>
+            • More efficient use of network<br>
+            • Better handling of congestion/failures
+        </div>
+    </div>
+
+    <div class="step-content">
+        <h2>Packet Structure</h2>
+        <div class="theory-box">
+            Typical packet contains:
+            <ul class="theory-list">
+                <li><strong>Header</strong> — source/destination IP, sequence number, packet size...</li>
+                <li><strong>Payload</strong> — the actual data</li>
+                <li><strong>Trailer</strong> — error checking (CRC), end marker</li>
+            </ul>
+        </div>
+        <div class="highlight-box">
+            MAC addresses change at each hop<br>
+            IP addresses remain the same from start to finish
+        </div>
+    </div>
+
+    <div class="step-content">
+        <h2>Packet Switching</h2>
+        <div class="theory-box">
+            Modern internet uses <strong>packet switching</strong>:
+            • Each packet travels independently<br>
+            • Routers decide best path at each hop<br>
+            • Packets may arrive out of order → reassembled at destination
+        </div>
+    </div>
+
+    <div class="step-content">
+        <h2>Advantages vs Disadvantages</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Advantages</th>
+                    <th>Disadvantages</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>No dedicated line needed</td><td>Packets can arrive out of order</td></tr>
+                <tr><td>Very resilient (packets reroute around failures)</td><td>Reassembly delay at destination</td></tr>
+                <tr><td>Efficient use of bandwidth</td><td>Not ideal for real-time streaming (possible frame loss)</td></tr>
+                <tr><td>Supports different device speeds</td><td>Overhead from headers</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="step-content">
+        <h2>Transmission Types & USB</h2>
+        <div class="theory-box">
+            Main categories:
+            <ul class="theory-list">
+                <li><strong>Direction</strong>: Simplex / Half-duplex / Full-duplex</li>
+                <li><strong>Timing</strong>: Synchronous / Asynchronous</li>
+                <li><strong>Method</strong>: Serial / Parallel</li>
+            </ul>
+        </div>
+        <div class="highlight-box">
+            <strong>USB</strong> (most common today):
+            • Serial, full-duplex, asynchronous<br>
+            • Auto-detection & driver loading<br>
+            • Backward compatible<br>
+            • Max practical cable length ~5m
+        </div>
+    </div>
+
+    <footer>
+        <p>Contact: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="77041f120505180403370e161f18185914181a">[email&#160;protected]</a> | Tel: 01501827070 - 01017776756</p>
+        <p>Information Representation Course • Lesson 05</p>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        function showStep(index) {
+            document.querySelectorAll('.step-node').forEach((node, i) => {
+                node.classList.toggle('active', i === index);
+            });
+
+            document.querySelectorAll('.step-content').forEach((content, i) => {
+                content.classList.toggle('active', i === index);
+            });
+        }
+    </script>
+<script src="../../../../theme.js"></script>
+</body>
+</html>

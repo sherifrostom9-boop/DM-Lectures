@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Structure Query Language: The DBMS</title>
+    <link href="../../../../DrSherif.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+        /* Additional styles specific to this lecture */
+        .diagram {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            margin: 20px auto;
+            display: block;
+            box-shadow: var(--shadow);
+        }
+
+        .quiz-section {
+            background: var(--card-bg-alpha);
+            border: 1px solid var(--border-light);
+            border-radius: 16px;
+            padding: 30px;
+            margin-top: 40px;
+        }
+
+        .quiz-section h3 {
+            color: var(--primary-blue);
+            margin-top: 0;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            border-left: 4px solid var(--primary-blue);
+            padding-left: 15px;
+        }
+
+        .quiz-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .quiz-question h4 {
+            color: var(--text-main);
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .quiz-question ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .quiz-question li {
+            background: rgba(59, 130, 246, 0.08);
+            padding: 10px 15px;
+            margin: 8px 0;
+            border-radius: 8px;
+            color: var(--text-dim);
+            border-left: 3px solid var(--primary-blue);
+        }
+
+        .quiz-question li:hover {
+            background: rgba(59, 130, 246, 0.15);
+        }
+
+        .show-answer-btn {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .show-answer-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+        }
+
+        .quiz-answer {
+            display: none;
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--accent-green);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-weight: 600;
+            border-left: 4px solid var(--accent-green);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .quiz-section {
+                padding: 20px;
+            }
+
+            .quiz-question li {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+    <script>
+        mermaid.initialize({startOnLoad: true});
+    </script>
+</head>
+<body>
+    <nav class="top-bar">
+        <a href="../../../../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <img src="../../../../logo.jpeg" alt="Logo" class="site-logo">
+            <h2>Digital Marketing</h2>
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="sun-icon" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <svg class="moon-icon" fill="currentColor" viewBox="0 0 24 24" style="display: none;">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+            </svg>
+        </button>
+    </nav>
+
+    <main>
+        <div class="container">
+            <a href="InformationSystem.html" class="back-link">← EXIT LESSON</a>
+
+            <header>
+                <div class="syllabus-label">Lecture 3</div>
+                <h1>Structure Query Language</h1>
+                <p class="subtitle">The Database Management System (DBMS)</p>
+            </header>
+
+            <p>SQL is the programming language provided by a DBMS to support all of the operations associated with a relational database.</p>
+
+            <div class="timeline-wrapper">
+                <div class="lesson-item">
+                    <div class="indicator purple-glow"></div>
+                    <div class="card">
+                        <div class="content-area">
+                            <h3 class="css-title"><b>2. Data Manipulation Language (DML) - INSERT</b></h3>
+                            <p>Data Manipulation Language (DML) is used for:</p>
+                            <ul>
+                                <li>The insertion of data into tables.</li>
+                                <li>The modification or removal of data.</li>
+                                <li>The reading of data stored in the database.</li>
+                            </ul>
+                            <div style="text-align: center;">
+                                <img src="Picture1.jpg" alt="SQL Commands Tree" class="diagram">
+                            </div>
+
+                            <h4><b>Inserting Data:</b></h4>
+                            <p>There are two ways to populate a table:</p>
+                            
+                            <p><b>1. Simple Method (if order is known):</b></p>
+                            <pre><code>INSERT INTO Band ('ComputerKidz', 5);</code></pre>
+                            
+                            <p><b>2. Safer Method (defining attributes first):</b></p>
+                            <pre><code>INSERT INTO Band-Booking (BandName, BookingID)
+VALUES ('ComputerKidz', '2016/023');</code></pre>
+                            
+                            <p><i>Note: A separate INSERT command has to be used for each tuple (row) in the table.</i></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-item">
+                    <div class="indicator green-glow"></div>
+                    <div class="card">
+                        <div class="content-area">
+                            <h3 class="standard-title"><b>3. DML - The SELECT Query</b></h3>
+                            <p>The main use of DML is to obtain data using a query. A query always starts with the <code>SELECT</code> command.</p>
+                            <p>The SELECT statement is used to select data from a database.</p>
+                            
+                            <h4><b>Example</b></h4>
+                            <p>Get your own SQL Server</p>
+                            <p>Return data from the Customers table:</p>
+                            <pre><code>SELECT CustomerName, City FROM Customers;</code></pre>
+
+                            <h4><b>Syntax</b></h4>
+                            <pre><code>SELECT column1, column2, ...
+FROM table_name;</code></pre>
+                            <p>Here, column1, column2, ... are the field names of the table you want to select data from.</p>
+                            <p>The table_name represents the name of the table you want to select data from.</p>
+
+                            <h4><b>Demo Database</b></h4>
+                            <p>Below is a selection from the Customers table used in the examples:</p>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>CustomerID</th>
+                                        <th>CustomerName</th>
+                                        <th>ContactName</th>
+                                        <th>Address</th>
+                                        <th>City</th>
+                                        <th>PostalCode</th>
+                                        <th>Country</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Alfreds Futterkiste</td>
+                                        <td>Maria Anders</td>
+                                        <td>Obere Str. 57</td>
+                                        <td>Berlin</td>
+                                        <td>12209</td>
+                                        <td>Germany</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Ana Trujillo Emparedados y helados</td>
+                                        <td>Ana Trujillo</td>
+                                        <td>Avda. de la Constitución 2222</td>
+                                        <td>México D.F.</td>
+                                        <td>05021</td>
+                                        <td>Mexico</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Antonio Moreno Taquería</td>
+                                        <td>Antonio Moreno</td>
+                                        <td>Mataderos 2312</td>
+                                        <td>México D.F.</td>
+                                        <td>05023</td>
+                                        <td>Mexico</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <h4><b>Select ALL columns</b></h4>
+                            <p>If you want to return all columns, without specifying every column name, you can use the SELECT * syntax:</p>
+                            <p>Example</p>
+                            <p>Return all the columns from the Customers table:</p>
+                            <pre><code>SELECT * FROM Customers;</code></pre>
+
+                            <h4><b>Sorting and Grouping:</b></h4>
+                            <p>Control the presentation of output using <code>ORDER BY</code> and <code>GROUP BY</code>.</p>
+                            <pre><code>/* Sort alphabetically */
+SELECT BandName, NumberOfMembers
+FROM Band
+ORDER BY BandName;
+
+/* Prevent duplicates in output */
+SELECT BandName
+FROM Band-Booking
+GROUP BY BandName;</code></pre>
+
+                            <h4><b>Filtering Data (WHERE Clause):</b></h4>
+                            <div style="text-align: center;">
+                                <img src="Picture4.png" alt="SQL Select Query Example" class="diagram">
+                            </div>
+                            <pre><code>SELECT BandName
+FROM Band-Booking
+WHERE Headlining = 'Y'
+GROUP BY BandName;</code></pre>
+
+                            <div class="quiz-section">
+                                <h3>Test Your Knowledge</h3>
+                                <div class="quiz-item">
+                                    <div class="quiz-question">
+                                        <h4>What is the purpose of the SQL SELECT statement?</h4>
+                                        <ul>
+                                            <li>To insert data into a database</li>
+                                            <li>To select data from a database</li>
+                                            <li>To delete data from a database</li>
+                                            <li>To update data in a database</li>
+                                        </ul>
+                                    </div>
+                                    <button class="show-answer-btn" type="button" onclick="this.nextElementSibling.style.display='block'; this.style.display='none';">Show Answer</button>
+                                    <p class="quiz-answer">Answer: B</p>
+                                </div>
+                                <div class="quiz-item">
+                                    <div class="quiz-question">
+                                        <h4>Insert the missing statement to get all the columns from the Customers table.</h4>
+                                        <ul>
+                                            <li>* FROM Customers;</li>
+                                        </ul>
+                                    </div>
+                                    <button class="show-answer-btn" type="button" onclick="this.nextElementSibling.style.display='block'; this.style.display='none';">Show Answer</button>
+                                    <p class="quiz-answer">Answer: SELECT * FROM Customers;</p>
+                                </div>
+                                <div class="quiz-item">
+                                    <div class="quiz-question">
+                                        <h4>Write a statement that will select the City column from the Customers table.</h4>
+                                    </div>
+                                    <button class="show-answer-btn" type="button" onclick="this.nextElementSibling.style.display='block'; this.style.display='none';">Show Answer</button>
+                                    <p class="quiz-answer">Answer: SELECT City FROM Customers;</p>
+                                </div>
+                                <div class="quiz-item">
+                                    <div class="quiz-question">
+                                        <h4>How would you select the 'CustomerName' and 'City' columns from a table named 'Customers'?</h4>
+                                        <ul>
+                                            <li>SELECT CustomerName City FROM Customers;</li>
+                                            <li>SELECT * FROM Customers;</li>
+                                            <li>SELECT CustomerName, City FROM Customers;</li>
+                                            <li>SELECT CustomerName AND City FROM Customers;</li>
+                                        </ul>
+                                    </div>
+                                    <button class="show-answer-btn" type="button" onclick="this.nextElementSibling.style.display='block'; this.style.display='none';">Show Answer</button>
+                                    <p class="quiz-answer">Answer: C</p>
+                                </div>
+                                <div class="quiz-item">
+                                    <div class="quiz-question">
+                                        <h4>Drag and drop the correct syntax to select all columns from a table named 'Customers'</h4>
+                                    </div>
+                                    <button class="show-answer-btn" type="button" onclick="this.nextElementSibling.style.display='block'; this.style.display='none';">Show Answer</button>
+                                    <p class="quiz-answer">Answer: SELECT * FROM Customers;</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../../../../theme.js"></script>
+</body>
+</html>

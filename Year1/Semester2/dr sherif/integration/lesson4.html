@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Topic 4 – Three Ways to Insert CSS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="../../../../DrSherif.css" rel="stylesheet">
+
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="top-bar">
+    <a href="../../../../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+        <img src="../../../../logo.jpeg" alt="Logo" class="site-logo">
+        <h2>Digital Marketing</h2>
+    </a>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <svg class="sun-icon" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+        </svg>
+        <svg class="moon-icon" fill="currentColor" viewBox="0 0 24 24" style="display: none;">
+          <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+        </svg>
+    </button>
+</nav>
+
+  <main>
+    <a href="integrationS2.html" class="back-link">← EXIT LESSON</a>
+
+    <header>
+      <div class="label">Lesson 04</div>
+      <h1>Three Ways to Insert CSS</h1>
+      <div class="subtitle">Mastering External, Internal, and Inline styles</div>
+    </header>
+
+    <div class="section-grid">
+
+      <div class="card">
+        <h2>1. External CSS</h2>
+        <p>Best for styling an entire website — change one file to update everything.</p>
+        <ul>
+          <li>Saved with <code>.css</code> extension</li>
+          <li>No HTML tags allowed inside</li>
+          <li>Linked in the <code>&lt;head&gt;</code> using <code>&lt;link&gt;</code></li>
+        </ul>
+        <div class="code-block">
+<span class="tag">&lt;link</span> <span class="attr">rel</span>=<span class="val">"stylesheet"</span> <span class="attr">href</span>=<span class="val">"mystyle.css"</span><span class="tag">&gt;</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>2. Internal CSS</h2>
+        <p>Used when a single page needs unique styling.</p>
+        <ul>
+          <li>Defined inside <code>&lt;style&gt;</code> element</li>
+          <li>Placed in the <code>&lt;head&gt;</code> section</li>
+        </ul>
+        <div class="code-block">
+<span class="tag">&lt;head&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;style&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="selector">body</span> { <span class="property">background-color</span>: <span class="value">linen</span>; }<br>
+&nbsp;&nbsp;<span class="tag">&lt;/style&gt;</span><br>
+<span class="tag">&lt;/head&gt;</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>3. Inline CSS</h2>
+        <p>Applies unique style to a single element directly.</p>
+        <ul>
+          <li>Added via the <code>style</code> attribute</li>
+          <li>Highest priority (overrides others)</li>
+        </ul>
+        <div class="code-block">
+<span class="tag">&lt;h1</span> <span class="attr">style</span>=<span class="val">"color:blue; text-align:center;"</span><span class="tag">&gt;</span>This is Blue<span class="tag">&lt;/h1&gt;</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Cascading Order & Priority</h2>
+        <p>When styles conflict, CSS follows this priority (highest to lowest):</p>
+        <ol>
+          <li><strong>Inline style</strong> (highest priority)</li>
+          <li><strong>Internal</strong> or <strong>External</strong> (whichever is read last)</li>
+          <li><strong>Browser default</strong> (lowest)</li>
+        </ol>
+      </div>
+
+      <div class="card full-width">
+        <h2>Important Syntax Note</h2>
+        <div class="warning-box">
+          <strong>Critical:</strong> Never put a space between the value and its unit!<br><br>
+          ❌ Wrong: <code>margin-left: 20 px;</code><br>
+          ✅ Correct: <code>margin-left: 20px;</code>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="exercise-card">
+      <h2>🚀 Syntax & Insertion Lab</h2>
+      <p>Complete the syntax to insert CSS correctly.</p>
+
+      <div id="quiz" style="margin-top: 1.8rem;">
+        <p><strong>1. Complete the tag to link an external file named "style.css":</strong></p>
+        <div class="code-block">
+          &lt;link rel="stylesheet" <input type="text" class="ex-input" data-answer="href" size="5">="style.css"&gt;
+        </div>
+
+        <p><strong>2. Which element is used to write Internal CSS?</strong></p>
+        <div class="code-block">
+          &lt;head&gt;<br>
+          &nbsp;&nbsp;&lt;<input type="text" class="ex-input" data-answer="style" size="6">&gt;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;p { color: red; }<br>
+          &nbsp;&nbsp;&lt;/<input type="text" class="ex-input" data-answer="style" size="6">&gt;<br>
+          &lt;/head&gt;
+        </div>
+
+        <p><strong>3. Correct the space error in this declaration:</strong></p>
+        <div class="code-block">
+          p { margin-right: 50 <input type="text" class="ex-input" data-answer="px" size="3"> ; }
+        </div>
+
+        <p><strong>4. If an Inline style and an External style conflict, which one wins?</strong></p>
+        <div class="code-block">
+          <input type="text" class="ex-input" data-answer="inline" placeholder="Answer" size="10">
+        </div>
+
+        <button class="btn-check" onclick="checkQuiz()">Check My Answers</button>
+        <p id="result-msg"></p>
+      </div>
+    </div>
+
+    <footer>
+      <p>Integration Course • Topic 4: Three Ways to Insert CSS</p>
+      <p>Contact: sherrost@yahoo.com | Tel: 01501827070</p>
+    </footer>
+  </main>
+
+  <!-- Theme Toggle + Quiz Script -->
+  <script>
+
+    // Quiz logic
+    function checkQuiz() {
+      const inputs = document.querySelectorAll('.ex-input');
+      let correct = 0;
+
+      inputs.forEach(input => {
+        const val = input.value.trim().toLowerCase();
+        const answer = input.getAttribute('data-answer').toLowerCase();
+
+        if (val === answer) {
+          input.className = 'ex-input correct';
+          correct++;
+        } else {
+          input.className = 'ex-input wrong';
+        }
+      });
+
+      const msg = document.getElementById('result-msg');
+      if (correct === inputs.length) {
+        msg.style.color = 'var(--success)';
+        msg.textContent = 'Perfect! You’ve mastered all three CSS insertion methods.';
+      } else {
+        msg.style.color = 'var(--error)';
+        msg.textContent = 'Check your answers — especially the linking tag and cascading priority.';
+      }
+    }
+  </script>
+  <script src="../../../../theme.js"></script>
+
+</body>
+</html>

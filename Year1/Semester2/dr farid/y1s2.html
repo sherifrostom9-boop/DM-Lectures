@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Year 1 - Digital Marketing</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+:root {
+    --bg-color: #030712;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --text-main: #ffffff;
+    --text-dim: #94a3b8;
+    --accent-blue: #3b82f6;
+    --accent-purple: #8b5cf6;
+    --accent-cyan: #06b6d4;
+    --border: rgba(255, 255, 255, 0.1);
+    --border-light: rgba(255, 255, 255, 0.1);
+    --primary-blue: #3b82f6;
+    --bg-gradient-1: #1e1b4b;
+    --bg-gradient-2: #030712;
+    --hero-gradient: rgba(139, 92, 246, 0.1);
+}
+
+[data-theme="light"] {
+    --bg-color: #f8fafc;
+    --card-bg: #ffffff;
+    --text-main: #0f172a;
+    --text-dim: #64748b;
+    --accent-blue: #3b82f6;
+    --accent-purple: #8b5cf6;
+    --accent-cyan: #06b6d4;
+    --border: rgba(15, 23, 42, 0.12);
+    --border-light: rgba(15, 23, 42, 0.12);
+    --primary-blue: #3b82f6;
+    --bg-gradient-1: #e0e7ff;
+    --bg-gradient-2: #f8fafc;
+    --hero-gradient: rgba(139, 92, 246, 0.05);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background: radial-gradient(circle at top right, var(--bg-gradient-1), var(--bg-gradient-2));
+    color: var(--text-main);
+    min-height: 100vh;
+    overflow-x: hidden;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* ========== NAVIGATION ========== */
+.nav {
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid var(--border-light);
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 5%;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+    color: var(--text-main);
+    font-weight: 700;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.logo img {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    object-fit: cover;
+    border: 2px solid var(--accent-blue);
+}
+
+.theme-toggle {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    padding: 8px 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-main);
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.theme-toggle:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+.theme-toggle svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* ========== HERO ========== */
+.hero {
+    text-align: center;
+    padding: 80px 5% 40px;
+    background: linear-gradient(to bottom, var(--hero-gradient), transparent);
+}
+
+.hero h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    background: linear-gradient(to right, var(--text-main), var(--accent-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero p {
+    color: var(--text-dim);
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto 30px;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: var(--text-dim);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.back-link:hover { 
+    color: var(--text-main);
+    transform: translateX(-5px); 
+}
+
+/* ========== MODULE GRID ========== */
+.year1-container {
+    padding: 20px 5% 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.course-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.course-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.course-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--accent-purple);
+    box-shadow: 0 20px 40px rgba(139, 92, 246, 0.2);
+}
+
+[data-theme="light"] .course-card {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] .course-card:hover {
+    background: rgba(139, 92, 246, 0.05);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 0 20px rgba(139, 92, 246, 0.2);
+}
+
+.card-image {
+    height: 180px;
+    overflow: hidden;
+    background: var(--bg-gradient-1);
+}
+
+.card-image img {
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.course-card:hover .card-image img { 
+    transform: scale(1.1); 
+}
+
+.card-content { 
+    padding: 25px; 
+}
+
+.module-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    background: rgba(139, 92, 246, 0.15);
+    color: var(--accent-purple);
+    font-size: 0.75rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+[data-theme="light"] .module-tag {
+    background: rgba(139, 92, 246, 0.1);
+}
+
+.card-content h3 { 
+    font-size: 1.5rem; 
+    margin-bottom: 10px; 
+    color: var(--text-main);
+}
+
+.card-content p { 
+    color: var(--text-dim); 
+    font-size: 0.95rem; 
+    line-height: 1.6; 
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+    .hero h1 { 
+        font-size: 2.8rem; 
+    }
+    
+    .course-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .theme-toggle span {
+        display: none;
+    }
+}
+    </style>
+</head>
+<body>
+
+    <nav class="nav">
+        <div class="nav-container">
+          <a href="../../../index.html" class="logo">
+            <img src="../../../logo.jpeg" alt="Logo">
+            Digital Marketing
+          </a>
+    
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="sun" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <svg class="moon" viewBox="0 0 24 24" fill="currentColor" style="display:none;">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+            </svg>
+          </button>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <a href="../../year1Farid.html" class="back-link">← BACK TO CURRICULUM</a>
+        <h1>Year 1</h1>
+        <p>Master the blueprint of advanced ecosystems. Architecture, scaling, and professional data management.</p>
+    </header>
+
+    <section class="year1-container">
+        <div class="course-grid">
+            
+            <a href="design a product/designaproduct.html" class="course-card">
+                <div class="card-image">
+                    <img src="product.jpeg" alt="Design a Product or Service">
+                </div>
+                <div class="card-content">
+                    <span class="module-tag">Module 01</span>
+                    <h3>Design a Product or Service and its Communication</h3>
+                    <p>Information Representation covers binary systems, logic gates, and statistical analysis. It explores how digital data is processed, analyzed, and secured</p>
+                </div>
+            </a>
+
+            <a href="Personal and professional project.html" class="course-card">
+                <div class="card-image">
+                    <img src="personal.jpeg" alt="Personal & Professional Project">
+                </div>
+                <div class="card-content">
+                    <span class="module-tag">Module 02</span>
+                    <h3>Personal & Professional Project</h3>
+                    <p>Information Representation covers binary systems, logic gates, and statistical analysis. It explores how digital data is processed, analyzed, and secured</p>
+                </div>
+            </a>
+    
+        </div>
+    </section>
+
+    <script>
+        // Apply theme IMMEDIATELY to prevent flash
+        (function() {
+          const savedTheme = localStorage.getItem('theme') || 'dark';
+          document.documentElement.setAttribute('data-theme', savedTheme);
+        })();
+    </script>
+      
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const sun = document.querySelector('.sun');
+        const moon = document.querySelector('.moon');
+        const html = document.documentElement;
+      
+        // Check for saved theme preference or default to 'dark'
+        let theme = localStorage.getItem('theme') || 'dark';
+        html.setAttribute('data-theme', theme);
+        
+        // Update icon visibility based on current theme
+        if (theme === 'light') {
+          sun.style.display = 'none';
+          moon.style.display = 'block';
+        }
+      
+        // Theme toggle click handler
+        themeToggle.addEventListener('click', function() {
+          theme = theme === 'dark' ? 'light' : 'dark';
+          html.setAttribute('data-theme', theme);
+          localStorage.setItem('theme', theme);
+          
+          // Toggle icons
+          sun.style.display = theme === 'dark' ? 'block' : 'none';
+          moon.style.display = theme === 'light' ? 'block' : 'none';
+        });
+    </script>
+    
+</body>
+</html>

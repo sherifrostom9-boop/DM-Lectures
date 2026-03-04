@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Topic 3 – CSS Syntax & Selectors</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="../../../../DrSherif.css" rel="stylesheet">
+
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="top-bar">
+    <a href="../../../../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+        <img src="../../../../logo.jpeg" alt="Logo" class="site-logo">
+        <h2>Digital Marketing</h2>
+    </a>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <svg class="sun-icon" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+        </svg>
+        <svg class="moon-icon" fill="currentColor" viewBox="0 0 24 24" style="display: none;">
+          <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+        </svg>
+    </button>
+</nav>
+
+  <main>
+    <a href="integrationS2.html" class="back-link">← EXIT LESSON</a>
+
+    <header>
+      <div class="label">Lesson 03</div>
+      <h1>CSS Syntax & Selectors</h1>
+      <div class="subtitle">Breaking down how CSS rules are constructed and applied</div>
+    </header>
+
+    <div class="section-grid">
+
+      <div class="card full-width">
+        <h2>The CSS Rule-Set</h2>
+        <p>A complete CSS rule consists of a <strong>selector</strong> followed by a <strong>declaration block</strong>.</p>
+        <div class="code-block">
+<span class="selector-text">h1</span> {<br>
+&nbsp;&nbsp;<span class="property-text">color</span>: <span class="value-text">blue</span>;<br>
+&nbsp;&nbsp;<span class="property-text">font-size</span>: <span class="value-text">16px</span>;<br>
+}
+        </div>
+        <ul style="margin-top: 1rem;">
+          <li><strong>Selector</strong> — targets which element(s) to style</li>
+          <li><strong>Declaration block</strong> — enclosed in curly braces { }</li>
+          <li><strong>Declaration</strong> — property: value; pairs separated by semicolons</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>ID Selector (#)</h2>
+        <p>Selects a unique element using its <code>id</code> attribute.</p>
+        <ul>
+          <li>ID must be unique per page</li>
+          <li>Use <strong>#</strong> followed by the ID name</li>
+          <li>Cannot start with a number</li>
+        </ul>
+        <div class="code-block">
+<span class="selector-text">#main-title</span> { <span class="property-text">font-weight</span>: <span class="value-text">bold</span>; }
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Class Selector (.)</h2>
+        <p>Selects elements that have a specific <code>class</code> attribute.</p>
+        <ul>
+          <li>Reusable across multiple elements</li>
+          <li>Use <strong>.</strong> followed by the class name</li>
+          <li>Cannot start with a number</li>
+        </ul>
+        <div class="code-block">
+<span class="selector-text">.highlight</span> { <span class="property-text">background</span>: <span class="value-text">yellow</span>; }
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Universal Selector (*)</h2>
+        <p>Selects <strong>every</strong> element on the page.</p>
+        <div class="code-block">
+<span class="selector-text">*</span> { <span class="property-text">margin</span>: <span class="value-text">0</span>; <span class="property-text">padding</span>: <span class="value-text">0</span>; }
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Grouping Selector</h2>
+        <p>Apply the same declarations to multiple selectors by separating them with commas.</p>
+        <div class="code-block">
+<span class="selector-text">h1, h2, .intro, #hero</span> {<br>
+&nbsp;&nbsp;<span class="property-text">text-align</span>: <span class="value-text">center</span>;<br>
+}
+        </div>
+      </div>
+
+    </div>
+
+    <div class="exercise-card">
+      <h2>🚀 Syntax Lab</h2>
+      <p>Complete the CSS syntax correctly for each rule.</p>
+
+      <div id="quiz" style="margin-top: 1.8rem;">
+        <p><strong>1. Select the element with id="main-title":</strong></p>
+        <div class="code-block">
+          <input type="text" class="ex-input" data-answer="#main-title" size="12"> { color: pink; }
+        </div>
+
+        <p><strong>2. Select all elements with class "bold-text":</strong></p>
+        <div class="code-block">
+          <input type="text" class="ex-input" data-answer=".bold-text" size="10"> { font-weight: bold; }
+        </div>
+
+        <p><strong>3. Complete the declaration (property and value):</strong></p>
+        <div class="code-block">
+          h1 { <input type="text" class="ex-input" data-answer="color" size="6"> : <input type="text" class="ex-input" data-answer="green" size="6"> ; }
+        </div>
+
+        <p><strong>4. Group h1 and h2 selectors:</strong></p>
+        <div class="code-block">
+          h1 <input type="text" class="ex-input" data-answer="," size="2"> h2 { text-decoration: underline; }
+        </div>
+
+        <button class="btn-check" onclick="checkQuiz()">Verify Syntax</button>
+        <p id="result-msg"></p>
+      </div>
+    </div>
+
+    <footer>
+      <p>Integration Course • Topic 3: CSS Syntax & Selectors</p>
+      <p>Contact: sherrost@yahoo.com | Tel: 01501827070</p>
+    </footer>
+  </main>
+
+  <!-- Theme Toggle + Quiz Script -->
+  <script>
+    // Quiz logic
+    function checkQuiz() {
+      const inputs = document.querySelectorAll('.ex-input');
+      let correct = 0;
+
+      inputs.forEach(input => {
+        const val = input.value.trim();
+        const answer = input.getAttribute('data-answer');
+
+        if (val === answer) {
+          input.className = 'ex-input correct';
+          correct++;
+        } else {
+          input.className = 'ex-input wrong';
+        }
+      });
+
+      const msg = document.getElementById('result-msg');
+      if (correct === inputs.length) {
+        msg.style.color = 'var(--success)';
+        msg.textContent = 'Perfect! Your syntax is spot on.';
+      } else {
+        msg.style.color = 'var(--error)';
+        msg.textContent = 'Check your symbols — # for ID, . for class, , for grouping.';
+      }
+    }
+  </script>
+<script src="../../../../theme.js"></script>
+</body>
+</html>

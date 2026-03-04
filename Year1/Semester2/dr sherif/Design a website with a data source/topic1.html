@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Topic 1 - Data Modeling</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="../../../../DrSherif.css" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="top-bar">
+        <a href="../../../../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <img src="../../../../logo.jpeg" alt="Logo" class="site-logo">
+            <h2>Digital Marketing</h2>
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="sun-icon" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <svg class="moon-icon" fill="currentColor" viewBox="0 0 24 24" style="display: none;">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+            </svg>
+        </button>
+    </nav>
+
+    <header class="hero">
+        <a href="design a website.html" class="exit-link">← EXIT LESSON</a>
+        <div class="badge">TOPIC 01</div>
+        <h1>Data Modeling</h1>
+        <p>Creating blueprints for data so it's accurate, scalable, and easy to query</p>
+    </header>
+
+    <!-- Timeline Navigation -->
+    <nav class="timeline-nav">
+        <div class="timeline-line"></div>
+        <div class="step-node active" onclick="showStep(0)"><div class="dot">1</div><div class="node-label">3 Levels</div></div>
+        <div class="step-node" onclick="showStep(1)"><div class="dot">2</div><div class="node-label">Building Blocks</div></div>
+        <div class="step-node" onclick="showStep(2)"><div class="dot">3</div><div class="node-label">Normalization</div></div>
+        <div class="step-node" onclick="showStep(3)"><div class="dot">4</div><div class="node-label">Implementation</div></div>
+        <div class="step-node" onclick="showStep(4)"><div class="dot">5</div><div class="node-label">Querying</div></div>
+        <div class="step-node" onclick="showStep(5)"><div class="dot">6</div><div class="node-label">Exercise</div></div>
+    </nav>
+
+    <!-- All content steps -->
+    <div class="step-content active">
+        <h2>The Three Levels of Modeling</h2>
+        <div class="theory-box">
+            Data modeling occurs at three distinct levels, each serving a specific purpose in the development process. Understanding these levels helps bridge the gap between business requirements and technical implementation.
+        </div>
+        
+        <div class="section-grid">
+            <div class="card">
+                <h3>Conceptual</h3>
+                <p><strong>Duration:</strong> 10 minutes</p>
+                <p>High-level business view. No technical jargon. Just "What things do we care about?"</p>
+                <p><strong>Example:</strong> Customers, Orders, Products</p>
+            </div>
+            <div class="card">
+                <h3>Logical</h3>
+                <p><strong>Duration:</strong> 15 minutes</p>
+                <p>Defining the structure. We add attributes (Name, Date) and define relationships.</p>
+                <p><strong>Example:</strong> Customer has Name, Email; Order has Date, Total</p>
+            </div>
+            <div class="card">
+                <h3>Physical</h3>
+                <p><strong>Duration:</strong> 15 minutes</p>
+                <p>The actual database implementation. We choose data types (INT, VARCHAR) and indexes.</p>
+                <p><strong>Example:</strong> VARCHAR(50), DECIMAL(10,2)</p>
+            </div>
+        </div>
+
+        <div class="highlight-box">
+            <strong>Integration Phase:</strong> Total time for this lesson is approximately 1.5 hours
+        </div>
+    </div>
+
+    <div class="step-content">
+        <h2>The Core Building Blocks</h2>
+        <div class="theory-box">
+            Every data model is constructed using three fundamental components. Think of these as the grammar of database design.
+        </div>
+
+        <ul class="details-list">
+            <li><strong>Entities:</strong> The "nouns" - objects or things we want to track (User, Product, Order)</li>
+            <li><strong>Attributes:</strong> The "adjectives" - properties that describe entities (Email, Price, Date)</li>
+            <li><strong>Relationships:</strong> The "verbs" - connections between entities (User buys Product, Order contains Product)</li>
+        </ul>
+
+        <h3>Common Relationship Types</h3>
+        <div class="section-grid">
+            <div class="card">
+                <h3>1:1 (One-to-One)</h3>
+                <p>Each record in Entity A relates to exactly one record in Entity B</p>
+                <p><strong>Example:</strong> Person ↔ Passport</p>
+            </div>
+            <div class="card">
+                <h3>1:N (One-to-Many)</h3>
+                <p>One record in Entity A relates to many records in Entity B</p>
+                <p><strong>Example:</strong> Mother → Children</p>
+            </div>
+            <div class="card">
+                <h3>M:N (Many-to-Many)</h3>
+                <p>Many records in Entity A relate to many records in Entity B</p>
+                <p><strong>Example:</strong> Students ↔ Classes<br><em>Requires a junction table</em></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="step-content">
+        <h2>Normalization: The "No Redundancy" Rule</h2>
+        <div class="theory-box">
+            Normalization is the process of organizing data to reduce redundancy and improve data integrity. The <strong>Golden Rule:</strong> Every non-key attribute must provide a fact about the key, the whole key, and nothing but the key.
+        </div>
+
+        <h3>The Normal Forms</h3>
+        <ul class="details-list">
+            <li><strong>1st Normal Form (1NF):</strong> No multi-valued attributes - don't put three phone numbers in one cell. Each cell should contain only a single value.</li>
+            <li><strong>2nd Normal Form (2NF):</strong> No partial dependencies - everything in the table must depend on the entire primary key, not just part of it.</li>
+            <li><strong>3rd Normal Form (3NF):</strong> No transitive dependencies - don't store "City" if it depends on "Zip Code" instead of the "User_ID". Non-key attributes should depend only on the primary key.</li>
+        </ul>
+
+        <div class="highlight-box">
+            <strong>Why Normalize?</strong>
+            <ul style="margin-top: 12px;">
+                <li>Eliminates data redundancy</li>
+                <li>Ensures data consistency</li>
+                <li>Makes updates and maintenance easier</li>
+                <li>Reduces storage requirements</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="step-content">
+        <h2>Physical Implementation (Code & Schema)</h2>
+        
+        <h3>Creating the Tables</h3>
+        <p>In this script, we use <code>SERIAL</code> for auto-incrementing IDs and <code>REFERENCES</code> to enforce data integrity.</p>
+        
+        <div class="code-block">CREATE TABLE Users (<br>
+&nbsp;&nbsp;User_ID SERIAL PRIMARY KEY,<br>
+&nbsp;&nbsp;Username VARCHAR(50) NOT NULL,<br>
+&nbsp;&nbsp;Email VARCHAR(100) UNIQUE<br>
+);<br><br>
+CREATE TABLE Orders (<br>
+&nbsp;&nbsp;Order_ID SERIAL PRIMARY KEY,<br>
+&nbsp;&nbsp;User_ID INT REFERENCES Users(User_ID) ON DELETE CASCADE,<br>
+&nbsp;&nbsp;Total_Amount DECIMAL(10,2)<br>
+);</div>
+
+        <div class="highlight-box">
+            <strong>Pro-Tips for Implementation:</strong>
+            <ul style="margin-top: 12px;">
+                <li><strong>Data Types:</strong> Use <code>DECIMAL</code> for money, never <code>FLOAT</code> (to avoid rounding errors)</li>
+                <li><strong>Constraints:</strong> <code>ON DELETE CASCADE</code> automatically removes related records and keeps the database tidy</li>
+                <li><strong>Indexing:</strong> Add an Index to frequently queried columns like email or product_id for speed</li>
+                <li><strong>Naming:</strong> Use clear, consistent naming conventions (e.g., TableName_ID for primary keys)</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="step-content">
+        <h2>Stress Test: Querying the Model</h2>
+        <div class="theory-box">
+            A well-designed model should make complex queries simple and performant. Let's test our model with real-world business questions.
+        </div>
+
+        <h3>Business Question</h3>
+        <p><strong>Query:</strong> "Find the total amount spent by 'JohnDoe'."</p>
+
+        <div class="code-block">SELECT SUM(o.Total_Amount) AS Total_Spent<br>
+FROM Orders o<br>
+JOIN Users u ON o.User_ID = u.User_ID<br>
+WHERE u.Username = 'JohnDoe';</div>
+
+        <h3>Understanding the Query</h3>
+        <ul class="details-list">
+            <li><strong>JOIN:</strong> Combines data from Users and Orders tables using the User_ID relationship</li>
+            <li><strong>SUM:</strong> Aggregates all order amounts for the specified user</li>
+            <li><strong>WHERE:</strong> Filters results to only include orders from 'JohnDoe'</li>
+        </ul>
+
+        <div class="highlight-box">
+            <strong>Performance Tip:</strong> This query benefits from indexes on User_ID (foreign key) and Username. Without proper indexing, the database would need to scan every row to find matches.
+        </div>
+    </div>
+
+    <div class="step-content">
+        <div class="exercise-section">
+            <h2>🚀 Topic 1: Knowledge Lab</h2>
+            <p style="color: var(--text-dim);">Complete the following tasks based on the lesson above:</p>
+
+            <div class="q-box">
+                <p><strong>Task 1: SQL Logic</strong></p>
+                <p>To ensure a unique identifier for every row, we define a <input type="text" class="ex-input" data-answer="primary key" placeholder="___ key" style="width: 200px;">.</p>
+            </div>
+
+            <div class="q-box">
+                <p><strong>Task 2: Normalization</strong></p>
+                <p>In which Normal Form do we ensure there are no "multi-valued" attributes in a single cell? 
+                    <input type="text" class="ex-input" data-answer="1nf" size="5" placeholder="e.g. 1NF">
+                </p>
+            </div>
+
+            <div class="q-box">
+                <p><strong>Task 3: Relationship Types</strong></p>
+                <p>A relationship where "Many Students" take "Many Classes" is called an <input type="text" class="ex-input" data-answer="m:n" size="5"> relationship and requires a <input type="text" class="ex-input" data-answer="junction table" placeholder="type of table" style="width: 200px;">.</p>
+            </div>
+
+            <div class="q-box">
+                <p><strong>Task 4: Integrity</strong></p>
+                <p>If we want an order to be deleted automatically when a user is removed, we use: 
+                    <br><code>ON DELETE</code> <input type="text" class="ex-input" data-answer="cascade" size="10">
+                </p>
+            </div>
+
+            <button class="btn-check" onclick="checkAnswers()">Check My Progress</button>
+            <div id="result-msg"></div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Contact: sherrost@yahoo.com | Tel: 01501827070</p>
+        <p>Design a Website with a Data Source • Topic 1</p>
+    </footer>
+
+    <script>
+        function showStep(index) {
+            // Update navigation dots
+            document.querySelectorAll('.step-node').forEach((node, i) => {
+                if (i === index) {
+                    node.classList.add('active');
+                } else {
+                    node.classList.remove('active');
+                }
+            });
+
+            // Show selected content
+            document.querySelectorAll('.step-content').forEach((content, i) => {
+                if (i === index) {
+                    content.classList.add('active');
+                } else {
+                    content.classList.remove('active');
+                }
+            });
+        }
+
+        function checkAnswers() {
+            const inputs = document.querySelectorAll('.ex-input');
+            let correctCount = 0;
+
+            inputs.forEach(input => {
+                const userAns = input.value.trim().toLowerCase();
+                const correctAns = input.getAttribute('data-answer').toLowerCase();
+
+                if (userAns === correctAns) {
+                    input.className = 'ex-input correct';
+                    correctCount++;
+                } else {
+                    input.className = 'ex-input wrong';
+                }
+            });
+
+            const msg = document.getElementById('result-msg');
+            if (correctCount === inputs.length) {
+                msg.style.color = '#2ecc71';
+                msg.style.background = 'rgba(46, 204, 113, 0.1)';
+                msg.innerText = "🎉 Excellent! You have successfully validated the Data Model.";
+            } else {
+                msg.style.color = '#e74c3c';
+                msg.style.background = 'rgba(231, 76, 60, 0.1)';
+                msg.innerText = "⚠️ Data Integrity Error! Please check your answers and try again.";
+            }
+        }
+    </script>
+
+<script src="../../../../theme.js"></script>
+</body>
+</html>

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Information System</title>
+    <link href="../../../../DrSherif.css" rel="stylesheet">
+    <style>
+        /* Reset overrides for timeline page */
+        .container {
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .timeline-wrapper {
+            position: relative;
+            padding-left: 50px;
+            margin-top: 40px;
+        }
+
+        .timeline-wrapper::before {
+            content: "";
+            position: absolute;
+            left: 14px;
+            top: 10px;
+            bottom: 10px;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary-blue), var(--primary-purple), var(--accent-green));
+        }
+
+        .lesson-item {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .indicator {
+            position: absolute;
+            left: -43px;
+            top: 25px;
+            width: 18px;
+            height: 18px;
+            background-color: var(--bg-primary);
+            border: 3px solid;
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        .blue-glow { 
+            border-color: var(--primary-blue); 
+            box-shadow: 0 0 12px var(--primary-blue); 
+        }
+
+        .purple-glow { 
+            border-color: var(--primary-purple); 
+            box-shadow: 0 0 12px var(--primary-purple); 
+        }
+
+        .green-glow { 
+            border-color: var(--accent-green); 
+            box-shadow: 0 0 12px var(--accent-green); 
+        }
+
+        .gray-glow { 
+            border-color: #64748b; 
+            box-shadow: 0 0 12px #64748b; 
+        }
+
+        .topic-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 25px 35px;
+            transition: all 0.3s ease;
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            flex-direction: row !important;
+        }
+
+        .card:hover {
+            transform: scale(1.02);
+            border-color: var(--primary-blue);
+            background: var(--bg-card-hover);
+        }
+
+        .content-area {
+            max-width: 80%;
+            flex: 1;
+        }
+
+        .card h3 {
+            margin: 0 0 8px 0;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .card p {
+            margin: 0;
+            color: var(--text-muted);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .html-title { color: var(--primary-blue); }
+        .css-title { color: var(--primary-purple); }
+        .standard-title { color: var(--accent-green); }
+
+        .view-topic {
+            color: var(--accent-cyan);
+            font-weight: bold;
+            font-size: 0.85rem;
+            border: 1px solid var(--accent-cyan);
+            padding: 8px 15px;
+            border-radius: 5px;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            flex-shrink: 0;
+            margin-left: 20px;
+        }
+
+        .view-topic:hover,
+        .card:hover .view-topic {
+            background-color: var(--accent-cyan);
+            color: var(--bg-primary);
+        }
+
+        .module-btn {
+            text-decoration: none;
+            color: var(--text);
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: 0.3s;
+            border: 1px solid var(--border);
+            background: var(--card-bg-alpha);
+            display: inline-block;
+            margin-bottom: 30px;
+        }
+
+        .module-btn:hover {
+            background: rgba(59, 130, 246, 0.2);
+            transform: translateX(-5px);
+            border-color: var(--primary-blue);
+        }
+
+        .intro {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 40px;
+        }
+
+        .intro h2 {
+            color: var(--primary-blue);
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .intro p {
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .content-area {
+                max-width: 100%;
+            }
+
+            .view-topic {
+                align-self: flex-end;
+                width: 100%;
+                text-align: center;
+            }
+
+            .timeline-wrapper {
+                padding-left: 30px;
+            }
+
+            .indicator {
+                left: -33px;
+            }
+        }
+    </style>
+
+</head>
+<body>
+    <nav class="top-bar">
+        <a href="../../../../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <img src="../../../../logo.jpeg" alt="Logo" class="site-logo">
+            <h2>Digital Marketing</h2>
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="sun-icon" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <svg class="moon-icon" fill="currentColor" viewBox="0 0 24 24" style="display: none;">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+            </svg>
+        </button>
+    </nav>
+
+    <div class="container">
+        <header>
+            <a href="../year1sem22.html" class="back-link">← EXIT COURSE</a>
+            <div class="syllabus-label">Welcome</div>
+            <h1>Information System</h1>
+            <p class="subtitle">Mastering Data, Databases, and Systems Design</p>
+        </header>
+
+        <section class="intro">
+            <h2>Course Overview</h2>
+            <p>This comprehensive course introduces you to the fundamentals of Information Systems. You'll learn how to design, model, and implement effective data systems that support business needs.</p>
+            <p>Starting with data modeling concepts, we progress through database design, system analysis, and practical implementation techniques. Each lecture builds on the previous one, providing both theoretical foundations and hands-on examples.</p>
+            <p>Perfect for students, developers, and professionals looking to understand the backbone of modern information systems.</p>
+        </section>
+
+        <h2>Course Lectures</h2>
+
+        <div class="timeline-wrapper">
+            <div class="lesson-item">
+                <div class="indicator blue-glow"></div>
+                <div class="card course-card">
+                    <div class="content-area">
+                        <h3><b>Lecture 1:</b> From Concept to Code - The Data Modeling Journey</h3>
+                        <p></p>
+                    </div>
+                    <a href="First Lecture Information System.html" class="view-topic">View Lecture</a>
+                </div>
+            </div>
+
+            <div class="lesson-item">
+                <div class="indicator purple-glow"></div>
+                <div class="card course-card">
+                    <div class="content-area">
+                        <h3><b>Lecture 2:</b> Data definition and manipulation language (SQL); <b>P.1</b></h3>
+                        <p></p>
+                    </div>
+                    <a href="Second Lecture Information System.html" class="view-topic">View Lecture</a>
+                </div>
+            </div>
+
+            <div class="lesson-item">
+                <div class="indicator green-glow"></div>
+                <div class="card course-card">
+                    <div class="content-area">
+                        <h3><b>Lecture 3:</b> Data definition and manipulation language (SQL); <b>P.2</b></h3>
+                        <p></p>
+                    </div>
+                    <a href="Third Lecture Information System.html" class="view-topic">View Lecture</a>
+                </div>
+            </div>
+
+            <div class="lesson-item">
+                <div class="indicator blue-glow"></div>
+                <div class="card course-card">
+                    <div class="content-area">
+                        <h3><b>Lecture 4:</b> Data definition and manipulation language (SQL); <b>P.3</b></h3>
+                        <p></p>
+                    </div>
+                    <a href="Fourth Lecture Information System.html" class="view-topic">View Lecture</a>
+                </div>
+            </div>
+
+            <div class="lesson-item">
+                <div class="indicator purple-glow"></div>
+                <div class="card course-card">
+                    <div class="content-area">
+                        <h3><b>Lecture 5:</b> Data definition and manipulation language (SQL); <b>P.4</b></h3>
+                        <p></p>
+                    </div>
+                    <a href="Fifth Lecture Information System.html" class="view-topic">View Lecture</a>
+                </div>
+            </div>
+
+            <div class="lesson-item">
+                <div class="indicator green-glow"></div>
+                <div class="card course-card">
+                    <div class="content-area">
+                        <h3><b>Lecture 6:</b> Operation of relational database management systems and related tools (console, client software, web interface); <b>P.1</b></h3>
+                        <p></p>
+                    </div>
+                    <a href="Sixth Lecture Information System.html" class="view-topic">View Lecture</a>
+                </div>
+            </div>
+
+            <div class="lesson-item">
+                <div class="indicator blue-glow"></div>
+                <div class="card course-card">
+                    <div class="content-area">
+                        <h3><b>Lecture 7:</b> Operation of relational database management systems and related tools (console, client software, web interface); <b>P.2</b></h3>
+                        <p></p>
+                    </div>
+                    <a href="Seventh Lecture Information System.html" class="view-topic">View Lecture</a>
+                </div>
+            </div>
+
+            <div class="lesson-item">
+                <div class="indicator purple-glow"></div>
+                <div class="card course-card">
+                    <div class="content-area">
+                        <h3><b>Lecture 8:</b> Operation of relational database management systems and related tools (console, client software, web interface); <b>P.3</b></h3>
+                        <p></p>
+                    </div>
+                    <a href="Eighth Lecture Information System.html" class="view-topic">View Lecture</a>
+                </div>
+            </div>
+
+            <div class="lesson-item">
+                <div class="indicator green-glow"></div>
+                <div class="card course-card">
+                    <div class="content-area">
+                        <h3><b>Lecture 9:</b> Operation of relational database management systems and related tools (console, client software, web interface); <b>P.4</b></h3>
+                        <p></p>
+                    </div>
+                    <a href="Ninth Lecture Information System.html" class="view-topic">View Lecture</a>
+                </div>
+            </div>
+
+            <div class="lesson-item">
+                <div class="indicator blue-glow"></div>
+                <div class="card course-card">
+                    <div class="content-area">
+                        <h3><b>Lecture 10:</b> Introduction to exchange formats ( CSV ,  XML , JSON ...) and database backup / migration. <b>P.1</b></h3>
+                        <p></p>
+                    </div>
+                    <a href="Tenth Lecture Information System.html" class="view-topic">View Lecture</a>
+                </div>
+            </div>
+
+            <div class="lesson-item">
+                <div class="indicator purple-glow"></div>
+                <div class="card course-card">
+                    <div class="content-area">
+                        <h3><b>Lecture 11:</b> Introduction to exchange formats ( CSV ,  XML , JSON ...) and database backup / migration. <b>P.2</b></h3>
+                        <p></p>
+                    </div>
+                    <a href="Eleventh Lecture Information System.html" class="view-topic">View Lecture</a>
+                </div>
+            </div>
+
+            <div class="lesson-item">
+                <div class="indicator green-glow"></div>
+                <div class="card course-card">
+                    <div class="content-area">
+                        <h3><b>Lecture 12:</b> Introduction to exchange formats ( CSV ,  XML , JSON ...) and database backup / migration. <b>P.3</b></h3>
+                        <p></p>
+                    </div>
+                    <a href="Twelveth Lecture Information System.html" class="view-topic">View Lecture</a>
+                </div>
+            </div>
+
+            <div class="lesson-item">
+                <div class="indicator gray-glow"></div>
+                <div class="card course-card">
+                    <div class="content-area">
+                        <h3><b>Final</b> All the course information</h3>
+                        <p></p>
+                    </div>
+                    <a href="All the course info.html" class="view-topic">View Lecture</a>
+                </div>
+            </div>
+        </div>
+    </div>
+          
+    <script src="../../../../theme.js"></script>
+</body>
+</html>

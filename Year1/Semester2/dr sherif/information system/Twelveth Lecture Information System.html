@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction to Exchange Formats: JSON and Database Backup/Migration</title>
+    <link rel="stylesheet" href="../../../../DrSherif.css">
+    <link href="Information System.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="top-bar">
+        <a href="../../../../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <img src="../../../../logo.jpeg" alt="Logo" class="site-logo">
+            <h2>Digital Marketing</h2>
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="sun-icon" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <svg class="moon-icon" fill="currentColor" viewBox="0 0 24 24" style="display: none;">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+            </svg>
+        </button>
+    </nav>
+
+    <main>
+        <div class="container">
+            <a href="InformationSystem.html" class="back-link">← EXIT LESSON</a>
+            
+            <header>
+                <div class="syllabus-label">Lecture 12</div>
+                <h1>Introduction to Exchange Formats: JSON</h1>
+                <p class="subtitle">CSV, XML, JSON and Database Backup/Migration - Part 3</p>
+            </header>
+
+            <p style="color: var(--text-dim); margin-bottom: 30px; line-height: 1.6;">This final 90-minute session focuses on JSON (JavaScript Object Notation), the reigning champion of modern web data exchange. While CSV is the "past" and XML is the "enterprise giant," JSON is the "language of the internet."</p>
+
+            <div class="timeline-wrapper">
+                <div class="lesson-item">
+                    <div class="indicator blue-glow"></div>
+                    <div class="card">
+                        <div class="content-area">
+                            <h3 class="html-title">Part 1: Why JSON Won the Web</h3>
+                            <p style="color: var(--text-muted); margin-bottom: 12px; font-size: 0.9rem;">Duration: 20 Minutes</p>
+                            
+                            <p style="margin-bottom: 15px;">In the early 2000s, XML was the standard. However, as web applications became more interactive, developers needed something faster and easier to use with JavaScript.</p>
+                            
+                            <div style="margin-top: 20px;">
+                                <p style="margin-bottom: 10px;"><b>The Origins:</b></p>
+                                <p style="margin-left: 20px;">Derived from JavaScript, but language-independent. Almost every programming language can parse JSON today.</p>
+                            </div>
+                            
+                            <div style="margin-top: 20px;">
+                                <p style="margin-bottom: 10px;"><b>The "Weight" Factor:</b></p>
+                                <p style="margin-left: 20px;">JSON is much less "wordy" than XML. There are no closing tags (e.g., <code style="background: rgba(59,130,246,0.15); padding: 2px 8px; border-radius: 4px; color: var(--accent-cyan);">&lt;/name&gt;</code>), which reduces file size and saves bandwidth.</p>
+                            </div>
+                            
+                            <div style="margin-top: 20px;">
+                                <p style="margin-bottom: 10px;"><b>Key Philosophy:</b></p>
+                                <p style="margin-left: 20px;">Data is organized into <b>Key-Value Pairs</b> and <b>Arrays</b>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-item">
+                    <div class="indicator purple-glow"></div>
+                    <div class="card">
+                        <div class="content-area">
+                            <h3 class="css-title">Part 2: JSON Anatomy & Data Types</h3>
+                            <p style="color: var(--text-muted); margin-bottom: 12px; font-size: 0.9rem;">Duration: 30 Minutes</p>
+                            
+                            <p style="margin-bottom: 15px;">JSON is built on two primary structures: <b>Objects</b> (curly braces <code style="background: rgba(59,130,246,0.15); padding: 2px 8px; border-radius: 4px; color: var(--accent-cyan);">{}</code>) and <b>Arrays</b> (square brackets <code style="background: rgba(59,130,246,0.15); padding: 2px 8px; border-radius: 4px; color: var(--accent-cyan);">[]</code>).</p>
+                            
+                            <h4 style="color: var(--primary-purple); margin-top: 25px; margin-bottom: 12px;">1. The Building Blocks</h4>
+                            
+                            <p style="margin-bottom: 12px;">Unlike CSV, JSON supports data types natively:</p>
+                            
+                            <ul style="margin-left: 20px;">
+                                <li style="margin-bottom: 8px;"><b>Strings:</b> <code style="background: rgba(59,130,246,0.15); padding: 2px 8px; border-radius: 4px; color: var(--accent-cyan);">"John"</code> (always double quotes)</li>
+                                <li style="margin-bottom: 8px;"><b>Numbers:</b> <code style="background: rgba(59,130,246,0.15); padding: 2px 8px; border-radius: 4px; color: var(--accent-cyan);">25</code> (no quotes)</li>
+                                <li style="margin-bottom: 8px;"><b>Booleans:</b> <code style="background: rgba(59,130,246,0.15); padding: 2px 8px; border-radius: 4px; color: var(--accent-cyan);">true</code> / <code style="background: rgba(59,130,246,0.15); padding: 2px 8px; border-radius: 4px; color: var(--accent-cyan);">false</code></li>
+                                <li style="margin-bottom: 8px;"><b>Null:</b> <code style="background: rgba(59,130,246,0.15); padding: 2px 8px; border-radius: 4px; color: var(--accent-cyan);">null</code></li>
+                                <li><b>Objects/Arrays:</b> For nesting.</li>
+                            </ul>
+                            
+                            <h4 style="color: var(--primary-purple); margin-top: 30px; margin-bottom: 12px;">2. Syntax Rules (The "Must-Follows")</h4>
+                            
+                            <div style="padding: 15px; background: rgba(124, 58, 237, 0.15); border-left: 4px solid var(--primary-purple); border-radius: 8px; margin-bottom: 15px;">
+                                <p style="margin-bottom: 8px;"><b>⚡ JSON is strict</b>, though slightly more forgiving than XML:</p>
+                            </div>
+                            
+                            <ul style="margin-left: 20px;">
+                                <li style="margin-bottom: 8px;">Keys must be strings in double quotes.</li>
+                                <li style="margin-bottom: 8px;">No trailing commas (a common error in migration scripts!).</li>
+                                <li>The entire file must be a single JSON value (usually an object or an array).</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-item">
+                    <div class="indicator green-glow"></div>
+                    <div class="card">
+                        <div class="content-area">
+                            <h3 class="standard-title">Part 3: JSON in Databases & Migrations</h3>
+                            <p style="color: var(--text-muted); margin-bottom: 12px; font-size: 0.9rem;">Duration: 40 Minutes</p>
+                            
+                            <p style="margin-bottom: 20px;">In the past, databases were strictly relational (rows and columns). Today, we live in a "Polyglot" world where JSON is a first-class citizen.</p>
+                            
+                            <h4 style="color: var(--accent-green); margin-top: 25px; margin-bottom: 12px;">1. NoSQL and Document Databases</h4>
+                            
+                            <p style="margin-bottom: 12px;">Databases like MongoDB store data directly as JSON-like documents (BSON).</p>
+                            
+                            <div style="margin-left: 20px;">
+                                <p style="margin-bottom: 10px;"><b>Migration Advantage:</b> You don't need to define a strict schema before moving data. This is called <b>Schema-on-Read</b>.</p>
+                                <p><b>Use Case:</b> Ideal for rapid development or data where the structure changes often.</p>
+                            </div>
+                            
+                            <h4 style="color: var(--accent-green); margin-top: 30px; margin-bottom: 12px;">2. JSON in Relational DBs (PostgreSQL/MySQL)</h4>
+                            
+                            <p style="margin-bottom: 12px;">Modern SQL databases now have a <code style="background: rgba(59,130,246,0.15); padding: 2px 8px; border-radius: 4px; color: var(--accent-cyan);">JSONB</code> data type.</p>
+                            
+                            <div style="margin-left: 20px;">
+                                <p style="margin-bottom: 10px;"><b>Hybrid Migration:</b> You can move 90% of your data into standard columns and "dump" the unpredictable 10% into a JSON column.</p>
+                                <p><b>Extraction:</b> It is very common to export SQL query results directly as a JSON array for an API.</p>
+                            </div>
+                            
+                            <h4 style="color: var(--accent-green); margin-top: 30px; margin-bottom: 12px;">3. The Migration Trap: "Deep Nesting"</h4>
+                            
+                            <div style="padding: 15px; background: rgba(251, 113, 133, 0.15); border-left: 4px solid var(--danger); border-radius: 8px;">
+                                <p style="margin-bottom: 8px;"><b>⚠️ Warning:</b> While JSON handles hierarchy beautifully, nesting data 10 levels deep makes it very hard to query.</p>
+                                <p><b>💡 Lecture Tip:</b> During migration, "flatten" your JSON where possible to keep it performant.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 style="color: var(--primary-blue); margin-top: 50px; margin-bottom: 20px; border-left: 4px solid var(--primary-blue); padding-left: 15px;">Summary: The "Big Three" Comparison</h2>
+            
+            <table style="margin-bottom: 40px;">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>CSV</th>
+                        <th>XML</th>
+                        <th>JSON</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><b>Simplicity</b></td>
+                        <td>High</td>
+                        <td>Low</td>
+                        <td>Medium</td>
+                    </tr>
+                    <tr>
+                        <td><b>Nesting</b></td>
+                        <td>No</td>
+                        <td>Yes (Deep)</td>
+                        <td>Yes (Flexible)</td>
+                    </tr>
+                    <tr>
+                        <td><b>Data Types</b></td>
+                        <td>No</td>
+                        <td>Limited</td>
+                        <td>Yes (Strong)</td>
+                    </tr>
+                    <tr>
+                        <td><b>Usage</b></td>
+                        <td>Spreadsheets/Legacy</td>
+                        <td>Enterprise/Banking</td>
+                        <td>Web APIs/Mobile Apps</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2 style="color: var(--primary-blue); margin-top: 50px; margin-bottom: 20px; border-left: 4px solid var(--primary-blue); padding-left: 15px;">Final Hands-on Exercise</h2>
+            <p style="color: var(--text-muted); margin-bottom: 15px; font-size: 0.9rem;">Duration: 10 Minutes</p>
+            
+            <p style="margin-bottom: 15px;">Task: Look at this JSON and identify the errors based on the syntax rules we discussed:</p>
+            
+            <h4 style="color: var(--text-main); margin-top: 20px; margin-bottom: 12px;">Broken JSON:</h4>
+            <pre class="code-block"><code>{ "name": "Gemini",
+       
+"version": 1.5, 
+
+"features": ["Text", "Images"], 
+
+ "active": True }</code></pre>
+
+            <h4 style="color: var(--text-main); margin-top: 30px; margin-bottom: 12px;">Corrected JSON:</h4>
+            <pre class="code-block"><code>{ "name": "Gemini",
+"version": 1.5,
+"features": ["Text", "Images"], 
+"active": true }</code></pre>
+
+            <div style="margin-top: 30px; padding: 20px; background: rgba(16, 185, 129, 0.15); border-left: 4px solid var(--accent-green); border-radius: 8px;">
+                <h3 style="color: var(--accent-green); margin-top: 0; margin-bottom: 15px;">✅ The Answer Key:</h3>
+                <ul style="margin-left: 20px; color: var(--text-dim);">
+                    <li style="margin-bottom: 8px;"><code style="background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px;">name</code> is missing double quotes (Keys must be strings).</li>
+                    <li style="margin-bottom: 8px;">Trailing comma after "Images" (Not allowed in standard JSON).</li>
+                    <li><code style="background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px;">True</code> should be lowercase <code style="background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px;">true</code> (JSON is case-sensitive for booleans).</li>
+                </ul>
+            </div>
+
+            <h2 style="color: var(--primary-blue); margin-top: 50px; margin-bottom: 20px; border-left: 4px solid var(--primary-blue); padding-left: 15px;">Complete Cheat Sheet: CSV, XML, JSON</h2>
+            
+            <table style="margin-bottom: 40px;">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>CSV</th>
+                        <th>XML</th>
+                        <th>JSON</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><b>Structure</b></td>
+                        <td>Flat (Rows & Columns)</td>
+                        <td>Hierarchical (Tree)</td>
+                        <td>Hierarchical (Key-Value)</td>
+                    </tr>
+                    <tr>
+                        <td><b>Self-Describing</b></td>
+                        <td>No (Header only)</td>
+                        <td>Yes (Tags)</td>
+                        <td>Yes (Keys)</td>
+                    </tr>
+                    <tr>
+                        <td><b>Data Types</b></td>
+                        <td>None (All are Strings)</td>
+                        <td>Limited (Mostly Strings)</td>
+                        <td>Native (String, Num, Bool, Null)</td>
+                    </tr>
+                    <tr>
+                        <td><b>File Size</b></td>
+                        <td>Smallest (Efficient)</td>
+                        <td>Largest (Verbose)</td>
+                        <td>Medium (Balanced)</td>
+                    </tr>
+                    <tr>
+                        <td><b>Strictness</b></td>
+                        <td>Low (Very loose)</td>
+                        <td>High (Must be Well-Formed)</td>
+                        <td>Medium (Strict Syntax)</td>
+                    </tr>
+                    <tr>
+                        <td><b>Best For</b></td>
+                        <td>Data Science, Bulk Imports</td>
+                        <td>Enterprise, Banking, Legacy</td>
+                        <td>Web APIs, Mobile Apps, NoSQL</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2 style="color: var(--primary-blue); margin-top: 50px; margin-bottom: 20px; border-left: 4px solid var(--primary-blue); padding-left: 15px;">When to Use Which?</h2>
+            
+            <div style="display: grid; gap: 20px; margin-bottom: 40px;">
+                <div style="padding: 20px; background: var(--card-bg-alpha); border-left: 4px solid var(--accent-cyan); border-radius: 8px;">
+                    <h4 style="color: var(--accent-cyan); margin-top: 0; margin-bottom: 12px;">📊 Use CSV when...</h4>
+                    <ul style="margin-left: 20px; color: var(--text-dim);">
+                        <li style="margin-bottom: 8px;">You are moving massive amounts of simple tabular data (e.g., millions of log entries).</li>
+                        <li style="margin-bottom: 8px;">You need to open the data in Excel or a basic text editor.</li>
+                        <li>Bandwidth and storage space are your #1 priority.</li>
+                    </ul>
+                </div>
+
+                <div style="padding: 20px; background: var(--card-bg-alpha); border-left: 4px solid var(--primary-purple); border-radius: 8px;">
+                    <h4 style="color: var(--primary-purple); margin-top: 0; margin-bottom: 12px;">📋 Use XML when...</h4>
+                    <ul style="margin-left: 20px; color: var(--text-dim);">
+                        <li style="margin-bottom: 8px;">You need strict validation (XSD) before the data even touches the database.</li>
+                        <li style="margin-bottom: 8px;">You are working in "High-Stakes" environments (Banking, Legal, Medical).</li>
+                        <li>You need to store complex documents with many nested layers and metadata.</li>
+                    </ul>
+                </div>
+
+                <div style="padding: 20px; background: var(--card-bg-alpha); border-left: 4px solid var(--accent-green); border-radius: 8px;">
+                    <h4 style="color: var(--accent-green); margin-top: 0; margin-bottom: 12px;">🌐 Use JSON when...</h4>
+                    <ul style="margin-left: 20px; color: var(--text-dim);">
+                        <li style="margin-bottom: 8px;">You are building a Web or Mobile Application.</li>
+                        <li style="margin-bottom: 8px;">You are using a NoSQL database (like MongoDB) or a modern SQL JSON column.</li>
+                        <li>You want a balance between human readability and machine efficiency.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="padding: 25px; background: rgba(251, 113, 133, 0.15); border: 2px solid var(--danger); border-radius: 12px; margin-bottom: 40px;">
+                <h2 style="color: var(--danger); margin-top: 0; margin-bottom: 15px;">⚠️ The "Migration Disaster" Checklist</h2>
+                <p style="margin-bottom: 15px; color: var(--text-dim);">Before you hit "Import," ask these three questions:</p>
+                
+                <div style="margin-left: 20px;">
+                    <p style="margin-bottom: 12px;"><b>1. Encoding:</b> Is the source file in UTF-8? (If not, expect broken characters).</p>
+                    
+                    <p style="margin-bottom: 8px;"><b>2. Null Values:</b> How does the format handle "nothing"?</p>
+                    <ul style="margin-left: 20px; margin-bottom: 12px;">
+                        <li><b>CSV:</b> Empty space <code style="background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px;">, ,</code></li>
+                        <li><b>XML:</b> <code style="background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px;">&lt;tag /&gt;</code> or missing tag.</li>
+                        <li><b>JSON:</b> <code style="background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px;">"key": null</code></li>
+                    </ul>
+                    
+                    <p><b>3. Data Types:</b> Does the target database expect a Date, but the exchange format provides a String? This requires a Transformation step.</p>
+                </div>
+            </div>
+
+            <div style="padding: 25px; background: rgba(78, 217, 194, 0.1); border-left: 4px solid var(--accent-cyan); border-radius: 12px; margin-bottom: 40px;">
+                <h2 style="color: var(--accent-cyan); margin-top: 0; margin-bottom: 12px;">💡 Pro-Tip for Students</h2>
+                <p style="color: var(--text-dim); font-style: italic;">"Data exchange is not just about moving text; it's about moving meaning. Always validate your data structure before you attempt a database migration, or you'll spend hours cleaning up 'garbage' data later."</p>
+            </div>
+
+            <h2 style="color: var(--primary-blue); margin-top: 50px; margin-bottom: 20px; border-left: 4px solid var(--primary-blue); padding-left: 15px;">Practical Example: Python Conversion Script</h2>
+            
+            <p style="color: var(--text-dim); margin-bottom: 20px;">Here is a Python "Master Script" that demonstrates how to convert a single data record between all three formats:</p>
+            
+            <pre class="code-block"><code>import csv
+import json
+import xml.etree.ElementTree as ET
+
+# 1. THE DATA (The "Source")
+data = [
+    {"id": "1", "name": "Gemini", "type": "AI", "status": "Active"},
+    {"id": "2", "name": "Alpha", "type": "Bot", "status": "Offline"}
+]
+
+# 2. TO CSV (The Flat Export)
+with open('data.csv', 'w', newline='') as f:
+    writer = csv.DictWriter(f, fieldnames=data[0].keys())
+    writer.writeheader()
+    writer.writerows(data)
+
+# 3. TO JSON (The New Export)
+with open('data.json', 'w') as f:
+    json.dump(data, f, indent=4)
+
+# 4. TO XML (The Hierarchical Export)
+root = ET.Element("SystemLog")
+for entry in data:
+    item = ET.SubElement(root, "entry", id=entry['id'])
+    for key, val in entry.items():
+        if key != 'id':
+            child = ET.SubElement(item, key)
+            child.text = val
+tree = ET.ElementTree(root)
+tree.write('data.xml', encoding='utf-8', xml_declaration=True)
+
+print("Migration complete! Files generated: data.csv, data.json, data.xml")</code></pre>
+
+            <div style="display: grid; gap: 15px; margin-top: 30px; margin-bottom: 40px;">
+                <img src="Screenshot 2026-02-03 102858.png" alt="Data Conversion Diagram" style="width: 100%; max-width: 600px; margin: 0 auto; display: block; border-radius: 12px; border: 1px solid var(--border);">
+                <img src="Screenshot 2026-02-03 103030.png" alt="Data Conversion Flowchart" style="width: 100%; max-width: 600px; margin: 0 auto; display: block; border-radius: 12px; border: 1px solid var(--border);">
+            </div>
+
+            <div style="padding: 20px; background: var(--card-bg-alpha); border-radius: 12px; margin-bottom: 40px;">
+                <h3 style="color: var(--text-main); margin-top: 0; margin-bottom: 15px;">What to Notice in the Output:</h3>
+                <ul style="margin-left: 20px; color: var(--text-dim);">
+                    <li style="margin-bottom: 10px;"><b>CSV:</b> You'll see a clean table, but notice that the "id" is just a string in a column.</li>
+                    <li style="margin-bottom: 10px;"><b>JSON:</b> You'll see the square brackets <code style="background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px;">[]</code> denoting an array of objects—ready to be sent to a mobile app.</li>
+                    <li><b>XML:</b> Notice how the script used the id as an attribute inside the <code style="background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px;">&lt;Entry&gt;</code> tag, while name and type became nested elements.</li>
+                </ul>
+            </div>
+
+            <div class="quiz-section" style="margin-top: 50px; padding: 30px; background: var(--card-bg-alpha); border: 1px solid var(--border-light); border-radius: 16px;">
+                <h3 style="color: var(--primary-blue); margin-top: 0;">Test Your Knowledge</h3>
+                
+                <!-- Quiz questions with proper styling - showing first 3 for brevity -->
+                <div class="quiz-item" style="margin-bottom: 30px;">
+                    <h4 style="color: var(--text-main);">1. Which scenario is most appropriate for CSV?</h4>
+                    <ul style="list-style-type: none; padding-left: 0;">
+                        <li style="padding: 8px 0;">A. Transferring a complex hierarchical organizational chart.</li>
+                        <li style="padding: 8px 0;">B. Creating a strictly validated document for banking.</li>
+                        <li style="padding: 8px 0;">C. Storing configuration with boolean and null types.</li>
+                        <li style="padding: 8px 0;">D. Exporting a million rows of simple sensor log data.</li>
+                    </ul>
+                    <button class="show-answer-btn" type="button" onclick="this.nextElementSibling.style.display='block'; this.style.display='none';" style="background: var(--primary-blue); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; margin-top: 10px;">Show Answer</button>
+                    <p class="quiz-answer" style="display: none; margin-top: 15px; padding: 15px; background: rgba(16, 185, 129, 0.15); color: var(--accent-green); border: 1px solid var(--accent-green); border-radius: 8px; font-weight: 600;">Answer: D</p>
+                </div>
+
+                <div class="quiz-item" style="margin-bottom: 30px;">
+                    <h4 style="color: var(--text-main);">2. When migrating to MongoDB, which format is most commonly used?</h4>
+                    <ul style="list-style-type: none; padding-left: 0;">
+                        <li style="padding: 8px 0;">A. CSV</li>
+                        <li style="padding: 8px 0;">B. JSON</li>
+                        <li style="padding: 8px 0;">C. SQL Dumps</li>
+                        <li style="padding: 8px 0;">D. XML</li>
+                    </ul>
+                    <button class="show-answer-btn" type="button" onclick="this.nextElementSibling.style.display='block'; this.style.display='none';" style="background: var(--primary-blue); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; margin-top: 10px;">Show Answer</button>
+                    <p class="quiz-answer" style="display: none; margin-top: 15px; padding: 15px; background: rgba(16, 185, 129, 0.15); color: var(--accent-green); border: 1px solid var(--accent-green); border-radius: 8px; font-weight: 600;">Answer: B</p>
+                </div>
+
+                <div class="quiz-item" style="margin-bottom: 0;">
+                    <h4 style="color: var(--text-main);">3. Why is JSON preferred for Mobile App APIs?</h4>
+                    <ul style="list-style-type: none; padding-left: 0;">
+                        <li style="padding: 8px 0;">A. JSON reduces bandwidth usage due to lack of closing tags.</li>
+                        <li style="padding: 8px 0;">B. JSON files are physically smaller on hard drives.</li>
+                        <li style="padding: 8px 0;">C. JSON is more secure by default than XML.</li>
+                        <li style="padding: 8px 0;">D. JSON can only be read by mobile devices.</li>
+                    </ul>
+                    <button class="show-answer-btn" type="button" onclick="this.nextElementSibling.style.display='block'; this.style.display='none';" style="background: var(--primary-blue); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; margin-top: 10px;">Show Answer</button>
+                    <p class="quiz-answer" style="display: none; margin-top: 15px; padding: 15px; background: rgba(16, 185, 129, 0.15); color: var(--accent-green); border: 1px solid var(--accent-green); border-radius: 8px; font-weight: 600;">Answer: A</p>
+                </div>
+            </div>
+
+            <div style="padding: 25px; background: linear-gradient(135deg, rgba(59,130,246,0.1), rgba(124,58,237,0.1)); border-radius: 16px; border: 2px solid var(--primary-blue); margin-top: 50px;">
+                <h2 style="color: var(--primary-blue); margin-top: 0; margin-bottom: 15px;">🎓 Your Full Course Resources</h2>
+                <p style="color: var(--text-dim); margin-bottom: 15px;">We've built quite the toolkit today! Here is everything we created:</p>
+                <ul style="margin-left: 20px; color: var(--text-dim);">
+                    <li style="margin-bottom: 8px;">✅ 3 Specific Lectures (General/CSV, XML, JSON)</li>
+                    <li style="margin-bottom: 8px;">✅ A Transformation Exercise (Flat to Nested logic)</li>
+                    <li style="margin-bottom: 8px;">✅ The "Big Three" Cheat Sheet (Comparison of trade-offs)</li>
+                    <li style="margin-bottom: 8px;">✅ Comprehensive Quizzes (10+ high-level questions)</li>
+                    <li>✅ The Python Migration Script (Practical implementation)</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+<script src="../../../../theme.js"></script>
+</body>
+</html>

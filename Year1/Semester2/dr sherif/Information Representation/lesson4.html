@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 04 - Basics of Compression - Part 1</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="../../../../DrSherif.css" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="top-bar">
+        <a href="../../../../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <img src="../../../../logo.jpeg" alt="Logo" class="site-logo">
+            <h2>Digital Marketing</h2>
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="sun-icon" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <svg class="moon-icon" fill="currentColor" viewBox="0 0 24 24" style="display: none;">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+            </svg>
+        </button>
+    </nav>
+
+    <header class="hero">
+        <a href="informationrep.html" class="exit-link">← BACK TO SYLLABUS</a>
+        <div class="badge">LESSON 04</div>
+        <h1>Basics of Compression - Part 1</h1>
+        <p>Objectives, Types of Redundancy, Compression Ratio, Quality and Speed of Restitution, Dictionary-Based Methods</p>
+    </header>
+
+    <!-- Timeline Navigation -->
+    <nav class="timeline-nav">
+        <div class="timeline-line"></div>
+        
+        <div class="step-node active" onclick="showStep(0)"><div class="dot">1</div><div class="node-label">Definition</div></div>
+        <div class="step-node" onclick="showStep(1)"><div class="dot">2</div><div class="node-label">Units</div></div>
+        <div class="step-node" onclick="showStep(2)"><div class="dot">3</div><div class="node-label">Bandwidth</div></div>
+        <div class="step-node" onclick="showStep(3)"><div class="dot">4</div><div class="node-label">Bit vs Bandwidth</div></div>
+        <div class="step-node" onclick="showStep(4)"><div class="dot">5</div><div class="node-label">Bit vs Baud</div></div>
+        <div class="step-node" onclick="showStep(5)"><div class="dot">6</div><div class="node-label">Digital Media</div></div>
+        <div class="step-node" onclick="showStep(6)"><div class="dot">7</div><div class="node-label">Control Methods</div></div>
+        <div class="step-node" onclick="showStep(7)"><div class="dot">8</div><div class="node-label">Applications & Takeaways</div></div>
+    </nav>
+
+    <!-- Step Contents -->
+    <div class="step-content active">
+        <h2>Definition of Bit Rate</h2>
+        <div class="theory-box">
+            Bit rate is the number of <strong>bits</strong> that are conveyed or processed per unit of time.
+        </div>
+        <div class="formula">
+            Bit rate (BR) = D / T
+        </div>
+        <div class="theory-box" style="margin-top:28px;">
+            Where:<br>
+            • D = amount of data (in bits)<br>
+            • T = time (in seconds)
+        </div>
+        <div class="highlight-box">
+            Also known as: <strong>data rate</strong><br>
+            Common units: bps, Kbps, Mbps, Gbps, Tbps
+        </div>
+    </div>
+
+    <div class="step-content">
+        <h2>Bit Rate Units</h2>
+        <div class="theory-box">
+            Overview of common bit rate units (decimal and binary prefixes):
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Symbol</th>
+                    <th>Decimal</th>
+                    <th>Binary</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>bit per second</td><td>bit/s</td><td>1</td><td>1</td></tr>
+                <tr><td>kilobit per second</td><td>kbit/s</td><td>1,000</td><td>1,024</td></tr>
+                <tr><td>megabit per second</td><td>Mbit/s</td><td>1,000,000</td><td>1,048,576</td></tr>
+                <tr><td>gigabit per second</td><td>Gbit/s</td><td>10⁹</td><td>2³⁰</td></tr>
+                <tr><td>terabit per second</td><td>Tbit/s</td><td>10¹²</td><td>2⁴⁰</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="step-content">
+        <h2>What is Bandwidth?</h2>
+        <div class="theory-box">
+            Bandwidth is the <strong>maximum theoretical bit rate</strong> that can be achieved by a communication channel.
+        </div>
+        <div class="highlight-box">
+            In simple terms:<br>
+            • Bandwidth = channel capacity<br>
+            • Bit rate = actual data flow (usually ≤ bandwidth)
+        </div>
+    </div>
+
+    <div class="step-content">
+        <h2>Bit Rate vs Bandwidth</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Bit Rate</th>
+                    <th>Bandwidth</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Actual amount of data transferred per second</td><td>Maximum possible data transfer capacity</td></tr>
+                <tr><td>Real-world speed achieved</td><td>Theoretical upper limit of the channel</td></tr>
+                <tr><td>Usually less than bandwidth</td><td>Always ≥ bit rate</td></tr>
+                <tr><td>Affected by network conditions</td><td>Property of the physical medium</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="step-content">
+        <h2>Bit Rate vs Baud Rate</h2>
+        <div class="theory-box">
+            <strong>Bit rate</strong> = number of bits per second<br>
+            <strong>Baud rate</strong> = number of signal changes per second
+        </div>
+        <div class="formula">
+            Bit rate = Baud rate × number of bits per symbol
+        </div>
+        <table style="margin-top:28px;">
+            <thead>
+                <tr>
+                    <th>Bit Rate</th>
+                    <th>Baud Rate</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Measures information transfer</td><td>Measures signal changes</td></tr>
+                <tr><td>Focus: data efficiency</td><td>Focus: modulation/symbol rate</td></tr>
+                <tr><td>bps, Kbps, Mbps...</td><td>baud/s</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="step-content">
+        <h2>Bit Rate in Digital Media</h2>
+        <div class="theory-box">
+            In audio & video, bit rate directly affects quality and file size.
+        </div>
+        <div class="theory-box">
+            <strong>Audio examples:</strong><br>
+            • MP3: 128–320 kbps<br>
+            • High-quality streaming: 256–512 kbps
+        </div>
+        <div class="theory-box" style="margin-top:24px;">
+            <strong>Video examples:</strong><br>
+            • 720p streaming ≈ 2.5–5 Mbps<br>
+            • 4K streaming ≈ 15–45 Mbps
+        </div>
+    </div>
+
+    <div class="step-content">
+        <h2>Ways of Controlling Bit Rate</h2>
+        <div class="theory-box">
+            Modern encoding uses different rate control strategies:
+        </div>
+        <ul style="padding-left:28px; color:var(--text-dim); font-size:1.05rem;">
+            <li><strong>CBR</strong> — Constant Bit Rate<br>Fixed rate — good for live streaming</li>
+            <li><strong>VBR</strong> — Variable Bit Rate<br>Adapts to content complexity — better quality/size ratio</li>
+            <li><strong>Rate Control Algorithms</strong><br>Dynamic adjustment based on scene complexity</li>
+        </ul>
+    </div>
+
+    <div class="step-content">
+        <h2>Applications & Key Takeaways</h2>
+        <div class="theory-box">
+            <strong>Main applications:</strong>
+            <ul style="padding-left:28px; margin-top:16px;">
+                <li>Digital media compression (audio/video)</li>
+                <li>Data transmission speed measurement</li>
+                <li>File size estimation</li>
+                <li>Network bandwidth planning</li>
+                <li>Telecommunication services (4G/5G/6G)</li>
+            </ul>
+        </div>
+        <div class="highlight-box" style="margin-top:32px;">
+            <strong>Core Insight:</strong><br>
+            Higher bit rate = better quality + larger files<br>
+            Smart rate control = best quality at smallest possible size
+        </div>
+    </div>
+
+    <footer>
+        <p>Contact: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="582b303d2a2a372b2c182139303737763b3735">[email&#160;protected]</a> | Tel: 01501827070 - 01017776756</p>
+        <p>Information Representation Course • Lesson 04</p>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        function showStep(index) {
+            document.querySelectorAll('.step-node').forEach((node, i) => {
+                node.classList.toggle('active', i === index);
+            });
+
+            document.querySelectorAll('.step-content').forEach((content, i) => {
+                content.classList.toggle('active', i === index);
+            });
+        }
+    </script>
+<script src="../../../../theme.js"></script>
+</body>
+</html>

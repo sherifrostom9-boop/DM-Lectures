@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operation of Relational Database Management Systems - Troubleshooting</title>
+    <link href="Information System.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <link href="../../../../DrSherif.css" rel="stylesheet">
+    <script>
+        mermaid.initialize({startOnLoad: true});
+    </script>
+</head>
+<body>
+    <nav class="top-bar">
+        <a href="../../../../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <img src="../../../../logo.jpeg" alt="Logo" class="site-logo">
+            <h2>Digital Marketing</h2>
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="sun-icon" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <svg class="moon-icon" fill="currentColor" viewBox="0 0 24 24" style="display: none;">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+            </svg>
+        </button>
+    </nav>
+
+    <main>
+        <div class="container">
+            <a href="InformationSystem.html" class="back-link">← EXIT LESSON</a>
+            
+            <header>
+                <div class="syllabus-label">Lecture 9</div>
+                <h1>Operation of Relational Database Management Systems</h1>
+                <p class="subtitle">Console, Client Software, Web Interface - Part 4</p>
+            </header>
+            
+            <p style="color: var(--text-dim); margin-bottom: 30px; line-height: 1.6;">Training session: Let's dive into a "Broken Database" troubleshooting scenario. We'll simulate a realistic operational mess: a slow query, a missing index, and a structural bottleneck.</p>
+            
+            <div class="timeline-wrapper">
+                <div class="lesson-item">
+                    <div class="indicator blue-glow"></div>
+                    <div class="card">
+                        <div class="content-area">
+                            <h3 class="html-title"><b>Phase 1: Setting the Stage (The "Messy" Data)</b></h3>
+                            
+                            <p style="margin-bottom: 20px;">Copy and run this script in your Console or Client Software (DBeaver/Workbench). It creates two tables: <code style="background: rgba(59,130,246,0.15); padding: 2px 8px; border-radius: 4px; color: var(--accent-cyan);">customers</code> and <code style="background: rgba(59,130,246,0.15); padding: 2px 8px; border-radius: 4px; color: var(--accent-cyan);">orders</code>, but it "forgets" to add any performance optimization.</p>
+                            
+                            <h4 style="color: var(--primary-blue); margin-top: 25px; margin-bottom: 12px;"><b>1. Create Tables</b></h4>
+                            <pre class="code-block"><code>CREATE TABLE customers (
+    customer_id INT,
+    name VARCHAR(255),
+    email VARCHAR(255)
+);
+
+CREATE TABLE orders (
+    order_id INT,
+    c_id INT,          -- This is supposed to be the customer_id
+    amount DECIMAL(10,2),
+    order_date DATE
+);</code></pre>
+
+                            <h4 style="color: var(--primary-blue); margin-top: 25px; margin-bottom: 12px;"><b>2. Insert "Messy" Data</b></h4>
+                            <pre class="code-block"><code>INSERT INTO customers VALUES 
+(1, 'Alice Smith', 'alice@example.com'),
+(2, 'Bob Jones', 'bob@example.com');
+
+INSERT INTO orders VALUES 
+(101, 1, 500.00, '2025-01-01'),
+(102, 1, 150.00, '2025-01-02'),
+(103, 2, 900.00, '2025-01-03');</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-item">
+                    <div class="indicator orange-glow"></div>
+                    <div class="card">
+                        <div class="content-area">
+                            <h3 class="prog-title"><b>Phase 2: Operational Troubleshooting</b></h3>
+                            
+                            <h4 style="color: var(--accent-orange); margin-top: 25px; margin-bottom: 12px;"><b>Task 1: Find the Bottleneck (The Client Software)</b></h4>
+                            
+                            <p>In DBeaver or MySQL Workbench, run an EXPLAIN on this join:</p>
+                            
+                            <pre class="code-block"><code>EXPLAIN SELECT name, SUM(amount)
+FROM customers
+JOIN orders ON customers.customer_id = orders.c_id
+GROUP BY name;</code></pre>
+
+                            <div style="margin-top: 20px; padding: 15px; background: rgba(251, 113, 133, 0.15); border-left: 4px solid var(--danger); border-radius: 8px;">
+                                <p><b>⚠️ The Problem:</b></p>
+                                <p style="margin-top: 8px;">You will see "Full Table Scan" (usually in red). Because there are no Primary Keys or Indexes, the database has to read every single row to find a match.</p>
+                            </div>
+
+                            <div style="margin-top: 20px; padding: 15px; background: rgba(16, 185, 129, 0.15); border-left: 4px solid var(--accent-green); border-radius: 8px;">
+                                <p><b>✅ The Fix:</b></p>
+                                <p style="margin-top: 8px;">Use the GUI to add a Primary Key to <code style="background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px;">customer_id</code>.</p>
+                            </div>
+
+                            <h4 style="color: var(--accent-orange); margin-top: 30px; margin-bottom: 12px;"><b>Task 2: Structural Integrity (The Console)</b></h4>
+                            
+                            <p>The <code style="background: rgba(59,130,246,0.15); padding: 2px 8px; border-radius: 4px; color: var(--accent-cyan);">orders</code> table has a column called <code style="background: rgba(59,130,246,0.15); padding: 2px 8px; border-radius: 4px; color: var(--accent-cyan);">c_id</code>, but it isn't "linked" to the customers. If you delete a customer, the orders stay behind like ghosts (Orphans).</p>
+                            
+                            <pre class="code-block" style="margin-top: 15px;"><code>-- Step 1: Add the Primary Key we missed
+ALTER TABLE customers ADD PRIMARY KEY (customer_id);
+
+-- Step 2: Add the Foreign Key to link them
+ALTER TABLE orders ADD CONSTRAINT fk_customer 
+FOREIGN KEY (c_id) REFERENCES customers(customer_id);</code></pre>
+
+                            <h4 style="color: var(--accent-orange); margin-top: 30px; margin-bottom: 12px;"><b>Task 3: Security & Access (The Web Interface)</b></h4>
+                            
+                            <p>Imagine a new intern needs to view the total sales but must not see customer emails (GDPR/Privacy).</p>
+                            
+                            <pre class="code-block" style="margin-top: 15px;"><code>CREATE VIEW v_sales_summary AS
+SELECT c_id, amount FROM orders;</code></pre>
+
+                            <div style="margin-top: 20px; padding: 15px; background: rgba(78, 217, 194, 0.1); border-left: 4px solid var(--accent-cyan); border-radius: 8px;">
+                                <p><b>💡 Next Steps:</b></p>
+                                <p style="margin-top: 8px;">Go to <b>Views</b> and create a "Safe View". Use the <b>Privileges</b> tab to grant the intern access only to the <code style="background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px;">v_sales_summary</code> view, not the raw tables.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-item">
+                    <div class="indicator purple-glow"></div>
+                    <div class="card">
+                        <div class="content-area">
+                            <h3 class="css-title"><b>Phase 3: The "Final Exam" Challenge</b></h3>
+                            
+                            <div style="padding: 20px; background: rgba(124, 58, 237, 0.15); border: 2px solid var(--primary-purple); border-radius: 12px; margin-bottom: 20px;">
+                                <p style="font-size: 1.1rem; margin-bottom: 15px;"><b>📋 The Scenario:</b></p>
+                                <p style="margin-bottom: 0;">Your boss wants a report of all orders over $200, but only for customers who have an 'a' in their email.</p>
+                            </div>
+
+                            <div style="margin-top: 30px;">
+                                <h4 style="color: var(--primary-purple); margin-bottom: 15px;"><b>Your Tasks:</b></h4>
+                                
+                                <div style="background: var(--card-bg-alpha); padding: 15px; border-radius: 8px; margin-bottom: 12px; border-left: 3px solid var(--primary-purple);">
+                                    <p><b>1.</b> Write the query to solve this problem.</p>
+                                </div>
+
+                                <div style="background: var(--card-bg-alpha); padding: 15px; border-radius: 8px; margin-bottom: 12px; border-left: 3px solid var(--primary-purple);">
+                                    <p><b>2.</b> Use <code style="background: rgba(59,130,246,0.15); padding: 2px 8px; border-radius: 4px; color: var(--accent-cyan);">EXPLAIN</code> again to analyze the query.</p>
+                                </div>
+
+                                <div style="background: var(--card-bg-alpha); padding: 15px; border-radius: 8px; border-left: 3px solid var(--primary-purple);">
+                                    <p><b>3.</b> Does it show a "Using filesort" or "Using temporary" warning?</p>
+                                </div>
+                            </div>
+
+                            <div style="margin-top: 30px; padding: 20px; background: rgba(59, 130, 246, 0.1); border-radius: 12px;">
+                                <p style="font-size: 0.95rem; color: var(--text-dim); margin-bottom: 10px;"><b>💭 Think About:</b></p>
+                                <ul style="margin-left: 20px; color: var(--text-dim);">
+                                    <li style="margin-bottom: 8px;">How would you optimize this query if the database had millions of records?</li>
+                                    <li style="margin-bottom: 8px;">What indexes might help improve performance?</li>
+                                    <li>Could a view make this query easier to manage?</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+<script src="../../../../theme.js"></script>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 01 - Information Theory - Part 1</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="../../../../DrSherif.css" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="top-bar">
+        <a href="../../../../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <img src="../../../../logo.jpeg" alt="Logo" class="site-logo">
+            <h2>Digital Marketing</h2>
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="sun-icon" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <svg class="moon-icon" fill="currentColor" viewBox="0 0 24 24" style="display: none;">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+            </svg>
+        </button>
+    </nav>
+
+    <header class="hero">
+        <a href="informationrep.html" class="exit-link">← EXIT LESSON</a>
+        <div class="badge">LESSON 01</div>
+        <h1>Information Theory - Part 1</h1>
+        <p>Information, Entropy, Information Content, Associated Coding</p>
+    </header>
+
+    <!-- Timeline Navigation -->
+    <nav class="timeline-nav">
+        <div class="timeline-line"></div>
+        <div class="step-node active" onclick="showStep(0)"><div class="dot">1</div><div class="node-label">Human Senses</div></div>
+        <div class="step-node" onclick="showStep(1)"><div class="dot">2</div><div class="node-label">Digital Ecosystem</div></div>
+        <div class="step-node" onclick="showStep(2)"><div class="dot">3</div><div class="node-label">Digital Comm.</div></div>
+        <div class="step-node" onclick="showStep(3)"><div class="dot">4</div><div class="node-label">Data Types</div></div>
+        <div class="step-node" onclick="showStep(4)"><div class="dot">5</div><div class="node-label">Analogue</div></div>
+        <div class="step-node" onclick="showStep(5)"><div class="dot">6</div><div class="node-label">Digital</div></div>
+        <div class="step-node" onclick="showStep(6)"><div class="dot">7</div><div class="node-label">Binary Terms</div></div>
+        <div class="step-node" onclick="showStep(7)"><div class="dot">8</div><div class="node-label">Key Concepts</div></div>
+    </nav>
+
+    <!-- All content steps -->
+    <div class="step-content active">
+        <!-- Step 1: Human Characteristics -->
+        <h2>Human Characteristics</h2>
+        <div class="theory-box">
+            Among the five human senses, <strong>vision</strong> and <strong>hearing</strong> are considered to be the most sophisticated due to their substantial representation within the cortical regions of the central nervous system.
+        </div>
+        <div class="highlight-box">
+            <strong>In our course:</strong> We will concern ourselves with these two senses from a computer systems-based view. We will discuss the methods of representing audio and video in our computer systems.
+        </div>
+    </div>
+
+    <div class="step-content">
+        <!-- Step 2: Digital Ecosystem -->
+        <h2>What is a Digital Ecosystem?</h2>
+        <div class="theory-box">
+            A <strong>digital ecosystem</strong> is a group of interconnected information technology resources that can function as a unit.
+        </div>
+        <ul class="details-list" style="padding-left:24px; color:var(--text-dim);">
+            <li>Made up of suppliers, customers, trading partners</li>
+            <li>Applications and third-party data service providers</li>
+            <li>All respective technologies</li>
+        </ul>
+    </div>
+
+    <div class="step-content">
+        <h2>Digital Communication</h2>
+        <p><strong>Digital Communication</strong> is the process of exchanging information, messages, and ideas using digital technologies and platforms.</p>
+        <p>It involves the <strong> transmission </strong> and <strong> reception </strong> of data through electronic devices and networks.</p>
+        <p>Digital Communication enables real-time interaction, instant messaging, video conferencing, and sharing of multimedia content across vast distances.</p>
+    </div>
+
+    <div class="step-content">
+        <h2>Data Representation</h2>
+        <p>Data can be anything which represents a specific result or any number, text, image, audio, video, etc.</p>
+        <p><strong>Forms of data representation:</strong> At present, information comes in different forms:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Numbers</th>
+                    <th>Text</th>
+                    <th>Images</th>
+                    <th>Audio</th>
+                    <th>Video</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="5" style="text-align: center;">The main concern in our course will relate to <strong> auditory </strong> and <strong> visual </strong> representation of data.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="step-content">
+        <h2>Analogue Data</h2>
+        <p>An <strong>analog signal</strong> is any continuous signal for which the time-varying feature (variable) of the signal is a representation of some other time-varying quantity.</p>
+        <p>In other words, it is analogous to another time-varying signal.</p>
+        <div class="highlight-box">
+            Continuous wave representation with infinite possible values at any given moment.
+        </div>
+    </div>
+
+    <div class="step-content">
+        <h2>Digital Data</h2>
+        <p><strong>Computers can only work with digital information.</strong> Everything that they process must first be turned into a digital signal in one of two states: 'on' or 'off'.</p>
+        <div class="highlight-box">
+            Discrete representation using binary: <strong>0</strong> (off) or <strong>1</strong> (on)
+        </div>
+    </div>
+
+    <div class="step-content">
+        <h2>Binary Terminology</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Term</th>
+                    <th>Description</th>
+                    <th>Size</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>BIT</strong></td>
+                    <td>Binary Digit - the smallest unit of data</td>
+                    <td>1 binary digit (0 or 1)</td>
+                </tr>
+                <tr>
+                    <td><strong>NIBBLE</strong></td>
+                    <td>Half of a byte</td>
+                    <td>4 bits</td>
+                </tr>
+                <tr>
+                    <td><strong>BYTE</strong></td>
+                    <td>Standard unit of data storage</td>
+                    <td>8 bits</td>
+                </tr>
+                <tr>
+                    <td><strong>REGISTER</strong></td>
+                    <td>Small amounts of available storage for specific purposes with quick access time</td>
+                    <td>Multiple bytes (group of bits)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="step-content">
+        <h2>Key Concepts</h2>
+        <ul>
+            <li><strong>Binary:</strong> A numbering scheme with only two possible values for each digit: 0 and 1</li>
+            <li><strong>Digit:</strong> Any of the numerals from 0 to 9, especially when forming part of a number</li>
+            <li><strong>Nibble:</strong> Can be conveniently represented by one hexadecimal digit</li>
+            <li><strong>Digital Processing:</strong> All information must be converted to binary (0s and 1s) for computer processing</li>
+        </ul>
+    </div>
+</div>
+
+    <footer>
+        <p>Contact: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="24574c4156564b5750645d454c4b4b0a474b49">[email&#160;protected]</a> | Tel: 01501827070 - 01017776756</p>
+        <p>Information Representation Course • Lesson 01</p>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        function showStep(index) {
+            // Update navigation dots
+            document.querySelectorAll('.step-node').forEach((node, i) => {
+                if (i === index) {
+                    node.classList.add('active');
+                } else {
+                    node.classList.remove('active');
+                }
+            });
+
+            // Show selected content
+            document.querySelectorAll('.step-content').forEach((content, i) => {
+                if (i === index) {
+                    content.classList.add('active');
+                } else {
+                    content.classList.remove('active');
+                }
+            });
+        }
+    </script>
+<script src="../../../../theme.js"></script>
+</body>
+</html>

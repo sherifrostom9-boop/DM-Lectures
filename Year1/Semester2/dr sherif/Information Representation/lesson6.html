@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 06 - Basics of Compression - Part 3</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="../../../../DrSherif.css" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="top-bar">
+        <a href="../../../../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <img src="../../../../logo.jpeg" alt="Logo" class="site-logo">
+            <h2>Digital Marketing</h2>
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="sun-icon" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <svg class="moon-icon" fill="currentColor" viewBox="0 0 24 24" style="display: none;">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+            </svg>
+        </button>
+    </nav>
+
+    <header class="hero">
+        <a href="informationrep.html" class="exit-link">← BACK TO SYLLABUS</a>
+        <div class="badge">LESSON 06</div>
+        <h1>Basics of Compression - Part 3</h1>
+        <p>Objectives, Types of Redundancy, Compression Ratio, Quality and Speed of Restitution, Dictionary-Based Methods</p>
+    </header>
+
+    <!-- Timeline Navigation -->
+    <nav class="timeline-nav">
+        <div class="timeline-line"></div>
+        <div class="step-node active" onclick="showStep(0)"><div class="dot">1</div><div class="node-label">Parity Bit</div></div>
+        <div class="step-node" onclick="showStep(1)"><div class="dot">2</div><div class="node-label">Parity Block</div></div>
+        <div class="step-node" onclick="showStep(2)"><div class="dot">3</div><div class="node-label">Checksum</div></div>
+        <div class="step-node" onclick="showStep(3)"><div class="dot">4</div><div class="node-label">Check Digit</div></div>
+        <div class="step-node" onclick="showStep(4)"><div class="dot">5</div><div class="node-label">ARQ & ECHO</div></div>
+        <div class="step-node" onclick="showStep(5)"><div class="dot">6</div><div class="node-label">Error Causes</div></div>
+        <div class="step-node" onclick="showStep(6)"><div class="dot">7</div><div class="node-label">Data Loss</div></div>
+        <div class="step-node" onclick="showStep(7)"><div class="dot">8</div><div class="node-label">Encryption</div></div>
+    </nav>
+
+    <!-- All steps with original tables preserved exactly -->
+
+    <div class="step-content active">
+        <h2>Parity Bit</h2>
+        <div class="theory-box">
+            A parity bit is a bit transmitted with EACH byte of data to use it in checking the data.<br>
+            The idea is to count the number of 1's in the byte (including the check bit) & there are two types of parity bit check:
+        </div>
+        <ul style="padding-left:28px; color:var(--text-dim);">
+            <li><strong>Odd Parity</strong>: Which means that number of 1's in the byte is an odd number (including the parity bit)</li>
+            <li><strong>Even Parity</strong>: Which means that number of 1's in the byte is an even number (including the parity bit)</li>
+        </ul>
+
+        <p style="margin:24px 0 12px;">Let us take an example</p>
+        <p>If we have a bit like below:</p>
+        <div class="binary-example">0 0 1 0 1 0 0</div>
+
+        <p>What should the parity bit has to be?</p>
+        <p>As we can note, number of 1's in this byte is 2, which is an even number. So,</p>
+        <p>To use odd check, the parity have to be 1, which make number of 1's is 3 (odd number), like this:</p>
+        <div class="binary-example">1 0 0 1 0 1 0 0</div>
+
+        <p>To use even check, the parity have to be 0, which make number of 1's stay as 2 (even number), like this:</p>
+        <div class="binary-example">0 0 0 1 0 1 0 0</div>
+
+        <p style="margin:32px 0 12px;">So we can have an exam question look like this:</p>
+        <p>The system uses odd parity.</p>
+        <p>Write the correct parity bit in each register</p>
+
+        <!-- Original table preserved exactly -->
+        <table>
+            <thead>
+                <tr><th>Register 1</th> <td></td><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td><strong> Parity Bit</strong></td></tr>
+            </thead>
+            <tbody>
+                <tr><th>Register 2</th> <td></td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td><td>0</td><td><strong> Parity Bit</strong></td></tr>
+            </tbody>
+        </table>
+
+        <p style="margin:24px 0 12px;">Solution:</p>
+        <p>As the system use the Odd parity and register 1 have 4 1's (which is an even number), the parity bit then have to be 1 [to make number of 1's have an odd number], like this:</p>
+        <p>Register 1</p><div class="binary-example"><strong> 1</strong> 1 1 1 0 0 1 0 </div>
+
+        <p>As the system use the Odd parity and register 2 have 3 1's (which is an odd number), the parity bit then have to be 0 [to keep number of 1's odd], like this:</p>
+        <p>Register 2</p><div class="binary-example"><strong> 0</strong> 0 0 0 1 1 1 0</div>
+
+        <p style="margin-top:32px;">So, what is wrong with parity check?, what is the issue?</p>
+        <p>The point is, when the system use the parity check (odd or even), the receiver will be able to know that the byte have an error or not, but the receiver can NOT determine where the error exactly.</p>
+        <p>And to solve that, we will use:</p>
+        <p><strong>Parity Block</strong></p>
+    </div>
+
+    <div class="step-content">
+        <h2>Parity Block</h2>
+        <div class="theory-box">
+            The idea is, instead of sending a parity bit, we will send a parity byte.
+        </div>
+
+        <!-- All original tables preserved exactly -->
+
+        <p style="margin:24px 0 12px;">Let us take an example using odd parity block:</p>
+        <p>If the sender sent this:</p>
+        <table>
+            <thead>
+                <tr><th>Byte</th><th>Bit 1</th><th>Bit 2</th><th>Bit 3</th><th>Bit 4</th><th>Bit 5</th><th>Bit 6</th><th>Bit 7</th><th>Bit 8</th></tr>
+            </thead>
+            <tbody>
+                <tr><th>Byte</th><td>1</td><td>0</td><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td></tr>
+                <tr><th>Parity byte</th><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td></tr>
+            </tbody>
+        </table>
+
+        <p style="margin:32px 0 12px;">And the receiver receive this:</p>
+        <table>
+            <thead>
+                <tr><th>Byte</th><th>Bit 1</th><th>Bit 2</th><th>Bit 3</th><th>Bit 4</th><th>Bit 5</th><th>Bit 6</th><th>Bit 7</th><th>Bit 8</th></tr>
+            </thead>
+            <tbody>
+                <tr><th>Byte</th><td>1</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>
+                <tr><th>Parity byte</th><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td></tr>
+            </tbody>
+        </table>
+
+        <p style="margin:32px 0 12px;">Firstly, if we count the 1's in the bit horizontally, we will find it 4 which is even and that remark that there is an error here.</p>
+        <p>What we are doing here is to count number of 1's in each column, and as it is an odd parity, so if the count is odd number, then it is fine. Else, the bit is corrupted (error place)</p>
+        <table>
+            <thead>
+                <tr><th>Byte</th><th>Bit 1</th><th>Bit 2</th><th>Bit 3</th><th>Bit 4</th><th>Bit 5</th><th>Bit 6</th><th>Bit 7</th><th>Bit 8</th></tr>
+            </thead>
+            <tbody>
+                <tr><th>Byte</th><td>1</td><td>0</td><td>1</td><td>1</td><td><strong> 0</strong></td><td>0</td><td>0</td><td>1</td></tr>
+                <tr><th>Parity byte</th><td>0</td><td>1</td><td>0</td><td>0</td><td><strong> 0</strong></td><td>1</td><td>1</td><td>0</td></tr>
+                <tr><th>           </th><td>1</td><td>1</td><td>1</td><td>1</td><td><strong> 0</strong></td><td>1</td><td>1</td><td>1</td></tr>
+            </tbody>
+        </table>
+
+        <p style="margin:32px 0 12px;">Now we know that bit 5 have an error, and as bit 5 contain 0, so to correct that error, we need to change the content of bit 5 from 0 to be 1, which mean the byte would be:</p>
+        <table>
+            <thead>
+                <tr><th>Byte</th><th>Bit 1</th><th>Bit 2</th><th>Bit 3</th><th>Bit 4</th><th>Bit 5</th><th>Bit 6</th><th>Bit 7</th><th>Bit 8</th></tr>
+            </thead>
+            <tbody>
+                <tr><th>Byte</th><td>1</td><td>0</td><td>1</td><td>1</td><td><strong> 1</strong></td><td>0</td><td>0</td><td>1</td></tr>
+                <tr><th>Parity byte</th><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td></tr>
+            </tbody>
+        </table>
+
+        <p style="margin:40px 0 12px;">So, using this method, block of data can be sent. (use even parity)</p>
+        <table>
+            <thead>
+                <tr><th>Byte</th><th>Bit 1</th><th>Bit 2</th><th>Bit 3</th><th>Bit 4</th><th>Bit 5</th><th>Bit 6</th><th>Bit 7</th><th>Bit 8</th></tr>
+            </thead>
+            <tbody>
+                <tr><th>Byte 1</th><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td><td>1</td><td>1</td><td>0</td></tr>
+                <tr><th>Byte 2</th><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td></tr>
+                <tr><th>Byte 3</th><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td></tr>
+                <tr><th>Byte 4</th><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+                <tr><th>Byte 5</th><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td></tr>
+                <tr><th>Byte 6</th><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><th>Byte 7</th><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+                <tr><th>Byte 8</th><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td><td>0</td></tr>
+                <tr><th>Byte 9</th><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+                <tr><th>Parity byte</th><td><strong> 1</strong></td><td><strong> 1</strong></td><td><strong> 0</strong></td><td><strong> 1</strong></td><td><strong> 0</strong></td><td><strong> 0</strong></td><td><strong> 0</strong></td><td><strong> 1</strong></td></tr>
+            </tbody>
+        </table>
+
+        <p style="margin:32px 0 12px;">So, we need to count 1's vertically:</p>
+        <table>
+            <thead>
+                <tr><th>Bit no.</th><th>Bit 1</th><th>Bit 2</th><th>Bit 3</th><th>Bit 4</th><th>Bit 5</th><th>Bit 6</th><th>Bit 7</th><th>Bit 8</th></tr>
+            </thead>
+            <tbody>
+                <tr><th>No. of 1's</th><td>6</td><td>4</td><td>4</td><td>6</td><td>5</td><td>4</td><td>6</td><td>4</td></tr>
+                <tr><th>Type</th><td>Even</td><td>Even</td><td>Even</td><td>Even</td><td><strong> Odd</strong></td><td>Even</td><td>Even</td><td>Even</td></tr>
+            </tbody>
+        </table>
+
+        <p style="margin:32px 0 12px;">So, bit 5 is wrong and the correction is to change its content from 1 to be 0</p>
+        <table>
+            <thead>
+                <tr><th>Byte</th><th>Bit 1</th><th>Bit 2</th><th>Bit 3</th><th>Bit 4</th><th>Bit 5</th><th>Bit 6</th><th>Bit 7</th><th>Bit 8</th></tr>
+            </thead>
+            <tbody>
+                <tr><th>Byte 1</th><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td><td>1</td><td>1</td><td>0</td></tr>
+                <tr><th>Byte 2</th><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td></tr>
+                <tr><th>Byte 3</th><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td></tr>
+                <tr><th>Byte 4</th><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+                <tr><th>Byte 5</th><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td></tr>
+                <tr><th>Byte 6</th><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><th>Byte 7</th><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+                <tr><th>Byte 8</th><td>0</td><td>0</td><td>0</td><td>1</td><td><strong> 0</strong></td><td>0</td><td>1</td><td>0</td></tr>
+                <tr><th>Byte 9</th><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+                <tr><th>Parity</th><td>1</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>
+            </tbody>
+        </table>
+
+        <p style="margin:32px 0 12px;">So, byte 8 have an error, but which bit?</p>
+    </div>
+
+    <div class="step-content">
+        <h2>Checksum</h2>
+        <p><strong> The idea is:</strong> Before a block of data is transmitted, the checksum calculated by the sender an is sent to the receiver along with data. The receiver then recalculate the checksum of the received data using the same algorithm and compares it with the checksum sent. If the values are the same, there have been no errors in transmission. If they are not the same, the receiver sends a request to the sender to resend the data.</p>
+        <p><strong> But how exactly the checksum have been calculated:</strong></p>
+        <p>Let us assume the checksum of a block of data is 1 Byte. This gives it a maximum decimal value of 255. If the sum of the bytes of the block of data is <= 255, this value is the checksum. If the sum of the bytes of the block of data is > 255, then the checksum is calculated as follows:</p>
+        <p><strong>Divide</strong> the sum of the bytes of the block of data (V) by 256 = (X)</p>
+        <p>Round the X down to the nearest integer (Y).</p>
+        <p>Z = Y * 256</p>
+        <p>Checksum = V - Z</p>
+
+        <p style="margin:24px 0 12px;">Let us take an example</p>
+        <p>If V = 1223</p>
+        <p>Then X = 1223 / 256 = 4.78</p>
+        <p>Which means Y = 4</p>
+        <p>Then Z = 4 * 256 = 1024</p>
+        <p>And Checksum = 1223 - 1024 = 199</p>
+        <p>So, Checksum = 199</p>
+
+        <p style="margin:32px 0 12px;">An<strong> exam question</strong> may look like:</p>
+        <p>Calculate the checksum of a block of data with the byte sum :1805</p>
+        <p><strong> Solution:</strong></p>
+        <p>X = 1805 / 256 = 7.05</p>
+        <p>Y = 7</p>
+        <p>Z = 7 * 256 = 1792</p>
+        <p>Checksum = 1805 - 1792 = 13</p>
+        <p>So, Checksum = 13</p>
+    </div>
+
+    <div class="step-content">
+        <h2>Check Digit</h2>
+        <p>Is the final digit in a code, calculated using the other digits of the code. They are used for<strong> barcodes</strong>,<strong> product codes</strong>,<strong> ISBN</strong> (International Standard Book Numbers), and<strong> VIN</strong> (Vehicle Identification Number). And it is used for identifying errors in data entry.</p>
+        <p>How exactly the check digit have been calculated:</p>
+        <p>Let us say that we have to move through 4 steps to calculate the check digit:</p>
+        <ol>
+            <li><strong> Sum</strong> all the<strong> odd</strong> digit (<strong>excluding</strong> the check digit).</li>
+            <li><strong>Sum</strong> all the<strong> even</strong> digits and multiply them by 3.</li>
+            <li><strong>Add</strong> the<strong> Sums</strong> and<strong> mod</strong>(%) it to get the<strong> remainder</strong>.</li>
+            <li>if the<strong> remainder</strong> is<strong> 0</strong>, this is the check digit, otherwise,<strong> subtract</strong> the remainder from<strong> 10</strong>.</li>
+        </ol>
+
+        <p style="margin:24px 0 12px;"><strong>Let us take some examples:</strong></p>
+        <p>Calculate the check digit for this code:</p>
+        <p><strong>1 2 5 4 6 5 3 5 6 9 3 6</strong></p>
+        <p>(this code is for ISBN code, which is 13 digit code)</p>
+        <p><strong>Solution:</strong></p>
+        <p>1- sum all odd digits: 1 + 5 + 6 + 3 + 6 + 3 = 24</p>
+        <p>2- sum all even digits: 2 + 4 + 5 + 5 + 9 + 6 = 31</p>
+        <p>then multiply them by 3: 31 * 3 = 93</p>
+        <p>3- Add the sums: 24 + 93 = 117, and get mod:</p>
+        <p>117 mod 10 = 7</p>
+        <p>4- as the remainder is NOT 0, so we have to subtract it from 10, So the check digit will be = 10 - 7 = 3.</p>
+        <p>Which mean that the 13 code will be:</p>
+        <p><strong>1 2 5 4 6 5 3 5 6 9 3 6 3</strong></p>
+
+        <p style="margin:40px 0 12px;">Calculate the check digit for this code:</p>
+        <p><strong>9 5 6 3 4 2 8 6 4 5 4 4</strong></p>
+        <p><strong>Solution:</strong></p>
+        <p>1- sum all odd digits: 9 + 6 + 4 + 8 + 4 + 4 = 35</p>
+        <p>2- sum all even digits: 5 + 3 + 2 + 6 + 5 + 4 = 25</p>
+        <p>then multiply them by 3: 25 * 3 = 75</p>
+        <p>3- Add the sums: 35 + 75 = 110, and get mod:</p>
+        <p>110 mod 10 = 0</p>
+        <p>4- as the remainder is 0.</p>
+        <p>Which mean that the 13 code will be:</p>
+        <p><strong>9 5 6 3 4 2 8 6 4 5 4 4 0</strong></p>
+
+        <p style="margin-top:32px;">Important note: in exam, if the examiner give me a code and asked me if that code is valid or not? I will do the same steps and if the check digit equal to 0, then the code is valid, otherwise the code will be NOT valid.</p>
+    </div>
+
+    <div class="step-content">
+        <h2>ARQ (Automatic Repeat reQuest)</h2>
+        <p>We can consider the<strong> ARQ</strong> as a protocol or a deal between sender and receiver to control the data.</p>
+        <p><strong>The idea is :</strong></p>
+        <p>If the receiver detects<strong> NO</strong> errors in the data transmitted, it sends the sender an acknowledgement to notify them that data has been sent correctly.</p>
+        <p>But, if the receiver detects errors, (maybe by using parity check or checksum, or whatever), it requests the sender to resend the data.</p>
+        <p>In case the sender don't receive any acknowledgment from the receiver after a specified period of time (name as timeout), the data is automatically resent.</p>
+        <p>And this will keep happening until the sender receive an acknowledgment from the receiver.</p>
+    </div>
+
+    <div class="step-content">
+        <h2>ECHO</h2>
+        <p><strong>The idea is :</strong></p>
+        <p>When data sent to the receiver, the receiver gets resent back to the sender, which checks if any errors have occurred during the transmission by comparing the received data with the original data.</p>
+        <p>This method is<strong> NOT</strong> very reliable, as there is unknown whether an error has occurred during sending the data to the receiver or resending the data back to the sender.</p>
+    </div>
+
+    <div class="step-content">
+        <h2>The Need of Error Detection</h2>
+        <p>A<strong> condition</strong> when the receiver's information does not match with the sender's information.</p>
+        <p>During<strong> transmission</strong>, digital signals suffer from noise / interference that can introduce errors in the binary bits travelling from sender to receiver.</p>
+        <p>That means a 0 bit may change to 1 or a 1 bit may change to 0.</p>
+        <p>In<strong> networking</strong>, error detection refers to the techniques used to detect noise / interference or other impairments introduced into data while it is transmitted from source to destination.</p>
+        <p><strong>Error detection</strong> ensures reliable delivery of data across vulnerable networks.</p>
+        <p><strong>Error detection</strong> minimizes the probability of passing incorrect frames to the destination, known as undetected error probability.</p>
+        <p>The data errors will cause loss of important / secured data.</p>
+        <p>Even one bit of change in data may affect the whole system's performance.</p>
+        <p>Generally the data transfer in digital systems will be in the form of 'Bit - transfer'.</p>
+        <p>In this case, the data error is likely to be changed in positions of 0 and 1.</p>
+    </div>
+
+    <div class="step-content">
+        <h2>Loss of Data and Data Corruption</h2>
+        <p>With respect for all the previous mentioned threats, as a result we can loss of data or our data can be corrupted</p>
+        <p><strong>LOSS OF DATA AND DATA CORRUPTION:</strong></p>
+        <p>Data can be lost or corrupted via one of four methods:</p>
+
+        <p><strong>Accidentally</strong></p>
+        <p>e.g. the accidental delete of a file.</p>
+        <p>Ways to prevent:</p>
+        <ul>
+            <li>Use of back-ups in case data is lost or corrupted through an accidental operation.</li>
+            <li>Save data on a regular basis.</li>
+            <li>Use of passwords and user ids to restrict access to authorized users only.</li>
+        </ul>
+
+        <p><strong>Hardware fault</strong></p>
+        <p>e.g. Head crash on a hard disk drive.</p>
+        <p>Ways to prevent:</p>
+        <ul>
+            <li>Use of back-ups in case data is lost or corrupted through the hardware fault.</li>
+            <li>Use of UPS (Uninterruptable Power Supply) to prevent power loss causing hardware malfunction.</li>
+            <li>Save data on a regular basis.</li>
+            <li>Use of parallel systems as back-up hardware.</li>
+        </ul>
+
+        <p><strong>Software fault</strong></p>
+        <p>e.g. incompatible software installed on the system.</p>
+        <p>Ways to prevent:</p>
+        <ul>
+            <li>Use of back-ups in case data is lost or corrupted through the software fault.</li>
+            <li>Save data on a regular basis in case the software suddenly 'freezes' or 'crashes' whilst the user is working on it.</li>
+        </ul>
+
+        <p><strong>Incorrect computer operation</strong></p>
+        <p>e.g. Incorrect shutdown procedure or incorrect procedure for the removal of a memory stick.</p>
+        <p>Ways to prevent:</p>
+        <ul>
+            <li>Use of back-ups in case data is lost or corrupted through wrong operation.</li>
+            <li>Correct training procedures so that the users are aware of the correct operation of hardware.</li>
+        </ul>
+
+        <p style="margin-top:24px;">So, we have common ways can be used to prevent data loss or corruption, such as:</p>
+        <ul>
+            <li><strong>Back-up files</strong> on a regular basis to another device or to the cloud.</li>
+            <li>Set data to <strong>read only</strong> to prevent accidental editing.</li>
+            <li><strong>Save data</strong> on a regular basis to prevent loss or corruption of data in unexpected shutdown or failure.</li>
+            <li>Use correct <strong>shut down procedures</strong> to prevent damage to components and stored files.</li>
+            <li>Use correct procedures before <strong>disconnecting portable storage</strong> device to prevent damage to device or data corruption.</li>
+            <li>Keep storage devices in a <strong>safe place</strong> away from fire hazards.</li>
+        </ul>
+    </div>
+
+    <div class="step-content">
+        <h2>Data Encryption</h2>
+        <p>A DEFINITION OF DATA ENCRYPTION</p>
+        <p><strong>Data encryption</strong> translates data into another form, or code, so that only people with access to a secret key (formally called a decryption key) or password can read it.</p>
+        <p><strong>Encrypted</strong> data is commonly referred to as<strong> ciphertext</strong>, while<strong> unencrypted</strong> data is called<strong> plaintext</strong>.</p>
+        <p>Currently, encryption is one of the most popular and effective data security methods used by organizations.</p>
+        <p><strong>Two main types of data encryption</strong> exist -<strong> asymmetric encryption</strong>, also known as<strong> public-key encryption</strong>, and<strong> symmetric encryption</strong>.</p>
+
+        <p style="margin-top:32px;">THE PRIMARY FUNCTION OF DATA ENCRYPTION</p>
+        <p>The<strong> purpose</strong> of data encryption is to<strong> protect digital data confidentiality</strong> as it is stored on computer systems and transmitted using the internet or other computer networks.</p>
+        <p>The outdated<strong> data encryption standard</strong> (DES) has been replaced by<strong> modern encryption algorithms</strong> that play a critical role in the security of IT systems and communications.</p>
+        <p>These<strong> algorithms</strong> provide confidentiality and<strong> drive key security</strong> initiatives including<strong> authentication</strong>,<strong> integrity</strong>, and<strong> non-repudiation</strong>.</p>
+        <p><strong>Authentication</strong> allows for the verification of a message's origin, and<strong> integrity</strong> provides proof that a message's contents have not changed since it was sent.</p>
+        <p>Additionally,<strong> non-repudiation</strong> ensures that a message sender cannot deny sending the message.</p>
+    </div>
+
+    <div class="step-content">
+        <h2>Conclusion</h2>
+        <p>Error detection and data integrity are essential for reliable data transmission and storage, preventing corruption and ensuring security through methods like parity, checksums, and encryption.</p>
+        <div class="highlight-box">
+            <strong>Key Insight:</strong> Implementing robust error detection and prevention strategies minimizes data loss and maintains system performance.
+        </div>
+    </div>
+
+    <div class="step-content">
+        <h2>Key Takeaways</h2>
+        <ul>
+            <li>Parity bits (odd/even) detect errors but cannot locate them; parity blocks can correct single-bit errors.</li>
+            <li>Checksums verify data integrity by comparing calculated values between sender and receiver.</li>
+            <li>Check digits validate codes like ISBNs to detect data entry errors.</li>
+            <li>ARQ ensures reliable transmission through acknowledgments and retransmissions.</li>
+            <li>ECHO checks data by echoing back, though less reliable.</li>
+            <li>Error detection is crucial to handle noise and interference in digital transmissions.</li>
+            <li>Data loss prevention includes backups, read-only settings, and proper procedures.</li>
+            <li>Encryption protects data confidentiality using symmetric or asymmetric methods.</li>
+        </ul>
+    </div>
+
+    <footer>
+        <p>Contact: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3a49525f484855494e7a435b52555514595557">[email&#160;protected]</a> | Tel: 01501827070 - 01017776756</p>
+        <p>Information Representation Course • Lesson 06</p>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        function showStep(index) {
+            document.querySelectorAll('.step-node').forEach((node, i) => {
+                node.classList.toggle('active', i === index);
+            });
+
+            document.querySelectorAll('.step-content').forEach((content, i) => {
+                content.classList.toggle('active', i === index);
+            });
+        }
+    </script>
+<script src="../../../../theme.js"></script>
+</body>
+</html>

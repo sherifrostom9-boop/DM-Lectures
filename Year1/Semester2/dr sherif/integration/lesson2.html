@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Topic 2 – CSS Basics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="../../../../DrSherif.css" rel="stylesheet">
+
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="top-bar">
+    <a href="../../../../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+        <img src="../../../../logo.jpeg" alt="Logo" class="site-logo">
+        <h2>Digital Marketing</h2>
+    </a>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <svg class="sun-icon" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+        </svg>
+        <svg class="moon-icon" fill="currentColor" viewBox="0 0 24 24" style="display: none;">
+          <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+        </svg>
+    </button>
+</nav>
+
+  <main>
+    <a href="integrationS2.html" class="back-link">← EXIT LESSON</a>
+
+    <header>
+      <div class="label">Lesson 02</div>
+      <h1>CSS Basics</h1>
+      <div class="subtitle">Understanding Cascading Style Sheets and the power of Selectors</div>
+    </header>
+
+    <div class="section-grid">
+
+      <div class="card">
+        <h2>What is CSS?</h2>
+        <p><strong>CSS (Cascading Style Sheets)</strong> is the language used to style an HTML document. It describes how HTML elements should be displayed on screen, print, or other media.</p>
+        <ul>
+          <li>Allows central control of appearance across multiple pages</li>
+          <li>External stylesheets are saved in <code>.css</code> files</li>
+          <li>Replaced the messy inline formatting common in early HTML</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>CSS Syntax</h2>
+        <p>A CSS rule consists of a <strong>selector</strong> and a <strong>declaration block</strong>.</p>
+        <div class="code-block">
+<span class="selector">h1</span> {<br>
+&nbsp;&nbsp;<span class="property">color</span>: <span class="value">white</span>;<br>
+&nbsp;&nbsp;<span class="property">text-align</span>: <span class="value">center</span>;<br>
+}
+        </div>
+        <p><small>The selector targets the element(s), declarations are separated by semicolons.</small></p>
+      </div>
+
+      <div class="card full-width">
+        <h2>Types of Selectors</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-top: 1rem;">
+          <div>
+            <p><strong>Element Selector</strong> — targets tag names</p>
+            <div class="code-block"><span class="selector">p</span> { <span class="property">margin</span>: <span class="value">1em 0</span>; }</div>
+          </div>
+          <div>
+            <p><strong>ID Selector</strong> — unique element (#)</p>
+            <div class="code-block"><span class="selector">#header</span> { <span class="property">background</span>: <span class="value">navy</span>; }</div>
+          </div>
+          <div>
+            <p><strong>Class Selector</strong> — reusable style (.)</p>
+            <div class="code-block"><span class="selector">.btn-primary</span> { <span class="property">background</span>: <span class="value">var(--primary)</span>; }</div>
+          </div>
+          <div>
+            <p><strong>Universal Selector</strong> — everything (*)</p>
+            <div class="code-block"><span class="selector">*</span> { <span class="property">box-sizing</span>: <span class="value">border-box</span>; }</div>
+          </div>
+        </div>
+        <p style="margin-top: 1.5rem;"><strong>Grouping:</strong> Apply same rules to multiple selectors</p>
+        <div class="code-block"><span class="selector">h1, h2, h3</span> { <span class="property">font-family</span>: <span class="value">"Inter", sans-serif</span>; }</div>
+      </div>
+
+    </div>
+
+    <div class="exercise-card">
+      <h2>🚀 Practice Lab – CSS Selectors</h2>
+      <p>Fill in the correct selectors to complete each rule.</p>
+
+      <div id="quiz" style="margin-top: 1.8rem;">
+        <p><strong>1. Select all <code>&lt;p&gt;</code> elements and set color to red:</strong></p>
+        <div class="code-block">
+          <input type="text" class="ex-input" data-answer="p" size="3"> { color: red; }
+        </div>
+
+        <p><strong>2. Select the element with id="header1":</strong></p>
+        <div class="code-block">
+          <input type="text" class="ex-input" data-answer="#header1" size="9"> { font-size: 20px; }
+        </div>
+
+        <p><strong>3. Select all elements with class "nav-item":</strong></p>
+        <div class="code-block">
+          <input type="text" class="ex-input" data-answer=".nav-item" size="10"> { display: inline; }
+        </div>
+
+        <p><strong>4. Select ALL elements on the page:</strong></p>
+        <div class="code-block">
+          <input type="text" class="ex-input" data-answer="*" size="2"> { box-sizing: border-box; }
+        </div>
+
+        <button class="btn-check" onclick="checkQuiz()">Check My Answers</button>
+        <p id="result-msg"></p>
+      </div>
+    </div>
+
+    <footer>
+      <p>Integration Course • Topic 2: CSS Basics</p>
+      <p>Contact: sherrost@yahoo.com | Tel: 01501827070</p>
+    </footer>
+  </main>
+
+  <script>
+    function checkQuiz() {
+      const inputs = document.querySelectorAll('.ex-input');
+      let correct = 0;
+      let total = inputs.length;
+      
+      inputs.forEach(input => {
+        const userAnswer = input.value.trim();
+        const correctAnswer = input.getAttribute('data-answer');
+        
+        if (userAnswer === correctAnswer) {
+          correct++;
+          input.style.borderColor = '#10b981';
+          input.style.background = 'rgba(16, 185, 129, 0.1)';
+        } else {
+          input.style.borderColor = '#fb7185';
+          input.style.background = 'rgba(251, 113, 133, 0.1)';
+        }
+      });
+      
+      const resultMsg = document.getElementById('result-msg');
+      resultMsg.classList.add('show');
+      
+      if (correct === total) {
+        resultMsg.className = 'show correct';
+        resultMsg.textContent = `🎉 Perfect! You got all ${total} answers correct!`;
+      } else {
+        resultMsg.className = 'show incorrect';
+        resultMsg.textContent = `You got ${correct} out of ${total} correct. Try again!`;
+      }
+    }
+    </script>
+<script src="../../../../theme.js"></script>
+</body>
+</html>

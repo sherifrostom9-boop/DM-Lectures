@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Syllabus: Data Exchange Formats & Migration</title>
+    <link href="../../../../DrSherif.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="top-bar">
+        <a href="../../../../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <img src="../../../../logo.jpeg" alt="Logo" class="site-logo">
+            <h2>Digital Marketing</h2>
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="sun-icon" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <svg class="moon-icon" fill="currentColor" viewBox="0 0 24 24" style="display: none;">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+            </svg>
+        </button>
+    </nav>
+
+    <main>
+        <div class="container">
+            <a href="InformationSystem.html" class="back-link">← EXIT LESSON</a>
+
+            <header>
+                <div class="syllabus-label">Course Syllabus</div>
+                <h1>Syllabus: Data Exchange Formats & Migration</h1>
+                <p class="subtitle">Here is the Complete Course Syllabus. You can use this as a structural guide for a workshop, a corporate training session, or a university module.</p>
+            </header>
+
+            <p><b>Course Duration:</b> 4.5 Hours (3 x 90-Minute Modules)</p>
+            <p><b>Level:</b> Intermediate (Ideal for Junior Devs, DBAs, or Data Analysts)</p>
+
+            <div class="timeline-wrapper">
+                <div class="lesson-item">
+                    <div class="indicator blue-glow"></div>
+                    <div class="card">
+                        <div class="content-area">
+                            <h3 class="html-title">Module 1: The "Duct Tape" of Data — CSV & Foundations</h3>
+                            <p><b>The Problem of Proprietary Formats:</b> Understanding vendor lock-in and the need for universal translators.</p>
+                            <p><b>CSV Deep Dive:</b></p>
+                            <ul>
+                                <li>Anatomy of a flat file.</li>
+                                <li>Handling the "Delimiter Dilemma" (encapsulation and escaping).</li>
+                                <li>The dangers of "blind" data (lack of schema).</li>
+                            </ul>
+                            <p><b>Encoding Basics:</b> Preventing "mojibake" through proper UTF-8 standardization.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-item">
+                    <div class="indicator purple-glow"></div>
+                    <div class="card">
+                        <div class="content-area">
+                            <h3 class="css-title">Module 2: The "Blueprint" — XML & Validation</h3>
+                            <p><b>Hierarchy vs. Flatness:</b> Why trees are better for complex relationships.</p>
+                            <p><b>Well-Formed vs. Valid:</b> The role of the Prolog, Tags, and Attributes.</p>
+                            <p><b>Data Governance:</b> Using XSD (XML Schema Definition) as a legal contract for data integrity.</p>
+                            <p><b>Enterprise Integration:</b> Namespaces and XSLT transformations for legacy system migrations.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-item">
+                    <div class="indicator green-glow"></div>
+                    <div class="card">
+                        <div class="content-area">
+                            <h3 class="standard-title">Module 3: The "Web Standard" — JSON & Modern Migration</h3>
+                            <p><b>The Weight of the Web:</b> Comparing JSON verbosity to XML.</p>
+                            <p><b>Native Data Types:</b> Booleans, Numbers, and Nulls in the exchange layer.</p>
+                            <p><b>Modern Database Architectures:</b></p>
+                            <ul>
+                                <li>NoSQL/Document Stores: Moving data to MongoDB.</li>
+                                <li>Hybrid SQL: Using JSONB in PostgreSQL/MySQL.</li>
+                            </ul>
+                            <p><b>The ETL Pipeline:</b> Extracting from SQL, Transforming logic, and Loading into the Cloud.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="section-header">Graduation Project: The Universal Converter</h2>
+            <p><b>Task:</b> Students must take a raw set of "flat" student records and generate:</p>
+            <ul>
+                <li>A CSV for the Registrar's Office (Bulk import).</li>
+                <li>A JSON file for the Mobile App (High speed).</li>
+                <li>A Validated XML file for the Financial Aid Office (High security).</li>
+            </ul>
+
+            <h2 class="section-header">Summary Cheat Sheet (The Final Recap)</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Goal</th>
+                        <th>Best Format</th>
+                        <th>Why?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><b>Bulk Speed</b></td>
+                        <td>CSV</td>
+                        <td>Lowest overhead, easy to stream.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Strict Security</b></td>
+                        <td>XML</td>
+                        <td>Can be strictly validated by a schema before processing.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Web Performance</b></td>
+                        <td>JSON</td>
+                        <td>Native to JavaScript, smaller bandwidth footprint.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2 class="section-header">Congratulations!</h2>
+            <p>You've just completed the full curriculum. Your students are now equipped to handle everything from a simple spreadsheet export to a complex, multi-system database migration.</p>
+        </div>
+    </main>
+
+    <script src="../../../../theme.js"></script>
+</body>
+</html>

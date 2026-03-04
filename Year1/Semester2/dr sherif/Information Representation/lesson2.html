@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 02 - Information Theory - Part 2</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="../../../../DrSherif.css" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="top-bar">
+        <a href="../../../../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <img src="../../../../logo.jpeg" alt="Logo" class="site-logo">
+            <h2>Digital Marketing</h2>
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="sun-icon" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <svg class="moon-icon" fill="currentColor" viewBox="0 0 24 24" style="display: none;">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+            </svg>
+        </button>
+    </nav>
+
+    <header class="hero">
+        <a href="informationrep.html" class="exit-link">← BACK TO SYLLABUS</a>
+        <div class="badge">LESSON 02</div>
+        <h1>Information Theory - Part 2</h1>
+        <p>Information, Entropy, Information Content, Associated Coding</p>
+    </header>
+
+    <!-- Timeline Navigation -->
+    <nav class="timeline-nav">
+        <div class="timeline-line"></div>
+        
+        <div class="step-node active" onclick="showStep(0)"><div class="dot">1</div><div class="node-label">Digitization</div></div>
+        <div class="step-node" onclick="showStep(1)"><div class="dot">2</div><div class="node-label">Improper Sampling</div></div>
+        <div class="step-node" onclick="showStep(2)"><div class="dot">3</div><div class="node-label">Aliasing</div></div>
+        <div class="step-node" onclick="showStep(3)"><div class="dot">4</div><div class="node-label">Sampling Process</div></div>
+        <div class="step-node" onclick="showStep(4)"><div class="dot">5</div><div class="node-label">Sampling Theorem</div></div>
+        <div class="step-node" onclick="showStep(5)"><div class="dot">6</div><div class="node-label">Rate & Resolution</div></div>
+        <div class="step-node" onclick="showStep(6)"><div class="dot">7</div><div class="node-label">Reconstruction</div></div>
+        <div class="step-node" onclick="showStep(7)"><div class="dot">8</div><div class="node-label">Key Takeaways</div></div>
+    </nav>
+
+    <!-- Step Contents -->
+    <div class="step-content active">
+        <h2>Definition of Digitization</h2>
+        <div class="theory-box">
+            The final step of digital image formation is <strong>digitization</strong>.<br>
+            This means sampling the gray values at a discrete set of points, which can be represented by a matrix.
+        </div>
+        <div class="theory-box">
+            Sampling may already occur in the sensor:
+            <ul class="theory-list">
+                <li><strong>Conventional tube camera:</strong> Image is sampled in lines</li>
+                <li><strong>CCD camera:</strong> Matrix of discrete sensors (2D grid)</li>
+            </ul>
+        </div>
+        <div class="warning-box">
+            <strong>Important:</strong> At first glance, digitization appears to be an enormous loss of information...
+        </div>
+    </div>
+
+    <div class="step-content">
+        <h2>Effects of Improper Sampling</h2>
+        <div class="theory-box">
+            Sampling leads to a <strong>reduction in resolution</strong>.<br>
+            Structures about the scale of the sampling distance and finer will be lost.
+        </div>
+        <div class="theory-box">
+            Considerable distortions occur when sampling images with fine structures:
+            <ul class="theory-list">
+                <li><strong>Moiré Effect:</strong> In 2D grids with different constants</li>
+                <li><strong>Aliasing:</strong> In 1D signals and time series</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="step-content">
+        <h2>Aliasing Phenomenon</h2>
+        <div class="theory-box">
+            When sampling a sinusoidal signal with distance slightly smaller than its wavelength, a much larger wavelength is observed.
+        </div>
+        <div class="highlight-box">
+            This is a general phenomenon of signal processing — image processing is just a special case.
+        </div>
+    </div>
+
+    <div class="step-content">
+        <h2>Sampling Process (Mathematically)</h2>
+        <div class="theory-box">
+            Sampling = multiplication of the continuous function with a Dirac comb ("bed-of-nails" function)
+        </div>
+        <div class="formula">
+            gs(x) = g(x) × Σ δ(x − r_{m,n})
+        </div>
+    </div>
+
+    <div class="step-content">
+        <h2>The Sampling Theorem (Nyquist–Shannon)</h2>
+        <div class="highlight-box">
+            If the spectrum is band-limited, the signal can be <strong>perfectly reconstructed</strong> from samples — provided the sampling distance is appropriate.
+        </div>
+        <div class="theory-box">
+            Simple practical rule:<br>
+            → At least <strong>2 samples per shortest wavelength</strong>
+        </div>
+        <div class="formula">
+            Maximum wave number ≤ 1 / (2 × Δx)
+        </div>
+    </div>
+
+    <div class="step-content">
+        <h2>Sampling Rate & Resolution</h2>
+        <div class="theory-box">
+            <strong>Sampling Rate (frequency):</strong><br>
+            • Higher rate → more accurate representation<br>
+            • Minimum: 2× highest frequency (Nyquist rate)<br>
+            • Common values: 44.1 kHz (CD), 48 kHz (pro audio)
+        </div>
+        <div class="theory-box" style="margin-top:32px;">
+            <strong>Sampling Resolution (bit depth):</strong><br>
+            • Number of bits per sample<br>
+            • Higher depth → smaller quantization error<br>
+            • Common: 8-bit, 16-bit, 24-bit
+        </div>
+    </div>
+
+    <div class="step-content">
+        <h2>Reconstruction from Samples</h2>
+        <div class="theory-box">
+            Reconstruction formula (ideal interpolation):
+        </div>
+        <div class="formula">
+            gr(x) = Σ h(x − r_{m,n}) × gs(r_{m,n})
+        </div>
+        <div class="warning-box">
+            <strong>Challenge:</strong> Perfect reconstruction requires the ideal sinc function → theoretically needs infinite support
+        </div>
+    </div>
+
+    <div class="step-content">
+        <h2>Key Takeaways</h2>
+        <div class="theory-box">
+            <ul class="theory-list">
+                <li>Digitization = continuous → discrete sampling</li>
+                <li>Improper sampling → aliasing & moiré patterns</li>
+                <li>Nyquist–Shannon: ≥ 2 samples per wavelength</li>
+                <li>Reconstruction needs proper interpolation (ideally sinc)</li>
+                <li>Higher rate & bit depth = better quality (but larger files)</li>
+                <li>Always consider the trade-off between quality and storage</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <p>Contact: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6a19020f181805191e2a130b02050544090507">[email&#160;protected]</a> | Tel: 01501827070 - 01017776756</p>
+        <p>Information Representation Course • Lesson 02</p>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        function showStep(index) {
+            document.querySelectorAll('.step-node').forEach((node, i) => {
+                node.classList.toggle('active', i === index);
+            });
+
+            document.querySelectorAll('.step-content').forEach((content, i) => {
+                content.classList.toggle('active', i === index);
+            });
+        }
+    </script>
+<script src="../../../../theme.js"></script>
+</body>
+</html>

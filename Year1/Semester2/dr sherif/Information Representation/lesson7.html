@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 07 - Digital Sound</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="../../../../DrSherif.css" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="top-bar">
+        <a href="../../../../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <img src="../../../../logo.jpeg" alt="Logo" class="site-logo">
+            <h2>Digital Marketing</h2>
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="sun-icon" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <svg class="moon-icon" fill="currentColor" viewBox="0 0 24 24" style="display: none;">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+            </svg>
+        </button>
+    </nav>
+
+    <header class="hero">
+        <a href="informationrep.html" class="exit-link">← BACK TO SYLLABUS</a>
+        <div class="badge">LESSON 07</div>
+        <h1>Digital Sound</h1>
+        <p>Uncompressed and Compressed Formats, Simple Processing</p>
+    </header>
+
+    <!-- Timeline Navigation -->
+    <nav class="timeline-nav">
+        <div class="timeline-line"></div>
+        <div class="step-node active" onclick="showStep(0)"><div class="dot">1</div><div class="node-label">Median & Mean</div></div>
+        <div class="step-node" onclick="showStep(1)"><div class="dot">2</div><div class="node-label">Standard Deviation</div></div>
+        <div class="step-node" onclick="showStep(2)"><div class="dot">3</div><div class="node-label">Normal Distribution</div></div>
+        <div class="step-node" onclick="showStep(3)"><div class="dot">4</div><div class="node-label">Skewness</div></div>
+        <div class="step-node" onclick="showStep(4)"><div class="dot">5</div><div class="node-label">SD Applications</div></div>
+        <div class="step-node" onclick="showStep(5)"><div class="dot">6</div><div class="node-label">Confidence Intervals</div></div>
+        <div class="step-node" onclick="showStep(6)"><div class="dot">7</div><div class="node-label">More on CI</div></div>
+        <div class="step-node" onclick="showStep(7)"><div class="dot">8</div><div class="node-label">Conclusion & Takeaways</div></div>
+    </nav>
+
+    <!-- All steps with original content & tables preserved -->
+
+    <div class="step-content active">
+        <h2>Measures of Location: Median and Mean</h2>
+        <div class="theory-box">
+            The <strong>median</strong> is known as a measure of location; that is, it tells us <strong>where the data are</strong>.
+        </div>
+        <div class="theory-box">
+            we do not need to know all the exact values to <strong>calculate the median</strong>; if we made the smallest value even smaller or the largest value even larger, it would not change the value of the median.
+        </div>
+        <div class="theory-box">
+            Thus the <strong>median</strong> does not use all the information in the data and so it can be shown to be <strong>less efficient than the mean or average</strong>, which does use all values of the data.
+        </div>
+        <div class="theory-box">
+            To calculate the mean we <strong>add up the observed values</strong> and divide by the number of them.
+        </div>
+        <div class="theory-box">
+            As well as measures of location we need measures of how variable the data are.
+        </div>
+        <div class="theory-box">
+            We met two of these measures, the <strong>range</strong> and <strong>interquartile range</strong>.
+        </div>
+        <div class="theory-box">
+            The <strong>range</strong> is an important measurement, for figures at the <strong>top and bottom</strong> of it denote the findings furthest removed from the generality.
+        </div>
+        <div class="theory-box">
+            However, they <strong>do not give much indication of the spread of observations about the mean</strong>.
+        </div>
+        <div class="highlight-box">
+            This is where the <strong>standard deviation (SD)</strong> comes in.
+        </div>
+    </div>
+
+    <div class="step-content">
+        <h2>Standard Deviation and Normal Distribution</h2>
+        <div class="theory-box">
+            The theoretical basis of the <strong>standard deviation</strong> is complex and need not trouble the ordinary user.
+        </div>
+        <div class="theory-box">
+            The <strong>Normal distribution</strong> is represented by a family of <strong>curves</strong> defined uniquely by <strong>two parameters</strong>, which are the <strong>mean</strong> and the <strong>standard deviation</strong> of the population.
+        </div>
+        <div class="theory-box">
+            The curves are always symmetrically bell shaped, but the extent to which the bell is compressed or flattened out depends on the standard deviation of the population.
+        </div>
+        <div class="theory-box">
+            However, the mere fact that a curve is bell shaped does not mean that it represents a <strong>Normal distribution</strong>, because other distributions may have a similar sort of shape.
+        </div>
+
+        <h2>What Is a Normal Distribution?</h2>
+        <div class="theory-box">
+            Normal distribution, also known as the Gaussian distribution, is a <strong>probability distribution</strong> that is symmetric about the <strong>mean</strong>, showing that <strong>data near the mean</strong> are <strong>more frequent in occurrence</strong> than data far from the mean.
+        </div>
+        <div class="theory-box">
+            The normal distribution appears as a "bell curve" when graphed.
+        </div>
+        <ul style="padding-left:28px; color:var(--text-dim);">
+            <li>The normal distribution is the proper term for a <strong>probability bell curve</strong>.</li>
+            <li>In a normal distribution, the <strong>mean</strong> is zero and the <strong>standard deviation</strong> is 1.</li>
+            <li>Normal distributions are <strong>symmetrical</strong>, but <strong>not all symmetrical distributions are normal</strong>.</li>
+        </ul>
+    </div>
+
+    <div class="step-content">
+        <h2>The Standard Normal Distribution</h2>
+        <div class="theory-box">
+            The <strong>standard normal distribution</strong>, also called the <strong>z-distribution</strong>, is a <strong>special normal distribution</strong> where the mean is 0 and the standard deviation is 1.
+        </div>
+    </div>
+
+    <div class="step-content">
+        <h2>Skewness</h2>
+        <div class="theory-box">
+            <strong>Skewness</strong> measures the<strong> degree of symmetry</strong> of a distribution.
+        </div>
+        <div class="theory-box">
+            The normal distribution is symmetric and has a skewness of zero.
+        </div>
+        <div class="theory-box">
+            If the distribution of a data set instead has a skewness less than zero, or negative skewness (left-skewness), then the left tail of the distribution is longer than the right tail; positive skewness (right-skewness) implies that the right tail of the distribution is longer than the left.
+        </div>
+    </div>
+
+    <div class="step-content">
+        <h2>Introduction to Standard Deviation Applications</h2>
+        <div class="theory-box">
+            The skill of standing out online is needed more than ever in today's digital world.
+        </div>
+        <div class="theory-box">
+            Whether to become a young marketer or grow one's brand, it is most important to learn digital marketing concepts.
+        </div>
+        <div class="theory-box">
+            With<strong> Digital Marketing Live Training Program</strong>, you can do all that, right in line with what any willing student needs.
+        </div>
+        <div class="theory-box">
+            We need to focuses on hands-on training in<strong> SEO</strong>,<strong> Social Media</strong>, and<strong> Content Marketing</strong>.
+        </div>
+        <div class="theory-box">
+            Build the skills to make a difference in creating campaigns and driving accurate results.
+        </div>
+        <div class="theory-box">
+            Set trends, not follow them.
+        </div>
+
+        <p style="margin-top:28px;">Standard deviation is a statistical measure that tells us<strong> how spread out numbers are in a dataset</strong>.</p>
+        <p>It shows the<strong> variation or dispersion from the average</strong> (mean).</p>
+        <p>It helps in understanding how consistent or variable the data is.</p>
+        <p>From finance and quality control to education, sports, and even weather forecasting, there are many practical uses of standard deviation.</p>
+        <p>Today, we are going to learn about some of the most important real-life applications of standard deviation.</p>
+    </div>
+
+    <div class="step-content">
+        <h2>Standard Deviation Overview</h2>
+        <div class="theory-box">
+            <strong>Standard deviation</strong> is a statistical measure that quantifies the amount of variation or dispersion in a set of values around the mean.
+        </div>
+        <div class="theory-box">
+            A<strong> low standard deviation indicates that the values are close to the mean</strong>, while a<strong> high standard deviation suggests that the values are spread out over a wider range</strong>.
+        </div>
+        <div class="theory-box">
+            It is commonly used to identify outliers and assess the spread of data points.
+        </div>
+        <p style="margin:24px 0 12px;">Real Life Applications of Standard Deviation</p>
+        <p>Some of the common fields where standard deviation is used are:</p>
+        <ul style="padding-left:28px; color:var(--text-dim);">
+            <li>Finance</li>
+            <li>Quality Control</li>
+            <li>Weather Forecasting</li>
+            <li>Health and Medicine</li>
+            <li>Market Research</li>
+        </ul>
+    </div>
+
+    <div class="step-content">
+        <h2>Use of Standard Deviation</h2>
+        <div class="theory-box">
+            Standard deviation is widely used in statistics and various fields for several purposes:
+        </div>
+        <ul style="padding-left:28px; color:var(--text-dim);">
+            <li><strong>Measuring variability:</strong> It provides a quantified measure of how much individual data points deviate from the mean, giving insights into the spread of the data distribution.</li>
+            <li><strong>Assessing risk:</strong> In finance, standard deviation is used to measure the volatility or risk associated with an investment. Higher standard deviation implies greater variability in returns, indicating higher risk.</li>
+            <li><strong>Quality control:</strong> In manufacturing and quality assurance, standard deviation helps to assess the consistency and uniformity of products by measuring the variation of a process or product characteristic.</li>
+            <li><strong>Data analysis:</strong> Standard deviation helps in comparing datasets by providing a standardized measure of variability, allowing for meaningful comparisons between groups or populations.</li>
+            <li><strong>Inferential statistics:</strong> It plays a crucial role in hypothesis testing and confidence interval estimation. For instance, it helps determine the margin of error in sample surveys and assess whether observed differences between groups are statistically significant.</li>
+        </ul>
+    </div>
+
+    <div class="step-content">
+        <h2>Confidence Intervals</h2>
+        <div class="theory-box">
+            The amount of certainty that the true values of the data lie within the stated number in your market research study.
+        </div>
+        <div class="theory-box">
+            When you make an <strong>estimate in statistics</strong>, whether it is a summary statistic or a test statistic, there is always <strong>uncertainty</strong> around that estimate because the number is based on a sample of the population you are studying.
+        </div>
+        <div class="theory-box">
+            The <strong>confidence interval</strong> is the range of values that you expect your estimate to fall between a certain percentage of the time if you run your experiment again or re-sample the population in the same way.
+        </div>
+        <div class="theory-box">
+            The <strong>confidence level</strong> is the percentage of times you expect to reproduce an estimate between the upper and lower bounds of the confidence interval, and is set by the <strong>alpha value</strong>.
+        </div>
+        <p style="margin:24px 0 12px;">What exactly is a confidence interval?</p>
+        <div class="theory-box">
+            A confidence interval is the <strong>mean</strong> of your <strong>estimate plus and minus</strong> the variation in that estimate.
+        </div>
+        <div class="theory-box">
+            This is the range of values you expect your estimate to fall between if you redo your test, within a certain level of confidence.
+        </div>
+        <div class="theory-box">
+            <strong>Confidence</strong>, in statistics, is another way to describe <strong>probability</strong>.
+        </div>
+        <div class="theory-box">
+            For example, if you construct a confidence interval with a 95% confidence level, you are confident that 95 out of 100 times the estimate will fall between the upper and lower values specified by the confidence interval.
+        </div>
+    </div>
+
+    <div class="step-content">
+        <h2>More on Confidence Intervals</h2>
+        <p style="margin-bottom:16px;">What exactly is a<strong> confidence interval</strong>?</p>
+        <div class="theory-box">
+            Your desired confidence level is usually one minus the alpha (α) value you used in your<strong> statistical test:</strong>
+        </div>
+        <div class="formula">
+            Confidence level = 1 - α
+        </div>
+        <div class="theory-box">
+            So if you use an alpha value of p < 0.05 for statistical significance, then your confidence level would be 1 - 0.05 = 0.95, or 95%.
+        </div>
+        <p style="margin:24px 0 12px;">When do you use<strong> confidence intervals</strong>?</p>
+        <div class="theory-box">
+            You can calculate<strong> confidence intervals</strong> for many kinds of<strong> statistical estimates</strong>,<strong> including:</strong>
+        </div>
+        <ul style="padding-left:28px; color:var(--text-dim);">
+            <li>Proportions</li>
+            <li>Population means</li>
+            <li>Differences between population means or proportions</li>
+            <li>Estimates of variation among groups</li>
+        </ul>
+        <div class="theory-box">
+            These are all point estimates, and don't give any information about the variation around the number.
+        </div>
+        <div class="theory-box">
+            Confidence intervals are useful for communicating the variation around a point estimate.
+        </div>
+    </div>
+
+    <div class="step-content">
+        <h2>Conclusion</h2>
+        <p>Understanding mean, standard deviation, and confidence intervals is crucial for analyzing data variability, distributions, and making informed statistical inferences.</p>
+        <div class="highlight-box">
+            <strong>Key Insight:</strong> These measures provide insights into data location, spread, and reliability, essential for fields like finance, quality control, and research.
+        </div>
+    </div>
+
+    <div class="step-content">
+        <h2>Key Takeaways</h2>
+        <ul>
+            <li>The median indicates data location but is less efficient than the mean, which uses all data values.</li>
+            <li>Standard deviation measures data variability around the mean, central to normal distributions.</li>
+            <li>Normal distributions are symmetric bell curves with mean 0 and SD 1 in standard form.</li>
+            <li>Skewness assesses distribution symmetry; zero for normal distributions.</li>
+            <li>Standard deviation applications include finance (risk), quality control, weather, health, and market research.</li>
+            <li>Confidence intervals quantify uncertainty around estimates, typically at 95% level.</li>
+        </ul>
+    </div>
+
+    <footer>
+        <p>Contact: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="493a212c3b3b263a3d093028212626672a2624">[email&#160;protected]</a> | Tel: 01501827070 - 01017776756</p>
+        <p>Information Representation Course • Lesson 07</p>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        function showStep(index) {
+            document.querySelectorAll('.step-node').forEach((node, i) => {
+                node.classList.toggle('active', i === index);
+            });
+
+            document.querySelectorAll('.step-content').forEach((content, i) => {
+                content.classList.toggle('active', i === index);
+            });
+        }
+    </script>
+<script src="../../../../theme.js"></script>
+</body>
+</html>

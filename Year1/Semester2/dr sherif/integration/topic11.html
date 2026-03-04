@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Topic 11: CSS Positioning</title>
+    <link href="../../../../DrSherif.css" rel="stylesheet">
+</head>
+<body>
+
+      <!-- Navigation -->
+      <nav class="top-bar">
+        <a href="../../../../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <img src="../../../../logo.jpeg" alt="Logo" class="site-logo">
+            <h2>Digital Marketing</h2>
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="sun-icon" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <svg class="moon-icon" fill="currentColor" viewBox="0 0 24 24" style="display: none;">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+            </svg>
+        </button>
+    </nav>
+    
+<div class="container">
+    <a href="integrationS2.html" class="back-btn">← EXIT LESSON</a>
+
+    <header>
+        <div class="label">Lesson 11</div>
+        <h1>CSS Positioning</h1>
+        <p class="text-dim">Controlling the layout, stacking order, and alignment of elements.</p>
+    </header>
+
+    <div class="section-grid">
+        <div class="card full-width">
+            <h2>The Five Position Types</h2>
+            <p>The <code>position</code> property specifies the type of positioning method used for an element.</p>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Static</strong></td>
+                        <td>Default. Follows the normal document flow.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Relative</strong></td>
+                        <td>Positioned relative to its normal position without affecting siblings.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Absolute</strong></td>
+                        <td>Positioned relative to the nearest non-static ancestor. Removed from flow.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Fixed</strong></td>
+                        <td>Positioned relative to the viewport. Stays in place during scroll.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sticky</strong></td>
+                        <td>Switches between relative and fixed based on the user's scroll position.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card">
+            <h2>Relative Positioning</h2>
+            <p>Shifts an element using <code>top</code>, <code>bottom</code>, <code>left</code>, or <code>right</code> without moving the elements around it.</p>
+            <div class="code-block">
+                .box {<br>
+                &nbsp;&nbsp;<span class="attr">position</span>: <span class="val">relative</span>;<br>
+                &nbsp;&nbsp;<span class="attr">top</span>: <span class="val">20px</span>;<br>
+                &nbsp;&nbsp;<span class="attr">left</span>: <span class="val">30px</span>;<br>
+                }
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Fixed Positioning</h2>
+            <p>The element is removed from the document flow and stays at a specific spot on the screen even when you scroll.</p>
+            <div class="code-block">
+                .header {<br>
+                &nbsp;&nbsp;<span class="attr">position</span>: <span class="val">fixed</span>;<br>
+                &nbsp;&nbsp;<span class="attr">top</span>: <span class="val">0</span>;<br>
+                &nbsp;&nbsp;<span class="attr">width</span>: <span class="val">100%</span>;<br>
+                }
+            </div>
+        </div>
+
+        <div class="card full-width">
+            <h2>Key Differences to Remember</h2>
+            <ul>
+                <li><strong>Normal Flow:</strong> Only <code>static</code> and <code>relative</code> keep the element's space in the document layout.</li>
+                <li><strong>Ancestors:</strong> <code>absolute</code> positioning requires a parent with a position other than <code>static</code> to be contained.</li>
+                <li><strong>Offsets:</strong> The <code>top</code>, <code>bottom</code>, <code>left</code>, and <code>right</code> properties will not work unless <code>position</code> is set first.</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <p>Contact: sherrost@yahoo.com | Tel: 01501827070</p>
+        <p>Integration Course - Topic 11</p>
+    </footer>
+</div>
+<script src="../../../../theme.js"></script>
+</body>
+</html>

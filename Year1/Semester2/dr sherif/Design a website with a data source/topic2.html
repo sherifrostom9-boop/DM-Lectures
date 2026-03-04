@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Topic 2 - Database Implementation & Workshop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="../../../../DrSherif.css" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="top-bar">
+        <a href="../../../../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <img src="../../../../logo.jpeg" alt="Logo" class="site-logo">
+            <h2>Digital Marketing</h2>
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="sun-icon" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <svg class="moon-icon" fill="currentColor" viewBox="0 0 24 24" style="display: none;">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+            </svg>
+        </button>
+    </nav>
+
+    <header class="hero">
+        <a href="design a website.html" class="exit-link">← EXIT LESSON</a>
+        <div class="badge">TOPIC 02 • WORKSHOP</div>
+        <h1>Database Implementation</h1>
+        <p>Architecting scalable, clean, and performant relational systems</p>
+    </header>
+
+    <!-- Timeline Navigation -->
+    <nav class="timeline-nav">
+        <div class="timeline-line"></div>
+        <div class="step-node active" onclick="showStep(0)"><div class="dot">1</div><div class="node-label">Architecture</div></div>
+        <div class="step-node" onclick="showStep(1)"><div class="dot">2</div><div class="node-label">Normalization</div></div>
+        <div class="step-node" onclick="showStep(2)"><div class="dot">3</div><div class="node-label">Constraints</div></div>
+        <div class="step-node" onclick="showStep(3)"><div class="dot">4</div><div class="node-label">Build Schema</div></div>
+        <div class="step-node" onclick="showStep(4)"><div class="dot">5</div><div class="node-label">Query Lab</div></div>
+        <div class="step-node" onclick="showStep(5)"><div class="dot">6</div><div class="node-label">Quiz</div></div>
+    </nav>
+
+    <!-- All content steps -->
+    <div class="step-content active">
+        <h2>The Core Pillars of Database Architecture</h2>
+        <div class="theory-box">
+            A database isn't just a collection of spreadsheets; it's a web of logic. To ensure your system doesn't collapse under data growth, we follow fundamental architectural principles that have stood the test of time.
+        </div>
+
+        <div class="highlight-box">
+            <strong>Workshop Duration:</strong> 1.5 Hours (90 minutes)<br>
+            <strong>Phase 1:</strong> The Blueprint (27 Minutes)<br>
+            <strong>Phase 2:</strong> Building & Querying (63 Minutes)
+        </div>
+
+        <h3>Why Database Architecture Matters</h3>
+        <ul class="details-list">
+            <li><strong>Scalability:</strong> Handle growing data without performance degradation</li>
+            <li><strong>Integrity:</strong> Ensure data accuracy and consistency across all operations</li>
+            <li><strong>Performance:</strong> Optimize query execution times from seconds to milliseconds</li>
+            <li><strong>Maintainability:</strong> Make future changes easy and safe to implement</li>
+        </ul>
+    </div>
+
+    <div class="step-content">
+        <h2>Normalization: Eliminating Redundancy</h2>
+        <div class="theory-box">
+            Normalization is the process of structuring a database to reduce redundancy and improve data integrity. Each normal form builds upon the previous one, creating increasingly refined data structures.
+        </div>
+
+        <div class="section-grid">
+            <div class="card">
+                <h3>1st Normal Form (1NF)</h3>
+                <p><strong>Rule:</strong> Atomic values only</p>
+                <p>No lists or multiple values in a single cell. Each cell must contain exactly one value.</p>
+                <p><strong>Example:</strong></p>
+                <p style="color: var(--error);">❌ Phone: "555-1234, 555-5678"</p>
+                <p style="color: var(--success);">✓ Separate rows or Phone1, Phone2</p>
+            </div>
+            <div class="card">
+                <h3>2nd Normal Form (2NF)</h3>
+                <p><strong>Rule:</strong> No partial dependencies</p>
+                <p>Everything must relate to the entire primary key, not just part of it.</p>
+                <p><strong>Example:</strong></p>
+                <p>In a composite key (StudentID, CourseID), course details shouldn't depend only on CourseID.</p>
+            </div>
+        </div>
+
+        <div class="card full-width">
+            <h3>3rd Normal Form (3NF)</h3>
+            <p><strong>Rule:</strong> No transitive dependencies</p>
+            <p>Non-key attributes should not depend on other non-key attributes. All attributes must depend directly on the primary key.</p>
+            <p><strong>Example:</strong></p>
+            <p style="color: var(--error);">❌ Storing both ZipCode and City (City depends on ZipCode, not UserID)</p>
+            <p style="color: var(--success);">✓ Store only ZipCode, look up City in a separate table</p>
+        </div>
+
+        <div class="highlight-box">
+            <strong>The Golden Rule:</strong> Every piece of data should appear in exactly one place. If you can derive it, don't store it. If you need it frequently, cache it intelligently.
+        </div>
+    </div>
+
+    <div class="step-content">
+        <h2>Constraints & Integrity</h2>
+        <div class="theory-box">
+            Database constraints are rules enforced by the database engine to maintain data quality and consistency. They act as guardrails, preventing invalid data from entering your system.
+        </div>
+
+        <h3>Primary Keys: The Unique DNA of a Record</h3>
+        <p>A primary key uniquely identifies each row in a table. It must be:</p>
+        <ul class="details-list">
+            <li><strong>Unique:</strong> No two rows can have the same primary key value</li>
+            <li><strong>Not Null:</strong> Every row must have a primary key value</li>
+            <li><strong>Immutable:</strong> Should never change once assigned</li>
+        </ul>
+
+        <div class="code-block">CREATE TABLE Employees (<br>
+&nbsp;&nbsp;EmpID SERIAL PRIMARY KEY,  -- Auto-incrementing unique identifier<br>
+&nbsp;&nbsp;Name VARCHAR(100) NOT NULL,<br>
+&nbsp;&nbsp;Email VARCHAR(100) UNIQUE  -- Unique but can be changed<br>
+);</div>
+
+        <h3>Foreign Keys: The Glue That Connects Tables</h3>
+        <p>Foreign keys create relationships between tables, ensuring referential integrity. They prevent orphaned records and maintain data consistency.</p>
+
+        <div class="code-block">CREATE TABLE Orders (<br>
+&nbsp;&nbsp;OrderID SERIAL PRIMARY KEY,<br>
+&nbsp;&nbsp;CustomerID INT REFERENCES Customers(CustomerID) ON DELETE CASCADE<br>
+);<br><br>
+-- ON DELETE CASCADE: Automatically delete orders when customer is deleted<br>
+-- ON DELETE SET NULL: Set CustomerID to NULL instead<br>
+-- ON DELETE RESTRICT: Prevent deletion if orders exist</div>
+
+        <h3>Indexes: The Speed Boosters</h3>
+        <div class="highlight-box">
+            <strong>Performance Impact:</strong><br>
+            • Without Index: O(n) - Linear search through all rows<br>
+            • With Index: O(log n) - Binary search (logarithmic time)<br><br>
+            <strong>Example:</strong> Finding one record in 1 million rows:<br>
+            • No index: ~1,000,000 comparisons<br>
+            • With index: ~20 comparisons
+        </div>
+    </div>
+
+    <div class="step-content">
+        <h2>Project: School Management System</h2>
+        <div class="theory-box">
+            We're building a complete database schema that handles <strong>Employees</strong>, <strong>Projects</strong>, and their <strong>Assignments</strong>. This represents a classic many-to-many relationship pattern used in countless real-world applications.
+        </div>
+
+        <h3>Step 1: Create the Tables (DDL)</h3>
+        <p>Copy and paste this into your SQL editor to build the foundation.</p>
+
+        <div class="code-block">-- Create Employees Table<br>
+CREATE TABLE Employees (<br>
+&nbsp;&nbsp;EmpID SERIAL PRIMARY KEY,<br>
+&nbsp;&nbsp;Name VARCHAR(100) NOT NULL,<br>
+&nbsp;&nbsp;Salary DECIMAL(10,2)<br>
+);<br><br>
+-- Create Projects Table<br>
+CREATE TABLE Projects (<br>
+&nbsp;&nbsp;ProjectID SERIAL PRIMARY KEY,<br>
+&nbsp;&nbsp;ProjectName VARCHAR(100)<br>
+);<br><br>
+-- Create Junction Table (Many-to-Many Resolver)<br>
+CREATE TABLE ProjectAssignments (<br>
+&nbsp;&nbsp;AssignmentID SERIAL PRIMARY KEY,<br>
+&nbsp;&nbsp;EmpID INT REFERENCES Employees(EmpID),<br>
+&nbsp;&nbsp;ProjectID INT REFERENCES Projects(ProjectID),<br>
+&nbsp;&nbsp;HoursWorked INT<br>
+);</div>
+
+        <h3>Step 2: Seed the Data (DML)</h3>
+        <p>Notice that 'David' hasn't been assigned a project yet—this is intentional for testing your <strong>LEFT JOINs</strong>.</p>
+
+        <div class="code-block">-- Insert Employees<br>
+INSERT INTO Employees (Name, Salary) VALUES<br>
+('Alice', 75000),<br>
+('Bob', 68000),<br>
+('Charlie', 82000),<br>
+('David', 71000);<br><br>
+-- Insert Projects<br>
+INSERT INTO Projects (ProjectName) VALUES<br>
+('Alpha Portal'),<br>
+('Beta Dashboard'),<br>
+('Gamma API');<br><br>
+-- Assign Employees to Projects<br>
+INSERT INTO ProjectAssignments (EmpID, ProjectID, HoursWorked) VALUES<br>
+(1, 1, 120),  -- Alice on Alpha Portal<br>
+(1, 2, 80),   -- Alice also on Beta Dashboard<br>
+(2, 1, 95),   -- Bob on Alpha Portal<br>
+(3, 3, 150);  -- Charlie on Gamma API<br>
+-- Note: David (EmpID 4) has no assignments yet!</div>
+
+        <h3>Step 3: Schema Metadata Summary</h3>
+        <table class="table-meta">
+            <thead>
+                <tr>
+                    <th>Table</th>
+                    <th>Primary Key</th>
+                    <th>Foreign Keys</th>
+                    <th>Purpose</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Employees</strong></td>
+                    <td>EmpID</td>
+                    <td>None</td>
+                    <td>Stores staff details and salary information</td>
+                </tr>
+                <tr>
+                    <td><strong>Projects</strong></td>
+                    <td>ProjectID</td>
+                    <td>None</td>
+                    <td>Stores project metadata and names</td>
+                </tr>
+                <tr>
+                    <td><strong>ProjectAssignments</strong></td>
+                    <td>AssignmentID</td>
+                    <td>EmpID, ProjectID</td>
+                    <td>Resolves Many-to-Many relationship</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="step-content">
+        <h2>Practical Lab: Query Challenges</h2>
+        <div class="theory-box">
+            Now that we've built our schema, let's test it with real-world queries. These three challenges represent common business questions you'll encounter in production environments.
+        </div>
+
+        <h3>Challenge 1: The "Who's Busy?" Query</h3>
+        <p><strong>Business Question:</strong> Show me every employee, which projects they're working on, and how many hours they've logged.</p>
+        
+        <div class="code-block">SELECT <br>
+&nbsp;&nbsp;e.Name AS Employee,<br>
+&nbsp;&nbsp;p.ProjectName AS Project,<br>
+&nbsp;&nbsp;pa.HoursWorked<br>
+FROM ProjectAssignments pa<br>
+JOIN Employees e ON pa.EmpID = e.EmpID<br>
+JOIN Projects p ON pa.ProjectID = p.ProjectID<br>
+ORDER BY e.Name;</div>
+
+        <h3>Challenge 2: The "Ghost" Query</h3>
+        <p><strong>Business Question:</strong> Find employees who currently have zero project assignments.</p>
+        
+        <div class="code-block">SELECT e.Name AS Employee<br>
+FROM Employees e<br>
+LEFT JOIN ProjectAssignments pa ON e.EmpID = pa.EmpID<br>
+WHERE pa.AssignmentID IS NULL;<br><br>
+-- Expected Result: David</div>
+
+        <div class="highlight-box">
+            <strong>Key Concept:</strong> LEFT JOIN includes all rows from the left table (Employees) even if there's no match in the right table (ProjectAssignments). When there's no match, the right table's columns are NULL.
+        </div>
+
+        <h3>Challenge 3: The Budget Analysis</h3>
+        <p><strong>Business Questions:</strong></p>
+        <ol class="details-list">
+            <li>What's the total hours worked for each project?</li>
+            <li>What's the average salary of employees on 'Alpha Portal'?</li>
+        </ol>
+
+        <div class="code-block">-- Total hours per project<br>
+SELECT <br>
+&nbsp;&nbsp;p.ProjectName,<br>
+&nbsp;&nbsp;SUM(pa.HoursWorked) AS TotalHours<br>
+FROM Projects p<br>
+LEFT JOIN ProjectAssignments pa ON p.ProjectID = pa.ProjectID<br>
+GROUP BY p.ProjectName<br>
+ORDER BY TotalHours DESC;<br><br>
+-- Average salary for Alpha Portal<br>
+SELECT AVG(e.Salary) AS AvgSalary<br>
+FROM Employees e<br>
+JOIN ProjectAssignments pa ON e.EmpID = pa.EmpID<br>
+JOIN Projects p ON pa.ProjectID = p.ProjectID<br>
+WHERE p.ProjectName = 'Alpha Portal';</div>
+    </div>
+
+    <div class="step-content">
+        <div class="quiz-container">
+            <h2>⚡ Fast Quiz: Knowledge Check</h2>
+            
+            <div class="q-box" id="q1">
+                <p><strong>1. Which SQL command is used to add a new column to an existing table?</strong></p>
+                <button class="option-btn" onclick="checkQuiz(this, 'wrong', 'q1')">A) UPDATE TABLE</button>
+                <button class="option-btn" onclick="checkQuiz(this, 'wrong', 'q1')">B) INSERT COLUMN</button>
+                <button class="option-btn" onclick="checkQuiz(this, 'wrong', 'q1')">C) CHANGE TABLE</button>
+                <button class="option-btn" onclick="checkQuiz(this, 'correct', 'q1')">D) ALTER TABLE</button>
+            </div>
+
+            <div class="q-box" id="q2">
+                <p><strong>2. What is the main purpose of 3rd Normal Form (3NF)?</strong></p>
+                <button class="option-btn" onclick="checkQuiz(this, 'wrong', 'q2')">A) Creating multi-valued attributes</button>
+                <button class="option-btn" onclick="checkQuiz(this, 'wrong', 'q2')">B) Increasing data redundancy</button>
+                <button class="option-btn" onclick="checkQuiz(this, 'correct', 'q2')">C) Removing transitive dependencies</button>
+                <button class="option-btn" onclick="checkQuiz(this, 'wrong', 'q2')">D) Adding more foreign keys</button>
+            </div>
+
+            <div class="q-box" id="q3">
+                <p><strong>3. What does ON DELETE CASCADE do?</strong></p>
+                <button class="option-btn" onclick="checkQuiz(this, 'wrong', 'q3')">A) Prevents deletion of the parent record</button>
+                <button class="option-btn" onclick="checkQuiz(this, 'correct', 'q3')">B) Automatically deletes related child records</button>
+                <button class="option-btn" onclick="checkQuiz(this, 'wrong', 'q3')">C) Sets foreign keys to NULL</button>
+                <button class="option-btn" onclick="checkQuiz(this, 'wrong', 'q3')">D) Creates a backup before deletion</button>
+            </div>
+
+            <div class="q-box" id="q4">
+                <p><strong>4. Which join type would show ALL employees, even those without project assignments?</strong></p>
+                <button class="option-btn" onclick="checkQuiz(this, 'wrong', 'q4')">A) INNER JOIN</button>
+                <button class="option-btn" onclick="checkQuiz(this, 'correct', 'q4')">B) LEFT JOIN</button>
+                <button class="option-btn" onclick="checkQuiz(this, 'wrong', 'q4')">C) RIGHT JOIN</button>
+                <button class="option-btn" onclick="checkQuiz(this, 'wrong', 'q4')">D) FULL OUTER JOIN</button>
+            </div>
+
+            <div id="quiz-result" style="margin-top: 30px; padding: 20px; border-radius: 12px; text-align: center; font-weight: 700; font-size: 1.2rem; display: none;"></div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Contact: sherrost@yahoo.com | Tel: 01501827070</p>
+        <p>Design a Website with a Data Source • Topic 2</p>
+    </footer>
+
+    <script>
+        function showStep(index) {
+            // Update navigation dots
+            document.querySelectorAll('.step-node').forEach((node, i) => {
+                if (i === index) {
+                    node.classList.add('active');
+                } else {
+                    node.classList.remove('active');
+                }
+            });
+
+            // Show selected content
+            document.querySelectorAll('.step-content').forEach((content, i) => {
+                if (i === index) {
+                    content.classList.add('active');
+                } else {
+                    content.classList.remove('active');
+                }
+            });
+        }
+
+        let correctAnswers = 0;
+        let totalQuestions = 4;
+
+        function checkQuiz(btn, result, questionId) {
+            // Prevent multiple clicks
+            const parent = btn.parentElement;
+            const buttons = parent.querySelectorAll('.option-btn');
+            
+            // Check if already answered
+            if (buttons[0].disabled) return;
+            
+            buttons.forEach(b => b.disabled = true);
+
+            if(result === 'correct') {
+                btn.classList.add('selected-correct');
+                correctAnswers++;
+            } else {
+                btn.classList.add('selected-wrong');
+                // Show the correct answer
+                buttons.forEach(b => {
+                    const btnText = b.innerText;
+                    if(btnText.includes('ALTER TABLE') || 
+                       btnText.includes('Removing transitive') ||
+                       btnText.includes('Automatically deletes') ||
+                       btnText.includes('LEFT JOIN')) {
+                        b.classList.add('selected-correct');
+                    }
+                });
+            }
+
+            // Check if all questions answered
+            checkAllAnswered();
+        }
+
+        function checkAllAnswered() {
+            const allButtons = document.querySelectorAll('.option-btn');
+            const allDisabled = Array.from(allButtons).every(btn => btn.disabled);
+            
+            if (allDisabled) {
+                const resultDiv = document.getElementById('quiz-result');
+                resultDiv.style.display = 'block';
+                
+                const percentage = (correctAnswers / totalQuestions) * 100;
+                
+                if (percentage === 100) {
+                    resultDiv.style.background = 'rgba(46, 204, 113, 0.2)';
+                    resultDiv.style.color = '#2ecc71';
+                    resultDiv.innerHTML = `🎉 Perfect Score! ${correctAnswers}/${totalQuestions} Correct<br><small style="font-size: 0.9rem;">You've mastered database fundamentals!</small>`;
+                } else if (percentage >= 75) {
+                    resultDiv.style.background = 'rgba(16, 185, 129, 0.2)';
+                    resultDiv.style.color = '#10b981';
+                    resultDiv.innerHTML = `✓ Great Job! ${correctAnswers}/${totalQuestions} Correct<br><small style="font-size: 0.9rem;">You have a solid understanding.</small>`;
+                } else if (percentage >= 50) {
+                    resultDiv.style.background = 'rgba(251, 191, 36, 0.2)';
+                    resultDiv.style.color = '#fbbf24';
+                    resultDiv.innerHTML = `⚠ Good Effort! ${correctAnswers}/${totalQuestions} Correct<br><small style="font-size: 0.9rem;">Review the material and try again.</small>`;
+                } else {
+                    resultDiv.style.background = 'rgba(231, 76, 60, 0.2)';
+                    resultDiv.style.color = '#e74c3c';
+                    resultDiv.innerHTML = `❌ Need More Practice: ${correctAnswers}/${totalQuestions} Correct<br><small style="font-size: 0.9rem;">Go back and review the concepts.</small>`;
+                }
+            }
+        }
+    </script>
+
+<script src="../../../../theme.js"></script>
+</body>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operation of Relational Database Management Systems</title>
+    <link rel="stylesheet" href="DrSherif.css">
+    <link href="Information System.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({startOnLoad: true});
+    </script>
+</head>
+<body>
+    <nav class="top-bar">
+        <a href="../../../../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <img src="../../../../logo.jpeg" alt="Logo" class="site-logo">
+            <h2>Digital Marketing</h2>
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="sun-icon" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <svg class="moon-icon" fill="currentColor" viewBox="0 0 24 24" style="display: none;">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+            </svg>
+        </button>
+    </nav>
+
+    <main>
+        <div class="container">
+            <a href="InformationSystem.html" class="back-link">← EXIT LESSON</a>
+            
+            <header>
+                <div class="syllabus-label">Lecture 6</div>
+                <h1>Operation of Relational Database Management Systems</h1>
+                <p class="subtitle">Console, Client Software, Web Interface - Part 1</p>
+            </header>
+            
+            <p style="color: var(--text-dim); margin-bottom: 30px; line-height: 1.6;">To master the Operation of Relational Database Management Systems (RDBMS) via the console, we need to move beyond just writing queries. We're looking at the "engine room"—how to manage the service, secure the data, and optimize performance using Command Line Interfaces (CLI).</p>
+            
+            <div class="timeline-wrapper">
+                <div class="lesson-item">
+                    <div class="indicator blue-glow"></div>
+                    <div class="card">
+                        <div class="content-area">
+                            <h3 class="html-title"><b>1. Architecture & The Connection Layer</b></h3>
+                            <p style="color: var(--text-muted); margin-bottom: 12px; font-size: 0.9rem;">Duration: 15 Minutes</p>
+                            
+                            <p>Before typing a single command, you must understand how the console communicates with the database engine.</p>
+                            
+                            <div style="margin-top: 20px;">
+                                <p><b>Client-Server Model:</b></p>
+                                <p style="margin-left: 20px;">The console (e.g., <code style="background: rgba(59,130,246,0.15); padding: 2px 8px; border-radius: 4px; color: var(--accent-cyan);">mysql</code>, <code style="background: rgba(59,130,246,0.15); padding: 2px 8px; border-radius: 4px; color: var(--accent-cyan);">psql</code>, or <code style="background: rgba(59,130,246,0.15); padding: 2px 8px; border-radius: 4px; color: var(--accent-cyan);">sqlplus</code>) is a client that sends requests over a specific port (typically 3306 for MySQL or 5432 for PostgreSQL).</p>
+                            </div>
+                            
+                            <div style="margin-top: 20px;">
+                                <p><b>The Connection String:</b></p>
+                                <p style="margin-left: 20px;">Breaking down the standard syntax:</p>
+                                <pre class="code-block" style="margin-left: 20px; margin-top: 10px;"><code>db_client -h [host] -P [port] -u [user] -p</code></pre>
+                            </div>
+                            
+                            <div style="margin-top: 20px;">
+                                <p><b>Session vs. Global Scope:</b></p>
+                                <p style="margin-left: 20px;">Understanding that some settings you change in the console only last for your current login, while others affect the entire server.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-item">
+                    <div class="indicator blue-glow"></div>
+                    <div class="card">
+                        <div class="content-area">
+                            <h3 class="html-title"><b>2. DDL and Schema Management</b></h3>
+                            <p style="color: var(--text-muted); margin-bottom: 12px; font-size: 0.9rem;">Duration: 20 Minutes</p>
+                            
+                            <p>Managing the "container" of your data. In the console, accuracy is king because there is no "undo" button like in a GUI.</p>
+                            
+                            <div style="margin-top: 20px;">
+                                <p><b>Database Operations:</b></p>
+                                <p style="margin-left: 20px;">Creating, dropping, and—crucially—altering databases.</p>
+                            </div>
+                            
+                            <div style="margin-top: 20px;">
+                                <p><b>The Power of DESCRIBE:</b></p>
+                                <p style="margin-left: 20px;">Using console-specific shortcuts (like <code style="background: rgba(59,130,246,0.15); padding: 2px 8px; border-radius: 4px; color: var(--accent-cyan);">\d</code> in Postgres or <code style="background: rgba(59,130,246,0.15); padding: 2px 8px; border-radius: 4px; color: var(--accent-cyan);">DESC</code> in MySQL) to inspect table structures without querying data.</p>
+                            </div>
+                            
+                            <div style="margin-top: 20px;">
+                                <p><b>Constraints:</b></p>
+                                <p style="margin-left: 20px;">Implementing PRIMARY KEY, FOREIGN KEY, and UNIQUE constraints at the command line to ensure data integrity.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-item">
+                    <div class="indicator blue-glow"></div>
+                    <div class="card">
+                        <div class="content-area">
+                            <h3 class="html-title"><b>3. Advanced DML & Transaction Control</b></h3>
+                            <p style="color: var(--text-muted); margin-bottom: 12px; font-size: 0.9rem;">Duration: 25 Minutes</p>
+                            
+                            <p>This is where the operation becomes "relational."</p>
+                            
+                            <div style="margin-top: 20px;">
+                                <p><b>Complex Joins:</b></p>
+                                <p style="margin-left: 20px;">Mastering INNER, LEFT, and FULL joins to stitch disparate tables together.</p>
+                            </div>
+                            
+                            <div style="margin-top: 20px;">
+                                <p><b>ACID Compliance in Practice:</b></p>
+                                <ul style="margin-left: 20px; margin-top: 10px;">
+                                    <li><code style="background: rgba(59,130,246,0.15); padding: 2px 8px; border-radius: 4px; color: var(--accent-cyan);">BEGIN/START TRANSACTION</code>: Opening a safe space for changes.</li>
+                                    <li><code style="background: rgba(59,130,246,0.15); padding: 2px 8px; border-radius: 4px; color: var(--accent-cyan);">COMMIT</code>: Making changes permanent.</li>
+                                    <li><code style="background: rgba(59,130,246,0.15); padding: 2px 8px; border-radius: 4px; color: var(--accent-cyan);">ROLLBACK</code>: The "emergency brake" to undo errors before they hit the disk.</li>
+                                </ul>
+                            </div>
+                            
+                            <div style="margin-top: 20px; padding: 15px; background: rgba(251, 113, 133, 0.15); border-left: 4px solid var(--danger); border-radius: 8px;">
+                                <p><b>⚠️ The WHERE Clause Pitfall:</b></p>
+                                <p style="margin-top: 8px;">A reminder that in the console, an UPDATE or DELETE without a WHERE clause is a career-ending mistake.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-item">
+                    <div class="indicator blue-glow"></div>
+                    <div class="card">
+                        <div class="content-area">
+                            <h3 class="html-title"><b>4. Administrative Tools & Maintenance</b></h3>
+                            <p style="color: var(--text-muted); margin-bottom: 12px; font-size: 0.9rem;">Duration: 20 Minutes</p>
+                            
+                            <p>A database administrator (DBA) uses the console for more than just data entry.</p>
+                            
+                            <div style="margin-top: 20px;">
+                                <p><b>User Management:</b></p>
+                                <pre class="code-block" style="margin-top: 10px;"><code>CREATE USER 'username'@'localhost' IDENTIFIED BY 'password';</code></pre>
+                                <p style="margin-left: 20px; margin-top: 10px;"><b>GRANT vs. REVOKE:</b> The principle of least privilege.</p>
+                            </div>
+                            
+                            <div style="margin-top: 20px;">
+                                <p><b>Backup & Recovery:</b></p>
+                                <p style="margin-left: 20px;">Utilizing external tools via the terminal:</p>
+                                <ul style="margin-left: 20px; margin-top: 10px;">
+                                    <li><code style="background: rgba(59,130,246,0.15); padding: 2px 8px; border-radius: 4px; color: var(--accent-cyan);">mysqldump</code> or <code style="background: rgba(59,130,246,0.15); padding: 2px 8px; border-radius: 4px; color: var(--accent-cyan);">pg_dump</code>: Exporting logical backups.</li>
+                                    <li>Restoring data by piping files back into the engine.</li>
+                                </ul>
+                            </div>
+                            
+                            <div style="margin-top: 20px;">
+                                <p><b>Performance Diagnostics:</b></p>
+                                <p style="margin-left: 20px;">Using <code style="background: rgba(59,130,246,0.15); padding: 2px 8px; border-radius: 4px; color: var(--accent-cyan);">EXPLAIN</code> before a query to see the execution plan and identify bottlenecks.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-item">
+                    <div class="indicator blue-glow"></div>
+                    <div class="card">
+                        <div class="content-area">
+                            <h3 class="html-title"><b>5. Scripting & Automation</b></h3>
+                            <p style="color: var(--text-muted); margin-bottom: 12px; font-size: 0.9rem;">Duration: 10 Minutes</p>
+                            
+                            <p>Real-world operations are rarely manual.</p>
+                            
+                            <div style="margin-top: 20px;">
+                                <p><b>Batch Processing:</b></p>
+                                <p style="margin-left: 20px;">Running .sql scripts directly from the terminal:</p>
+                                <pre class="code-block" style="margin-top: 10px;"><code>mysql -u user -p database &lt; setup_script.sql</code></pre>
+                            </div>
+                            
+                            <div style="margin-top: 20px;">
+                                <p><b>Output Redirection:</b></p>
+                                <p style="margin-left: 20px;">Saving query results to a CSV or text file for reporting.</p>
+                            </div>
+                            
+                            <div style="margin-top: 20px;">
+                                <p><b>Cron Jobs:</b></p>
+                                <p style="margin-left: 20px;">Brief overview of how to automate backups using shell scripts.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-item">
+                    <div class="indicator green-glow"></div>
+                    <div class="card">
+                        <div class="content-area">
+                            <h3 class="standard-title"><b>Summary Table: Essential Console Shortcuts</b></h3>
+                            
+                            <table style="margin-top: 20px;">
+                                <thead>
+                                    <tr>
+                                        <th>Action</th>
+                                        <th>MySQL / MariaDB</th>
+                                        <th>PostgreSQL</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Connect</td>
+                                        <td><code style="background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px;">mysql -u root -p</code></td>
+                                        <td><code style="background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px;">psql -U username -d dbname</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td>List Databases</td>
+                                        <td><code style="background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px;">SHOW DATABASES;</code></td>
+                                        <td><code style="background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px;">\l</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Switch Database</td>
+                                        <td><code style="background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px;">USE dbname;</code></td>
+                                        <td><code style="background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px;">\c dbname</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td>List Tables</td>
+                                        <td><code style="background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px;">SHOW TABLES;</code></td>
+                                        <td><code style="background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px;">\dt</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Table Schema</td>
+                                        <td><code style="background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px;">DESCRIBE tablename;</code></td>
+                                        <td><code style="background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px;">\d tablename</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Exit</td>
+                                        <td><code style="background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px;">exit</code> or <code style="background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px;">\q</code></td>
+                                        <td><code style="background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px;">\q</code></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+<script src="../../../../theme.js"></script>
+</body>
+</html>

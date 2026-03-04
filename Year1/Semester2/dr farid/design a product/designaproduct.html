@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LAS 2.02 • Design & Communication</title>
+    <style>
+        /* ========== GLOBAL & THEME ========== */
+        :root {
+            --bg-dark: #050a18;
+            --card-bg: #0c1226;
+            --primary-purple: #a855f7;
+            --primary-blue: #3b82f6;
+            --text-main: #ffffff;
+            --text-dim: #8fa0bc;
+            --border: #1e293b;
+            --border-light: rgba(255, 255, 255, 0.1);
+            --bg-gradient-1: #161b33;
+            --bg-gradient-2: #050a18;
+        }
+
+        [data-theme="light"] {
+            --bg-dark: #f8fafc;
+            --card-bg: #ffffff;
+            --primary-purple: #a855f7;
+            --primary-blue: #3b82f6;
+            --text-main: #0f172a;
+            --text-dim: #64748b;
+            --border: rgba(15, 23, 42, 0.12);
+            --border-light: rgba(15, 23, 42, 0.12);
+            --bg-gradient-1: #e0e7ff;
+            --bg-gradient-2: #f8fafc;
+        }
+
+        body { 
+            margin: 0; 
+            font-family: "Segoe UI", Roboto, sans-serif; 
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* ========== NAVIGATION ========== */
+        .nav {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-light);
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 5%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .logo img {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            object-fit: cover;
+            border: 2px solid var(--primary-blue);
+        }
+
+        .theme-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 8px 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .theme-toggle svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* ========== HERO SECTION ========== */
+        .hero { 
+            text-align: center; 
+            padding: 100px 20px 80px;
+            background: radial-gradient(circle at center, var(--bg-gradient-1) 0%, var(--bg-gradient-2) 100%);
+            transition: background 0.3s ease;
+            position: relative;
+        }
+        
+        .hero h1 { 
+            font-size: 48px; 
+            margin: 0;
+            background: linear-gradient(135deg, var(--text-main) 0%, var(--primary-purple) 100%);
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+        
+        .hero p { 
+            margin-top: 20px; 
+            color: var(--text-dim); 
+            max-width: 750px; 
+            margin-left: auto; 
+            margin-right: auto; 
+            font-size: 1.1rem;
+        }
+
+        /* ========== TIMELINE LAYOUT ========== */
+        .block { 
+            width: 90%; 
+            max-width: 1000px; 
+            margin: 0 auto 120px; 
+        }
+        
+        .timeline { 
+            position: relative; 
+        }
+        
+        /* The Vertical Line */
+        .timeline::before { 
+            content: ""; 
+            position: absolute; 
+            left: 30px; 
+            top: 0; 
+            bottom: 0; 
+            width: 2px; 
+            background: linear-gradient(to bottom, var(--primary-purple), var(--primary-blue)); 
+        }
+
+        .module { 
+            display: flex; 
+            gap: 40px; 
+            margin-bottom: 60px; 
+            position: relative; 
+            align-items: flex-start; 
+        }
+
+        /* CIRCLE INDICATOR */
+        .module-number { 
+            min-width: 60px; 
+            height: 60px; 
+            background: var(--bg-dark);
+            border: 2px solid var(--primary-purple);
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-weight: bold; 
+            color: var(--primary-purple); 
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.3);
+            font-size: 1.2rem; 
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .module:hover .module-number {
+            background: var(--primary-purple);
+            color: #000;
+            box-shadow: 0 0 25px var(--primary-purple);
+        }
+
+        /* CARD CONTENT */
+        .module-content { 
+            background: var(--card-bg); 
+            border: 1px solid var(--border); 
+            border-radius: 20px; 
+            padding: 30px; 
+            width: 100%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            gap: 30px; 
+            transition: all 0.3s ease; 
+        }
+        
+        .module-content:hover { 
+            border-color: var(--primary-purple);
+            transform: translateX(10px);
+        }
+
+        [data-theme="light"] .module-content:hover {
+            background: rgba(168, 85, 247, 0.05);
+        }
+
+        .module-text { 
+            flex: 1; 
+        }
+        
+        .module-text h3 { 
+            margin: 0 0 10px 0; 
+            color: var(--text-main); 
+            font-size: 1.4rem; 
+        }
+        
+        .module-text p { 
+            margin: 0; 
+            color: var(--text-dim); 
+            font-size: 0.95rem; 
+            line-height: 1.5; 
+        }
+
+        /* BUTTONS */
+        .module-btn { 
+            display: inline-block; 
+            padding: 12px 24px; 
+            background: transparent;
+            color: var(--text-main); 
+            border: 1px solid var(--primary-purple);
+            border-radius: 10px; 
+            text-decoration: none; 
+            font-weight: 600; 
+            white-space: nowrap;
+            transition: all 0.3s ease;
+        }
+
+        .module-btn:hover {
+            background: var(--primary-purple);
+            color: #fff;
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+        }
+
+        /* ========== FOOTER ========== */
+        .footer { 
+            padding: 60px 20px; 
+            text-align: center; 
+            background: var(--bg-dark); 
+            color: var(--text-dim);
+            border-top: 1px solid var(--border);
+            font-size: 0.9rem;
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+
+        .footer span {
+            color: var(--primary-purple);
+            font-size: 0.8rem;
+            margin-top: 10px;
+            display: block;
+            opacity: 0.8;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .module {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .module-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .module-number {
+                min-width: 50px;
+                height: 50px;
+                font-size: 1rem;
+            }
+        }
+        .back-btn {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 22px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  border-radius: 12px;
+  white-space: nowrap;
+  transition: all 0.28s ease;
+  z-index: 10;
+  
+  /* Default (works well in dark mode) */
+  color: #ffffff;
+}
+
+/* Light mode — clear contrast, no disappearing */
+[data-theme="light"] .back-btn {
+  color: #000000;                          /* dark slate text */
+}
+
+/* Hover — works nicely in both modes */
+.back-btn:hover {
+  transform: translateX(-50%) translateY(-2px);
+}
+
+[data-theme="light"] .back-btn:hover {
+  color: var(--accent);
+}
+[data-theme="dark"] .back-btn:hover {
+  color: var(--accent);
+}
+
+/* Mobile tweaks */
+@media (max-width: 768px) {
+  .back-btn {
+    top: 22px;
+    padding: 8px 18px;
+    font-size: 0.97rem;
+  }
+}
+
+    </style>
+</head>
+<body>
+
+    <nav class="nav">
+        <div class="nav-container">
+          <a href="../../../../index.html" class="logo">
+            <img src="../../../../logo.jpeg" alt="Logo">
+            Digital Marketing
+          </a>
+    
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="sun" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <svg class="moon" viewBox="0 0 24 24" fill="currentColor" style="display:none;">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+            </svg>
+          </button>
+        </div>
+    </nav>
+
+<header class="hero">
+    <a href="../y1s2.html" class="back-btn">← Exit Course</a>
+    <h1>Design a product or service<br>and its communication</h1>
+    <p>Mobilizing resources to design, develop, and undertake communication campaigns for international audiences in SME and agency contexts.</p>
+</header>
+
+<section class="block">
+    <div class="timeline">
+
+        <div class="module">
+            <span class="module-number">01</span>
+            <div class="module-content">
+                <div class="module-text">
+                    <h3>Conception & Market Innovation</h3>
+                    <p>Imagine innovative products. Creating design briefs, value propositions, and marketing targeting for global tourism and international SME sectors.</p>
+                </div>
+                <a href="Lecture1 design a product.html" class="module-btn">Explore Design</a>
+            </div>
+        </div>
+
+        <div class="module">
+            <span class="module-number">02</span>
+            <div class="module-content">
+                <div class="module-text">
+                    <h3>Digital Presence & CMS Development</h3>
+                    <p>Designing a showcase website as a communications medium. Setting up websites using modern CMS tools for international audience accessibility.</p>
+                </div>
+                <a href="Lecture 2 design a product.html" class="module-btn">Open Web Lab</a>
+            </div>
+        </div>
+
+        <div class="module">
+            <span class="module-number">03</span>
+            <div class="module-content">
+                <div class="module-text">
+                    <h3>Communication Campaign Strategy</h3>
+                    <p>Planning international campaigns, social network presence, and creating adapted graphic/audiovisual elements for French and foreign targets.</p>
+                </div>
+                <a href="Lecture 3 design a product.html" class="module-btn">View Strategy</a>
+            </div>
+        </div>
+
+        <div class="module">
+            <span class="module-number">04</span>
+            <div class="module-content">
+                <div class="module-text">
+                    <h3>Legal Compliance & Production Files</h3>
+                    <p>Correct application of digital law (CGU, copyright, image rights). Writing scripts, notes of intent, and managing filming authorizations.</p>
+                </div>
+                <a href="Lecture 4 design a product.html" class="module-btn">Review Laws</a>
+            </div>
+        </div>
+
+        <div class="module">
+            <span class="module-number">05</span>
+            <div class="module-content">
+                <div class="module-text">
+                    <h3>Project Management & Acceptance</h3>
+                    <p>Managing call for tenders, budgeting, and planning documents. Presenting progress reports and finalizing the project for sponsors.</p>
+                </div>
+                <a href="Lecture 5 design a product.html" class="module-btn">Manage Project</a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<footer class="footer">
+    LAS 2.02 Course Material – Design, Express, Develop, Undertake <br>
+    <span style="color: var(--accent-orange); font-size: 0.8rem; margin-top: 10px; display: block;"></span>
+</footer>
+<script>
+    // Apply theme IMMEDIATELY to prevent flash
+    (function() {
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    })();
+</script>
+  
+<script>
+    const themeToggle = document.getElementById('themeToggle');
+    const sun = document.querySelector('.sun');
+    const moon = document.querySelector('.moon');
+    const html = document.documentElement;
+  
+    // Check for saved theme preference or default to 'dark'
+    let theme = localStorage.getItem('theme') || 'dark';
+    html.setAttribute('data-theme', theme);
+    
+    // Update icon visibility based on current theme
+    if (theme === 'light') {
+      sun.style.display = 'none';
+      moon.style.display = 'block';
+    }
+  
+    // Theme toggle click handler
+    themeToggle.addEventListener('click', function() {
+      theme = theme === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+      
+      // Toggle icons
+      sun.style.display = theme === 'dark' ? 'block' : 'none';
+      moon.style.display = theme === 'light' ? 'block' : 'none';
+    });
+</script>
+
+</body>
+</html>

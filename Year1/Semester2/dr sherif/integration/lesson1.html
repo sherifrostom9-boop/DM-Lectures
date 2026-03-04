@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Topic 1 – HTML Attributes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="../../../../DrSherif.css" rel="stylesheet">
+
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="top-bar">
+    <a href="../../../../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+        <img src="../../../../logo.jpeg" alt="Logo" class="site-logo">
+        <h2>Digital Marketing</h2>
+    </a>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <svg class="sun-icon" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+        </svg>
+        <svg class="moon-icon" fill="currentColor" viewBox="0 0 24 24" style="display: none;">
+          <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+        </svg>
+    </button>
+</nav>
+
+  <main>
+    <div class="back-link-container">
+      <a href="integrationS2.html" class="back-link">← EXIT LESSON</a>
+    </div>
+
+    <header>
+      <div class="label">Lesson 01</div>
+      <h1>HTML Attributes</h1>
+      <div class="subtitle">Enhancing HTML elements with additional information and properties</div>
+    </header>
+
+    <div class="section-grid">
+
+      <div class="card">
+        <h2>What are Attributes?</h2>
+        <p>Attributes provide <strong>additional information</strong> about HTML elements. They are essential for defining how elements behave or where they link to.</p>
+        <ul>
+          <li>All HTML elements can have attributes.</li>
+          <li>Attributes are always specified in the <strong>start tag</strong>.</li>
+          <li>They usually come in name/value pairs like <code>name="value"</code>.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>The <code>href</code> Attribute</h2>
+        <p>The <code>&lt;a&gt;</code> tag defines a hyperlink. The <code>href</code> attribute specifies the URL of the page the link goes to.</p>
+        <div class="code-block">
+          <span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="val">"https://www.w3schools.com"</span><span class="tag">&gt;</span>Visit W3Schools<span class="tag">&lt;/a&gt;</span>
+        </div>
+      </div>
+
+      <div class="card full-width">
+        <h2>Image Attributes: <code>src</code>, <code>width</code>, <code>height</code></h2>
+        <p>The <code>&lt;img&gt;</code> tag embeds images. It requires the <code>src</code> attribute to specify the path to the image.</p>
+        <div class="code-block">
+          <span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="val">"img_girl.jpg"</span> <span class="attr">width</span>=<span class="val">"500"</span> <span class="attr">height</span>=<span class="val">"600"</span><span class="tag">&gt;</span>
+        </div>
+        <div class="tip-box">
+          <strong>URL Types for <code>src</code>:</strong>
+          <ul>
+            <li><strong>Absolute:</strong> <code>src="https://site.com/img.jpg"</code></li>
+            <li><strong>Relative:</strong> <code>src="img_girl.jpg"</code></li>
+          </ul>
+          <p><em>Tip: Relative URLs are almost always preferred — they won't break when the domain changes.</em></p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>The <code>alt</code> Attribute</h2>
+        <p>The <strong>required</strong> <code>alt</code> attribute provides alternate text if the image cannot be displayed. Essential for accessibility and slow connections.</p>
+        <div class="code-block">
+          <span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="val">"img.jpg"</span> <span class="attr">alt</span>=<span class="val">"Girl with a jacket"</span><span class="tag">&gt;</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>The <code>style</code> Attribute</h2>
+        <p>Adds inline CSS styles directly to an element (color, font, size, etc.).</p>
+        <div class="code-block">
+          <span class="tag">&lt;p</span> <span class="attr">style</span>=<span class="val">"color:red;"</span><span class="tag">&gt;</span>This is a red paragraph.<span class="tag">&lt;/p&gt;</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>The <code>lang</code> Attribute</h2>
+        <p>Should always be included in the <code>&lt;html&gt;</code> tag to declare the document language.</p>
+        <div class="code-block">
+          <span class="tag">&lt;html</span> <span class="attr">lang</span>=<span class="val">"en-US"</span><span class="tag">&gt;</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>The <code>title</code> Attribute</h2>
+        <p>Provides extra information shown as a tooltip on hover.</p>
+        <div class="code-block">
+          <span class="tag">&lt;p</span> <span class="attr">title</span>=<span class="val">"I'm a tooltip"</span><span class="tag">&gt;</span>Mouse over me!<span class="tag">&lt;/p&gt;</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="exercise-card">
+      <h2>🚀 Practice Lab</h2>
+      <p>Complete these quick tasks to reinforce HTML attributes:</p>
+
+      <div style="margin-top: 1.8rem;">
+        <p><strong>Exercise 1:</strong> Add a tooltip to the paragraph that says "Hint".</p>
+        <div class="code-block">
+          &lt;p <input type="text" placeholder="title" style="background:#1e293b; color:#94a3b8; border:1px solid #334155; padding:4px 8px; border-radius:6px; width:100px;">="Hint"&gt;Hover over me!&lt;/p&gt;
+        </div>
+
+        <p><strong>Exercise 2:</strong> Set image dimensions to 250 × 400 pixels.</p>
+        <div class="code-block">
+          &lt;img src="pic.jpg" <input type="text" placeholder="width" size="6" style="...">="250" <input type="text" placeholder="height" size="6" style="...">="400"&gt;
+        </div>
+
+        <p><strong>Exercise 3:</strong> Fix the incorrect attribute name for the link.</p>
+        <div class="code-block">
+          &lt;a <input type="text" placeholder="???" size="6" style="...">="https://google.com"&gt;Search&lt;/a&gt;
+        </div>
+
+        <button class="btn-check">Check My Answers</button>
+      </div>
+    </div>
+
+    <footer>
+      <p>Integration Course • Topic 1: HTML Attributes</p>
+      <p>Contact: sherrost@yahoo.com | Tel: 01501827070</p>
+    </footer>
+  </main>
+
+<script src="../../../../theme.js"></script>
+</body>
+</html>
