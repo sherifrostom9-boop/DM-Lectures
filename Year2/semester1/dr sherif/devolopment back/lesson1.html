@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reusing Software Components and Maintaining Clean Code</title>
+    <link href="../../../../DrSherif.css" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="top-bar">
+        <a href="../../../../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <img src="../../../../logo.jpeg" alt="Logo" class="site-logo">
+            <h2>Digital Marketing</h2>
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="sun-icon" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <svg class="moon-icon" fill="currentColor" viewBox="0 0 24 24" style="display: none;">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+            </svg>
+        </button>
+    </nav>
+
+<div class="container" style="padding-top: 140px;">
+    <header>
+        <a href="devolopment back.html" class="back-link">← EXIT LESSON</a>
+        <div class="label">Development Lecture</div>
+        <h1>Reusing Software Components and Maintaining Clean Code</h1>
+        <p class="subtitle">Best practices for code reusability, organization, and maintainability in modern software development.</p>
+    </header>
+
+    <div class="section-grid">
+        <!-- Introduction -->
+        <div class="card full-width">
+            <h2>📘 Introduction</h2>
+            <p>In software development, <strong>reusing components</strong> and <strong>maintaining clean code</strong> are essential practices that improve efficiency, reduce errors, and make projects easier to scale and maintain. This lecture covers key strategies for achieving both.</p>
+        </div>
+
+        <!-- Part 1: Reusing Software Components -->
+        <div class="card full-width">
+            <h2>🔄 Part 1: Reusing Software Components</h2>
+            
+            <h3 style="color: var(--accent-green); margin-top: 25px; margin-bottom: 15px; font-size: 1.3rem;">What is Component Reusability?</h3>
+            <p>Component reusability refers to the practice of <strong>writing code once and using it multiple times</strong> across different parts of a project or even in different projects. This reduces redundancy and speeds up development.</p>
+
+            <div class="info-box" style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid var(--primary-blue); padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <strong>💡 Key Benefit:</strong> Instead of rewriting similar code, you create modular, self-contained pieces that can be reused wherever needed.
+            </div>
+
+            <h3 style="color: var(--accent-green); margin-top: 25px; margin-bottom: 15px; font-size: 1.3rem;">Why Reuse Components?</h3>
+            <ul style="padding-left: 25px; color: var(--text-dim); margin-bottom: 20px;">
+                <li style="margin-bottom: 12px;"><strong>Saves Time:</strong> Write once, use many times.</li>
+                <li style="margin-bottom: 12px;"><strong>Reduces Errors:</strong> Tested code is less likely to have bugs when reused.</li>
+                <li style="margin-bottom: 12px;"><strong>Easier Maintenance:</strong> Fix or update in one place, and it reflects everywhere.</li>
+                <li style="margin-bottom: 12px;"><strong>Consistency:</strong> Ensures uniformity across the application.</li>
+            </ul>
+
+            <h3 style="color: var(--accent-green); margin-top: 25px; margin-bottom: 15px; font-size: 1.3rem;">Types of Reusable Components</h3>
+            
+            <div class="card" style="margin: 20px 0; background: rgba(59, 130, 246, 0.05); border: 1px solid var(--border-color);">
+                <h3 style="margin-top: 0; color: var(--primary-blue);">1. Functions</h3>
+                <p>Small, focused blocks of code that perform specific tasks.</p>
+                
+                <div style="background: var(--primary-blue); color: white; padding: 8px 15px; border-radius: 6px 6px 0 0; font-size: 0.85rem; font-weight: 600; margin-bottom: -5px; display: inline-block;">JavaScript Example</div>
+                <div class="code-block"><span style="color: #ff7b72;">function</span> <span style="color: #d2a8ff;">calculateTotal</span>(price, tax) {
+    <span style="color: #ff7b72;">return</span> price + (price * tax);
+}
+
+<span style="color: #8b949e; font-style: italic;">// Reuse the function multiple times</span>
+<span style="color: #ff7b72;">let</span> total1 = <span style="color: #d2a8ff;">calculateTotal</span>(<span style="color: #79c0ff;">100</span>, <span style="color: #79c0ff;">0.05</span>);
+<span style="color: #ff7b72;">let</span> total2 = <span style="color: #d2a8ff;">calculateTotal</span>(<span style="color: #79c0ff;">200</span>, <span style="color: #79c0ff;">0.05</span>);</div>
+            </div>
+
+            <div class="card" style="margin: 20px 0; background: rgba(78, 217, 194, 0.05); border: 1px solid var(--border-color);">
+                <h3 style="margin-top: 0; color: var(--accent-cyan);">2. Classes (Object-Oriented Programming)</h3>
+                <p>Blueprints for creating objects with shared properties and methods.</p>
+                
+                <div style="background: var(--accent-cyan); color: #000; padding: 8px 15px; border-radius: 6px 6px 0 0; font-size: 0.85rem; font-weight: 600; margin-bottom: -5px; display: inline-block;">Python Example</div>
+                <div class="code-block"><span style="color: #ff7b72;">class</span> <span style="color: #d2a8ff;">User</span>:
+    <span style="color: #ff7b72;">def</span> <span style="color: #d2a8ff;">__init__</span>(self, name, email):
+        self.name = name
+        self.email = email
+    
+    <span style="color: #ff7b72;">def</span> <span style="color: #d2a8ff;">greet</span>(self):
+        <span style="color: #ff7b72;">return</span> <span style="color: #a5d6ff;">f"Hello, {self.name}!"</span>
+
+<span style="color: #8b949e; font-style: italic;"># Reuse the class to create multiple users</span>
+user1 = <span style="color: #d2a8ff;">User</span>(<span style="color: #a5d6ff;">"Alice"</span>, <span style="color: #a5d6ff;">"alice@example.com"</span>)
+user2 = <span style="color: #d2a8ff;">User</span>(<span style="color: #a5d6ff;">"Bob"</span>, <span style="color: #a5d6ff;">"bob@example.com"</span>)
+
+<span style="color: #ff7b72;">print</span>(user1.<span style="color: #d2a8ff;">greet</span>())  <span style="color: #8b949e; font-style: italic;"># Output: Hello, Alice!</span></div>
+            </div>
+
+            <div class="card" style="margin: 20px 0; background: rgba(251, 191, 36, 0.05); border: 1px solid var(--border-color);">
+                <h3 style="margin-top: 0; color: #fbbf24;">3. Modules/Libraries</h3>
+                <p>Collections of related functions or classes stored in separate files.</p>
+                
+                <div style="background: #fbbf24; color: #000; padding: 8px 15px; border-radius: 6px 6px 0 0; font-size: 0.85rem; font-weight: 600; margin-bottom: -5px; display: inline-block;">Example: math_utils.py</div>
+                <div class="code-block"><span style="color: #ff7b72;">def</span> <span style="color: #d2a8ff;">add</span>(a, b):
+    <span style="color: #ff7b72;">return</span> a + b
+
+<span style="color: #ff7b72;">def</span> <span style="color: #d2a8ff;">subtract</span>(a, b):
+    <span style="color: #ff7b72;">return</span> a - b</div>
+
+                <div style="background: #fbbf24; color: #000; padding: 8px 15px; border-radius: 6px 6px 0 0; font-size: 0.85rem; font-weight: 600; margin-bottom: -5px; display: inline-block; margin-top: 15px;">main.py</div>
+                <div class="code-block"><span style="color: #ff7b72;">import</span> math_utils
+
+result = math_utils.<span style="color: #d2a8ff;">add</span>(<span style="color: #79c0ff;">10</span>, <span style="color: #79c0ff;">5</span>)
+<span style="color: #ff7b72;">print</span>(result)  <span style="color: #8b949e; font-style: italic;"># Output: 15</span></div>
+            </div>
+
+            <div class="card" style="margin: 20px 0; background: rgba(168, 85, 247, 0.05); border: 1px solid var(--border-color);">
+                <h3 style="margin-top: 0; color: #a855f7;">4. UI Components (Frontend)</h3>
+                <p>Reusable interface elements like buttons, forms, or navigation bars.</p>
+                
+                <div style="background: #a855f7; color: #fff; padding: 8px 15px; border-radius: 6px 6px 0 0; font-size: 0.85rem; font-weight: 600; margin-bottom: -5px; display: inline-block;">React Component Example</div>
+                <div class="code-block"><span style="color: #ff7b72;">function</span> <span style="color: #d2a8ff;">Button</span>({ label, onClick }) {
+    <span style="color: #ff7b72;">return</span> <span style="color: #a5d6ff;">&lt;button onClick={onClick}&gt;{label}&lt;/button&gt;</span>;
+}
+
+<span style="color: #8b949e; font-style: italic;">// Reuse the Button component</span>
+<span style="color: #a5d6ff;">&lt;Button label="Submit" onClick={handleSubmit} /&gt;</span>
+<span style="color: #a5d6ff;">&lt;Button label="Cancel" onClick={handleCancel} /&gt;</span></div>
+            </div>
+
+            <h3 style="color: var(--accent-green); margin-top: 25px; margin-bottom: 15px; font-size: 1.3rem;">Best Practices for Reusability</h3>
+            <ol style="padding-left: 25px; color: var(--text-dim); margin-bottom: 20px;">
+                <li style="margin-bottom: 12px;"><strong>Keep It Simple:</strong> Components should do one thing well.</li>
+                <li style="margin-bottom: 12px;"><strong>Make It Configurable:</strong> Use parameters to customize behavior.</li>
+                <li style="margin-bottom: 12px;"><strong>Document Your Code:</strong> Add comments explaining what each component does.</li>
+                <li style="margin-bottom: 12px;"><strong>Test Thoroughly:</strong> Ensure components work correctly before reusing them.</li>
+            </ol>
+        </div>
+
+        <!-- Part 2: Maintaining Clean Code -->
+        <div class="card full-width">
+            <h2>✨ Part 2: Maintaining Clean Code</h2>
+            
+            <h3 style="color: var(--accent-green); margin-top: 25px; margin-bottom: 15px; font-size: 1.3rem;">What is Clean Code?</h3>
+            <p>Clean code is code that is <strong>easy to read, understand, and modify</strong>. It follows best practices and conventions, making collaboration and future updates smoother.</p>
+
+            <div class="success-box" style="background: rgba(78, 217, 194, 0.1); border-left: 4px solid var(--accent-green); padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <strong>✅ Clean Code Philosophy:</strong> "Any fool can write code that a computer can understand. Good programmers write code that humans can understand." — Martin Fowler
+            </div>
+
+            <h3 style="color: var(--accent-green); margin-top: 25px; margin-bottom: 15px; font-size: 1.3rem;">Key Principles of Clean Code</h3>
+
+            <div class="card" style="margin: 20px 0; border: 1px solid var(--border-color);">
+                <h3 style="margin-top: 0; color: var(--primary-blue);">1. Use Meaningful Names</h3>
+                <p>Variable, function, and class names should clearly describe their purpose.</p>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>❌ Bad</th>
+                            <th>✅ Good</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>let x = 10;</code></td>
+                            <td><code>let itemCount = 10;</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>function calc(a, b) { ... }</code></td>
+                            <td><code>function calculateTotal(price, tax) { ... }</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card" style="margin: 20px 0; border: 1px solid var(--border-color);">
+                <h3 style="margin-top: 0; color: var(--primary-blue);">2. Write Small, Focused Functions</h3>
+                <p>Functions should do one thing and do it well. If a function is too long, break it into smaller ones.</p>
+                
+                <div style="background: #dc2626; color: white; padding: 8px 15px; border-radius: 6px 6px 0 0; font-size: 0.85rem; font-weight: 600; margin-bottom: -5px; display: inline-block;">Bad Example (Too Long)</div>
+                <div class="code-block"><span style="color: #ff7b72;">function</span> <span style="color: #d2a8ff;">processOrder</span>(order) {
+    <span style="color: #8b949e; font-style: italic;">// Validate order</span>
+    <span style="color: #8b949e; font-style: italic;">// Calculate total</span>
+    <span style="color: #8b949e; font-style: italic;">// Apply discount</span>
+    <span style="color: #8b949e; font-style: italic;">// Process payment</span>
+    <span style="color: #8b949e; font-style: italic;">// Send confirmation email</span>
+}</div>
+
+                <div style="background: #16a34a; color: white; padding: 8px 15px; border-radius: 6px 6px 0 0; font-size: 0.85rem; font-weight: 600; margin-bottom: -5px; display: inline-block; margin-top: 15px;">Good Example (Modular)</div>
+                <div class="code-block"><span style="color: #ff7b72;">function</span> <span style="color: #d2a8ff;">validateOrder</span>(order) { <span style="color: #8b949e; font-style: italic;">/* ... */</span> }
+<span style="color: #ff7b72;">function</span> <span style="color: #d2a8ff;">calculateTotal</span>(order) { <span style="color: #8b949e; font-style: italic;">/* ... */</span> }
+<span style="color: #ff7b72;">function</span> <span style="color: #d2a8ff;">applyDiscount</span>(total) { <span style="color: #8b949e; font-style: italic;">/* ... */</span> }
+<span style="color: #ff7b72;">function</span> <span style="color: #d2a8ff;">processPayment</span>(total) { <span style="color: #8b949e; font-style: italic;">/* ... */</span> }
+<span style="color: #ff7b72;">function</span> <span style="color: #d2a8ff;">sendConfirmation</span>(order) { <span style="color: #8b949e; font-style: italic;">/* ... */</span> }</div>
+            </div>
+
+            <div class="card" style="margin: 20px 0; border: 1px solid var(--border-color);">
+                <h3 style="margin-top: 0; color: var(--primary-blue);">3. Avoid Deep Nesting</h3>
+                <p>Too many nested loops or conditionals make code hard to read.</p>
+                
+                <div style="background: #dc2626; color: white; padding: 8px 15px; border-radius: 6px 6px 0 0; font-size: 0.85rem; font-weight: 600; margin-bottom: -5px; display: inline-block;">Bad Example</div>
+                <div class="code-block"><span style="color: #ff7b72;">if</span> (user) {
+    <span style="color: #ff7b72;">if</span> (user.isActive) {
+        <span style="color: #ff7b72;">if</span> (user.hasPermission) {
+            <span style="color: #8b949e; font-style: italic;">// Do something</span>
+        }
+    }
+}</div>
+
+                <div style="background: #16a34a; color: white; padding: 8px 15px; border-radius: 6px 6px 0 0; font-size: 0.85rem; font-weight: 600; margin-bottom: -5px; display: inline-block; margin-top: 15px;">Good Example (Early Returns)</div>
+                <div class="code-block"><span style="color: #ff7b72;">if</span> (!user) <span style="color: #ff7b72;">return</span>;
+<span style="color: #ff7b72;">if</span> (!user.isActive) <span style="color: #ff7b72;">return</span>;
+<span style="color: #ff7b72;">if</span> (!user.hasPermission) <span style="color: #ff7b72;">return</span>;
+
+<span style="color: #8b949e; font-style: italic;">// Do something</span></div>
+            </div>
+
+            <div class="card" style="margin: 20px 0; border: 1px solid var(--border-color);">
+                <h3 style="margin-top: 0; color: var(--primary-blue);">4. Add Comments (But Don't Overdo It)</h3>
+                <p>Use comments to explain <strong>why</strong> something is done, not <strong>what</strong> is being done (the code should be self-explanatory).</p>
+                
+                <div style="background: #dc2626; color: white; padding: 8px 15px; border-radius: 6px 6px 0 0; font-size: 0.85rem; font-weight: 600; margin-bottom: -5px; display: inline-block;">Bad Comment</div>
+                <div class="code-block"><span style="color: #8b949e; font-style: italic;">// Increment i by 1</span>
+i++;</div>
+
+                <div style="background: #16a34a; color: white; padding: 8px 15px; border-radius: 6px 6px 0 0; font-size: 0.85rem; font-weight: 600; margin-bottom: -5px; display: inline-block; margin-top: 15px;">Good Comment</div>
+                <div class="code-block"><span style="color: #8b949e; font-style: italic;">// Skip inactive users to improve performance</span>
+<span style="color: #ff7b72;">if</span> (!user.isActive) <span style="color: #ff7b72;">continue</span>;</div>
+            </div>
+
+            <div class="card" style="margin: 20px 0; border: 1px solid var(--border-color);">
+                <h3 style="margin-top: 0; color: var(--primary-blue);">5. Follow Consistent Formatting</h3>
+                <p>Use consistent indentation, spacing, and naming conventions throughout your project.</p>
+                
+                <ul style="padding-left: 25px; color: var(--text-dim);">
+                    <li style="margin-bottom: 10px;"><strong>Indentation:</strong> Use 2 or 4 spaces (be consistent).</li>
+                    <li style="margin-bottom: 10px;"><strong>Naming Conventions:</strong> camelCase for variables (<code>userName</code>), PascalCase for classes (<code>UserProfile</code>).</li>
+                    <li style="margin-bottom: 10px;"><strong>Line Length:</strong> Keep lines under 80-100 characters.</li>
+                </ul>
+            </div>
+
+            <div class="card" style="margin: 20px 0; border: 1px solid var(--border-color);">
+                <h3 style="margin-top: 0; color: var(--primary-blue);">6. Avoid Magic Numbers</h3>
+                <p>Replace hard-coded values with named constants.</p>
+                
+                <div style="background: #dc2626; color: white; padding: 8px 15px; border-radius: 6px 6px 0 0; font-size: 0.85rem; font-weight: 600; margin-bottom: -5px; display: inline-block;">Bad Example</div>
+                <div class="code-block"><span style="color: #ff7b72;">if</span> (age &gt; <span style="color: #79c0ff;">18</span>) {
+    <span style="color: #8b949e; font-style: italic;">// Allow access</span>
+}</div>
+
+                <div style="background: #16a34a; color: white; padding: 8px 15px; border-radius: 6px 6px 0 0; font-size: 0.85rem; font-weight: 600; margin-bottom: -5px; display: inline-block; margin-top: 15px;">Good Example</div>
+                <div class="code-block"><span style="color: #ff7b72;">const</span> MINIMUM_AGE = <span style="color: #79c0ff;">18</span>;
+
+<span style="color: #ff7b72;">if</span> (age &gt; MINIMUM_AGE) {
+    <span style="color: #8b949e; font-style: italic;">// Allow access</span>
+}</div>
+            </div>
+
+            <div class="card" style="margin: 20px 0; border: 1px solid var(--border-color);">
+                <h3 style="margin-top: 0; color: var(--primary-blue);">7. Handle Errors Gracefully</h3>
+                <p>Always anticipate and handle potential errors.</p>
+                
+                <div style="background: var(--primary-blue); color: white; padding: 8px 15px; border-radius: 6px 6px 0 0; font-size: 0.85rem; font-weight: 600; margin-bottom: -5px; display: inline-block;">Example</div>
+                <div class="code-block"><span style="color: #ff7b72;">try</span> {
+    <span style="color: #ff7b72;">let</span> data = <span style="color: #d2a8ff;">fetchData</span>();
+} <span style="color: #ff7b72;">catch</span> (error) {
+    console.<span style="color: #d2a8ff;">error</span>(<span style="color: #a5d6ff;">"Failed to fetch data:"</span>, error);
+}</div>
+            </div>
+
+            <h3 style="color: var(--accent-green); margin-top: 25px; margin-bottom: 15px; font-size: 1.3rem;">Tools for Maintaining Clean Code</h3>
+            <ul style="padding-left: 25px; color: var(--text-dim);">
+                <li style="margin-bottom: 10px;"><strong>Linters:</strong> Tools like ESLint (JavaScript) or Pylint (Python) automatically check for code quality issues.</li>
+                <li style="margin-bottom: 10px;"><strong>Formatters:</strong> Tools like Prettier or Black auto-format code to match standards.</li>
+                <li style="margin-bottom: 10px;"><strong>Code Reviews:</strong> Have teammates review your code for improvements.</li>
+                <li style="margin-bottom: 10px;"><strong>Version Control:</strong> Use Git to track changes and collaborate effectively.</li>
+            </ul>
+        </div>
+
+        <!-- Comparison Table -->
+        <div class="card full-width">
+            <h2>⚖️ Clean vs. Messy Code Comparison</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Aspect</th>
+                        <th>Clean Code</th>
+                        <th>Messy Code</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Readability</strong></td>
+                        <td>Easy to understand at a glance</td>
+                        <td>Confusing, requires time to decipher</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Maintenance</strong></td>
+                        <td>Simple to update or fix</td>
+                        <td>Risky to change, may break things</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Collaboration</strong></td>
+                        <td>Others can contribute easily</td>
+                        <td>Hard for others to work with</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Bugs</strong></td>
+                        <td>Fewer bugs, easier to debug</td>
+                        <td>More bugs, harder to trace</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Scalability</strong></td>
+                        <td>Grows smoothly with the project</td>
+                        <td>Becomes unmanageable over time</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Conclusion -->
+        <div class="card full-width">
+            <h2>🎯 Conclusion</h2>
+            <p><strong>Reusing components</strong> and <strong>maintaining clean code</strong> are not optional—they are essential skills for any developer. By following these practices, you'll write code that is:</p>
+            
+            <div class="section-grid" style="margin-top: 20px;">
+                <div class="success-box" style="background: rgba(78, 217, 194, 0.1); border-left: 4px solid var(--accent-green); padding: 20px; border-radius: 8px;">
+                    <strong>✅ Efficient:</strong> Save time by reusing proven solutions.
+                </div>
+                <div class="success-box" style="background: rgba(78, 217, 194, 0.1); border-left: 4px solid var(--accent-green); padding: 20px; border-radius: 8px;">
+                    <strong>✅ Reliable:</strong> Reduce bugs and errors through tested components.
+                </div>
+                <div class="success-box" style="background: rgba(78, 217, 194, 0.1); border-left: 4px solid var(--accent-green); padding: 20px; border-radius: 8px;">
+                    <strong>✅ Maintainable:</strong> Make updates and fixes easier.
+                </div>
+                <div class="success-box" style="background: rgba(78, 217, 194, 0.1); border-left: 4px solid var(--accent-green); padding: 20px; border-radius: 8px;">
+                    <strong>✅ Collaborative:</strong> Enable smooth teamwork on projects.
+                </div>
+            </div>
+
+            <div class="info-box" style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid var(--primary-blue); padding: 20px; border-radius: 8px; margin-top: 25px;">
+                <strong>💡 Remember:</strong> "Code is read far more often than it is written." Invest time in making your code clean and reusable—your future self (and your team) will thank you!
+            </div>
+        </div>
+
+        <!-- Practice Exercise -->
+        <div class="card full-width">
+            <h2>📝 Practice Exercise</h2>
+            <h3 style="color: var(--accent-green); margin-top: 25px; margin-bottom: 15px; font-size: 1.3rem;">Challenge: Refactor This Code</h3>
+            <p>Take this messy code and apply clean code principles:</p>
+            
+            <div style="background: #dc2626; color: white; padding: 8px 15px; border-radius: 6px 6px 0 0; font-size: 0.85rem; font-weight: 600; margin-bottom: -5px; display: inline-block;">Before (Messy)</div>
+            <div class="code-block"><span style="color: #ff7b72;">function</span> <span style="color: #d2a8ff;">calc</span>(a,b,c){
+<span style="color: #ff7b72;">if</span>(c==<span style="color: #a5d6ff;">"+"</span>){<span style="color: #ff7b72;">return</span> a+b}
+<span style="color: #ff7b72;">else if</span>(c==<span style="color: #a5d6ff;">"-"</span>){<span style="color: #ff7b72;">return</span> a-b}
+<span style="color: #ff7b72;">else if</span>(c==<span style="color: #a5d6ff;">"*"</span>){<span style="color: #ff7b72;">return</span> a*b}
+<span style="color: #ff7b72;">else</span>{<span style="color: #ff7b72;">return</span> a/b}
+}</div>
+
+            <div style="background: #16a34a; color: white; padding: 8px 15px; border-radius: 6px 6px 0 0; font-size: 0.85rem; font-weight: 600; margin-bottom: -5px; display: inline-block; margin-top: 15px;">After (Clean)</div>
+            <div class="code-block"><span style="color: #8b949e; font-style: italic;">/**
+ * Performs basic arithmetic operations on two numbers
+ * @param {number} firstNumber - The first operand
+ * @param {number} secondNumber - The second operand
+ * @param {string} operation - The operation to perform (+, -, *, /)
+ * @returns {number} The result of the operation
+ */</span>
+<span style="color: #ff7b72;">function</span> <span style="color: #d2a8ff;">calculate</span>(firstNumber, secondNumber, operation) {
+    <span style="color: #ff7b72;">const</span> operations = {
+        <span style="color: #a5d6ff;">'+'</span>: (a, b) =&gt; a + b,
+        <span style="color: #a5d6ff;">'-'</span>: (a, b) =&gt; a - b,
+        <span style="color: #a5d6ff;">'*'</span>: (a, b) =&gt; a * b,
+        <span style="color: #a5d6ff;">'/'</span>: (a, b) =&gt; a / b
+    };
+    
+    <span style="color: #ff7b72;">return</span> operations[operation](firstNumber, secondNumber);
+}</div>
+
+            <h3 style="color: var(--accent-green); margin-top: 25px; margin-bottom: 15px; font-size: 1.3rem;">Your Task:</h3>
+            <ol style="padding-left: 25px; color: var(--text-dim);">
+                <li style="margin-bottom: 10px;">Identify what makes the "messy" version hard to read</li>
+                <li style="margin-bottom: 10px;">List all the clean code principles applied in the "clean" version</li>
+                <li style="margin-bottom: 10px;">Practice refactoring your own old code using these principles</li>
+            </ol>
+        </div>
+    </div>
+
+    <footer>
+        <p><strong>UFE Digital Marketing - Development Back</strong></p>
+        <p>Contact: info@ufedigital.com | Support: support@ufedigital.com</p>
+        <p>© 2025 UFE Digital Marketing. All rights reserved.</p>
+    </footer>
+</div>
+
+<script src="../../../../theme.js"></script>
+
+</body>
+</html>

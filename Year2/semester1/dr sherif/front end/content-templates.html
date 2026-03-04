@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 01 - Content Templates</title>
+    <link href="../../../../DrSherif.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        /* Image container styles */
+        .img-container {
+            margin: 25px 0;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            background: var(--card-bg);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .img-content {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .img-container:hover .img-content {
+            transform: scale(1.02);
+        }
+
+        .image-container img {
+            width: 100%;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="top-bar">
+        <a href="../../../../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <img src="../../../../logo.jpeg" alt="Logo" class="site-logo">
+            <h2>Front-end Lab</h2>
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="sun-icon" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <svg class="moon-icon" fill="currentColor" viewBox="0 0 24 24" style="display: none;">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+            </svg>
+        </button>
+    </nav>
+
+    <main>
+        <div class="container">
+            <header>
+                <a href="frontend.html" class="back-link">← EXIT LESSON</a>
+                <div class="syllabus-label">Module 01</div>
+                <h1>Content Templates</h1>
+                <p class="subtitle">Creating web development content templates with dynamic data</p>
+            </header>
+
+            <div class="timeline-wrapper">
+                <div class="lesson-item">
+                    <div class="indicator blue-glow"></div>
+                    <div class="card">
+                        <div class="content-area">
+                            <h3 class="html-title">1. Core Concepts of Content Templates</h3>
+                            
+                            <h4><b>Definition</b></h4>
+                            <p>Creating web development content templates with dynamic data involves separating the presentation layer (HTML/CSS) from the data layer (database/API) and using a template engine or server-side scripting to merge them at runtime. A content template defines the fixed layout and structure of a page, using placeholders or variables to mark where dynamic content should be inserted.</p>
+
+                            <h4><b>Master Template</b></h4>
+                            <p><strong>Master Template:</strong> Contains shared markup like the header, navigation menu, and footer, which remain the same across the site.</p>
+                            <p><strong>Page/Content Template:</strong> Defines the unique layout for specific content types (e.g., a blog post, a product page, a user profile).</p>
+
+                            <h4><b>Variables</b></h4>
+                            <p><strong>Placeholders/Variables:</strong> These are special tags within the HTML that the rendering engine replaces with actual data. This keeps the design consistent across all dynamically generated pages.</p>
+                            
+                            <div class="image-container">
+                                <img src="pycode(content-tmp).png" alt="Python Content Template Code">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-item">
+                    <div class="indicator purple-glow"></div>
+                    <div class="card">
+                        <div class="content-area">
+                            <h3 class="css-title">2. Key Technologies</h3>
+                            <ul>
+                                <li><strong>Database:</strong> Stores structured data (e.g., MySQL, PostgreSQL, MongoDB).</li>
+                                <li><strong>Server-Side Scripting:</strong> Languages like PHP, Python (Django/Flask), Node.js retrieve data and insert it into the template.</li>
+                                <li><strong>Template Engines:</strong> Tools (e.g., Jinja2, EJS, Liquid) simplify the process of replacing placeholders and offer control structures like loops.</li>
+                                <li><strong>Client-Side Scripting:</strong> JavaScript fetches data via APIs and updates parts of a page without a full reload (React, Vue.js).</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-item">
+                    <div class="indicator green-glow"></div>
+                    <div class="card">
+                        <div class="content-area">
+                            <h3 class="standard-title">3. Example Implementation (Conceptual PHP)</h3>
+                            <p><strong>Render the Page:</strong> The server-side script loads the template file, replaces the PHP tags with the actual data, and sends the finished HTML page to the user's browser.</p>
+
+                            <div class="img-container">
+                                <img src="phpcode1.png" alt="PHP Logic Part 1" class="img-content">
+                            </div>
+
+                            <div class="img-container">
+                                <img src="phpcode2.png" alt="PHP Logic Part 2" class="img-content">
+                            </div>
+
+                            <div class="img-container">
+                                <img src="htmlcode3.png" alt="HTML Template Part" class="img-content">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-item">
+                    <div class="indicator blue-glow"></div>
+                    <div class="card">
+                        <div class="content-area">
+                            <h3 class="html-title">4. Best Practices</h3>
+                            <ul>
+                                <li><strong>Separate Content and Design:</strong> Allows designers and developers to work independently.</li>
+                                <li><strong>Use Placeholders:</strong> Avoid hard-coding data for better maintainability.</li>
+                                <li><strong>Ensure Responsiveness:</strong> Templates must adapt to different screen sizes.</li>
+                                <li><strong>Validate Data:</strong> Prevent security vulnerabilities by validating all dynamic content.</li>
+                                <li><strong>Utilize a CMS:</strong> Platforms like WordPress offer robust tools for managing template systems.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-item">
+                    <div class="indicator purple-glow"></div>
+                    <div class="card">
+                        <div class="content-area">
+                            <h3 class="css-title">5. Emerging Trends in 2026</h3>
+                            
+                            <p><strong>Agentic AI:</strong> Websites now use AI to automatically update content and layouts based on user behavior without manual input.</p>
+                            
+                            <p><strong>Real-Time Personalization:</strong> Systems adjust navigation and calls-to-action (CTAs) based on immediate on-page signals.</p>
+                            
+                            <p><strong>Astro & Qwik:</strong> Technologies like Qwik introduce "resumability," allowing apps to become interactive instantly. Astro uses "Islands Architecture" to keep content static for speed while hydrating only interactive parts.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../../../../theme.js"></script>
+</body>
+</html>

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture 02 - Interactive Mock-ups</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../../DrSherif.css">
+</head>
+<body>
+
+    <nav class="top-bar">
+        <a href="../../../../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <img src="../../../../logo.jpeg" alt="Logo" class="site-logo">
+            <h2>Digital Marketing</h2>
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="sun-icon" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <svg class="moon-icon" fill="currentColor" viewBox="0 0 24 24" style="display: none;">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+            </svg>
+        </button>
+    </nav>
+
+    <header class="hero">
+        <a href="devolopment-user-path.html" class="exit-link">← EXIT LESSON</a>
+        <div class="badge">Lecture 02</div>
+        <h1>Interactive Mock-ups</h1>
+        <p>Creating professional website and app mockups using free online tools</p>
+    </header>
+
+    <!-- Timeline Navigation -->
+    <nav class="timeline-nav">
+        <div class="timeline-line"></div>
+        <div class="step-node active" onclick="showStep(0)">
+            <div class="dot">1</div>
+            <div class="node-label">Introduction</div>
+        </div>
+        <div class="step-node" onclick="showStep(1)">
+            <div class="dot">2</div>
+            <div class="node-label">Canva</div>
+        </div>
+        <div class="step-node" onclick="showStep(2)">
+            <div class="dot">3</div>
+            <div class="node-label">Mockey</div>
+        </div>
+        <div class="step-node" onclick="showStep(3)">
+            <div class="dot">4</div>
+            <div class="node-label">MockupBro</div>
+        </div>
+    </nav>
+
+    <!-- All content steps -->
+    <div class="step-content active">
+        <!-- Step 1: Introduction -->
+        <h2>Interactive Mock-ups</h2>
+        <div class="theory-box">
+            You can create <strong>free interactive web mockups</strong> using various online tools that offer website mockup templates and easy drag-and-drop functionality.
+        </div>
+        
+        <div class="section-grid">
+            <div class="card">
+                <h3>Why Use Mock-ups?</h3>
+                <ul class="feature-list">
+                    <li>Visualize your designs in realistic contexts</li>
+                    <li>Present professional concepts to clients</li>
+                    <li>Test user interface ideas before development</li>
+                    <li>Create portfolio pieces and case studies</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>Popular Tools</h3>
+                <ul class="feature-list">
+                    <li><strong>Canva</strong> - Easy templates and drag-and-drop</li>
+                    <li><strong>Mockplus</strong> - Interactive UI components</li>
+                    <li><strong>Moqups</strong> - Wireframes with icon library</li>
+                    <li><strong>Mockey</strong> - AI-powered generator</li>
+                    <li><strong>MockupBro</strong> - High-quality, no watermark</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="highlight-box">
+            <strong>Workshop Focus:</strong> In this lecture, we'll explore three powerful free mockup tools: Canva, Mockey, and MockupBro. Each offers unique features for creating professional website and app mockups.
+        </div>
+    </div>
+
+    <div class="step-content">
+        <!-- Step 2: Canva -->
+        <h2>Workshop 1: Canva</h2>
+        
+        <div class="theory-box">
+            <h3>Canva</h3>
+            <p><strong>Design Platform with Mock-up Templates</strong></p>
+            <p>Canva is a versatile design platform that offers a dedicated mockups section with professional templates for computers, smartphones, tablets, and other devices. Perfect for beginners and professionals alike.</p>
+        </div>
+
+        <h3>How to Create Mock-ups in Canva</h3>
+        
+        <div class="theory-box">
+            <span class="step-badge">Step 1</span>
+            <h3>Access the Mockups Section</h3>
+            <p>Navigate to the "Mockups" section in Canva's interface. Here you'll find a wide variety of device templates including:</p>
+            <ul class="feature-list">
+                <li>Desktop computers and laptops</li>
+                <li>Smartphones (iPhone, Android)</li>
+                <li>Tablets and iPads</li>
+                <li>Smartwatches and wearables</li>
+                <li>Multiple device combinations</li>
+            </ul>
+        </div>
+
+        <div class="theory-box">
+            <span class="step-badge">Step 2</span>
+            <h3>Choose Your Device Template</h3>
+            <p>Select the device that best represents where your design will be displayed. Consider your target audience and the primary platform for your website or application.</p>
+        </div>
+
+        <div class="theory-box">
+            <span class="step-badge">Step 3</span>
+            <h3>Upload Your Design</h3>
+            <p>Upload a screenshot or design file of your website or app interface. Canva accepts various formats including PNG, JPG, and PDF files.</p>
+        </div>
+
+        <div class="theory-box">
+            <span class="step-badge">Step 4</span>
+            <h3>Drag and Adjust</h3>
+            <p>Drag your uploaded design into the mockup template. Canva automatically fits it to the screen, but you can make manual adjustments to:</p>
+            <ul class="feature-list">
+                <li>Scale and resize the design</li>
+                <li>Position it correctly on the screen</li>
+                <li>Adjust perspective and angles</li>
+                <li>Fine-tune alignment</li>
+            </ul>
+        </div>
+
+        <div class="theory-box">
+            <span class="step-badge">Step 5</span>
+            <h3>Customize and Download</h3>
+            <p>Make final adjustments to backgrounds, add text overlays or branding elements, and download your professional mockup in high resolution.</p>
+        </div>
+
+        <div class="highlight-box">
+            <strong>Pro Tip:</strong> Canva offers both free and premium templates. Free templates provide excellent quality for most projects, while premium templates offer more sophisticated designs and device options.
+        </div>
+    </div>
+
+    <div class="step-content">
+        <!-- Step 3: Mockey -->
+        <h2>Workshop 2: Mockey</h2>
+        
+        <div class="theory-box">
+            <h3>Mockey</h3>
+            <p><strong>AI-Powered Mockup Generator</strong></p>
+            <p>Mockey is a free AI mockup generator that uses artificial intelligence to create realistic and professional mockups. It offers smart automation features that simplify the mockup creation process.</p>
+        </div>
+
+        <h3>How to Use Mockey</h3>
+        
+        <div class="theory-box">
+            <span class="step-badge">Step 1</span>
+            <h3>Sign Up for Free Account</h3>
+            <p>Create a free account on Mockey's platform. The registration process is quick and gives you access to:</p>
+            <ul class="feature-list">
+                <li>Thousands of mockup templates</li>
+                <li>AI-powered smart fitting</li>
+                <li>Cloud storage for your projects</li>
+                <li>Regular template updates</li>
+            </ul>
+        </div>
+
+        <div class="theory-box">
+            <span class="step-badge">Step 2</span>
+            <h3>Choose a Template</h3>
+            <p>Browse through Mockey's extensive template library. Categories include:</p>
+            <ul class="feature-list">
+                <li>Technology devices (computers, phones, tablets)</li>
+                <li>Print materials (business cards, brochures)</li>
+                <li>Apparel and merchandise</li>
+                <li>Packaging and product mockups</li>
+                <li>Environmental and contextual scenes</li>
+            </ul>
+        </div>
+
+        <div class="theory-box">
+            <span class="step-badge">Step 3</span>
+            <h3>Upload Your Design</h3>
+            <p>Upload your website screenshot or app interface. Mockey's AI automatically analyzes your design and suggests the best fitting options.</p>
+        </div>
+
+        <div class="theory-box">
+            <span class="step-badge">Step 4</span>
+            <h3>Customize with AI Assistance</h3>
+            <p>Use Mockey's AI-powered tools to customize your mockup:</p>
+            <ul class="feature-list">
+                <li>Auto-fit design to device screens</li>
+                <li>Smart perspective adjustment</li>
+                <li>Background replacement options</li>
+                <li>Lighting and shadow effects</li>
+                <li>Color scheme adjustments</li>
+            </ul>
+        </div>
+
+        <div class="theory-box">
+            <span class="step-badge">Step 5</span>
+            <h3>Download Your Mockup</h3>
+            <p>Once satisfied with your customizations, download the final mockup in high resolution. Mockey offers various export options and formats.</p>
+        </div>
+
+        <div class="highlight-box">
+            <strong>AI Advantage:</strong> Mockey's artificial intelligence automatically detects screen boundaries and applies realistic perspectives, saving you time on manual adjustments while ensuring professional results.
+        </div>
+    </div>
+
+    <div class="step-content">
+        <!-- Step 4: MockupBro -->
+        <h2>Workshop 3: MockupBro</h2>
+        
+        <div class="theory-box">
+            <h3>MockupBro</h3>
+            <p><strong>High-Quality, Watermark-Free Mockups</strong></p>
+            <p>MockupBro is a free online mockup generator that allows you to create high-quality, professional mockups without watermarks. It's perfect for client presentations and portfolio work where clean, professional output is essential.</p>
+        </div>
+
+        <h3>How to Create Mockups with MockupBro</h3>
+        
+        <div class="theory-box">
+            <span class="step-badge">Step 1</span>
+            <h3>Choose a Mockup Template</h3>
+            <p>Browse MockupBro's curated collection of mockup templates. The platform offers:</p>
+            <ul class="feature-list">
+                <li>Clean, modern device mockups</li>
+                <li>Minimalist presentation styles</li>
+                <li>Multiple device combinations</li>
+                <li>Various angles and perspectives</li>
+                <li>Contextual background options</li>
+            </ul>
+        </div>
+
+        <div class="theory-box">
+            <span class="step-badge">Step 2</span>
+            <h3>Upload Your Design</h3>
+            <p>Upload your website screenshot or application interface directly to the chosen template. MockupBro supports standard image formats and automatically optimizes them for the best display quality.</p>
+        </div>
+
+        <div class="theory-box">
+            <span class="step-badge">Step 3</span>
+            <h3>Customize the Mockup</h3>
+            <p>Make adjustments to perfect your presentation:</p>
+            <ul class="feature-list">
+                <li>Adjust design positioning and scale</li>
+                <li>Modify background colors or images</li>
+                <li>Apply filters and effects</li>
+                <li>Add custom branding elements</li>
+                <li>Fine-tune shadows and reflections</li>
+            </ul>
+        </div>
+
+        <div class="theory-box">
+            <span class="step-badge">Step 4</span>
+            <h3>Download High-Quality Image</h3>
+            <p>Download your completed mockup in high resolution without any watermarks. MockupBro provides:</p>
+            <ul class="feature-list">
+                <li>No watermark on free downloads</li>
+                <li>High-resolution output (suitable for print)</li>
+                <li>Multiple format options (PNG, JPG)</li>
+                <li>Commercial use licensing</li>
+            </ul>
+        </div>
+
+        <div class="highlight-box">
+            <strong>Key Advantage:</strong> MockupBro's biggest selling point is providing watermark-free, high-quality mockups completely free of charge. This makes it ideal for professional presentations, client pitches, and portfolio pieces where clean, polished visuals are essential.
+        </div>
+
+        <div class="section-grid">
+            <div class="card">
+                <h3>Best For</h3>
+                <ul class="feature-list">
+                    <li>Client presentations</li>
+                    <li>Portfolio showcases</li>
+                    <li>Social media posts</li>
+                    <li>Marketing materials</li>
+                    <li>Case study visuals</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>Key Features</h3>
+                <ul class="feature-list">
+                    <li>100% free, no hidden costs</li>
+                    <li>No watermarks</li>
+                    <li>High-resolution exports</li>
+                    <li>User-friendly interface</li>
+                    <li>Quick processing</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Contact: sherrost@yahoo.com | Tel: 01501827070 - 01017776756</p>
+        <p>Development User Paths Within An Information System • Lecture 02</p>
+    </footer>
+
+    <script>
+        function showStep(index) {
+            document.querySelectorAll('.step-node').forEach((node, i) => {
+                node.classList.toggle('active', i === index);
+            });
+
+            document.querySelectorAll('.step-content').forEach((content, i) => {
+                content.classList.toggle('active', i === index);
+            });
+        }
+    </script>
+<script src="../../../../theme.js"></script>      
+</body>
+</html>

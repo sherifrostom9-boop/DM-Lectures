@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 03 - Mastering HTTP Requests</title>
+    <link href="../../../../DrSherif.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        /* Quiz-specific styles */
+        .quiz-container {
+            margin-top: 40px;
+        }
+        .quiz-question {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 25px;
+        }
+        .quiz-question p {
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--text-main);
+        }
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        .option {
+            background: rgba(255,255,255,0.05);
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: 0.3s;
+            color: var(--text-dim);
+        }
+        .option:hover {
+            background: rgba(59, 130, 246, 0.1);
+            border-color: var(--primary-blue);
+        }
+        .option.selected {
+            background: var(--primary-blue) !important;
+            color: white !important;
+            border-color: var(--primary-blue);
+            font-weight: bold;
+        }
+
+        .correction-btn {
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: 18px 30px;
+            border-radius: 12px;
+            font-weight: 800;
+            cursor: pointer;
+            margin: 30px 0;
+            width: 100%;
+            transition: 0.3s;
+            font-size: 1rem;
+        }
+        .results-panel {
+            display: none;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid var(--accent-green);
+            margin-top: 20px;
+        }
+        .answer-item {
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+        .correct-tag {
+            color: var(--accent-green);
+            font-weight: 800;
+        }
+
+        .img-container {
+            margin: 30px 0;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            background: var(--card-bg);
+            padding: 15px;
+        }
+        .img-content {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="top-bar">
+        <a href="../../../../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <img src="../../../../logo.jpeg" alt="Logo" class="site-logo">
+            <h2>Digital Marketing</h2>
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="sun-icon" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <svg class="moon-icon" fill="currentColor" viewBox="0 0 24 24" style="display: none;">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+            </svg>
+        </button>
+    </nav>
+
+    <main>
+        <div class="container">
+            <header>
+                <a href="frontend.html" class="back-link">← EXIT LESSON</a>
+                <div class="syllabus-label">Module 03</div>
+                <h1>Mastering HTTP Requests</h1>
+                <p class="subtitle">Understanding execution flow, data retrieval, and error handling</p>
+            </header>
+
+            <div class="timeline-wrapper">
+                <div class="lesson-item">
+                    <div class="indicator blue-glow"></div>
+                    <div class="card">
+                        <div class="content-area">
+                            <h3 class="html-title">1. Execution Flow: Sync vs Async</h3>
+                            
+                            <p><strong>The Critical Decision:</strong> When making HTTP requests, the most important architectural choice is determining how the code waits for the server's response.</p>
+
+                            <h4><b>Synchronous Execution (Blocking)</b></h4>
+                            <p>Code runs sequentially. When a request is made, the program <strong>halts and waits</strong> for the server before moving to the next line.</p>
+                            <ul>
+                                <li><strong style="color: #ff4d4d;">Behavior:</strong> The UI may freeze or the browser may become unresponsive until data arrives.</li>
+                                <li><strong>Use Case:</strong> Rare in web dev; used in simple scripts where one step strictly requires the previous one.</li>
+                            </ul>
+
+                            <h4><b>Asynchronous Execution (Non-Blocking)</b></h4>
+                            <p>The code initiates the request and <strong>immediately continues</strong> executing the next lines without waiting.</p>
+                            <ul>
+                                <li><strong style="color: #10b981;">Behavior:</strong> Patterns like "Promises" or "Async/Await" handle the response later. The UI stays responsive.</li>
+                                <li><strong>Use Case:</strong> The standard for modern apps (e.g., scrolling a feed while it loads).</li>
+                            </ul>
+
+                            <h4><b>☕ The Coffee Analogy:</b></h4>
+                            <ul>
+                                <li><strong>Synchronous:</strong> Ordering coffee and standing at the counter staring at the barista until they hand it to you. You cannot do anything else.</li>
+                                <li><strong>Asynchronous:</strong> Ordering coffee, getting a buzzer (Promise), sitting down to read a book, and going back only when the buzzer rings.</li>
+                            </ul>
+
+                            <div class="img-container">
+                                <img src="js:fetch.png" alt="Synchronous vs Asynchronous Analogy" class="img-content">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-item">
+                    <div class="indicator purple-glow"></div>
+                    <div class="card">
+                        <div class="content-area">
+                            <h3 class="css-title">2. Data Retrieval and Processing</h3>
+                            
+                            <p>Once a request is sent, the goal is to retrieve data and make it usable for the application.</p>
+
+                            <h4><b>The Request Methods (Verbs)</b></h4>
+                            <p>You must choose the correct method to tell the server what you want to do:</p>
+                            <ul>
+                                <li><strong>GET:</strong> Retrieve data (e.g., fetching a user profile).</li>
+                                <li><strong>POST:</strong> Send new data (e.g., submitting a signup form).</li>
+                                <li><strong>PUT/PATCH:</strong> Update existing data.</li>
+                                <li><strong>DELETE:</strong> Remove data.</li>
+                            </ul>
+
+                            <h4><b>The Payload and Headers</b></h4>
+                            <ul>
+                                <li><strong>Headers:</strong> Meta-data sent with the request (e.g., <code>Content-Type: application/json</code> or Authentication tokens).</li>
+                                <li><strong>Body:</strong> The actual data being sent (used in POST/PUT).</li>
+                            </ul>
+
+                            <h4><b>Processing the Response</b></h4>
+                            <p>Raw data usually arrives as a string stream. You must parse it into a native data structure.</p>
+                            <ul>
+                                <li><strong>JSON (JavaScript Object Notation):</strong> The industry standard. It looks like text but is easily converted into objects/dictionaries.</li>
+                                <li><strong>XML:</strong> Older, more verbose, tag-based format.</li>
+                            </ul>
+
+                            <div class="img-container">
+                                <img src="js-fetch.png" alt="Data Processing Example" class="img-content">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-item">
+                    <div class="indicator green-glow"></div>
+                    <div class="card">
+                        <div class="content-area">
+                            <h3 class="standard-title">3. Error Handling</h3>
+                            
+                            <p>Networks are unreliable. A robust application assumes requests will fail eventually and plans for it.</p>
+
+                            <h4><b>HTTP Status Codes</b></h4>
+                            <p>The server communicates the result via a 3-digit code:</p>
+                            <ul>
+                                <li><strong style="color: #10b981;">2xx (Success):</strong> Everything worked (e.g., 200 OK, 201 Created).</li>
+                                <li><strong style="color: #ff9f43;">4xx (Client Error):</strong> You made a mistake (e.g., 400 Bad Request, 404 Not Found).</li>
+                                <li><strong style="color: #ff4d4d;">5xx (Server Error):</strong> The server crashed or is down (e.g., 500 Internal Server Error).</li>
+                            </ul>
+
+                            <h4><b>Handling Strategies</b></h4>
+                            <ul>
+                                <li><strong>Check the Status:</strong> Always check if <code>response.ok</code> (in JS) before processing data.</li>
+                                <li><strong>Try/Catch Blocks:</strong> Wrap network calls in error handling blocks to catch failures like DNS errors or loss of connectivity.</li>
+                                <li><strong>User Feedback:</strong> Never show a raw error stack trace. Show a friendly message like <em>"Something went wrong, please try again."</em></li>
+                            </ul>
+
+                            <div class="img-container">
+                                <img src="jsrobust.png" alt="Robust Error Handling Example" class="img-content">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-item">
+                    <div class="indicator blue-glow"></div>
+                    <div class="card">
+                        <div class="content-area">
+                            <h3 class="html-title">4. Summary Checklist</h3>
+                            <ul>
+                                <li><strong>Async over Sync:</strong> Always keep apps responsive.</li>
+                                <li><strong>Parse Correctly:</strong> Match Content-Type (JSON).</li>
+                                <li><strong>Handle 404s/500s:</strong> Plan for server replies.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-item">
+                    <div class="indicator purple-glow"></div>
+                    <div class="card">
+                        <div class="content-area">
+                            <h3 class="css-title">5. Final Knowledge Check</h3>
+                            
+                            <div class="quiz-container">
+                                <div class="quiz-question">
+                                    <p><strong>1. Select the correct answer:</strong></p>
+                                    <div class="options-grid">
+                                        <div class="option" onclick="selectOption(this)">A</div>
+                                        <div class="option" onclick="selectOption(this)">B</div>
+                                        <div class="option" onclick="selectOption(this)">C</div>
+                                        <div class="option" onclick="selectOption(this)">D</div>
+                                    </div>
+                                </div>
+
+                                <div class="quiz-question">
+                                    <p><strong>2. Select the correct answer:</strong></p>
+                                    <div class="options-grid">
+                                        <div class="option" onclick="selectOption(this)">A</div>
+                                        <div class="option" onclick="selectOption(this)">B</div>
+                                        <div class="option" onclick="selectOption(this)">C</div>
+                                        <div class="option" onclick="selectOption(this)">D</div>
+                                    </div>
+                                </div>
+
+                                <div class="quiz-question">
+                                    <p><strong>3. Select the correct answer:</strong></p>
+                                    <div class="options-grid">
+                                        <div class="option" onclick="selectOption(this)">A</div>
+                                        <div class="option" onclick="selectOption(this)">B</div>
+                                        <div class="option" onclick="selectOption(this)">C</div>
+                                        <div class="option" onclick="selectOption(this)">D</div>
+                                    </div>
+                                </div>
+
+                                <div class="quiz-question">
+                                    <p><strong>4. Select the correct answer:</strong></p>
+                                    <div class="options-grid">
+                                        <div class="option" onclick="selectOption(this)">A</div>
+                                        <div class="option" onclick="selectOption(this)">B</div>
+                                        <div class="option" onclick="selectOption(this)">C</div>
+                                        <div class="option" onclick="selectOption(this)">D</div>
+                                    </div>
+                                </div>
+
+                                <div class="quiz-question">
+                                    <p><strong>5. Select the correct answer:</strong></p>
+                                    <div class="options-grid">
+                                        <div class="option" onclick="selectOption(this)">A</div>
+                                        <div class="option" onclick="selectOption(this)">B</div>
+                                        <div class="option" onclick="selectOption(this)">C</div>
+                                        <div class="option" onclick="selectOption(this)">D</div>
+                                    </div>
+                                </div>
+
+                                <div class="quiz-question">
+                                    <p><strong>6. Select the correct answer:</strong></p>
+                                    <div class="options-grid">
+                                        <div class="option" onclick="selectOption(this)">A</div>
+                                        <div class="option" onclick="selectOption(this)">B</div>
+                                        <div class="option" onclick="selectOption(this)">C</div>
+                                        <div class="option" onclick="selectOption(this)">D</div>
+                                    </div>
+                                </div>
+
+                                <div class="quiz-question">
+                                    <p><strong>7. Select the correct answer:</strong></p>
+                                    <div class="options-grid">
+                                        <div class="option" onclick="selectOption(this)">A</div>
+                                        <div class="option" onclick="selectOption(this)">B</div>
+                                        <div class="option" onclick="selectOption(this)">C</div>
+                                        <div class="option" onclick="selectOption(this)">D</div>
+                                    </div>
+                                </div>
+
+                                <div class="quiz-question">
+                                    <p><strong>8. Select the correct answer:</strong></p>
+                                    <div class="options-grid">
+                                        <div class="option" onclick="selectOption(this)">A</div>
+                                        <div class="option" onclick="selectOption(this)">B</div>
+                                        <div class="option" onclick="selectOption(this)">C</div>
+                                        <div class="option" onclick="selectOption(this)">D</div>
+                                    </div>
+                                </div>
+
+                                <div class="quiz-question">
+                                    <p><strong>9. Select the correct answer:</strong></p>
+                                    <div class="options-grid">
+                                        <div class="option" onclick="selectOption(this)">A</div>
+                                        <div class="option" onclick="selectOption(this)">B</div>
+                                        <div class="option" onclick="selectOption(this)">C</div>
+                                        <div class="option" onclick="selectOption(this)">D</div>
+                                    </div>
+                                </div>
+
+                                <div class="quiz-question">
+                                    <p><strong>10. Select the correct answer:</strong></p>
+                                    <div class="options-grid">
+                                        <div class="option" onclick="selectOption(this)">A</div>
+                                        <div class="option" onclick="selectOption(this)">B</div>
+                                        <div class="option" onclick="selectOption(this)">C</div>
+                                        <div class="option" onclick="selectOption(this)">D</div>
+                                    </div>
+                                </div>
+
+                                <button class="correction-btn" onclick="showCorrection()">CHECK CORRECTION</button>
+
+                                <div id="results" class="results-panel">
+                                    <h3 style="margin-bottom: 15px; color: var(--accent-green);">Official Correction:</h3>
+                                    <div id="answer-list"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../../../../theme.js"></script>
+    <script>
+        function selectOption(element) {
+            const parent = element.parentElement;
+            parent.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
+            element.classList.add('selected');
+        }
+
+        function showCorrection() {
+            const resultsPanel = document.getElementById('results');
+            const answerList = document.getElementById('answer-list');
+            
+            const keys = ["1: D", "2: C", "3: D", "4: A", "5: D", "6: D", "7: C", "8: C", "9: A", "10: A"];
+            
+            answerList.innerHTML = keys.map(k => `
+                <div class="answer-item">
+                    <span>Question ${k.split(':')[0]}</span>
+                    <span class="correct-tag">Correct: ${k.split(':')[1]}</span>
+                </div>
+            `).join('');
+            
+            resultsPanel.style.display = "block";
+            resultsPanel.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

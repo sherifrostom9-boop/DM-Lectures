@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Front-end Path | Timeline</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="../../../../DrSherif.css" rel="stylesheet">
+    <style>
+        /* Timeline-specific styles */
+        .timeline-container {
+            max-width: 800px;
+            margin: 40px auto 100px auto;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        /* Vertical timeline line */
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            left: 31px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary-blue), transparent);
+            opacity: 0.3;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .timeline-dot {
+            min-width: 24px;
+            height: 24px;
+            background: var(--bg);
+            border: 3px solid var(--primary-blue);
+            border-radius: 50%;
+            z-index: 2;
+            margin-top: 25px;
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .timeline-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 25px;
+            border-radius: 20px;
+            text-decoration: none;
+            color: inherit;
+            flex: 1;
+            transition: 0.3s all ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .timeline-card:hover {
+            transform: translateX(10px);
+            background: rgba(59, 130, 246, 0.03);
+            border-color: var(--primary-blue);
+        }
+
+        [data-theme="light"] .timeline-card:hover {
+            background: rgba(59, 130, 246, 0.05);
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        .timeline-card h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.3rem;
+            color: var(--text-color);
+        }
+
+        .timeline-card p {
+            margin: 0;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .step-number {
+            color: var(--primary-blue);
+            font-weight: 800;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .view-topic {
+            color: var(--accent-cyan);
+            font-weight: bold;
+            font-size: 0.85rem;
+            border: 1px solid var(--accent-cyan);
+            padding: 8px 15px;
+            border-radius: 5px;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .view-topic:hover {
+            background-color: var(--accent-cyan);
+            color: var(--bg-primary);
+        }
+
+        .timeline-card:hover .view-topic {
+            background-color: var(--accent-cyan);
+            color: var(--bg-primary);
+        }
+
+        .badge {
+            background: rgba(59, 130, 246, 0.15);
+            color: var(--primary-blue);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-weight: 800;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            border: 1px solid var(--primary-blue);
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 120px 5% 20px 5%;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin: 10px 0;
+            color: var(--text);
+        }
+
+        .exit-link {
+    color: var(--primary-blue);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: inline-block;
+    
+    /* Starts slightly transparent + smooth transition */
+    opacity: 0.8;
+    transition: 
+        opacity 0.28s ease,
+        color 0.28s ease;
+}
+
+.exit-link:hover,
+.exit-link:focus {
+    opacity: 1;
+    color: var(--text);
+}
+
+@media (max-width: 768px) {
+            .hero {
+                padding: 100px 5% 20px 5%;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .timeline-container::before {
+                left: 21px;
+            }
+
+            .timeline-item {
+                gap: 20px;
+            }
+
+            .timeline-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .view-topic {
+                align-self: flex-end;
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="top-bar">
+        <a href="../../../../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <img src="../../../../logo.jpeg" alt="Logo" class="site-logo">
+            <h2>Digital Marketing</h2>
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="sun-icon" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <svg class="moon-icon" fill="currentColor" viewBox="0 0 24 24" style="display: none;">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+            </svg>
+        </button>
+    </nav>
+
+    <header class="hero">
+        <a href="../year2-sem1.html" class="exit-link">← EXIT COURSE</a>
+        <div class="syllabus-label">Course Syllabus</div>
+        <h1>Front-end Path</h1>
+        <p style="color: var(--text-muted)">The complete path to mastering client-side interactivity.</p>
+    </header>
+
+    <main class="timeline-container">
+
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+                <div class="timeline-content">
+                    <span class="step-number">Module 01</span>
+                    <h3>Content Templates</h3>
+                    <p>Learn to separate structure from data to create modular and reusable interfaces.</p>
+                </div>
+                <a href="content-templates.html" class="view-topic">View Topic</a>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+                <div class="timeline-content">
+                    <span class="step-number">Module 02</span>
+                    <h3>Event-driven programming</h3>
+                    <p>Master asynchronous programming with Promises and non-blocking event processing.</p>
+                </div>
+                <a href="Event-Driven-Programming.html" class="view-topic">View Topic</a>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+                <div class="timeline-content">
+                    <span class="step-number">Module 03</span>
+                    <h3>HTTP Requests</h3>
+                    <p>Data retrieval via Fetch, synchronous/asynchronous execution, and error handling.</p>
+                </div>
+                <a href="masteringHTTP.html" class="view-topic">View Topic</a>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+                <div class="timeline-content">
+                    <span class="step-number">Module 04</span>
+                    <h3>Local data storage</h3>
+                    <p>How to access, save, and manage persistent data directly in the browser.</p>
+                </div>
+                <a href="local-storage.html" class="view-topic">View Topic</a>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+                <div class="timeline-content">
+                    <span class="step-number">Module 05</span>
+                    <h3>Optimizing loading times</h3>
+                    <p>Caching and lazy loading techniques to make your applications ultra-fast.</p>
+                </div>
+                <a href="loading-optimization.html" class="view-topic">View Topic</a>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+                <div class="timeline-content">
+                    <span class="step-number">Module 06</span>
+                    <h3>Client-side Frameworks</h3>
+                    <p>Discovery of modern architecture with a framework (React/Vue/Angular).</p>
+                </div>
+                <a href="framework-discovery.html" class="view-topic">View Topic</a>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="../../../../theme.js"></script>
+
+</body>
+</html>

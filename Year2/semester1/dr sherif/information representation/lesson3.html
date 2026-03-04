@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matrix Calculations & Media Formats</title>
+    <style>
+        :root {
+            --bg-dark: #050a18;
+            --card-bg: #0c1226;
+            --primary-blue: #3b82f6;
+            --accent-green: #4ed9c2;
+            --text-main: #ffffff;
+            --text-dim: #8fa0bc;
+            --border: #1e293b;
+            --accent-orange: #f97316;
+            --accent-purple: #a855f7;
+            --accent-red: #ef4444;
+        }
+
+        [data-theme="light"] {
+            --bg-dark: #f8fafc;
+            --card-bg: #ffffff;
+            --primary-blue: #2563eb;
+            --accent-green: #059669;
+            --text-main: #0f172a;
+            --text-dim: #475569;
+            --border: #e2e8f0;
+            --accent-orange: #ea580c;
+            --accent-purple: #9333ea;
+            --accent-red: #dc2626;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 40px 20px;
+            line-height: 1.7;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            display: inline-block;
+            transition: color 0.3s;
+        }
+
+        .back-btn:hover { color: var(--primary-blue); }
+
+        .theme-toggle {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .theme-toggle:hover {
+            background: var(--primary-blue);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        header {
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 25px;
+            margin-bottom: 50px;
+        }
+
+        .label { 
+            color: var(--accent-orange); 
+            text-transform: uppercase; 
+            font-size: 0.85rem; 
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+        
+        h1 { 
+            font-size: 2.8rem; 
+            margin: 15px 0; 
+            color: var(--primary-blue);
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            color: var(--text-dim);
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+
+        .section-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 30px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.1);
+        }
+
+        .full-width { grid-column: 1 / -1; }
+
+        h2 { 
+            color: var(--primary-blue); 
+            margin-top: 0; 
+            margin-bottom: 20px;
+            border-left: 4px solid var(--primary-blue); 
+            padding-left: 15px;
+            font-size: 1.6rem;
+        }
+
+        h3 {
+            color: var(--accent-green);
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        h4 {
+            color: var(--text-main);
+            margin-top: 20px;
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            color: var(--text-dim);
+        }
+
+        strong {
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        ul, ol { 
+            padding-left: 25px; 
+            color: var(--text-dim);
+            margin-bottom: 20px;
+        }
+        
+        li { 
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        .info-box {
+            background: rgba(59, 130, 246, 0.1);
+            border-left: 4px solid var(--primary-blue);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .success-box {
+            background: rgba(78, 217, 194, 0.1);
+            border-left: 4px solid var(--accent-green);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .warning-box {
+            background: rgba(251, 191, 36, 0.1);
+            border-left: 4px solid #fbbf24;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .highlight-box {
+            background: var(--accent-orange);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-weight: 600;
+        }
+
+        .matrix-visual {
+            background: var(--card-bg);
+            border: 2px solid var(--primary-blue);
+            border-radius: 10px;
+            padding: 30px;
+            margin: 25px 0;
+            font-family: 'Courier New', monospace;
+            text-align: center;
+        }
+
+        .format-card {
+            background: var(--card-bg);
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            padding: 25px;
+            margin: 15px 0;
+            transition: all 0.3s;
+        }
+
+        .format-card:hover {
+            border-color: var(--primary-blue);
+            transform: translateY(-2px);
+        }
+
+        .format-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        .jpeg { background: #ef4444; color: white; }
+        .png { background: #3b82f6; color: white; }
+        .gif { background: #10b981; color: white; }
+        .mp4 { background: #8b5cf6; color: white; }
+        .avi { background: #f59e0b; color: white; }
+        .mp3 { background: #ec4899; color: white; }
+        .wav { background: #14b8a6; color: white; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            border: 1px solid var(--border);
+            padding: 16px;
+            text-align: left;
+        }
+
+        th { 
+            background-color: var(--primary-blue); 
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background: rgba(59, 130, 246, 0.05);
+        }
+
+        footer {
+            margin-top: 80px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            border-top: 2px solid var(--border);
+            padding-top: 30px;
+        }
+
+        footer p {
+            margin: 8px 0;
+        }
+
+        @media (max-width: 768px) {
+            .section-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="top-nav">
+        <a href="informationrep.html" class="back-btn">← BACK TO LECTURES</a>
+        <button class="theme-toggle" onclick="toggleTheme()">
+            <span id="theme-icon">🌙</span>
+            <span id="theme-text">Dark Mode</span>
+        </button>
+    </div>
+
+    <header>
+        <div class="label">Information Representation Lecture 2</div>
+        <h1>Matrix Calculations & Media Formats</h1>
+        <p class="subtitle">JPEG Compression, DCT, Quantization & Multimedia File Formats</p>
+    </header>
+
+    <div class="section-grid">
+        <!-- Introduction -->
+        <div class="card full-width">
+            <h2>📘 Matrix Calculations (JPEG/TCD)</h2>
+            
+            <div class="highlight-box">
+                "MATRIX CALCULATIONS (JPEG/TCD)" refers to matrix operations performed in the context of image compression standards, specifically the <strong>JPEG (Joint Photographic Experts Group)</strong> standard and methods like the <strong>TCD (Transformée en Cosinus Discrète, or Discrete Cosine Transform)</strong> used in it.
+            </div>
+
+            <p>In this context, <strong>matrix calculations are fundamental to several stages of image processing and compression:</strong></p>
+        </div>
+
+        <!-- DCT Section -->
+        <div class="card full-width">
+            <h2>🔄 Discrete Cosine Transform (DCT)</h2>
+            
+            <p>JPEG compression primarily relies on the <strong>2D DCT</strong>, which transforms an <strong>8x8 pixel matrix</strong> from the spatial domain into a frequency domain representation (a matrix of DCT coefficients).</p>
+
+            <div class="info-box">
+                <strong>💡 Key Concept:</strong> The <strong>TCD</strong> is the French term for this method (Transformée en Cosinus Discrète).
+            </div>
+
+            <h3>How DCT Works</h3>
+            <div class="matrix-visual">
+                <h4 style="color: var(--primary-blue); margin-bottom: 15px;">Spatial Domain → Frequency Domain</h4>
+                <p style="font-size: 1.2rem; margin: 20px 0;">
+                    [8×8 Pixel Matrix] <span style="color: var(--accent-green); font-size: 1.5rem;">→ DCT →</span> [8×8 DCT Coefficients]
+                </p>
+                <p style="font-size: 0.9rem; color: var(--text-dim);">
+                    Transforms image data from how it appears (spatial) to its frequency components
+                </p>
+            </div>
+
+            <h3>8×8 Pixel Block Example</h3>
+            <p>JPEG divides images into <strong>8×8 pixel blocks</strong> and applies DCT to each block separately.</p>
+
+            <div class="success-box">
+                <strong>✅ Why 8×8 blocks?</strong>
+                <ul style="margin-top: 10px;">
+                    <li>Good balance between compression efficiency and computational complexity</li>
+                    <li>Small enough to capture local image features</li>
+                    <li>Large enough to achieve significant compression</li>
+                    <li>Computationally efficient with fast algorithms</li>
+                </ul>
+            </div>
+
+            <h3>DCT Formula (Simplified)</h3>
+            <div class="matrix-visual" style="background: rgba(168, 85, 247, 0.1); border-color: var(--accent-purple);">
+                <p style="font-family: 'Georgia', serif; font-size: 1.1rem; font-style: italic;">
+                    F(u,v) = C(u)C(v) Σ Σ f(x,y) cos[(2x+1)uπ/16] cos[(2y+1)vπ/16]
+                </p>
+                <p style="font-size: 0.85rem; margin-top: 15px; color: var(--text-dim);">
+                    Where f(x,y) is the pixel value at position (x,y)<br>
+                    F(u,v) is the DCT coefficient at frequency (u,v)
+                </p>
+            </div>
+        </div>
+
+        <!-- Quantization -->
+        <div class="card full-width">
+            <h2>📊 Quantization</h2>
+
+            <p>A crucial step involves <strong>dividing the matrix of DCT coefficients</strong> by a specific <strong>quantization matrix</strong> to reduce the amount of data. This process introduces controlled loss of detail (<strong>lossy compression</strong>).</p>
+
+            <div class="warning-box">
+                <strong>⚠️ Important:</strong> The JPEG standard defines specific <strong>luminance</strong> and <strong>chrominance quantization matrices</strong> for this purpose.
+            </div>
+
+            <h3>How Quantization Works</h3>
+            <div class="matrix-visual">
+                <h4 style="color: var(--primary-blue); margin-bottom: 15px;">Quantization Process</h4>
+                <p style="font-size: 1.1rem; margin: 20px 0;">
+                    [DCT Coefficients] <span style="color: var(--accent-orange); font-size: 1.5rem;">÷</span> [Quantization Matrix] = [Quantized Values]
+                </p>
+                <p style="font-size: 0.9rem; color: var(--text-dim);">
+                    Dividing by larger values reduces precision → Higher compression
+                </p>
+            </div>
+
+            <h3>Example Quantization Matrix (Luminance)</h3>
+            <div class="matrix-visual">
+<pre style="text-align: left; font-size: 0.9rem; line-height: 1.8;">
+┌                                           ┐
+│  16   11   10   16   24   40   51   61  │
+│  12   12   14   19   26   58   60   55  │
+│  14   13   16   24   40   57   69   56  │
+│  14   17   22   29   51   87   80   62  │
+│  18   22   37   56   68  109  103   77  │
+│  24   35   55   64   81  104  113   92  │
+│  49   64   78   87  103  121  120  101  │
+│  72   92   95   98  112  100  103   99  │
+└                                           ┘
+</pre>
+            </div>
+
+            <div class="info-box">
+                <strong>💡 Key Insight:</strong> Lower-left corner values are larger because high-frequency components (which appear there in DCT) are less important to human vision and can be compressed more aggressively.
+            </div>
+        </div>
+
+        <!-- Matrix Multiplication -->
+        <div class="card full-width">
+            <h2>✖️ Matrix Multiplication</h2>
+
+            <p>The actual computation of the <strong>DCT</strong> and <strong>inverse DCT (IDCT)</strong> often involves matrix multiplication algorithms, sometimes implemented using specialized hardware architectures like <strong>systolic arrays</strong> to achieve the necessary performance.</p>
+
+            <h3>DCT as Matrix Multiplication</h3>
+            <div class="matrix-visual">
+                <p style="font-size: 1.1rem; margin: 20px 0;">
+                    <strong>F</strong> = <strong>T</strong> × <strong>f</strong> × <strong>T<sup>T</sup></strong>
+                </p>
+                <p style="font-size: 0.85rem; color: var(--text-dim);">
+                    Where:<br>
+                    <strong>F</strong> = DCT coefficient matrix<br>
+                    <strong>T</strong> = DCT transformation matrix<br>
+                    <strong>f</strong> = Original pixel block<br>
+                    <strong>T<sup>T</sup></strong> = Transpose of T
+                </p>
+            </div>
+
+            <h3>Performance Optimization</h3>
+            <div class="section-grid">
+                <div class="success-box">
+                    <strong>Fast Algorithms:</strong>
+                    <ul style="margin-top: 10px;">
+                        <li>Fast DCT (similar to FFT)</li>
+                        <li>Separable transforms</li>
+                        <li>Butterfly operations</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <strong>Hardware Acceleration:</strong>
+                    <ul style="margin-top: 10px;">
+                        <li>Systolic arrays</li>
+                        <li>GPU processing</li>
+                        <li>Dedicated JPEG chips</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Post-processing -->
+        <div class="card full-width">
+            <h2>🔧 Post-processing</h2>
+
+            <p>Further matrix operations may be used for specific tasks, such as reducing <strong>blocking artifacts</strong> that can appear in highly compressed JPEG images.</p>
+
+            <h3>Common Post-processing Techniques</h3>
+            <ul>
+                <li><strong>Deblocking Filters:</strong> Smooth out edges between 8×8 blocks</li>
+                <li><strong>Edge Enhancement:</strong> Sharpen important edges</li>
+                <li><strong>Noise Reduction:</strong> Remove compression artifacts</li>
+                <li><strong>Color Correction:</strong> Adjust for color space conversions</li>
+            </ul>
+
+            <div class="warning-box">
+                <strong>⚠️ Blocking Artifacts:</strong> When compression is too aggressive, visible boundaries appear between 8×8 blocks. Post-processing helps minimize this effect.
+            </div>
+        </div>
+
+        <!-- JPEG Compression Pipeline -->
+        <div class="card full-width">
+            <h2>🔄 Complete JPEG Compression Pipeline</h2>
+
+            <div style="background: var(--card-bg); border: 2px solid var(--primary-blue); border-radius: 12px; padding: 30px; margin: 25px 0;">
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                    <div style="background: rgba(59, 130, 246, 0.1); padding: 15px; border-radius: 8px; text-align: center;">
+                        <strong>1. Color Space Conversion</strong><br>
+                        <span style="color: var(--text-dim);">RGB → YCbCr</span>
+                    </div>
+                    <div style="text-align: center; color: var(--accent-green); font-size: 1.5rem;">↓</div>
+                    <div style="background: rgba(78, 217, 194, 0.1); padding: 15px; border-radius: 8px; text-align: center;">
+                        <strong>2. Block Division</strong><br>
+                        <span style="color: var(--text-dim);">Divide into 8×8 blocks</span>
+                    </div>
+                    <div style="text-align: center; color: var(--accent-green); font-size: 1.5rem;">↓</div>
+                    <div style="background: rgba(251, 191, 36, 0.1); padding: 15px; border-radius: 8px; text-align: center;">
+                        <strong>3. DCT Transform</strong><br>
+                        <span style="color: var(--text-dim);">Spatial → Frequency domain</span>
+                    </div>
+                    <div style="text-align: center; color: var(--accent-green); font-size: 1.5rem;">↓</div>
+                    <div style="background: rgba(168, 85, 247, 0.1); padding: 15px; border-radius: 8px; text-align: center;">
+                        <strong>4. Quantization</strong><br>
+                        <span style="color: var(--text-dim);">Divide by quantization matrix</span>
+                    </div>
+                    <div style="text-align: center; color: var(--accent-green); font-size: 1.5rem;">↓</div>
+                    <div style="background: rgba(239, 68, 68, 0.1); padding: 15px; border-radius: 8px; text-align: center;">
+                        <strong>5. Entropy Encoding</strong><br>
+                        <span style="color: var(--text-dim);">Huffman coding / Arithmetic coding</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Media Formats - Images -->
+        <div class="card full-width">
+            <h2>🖼️ Image Formats</h2>
+
+            <div class="section-grid">
+                <div class="format-card">
+                    <div class="format-badge jpeg">JPEG</div>
+                    <h4>Joint Photographic Experts Group</h4>
+                    <p><strong>Type:</strong> Lossy compression</p>
+                    <p><strong>Best for:</strong> Photographs, complex images with gradients</p>
+                    <p><strong>Features:</strong></p>
+                    <ul>
+                        <li>Adjustable compression quality</li>
+                        <li>Small file sizes</li>
+                        <li>Widely supported</li>
+                        <li>No transparency</li>
+                    </ul>
+                    <p><strong>Extensions:</strong> .jpg, .jpeg</p>
+                </div>
+
+                <div class="format-card">
+                    <div class="format-badge png">PNG</div>
+                    <h4>Portable Network Graphics</h4>
+                    <p><strong>Type:</strong> Lossless compression</p>
+                    <p><strong>Best for:</strong> Graphics, logos, images with transparency</p>
+                    <p><strong>Features:</strong></p>
+                    <ul>
+                        <li>Transparency support (alpha channel)</li>
+                        <li>No quality loss</li>
+                        <li>Larger file sizes than JPEG</li>
+                        <li>Progressive rendering</li>
+                    </ul>
+                    <p><strong>Extensions:</strong> .png</p>
+                </div>
+
+                <div class="format-card">
+                    <div class="format-badge gif">GIF</div>
+                    <h4>Graphics Interchange Format</h4>
+                    <p><strong>Type:</strong> Lossless (256 colors max)</p>
+                    <p><strong>Best for:</strong> Simple animations, graphics with few colors</p>
+                    <p><strong>Features:</strong></p>
+                    <ul>
+                        <li>Animation support</li>
+                        <li>Transparency (1-bit)</li>
+                        <li>Limited to 256 colors</li>
+                        <li>Small file sizes for simple images</li>
+                    </ul>
+                    <p><strong>Extensions:</strong> .gif</p>
+                </div>
+
+                <div class="format-card">
+                    <div class="format-badge" style="background: #14b8a6;">WebP</div>
+                    <h4>WebP</h4>
+                    <p><strong>Type:</strong> Lossy & Lossless</p>
+                    <p><strong>Best for:</strong> Web images, modern browsers</p>
+                    <p><strong>Features:</strong></p>
+                    <ul>
+                        <li>Better compression than JPEG/PNG</li>
+                        <li>Transparency support</li>
+                        <li>Animation support</li>
+                        <li>Developed by Google</li>
+                    </ul>
+                    <p><strong>Extensions:</strong> .webp</p>
+                </div>
+            </div>
+
+            <h3>Image Format Comparison</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Format</th>
+                        <th>Compression</th>
+                        <th>Transparency</th>
+                        <th>Animation</th>
+                        <th>Best Use Case</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>JPEG</strong></td>
+                        <td>Lossy</td>
+                        <td>❌ No</td>
+                        <td>❌ No</td>
+                        <td>Photographs</td>
+                    </tr>
+                    <tr>
+                        <td><strong>PNG</strong></td>
+                        <td>Lossless</td>
+                        <td>✅ Yes (Alpha)</td>
+                        <td>❌ No</td>
+                        <td>Graphics, Logos</td>
+                    </tr>
+                    <tr>
+                        <td><strong>GIF</strong></td>
+                        <td>Lossless (256 colors)</td>
+                        <td>✅ Yes (1-bit)</td>
+                        <td>✅ Yes</td>
+                        <td>Simple Animations</td>
+                    </tr>
+                    <tr>
+                        <td><strong>WebP</strong></td>
+                        <td>Both</td>
+                        <td>✅ Yes</td>
+                        <td>✅ Yes</td>
+                        <td>Modern Web</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Video Formats -->
+        <div class="card full-width">
+            <h2>🎥 Video Formats</h2>
+
+            <div class="section-grid">
+                <div class="format-card">
+                    <div class="format-badge mp4">MP4</div>
+                    <h4>MPEG-4 Part 14</h4>
+                    <p><strong>Compression:</strong> H.264, H.265 (HEVC)</p>
+                    <p><strong>Features:</strong></p>
+                    <ul>
+                        <li>Most widely supported</li>
+                        <li>Good compression efficiency</li>
+                        <li>Supports streaming</li>
+                        <li>Audio and video in one file</li>
+                    </ul>
+                    <p><strong>Use cases:</strong> Web video, mobile devices, streaming platforms</p>
+                </div>
+
+                <div class="format-card">
+                    <div class="format-badge avi">AVI</div>
+                    <h4>Audio Video Interleave</h4>
+                    <p><strong>Compression:</strong> Various codecs</p>
+                    <p><strong>Features:</strong></p>
+                    <ul>
+                        <li>Older format</li>
+                        <li>Large file sizes</li>
+                        <li>High quality</li>
+                        <li>Wide compatibility</li>
+                    </ul>
+                    <p><strong>Use cases:</strong> Legacy systems, high-quality archiving</p>
+                </div>
+
+                <div class="format-card">
+                    <div class="format-badge" style="background: #06b6d4;">MOV</div>
+                    <h4>QuickTime Movie</h4>
+                    <p><strong>Compression:</strong> Various codecs</p>
+                    <p><strong>Features:</strong></p>
+                    <ul>
+                        <li>High quality</li>
+                        <li>Developed by Apple</li>
+                        <li>Professional editing</li>
+                        <li>Large file sizes</li>
+                    </ul>
+                    <p><strong>Use cases:</strong> Mac systems, professional video editing</p>
+                </div>
+
+                <div class="format-card">
+                    <div class="format-badge" style="background: #84cc16;">WebM</div>
+                    <h4>WebM</h4>
+                    <p><strong>Compression:</strong> VP8, VP9</p>
+                    <p><strong>Features:</strong></p>
+                    <ul>
+                        <li>Open source</li>
+                        <li>Optimized for web</li>
+                        <li>Good compression</li>
+                        <li>HTML5 compatible</li>
+                    </ul>
+                    <p><strong>Use cases:</strong> Web browsers, HTML5 video</p>
+                </div>
+            </div>
+
+            <h3>Video Compression Formats</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Codec</th>
+                        <th>Quality</th>
+                        <th>File Size</th>
+                        <th>Compatibility</th>
+                        <th>Use Case</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>H.264 (AVC)</strong></td>
+                        <td>High</td>
+                        <td>Medium</td>
+                        <td>Excellent</td>
+                        <td>Universal standard</td>
+                    </tr>
+                    <tr>
+                        <td><strong>H.265 (HEVC)</strong></td>
+                        <td>Very High</td>
+                        <td>Small</td>
+                        <td>Good</td>
+                        <td>4K video, streaming</td>
+                    </tr>
+                    <tr>
+                        <td><strong>VP9</strong></td>
+                        <td>High</td>
+                        <td>Small</td>
+                        <td>Good</td>
+                        <td>YouTube, web video</td>
+                    </tr>
+                    <tr>
+                        <td><strong>AV1</strong></td>
+                        <td>Very High</td>
+                        <td>Very Small</td>
+                        <td>Growing</td>
+                        <td>Next-gen streaming</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Audio Formats -->
+        <div class="card full-width">
+            <h2>🔊 Audio Formats</h2>
+
+            <div class="section-grid">
+                <div class="format-card">
+                    <div class="format-badge mp3">MP3</div>
+                    <h4>MPEG-1 Audio Layer 3</h4>
+                    <p><strong>Type:</strong> Lossy compression</p>
+                    <p><strong>Features:</strong></p>
+                    <ul>
+                        <li>Most popular format</li>
+                        <li>Small file sizes</li>
+                        <li>Universal compatibility</li>
+                        <li>Variable bitrate support</li>
+                    </ul>
+                    <p><strong>Bitrate:</strong> 128-320 kbps typical</p>
+                    <p><strong>Use cases:</strong> Music playback, podcasts, portable devices</p>
+                </div>
+
+                <div class="format-card">
+                    <div class="format-badge wav">WAV</div>
+                    <h4>Waveform Audio File Format</h4>
+                    <p><strong>Type:</strong> Uncompressed</p>
+                    <p><strong>Features:</strong></p>
+                    <ul>
+                        <li>Lossless quality</li>
+                        <li>Large file sizes</li>
+                        <li>Professional standard</li>
+                        <li>No compression artifacts</li>
+                    </ul>
+                    <p><strong>Quality:</strong> CD quality (44.1 kHz, 16-bit)</p>
+                    <p><strong>Use cases:</strong> Audio editing, professional recording</p>
+                </div>
+
+                <div class="format-card">
+                    <div class="format-badge" style="background: #f97316;">AAC</div>
+                    <h4>Advanced Audio Coding</h4>
+                    <p><strong>Type:</strong> Lossy compression</p>
+                    <p><strong>Features:</strong></p>
+                    <ul>
+                        <li>Better than MP3 quality</li>
+                        <li>Smaller file sizes</li>
+                        <li>Used by Apple, YouTube</li>
+                        <li>Streaming optimized</li>
+                    </ul>
+                    <p><strong>Bitrate:</strong> 96-256 kbps typical</p>
+                    <p><strong>Use cases:</strong> iTunes, streaming services</p>
+                </div>
+
+                <div class="format-card">
+                    <div class="format-badge" style="background: #a855f7;">FLAC</div>
+                    <h4>Free Lossless Audio Codec</h4>
+                    <p><strong>Type:</strong> Lossless compression</p>
+                    <p><strong>Features:</strong></p>
+                    <ul>
+                        <li>Perfect audio quality</li>
+                        <li>50% file size reduction</li>
+                        <li>Open source</li>
+                        <li>Metadata support</li>
+                    </ul>
+                    <p><strong>Compression:</strong> ~50% of WAV size</p>
+                    <p><strong>Use cases:</strong> Audiophiles, music archiving</p>
+                </div>
+            </div>
+
+            <h3>Audio Compression Comparison</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Format</th>
+                        <th>Type</th>
+                        <th>Quality</th>
+                        <th>File Size</th>
+                        <th>Best For</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>MP3</strong></td>
+                        <td>Lossy</td>
+                        <td>Good</td>
+                        <td>Small</td>
+                        <td>General listening</td>
+                    </tr>
+                    <tr>
+                        <td><strong>AAC</strong></td>
+                        <td>Lossy</td>
+                        <td>Better</td>
+                        <td>Smaller</td>
+                        <td>Streaming, mobile</td>
+                    </tr>
+                    <tr>
+                        <td><strong>WAV</strong></td>
+                        <td>Uncompressed</td>
+                        <td>Perfect</td>
+                        <td>Very Large</td>
+                        <td>Professional editing</td>
+                    </tr>
+                    <tr>
+                        <td><strong>FLAC</strong></td>
+                        <td>Lossless</td>
+                        <td>Perfect</td>
+                        <td>Medium</td>
+                        <td>Archiving, audiophiles</td>
+                    </tr>
+                    <tr>
+                        <td><strong>OGG Vorbis</strong></td>
+                        <td>Lossy</td>
+                        <td>Good</td>
+                        <td>Small</td>
+                        <td>Open source, gaming</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Summary -->
+        <div class="card full-width">
+            <h2>📝 Summary</h2>
+
+            <h3>Matrix Calculations in JPEG</h3>
+            <div class="section-grid">
+                <div class="success-box">
+                    <strong>✅ DCT Transform</strong><br>
+                    8×8 spatial → frequency domain conversion for efficient compression
+                </div>
+                <div class="success-box">
+                    <strong>✅ Quantization</strong><br>
+                    Controlled quality loss through division by quantization matrices
+                </div>
+                <div class="success-box">
+                    <strong>✅ Matrix Multiplication</strong><br>
+                    Fast algorithms and hardware acceleration for performance
+                </div>
+                <div class="success-box">
+                    <strong>✅ Post-processing</strong><br>
+                    Artifact reduction and quality enhancement
+                </div>
+            </div>
+
+            <h3>Media Format Selection</h3>
+            <div class="info-box">
+                <strong>💡 Choose Based On:</strong>
+                <ul style="margin-top: 10px;">
+                    <li><strong>Images:</strong> JPEG for photos, PNG for graphics/transparency, WebP for modern web</li>
+                    <li><strong>Video:</strong> MP4/H.264 for compatibility, H.265 for 4K, WebM for HTML5</li>
+                    <li><strong>Audio:</strong> MP3 for general use, AAC for streaming, FLAC for archiving, WAV for editing</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p><strong>UFE Digital Marketing - Information Representation and Processing</strong></p>
+        <p>Tel: 01501827070 - 01017776756 | E-mail: sherrost@yahoo.com</p>
+        <p>© 2025 UFE Digital Marketing. All rights reserved.</p>
+    </footer>
+</div>
+
+<script>
+    // Theme Toggle Functionality
+    function toggleTheme() {
+        const html = document.documentElement;
+        const themeIcon = document.getElementById('theme-icon');
+        const themeText = document.getElementById('theme-text');
+        const currentTheme = html.getAttribute('data-theme');
+        
+        if (currentTheme === 'light') {
+            html.removeAttribute('data-theme');
+            themeIcon.textContent = '🌙';
+            themeText.textContent = 'Dark Mode';
+            localStorage.setItem('theme', 'dark');
+        } else {
+            html.setAttribute('data-theme', 'light');
+            themeIcon.textContent = '☀️';
+            themeText.textContent = 'Light Mode';
+            localStorage.setItem('theme', 'light');
+        }
+    }
+
+    // Load saved theme on page load
+    window.addEventListener('DOMContentLoaded', () => {
+        const savedTheme = localStorage.getItem('theme');
+        const themeIcon = document.getElementById('theme-icon');
+        const themeText = document.getElementById('theme-text');
+        
+        if (savedTheme === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+            themeIcon.textContent = '☀️';
+            themeText.textContent = 'Light Mode';
+        }
+    });
+</script>
+
+</body>
+</html>

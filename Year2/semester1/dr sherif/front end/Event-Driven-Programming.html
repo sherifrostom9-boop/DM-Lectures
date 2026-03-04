@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 02 - Event-Driven Programming</title>
+    <link href="../../../../DrSherif.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        /* Quiz-specific styles */
+        .quiz-question {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 25px;
+        }
+        .quiz-question p {
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--text-main);
+        }
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        .option {
+            background: rgba(255,255,255,0.05);
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: 0.3s;
+            color: var(--text-dim);
+        }
+        .option:hover {
+            background: rgba(59, 130, 246, 0.1);
+            border-color: var(--primary-blue);
+        }
+        .option.selected {
+            background: var(--primary-blue) !important;
+            color: white;
+            border-color: var(--primary-blue);
+        }
+        
+        .correction-btn {
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: 18px 30px;
+            border-radius: 12px;
+            font-weight: 800;
+            cursor: pointer;
+            margin: 30px 0;
+            width: 100%;
+            transition: 0.3s;
+        }
+        .results-panel {
+            display: none;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid var(--accent-green);
+            margin-top: 20px;
+        }
+        .answer-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .correct-tag {
+            color: var(--accent-green);
+            font-weight: 800;
+        }
+
+        .img-container {
+            margin: 30px 0;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            background: var(--card-bg);
+            padding: 20px;
+            text-align: center;
+        }
+        .img-content {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="top-bar">
+        <a href="../../../../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <img src="../../../../logo.jpeg" alt="Logo" class="site-logo">
+            <h2>Front-end Lab</h2>
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="sun-icon" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <svg class="moon-icon" fill="currentColor" viewBox="0 0 24 24" style="display: none;">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+            </svg>
+        </button>
+    </nav>
+
+    <main>
+        <div class="container">
+            <header>
+                <a href="frontend.html" class="back-link">← EXIT LESSON</a>
+                <div class="syllabus-label">Module 02</div>
+                <h1>Event-Driven Programming</h1>
+                <p class="subtitle">Understanding Synchronous vs Asynchronous Programming</p>
+            </header>
+
+            <div class="timeline-wrapper">
+                <div class="lesson-item">
+                    <div class="indicator blue-glow"></div>
+                    <div class="card">
+                        <div class="content-area">
+                            <h3 class="html-title">1. Synchronous vs. Asynchronous</h3>
+                            <p><strong>Synchronous (Blocking):</strong> Line-by-line execution. The UI freezes during heavy tasks.</p>
+                            <p><strong>Asynchronous (Non-Blocking):</strong> Tasks run in background. UI stays responsive.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-item">
+                    <div class="indicator purple-glow"></div>
+                    <div class="card">
+                        <div class="content-area">
+                            <h3 class="css-title">2. The Event Loop</h3>
+                            <p>JavaScript is single-threaded but uses the <strong>Event Loop</strong> to handle async tasks.</p>
+                            <p><strong>Call Stack:</strong> Current execution.</p>
+                            <p><strong>Web APIs:</strong> Async processing.</p>
+                            <p><strong>Callback Queue:</strong> Waiting area for finished tasks.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-item">
+                    <div class="indicator green-glow"></div>
+                    <div class="card">
+                        <div class="content-area">
+                            <h3 class="standard-title">3. Promises</h3>
+                            <p>A Promise represents a future value with 3 states: <strong>Pending, Fulfilled, Rejected.</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-item">
+                    <div class="indicator blue-glow"></div>
+                    <div class="card">
+                        <div class="content-area">
+                            <h3 class="html-title">4. Evolution of Async Patterns</h3>
+                            <p><strong>Phase 1: Callbacks</strong> - Originally, we handled async tasks by passing a function (a callback) to be executed when the task finished.</p>
+                            
+                            <div class="img-container">
+                                <img src="js1.png" alt="Callback Hell Example" class="img-content">
+                            </div>
+                            
+                            <p>The Issue: This nesting leads to "Callback Hell"—code that grows horizontally, becomes hard to read, and is difficult to debug.</p>
+
+                            <p><strong>Phase 2: Promises</strong> - A Promise is an object representing the eventual completion (or failure) of an asynchronous operation and its resulting value. It allows you to write asynchronous code that looks cleaner and flatter.</p>
+                            
+                            <ul>
+                                <li><strong>Pending:</strong> The initial state (operation not started or still in progress).</li>
+                                <li><strong>Fulfilled (Resolved):</strong> The operation completed successfully.</li>
+                                <li><strong>Rejected:</strong> The operation failed (e.g., network error).</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-item">
+                    <div class="indicator purple-glow"></div>
+                    <div class="card">
+                        <div class="content-area">
+                            <h3 class="css-title">5. Practical Example</h3>
+                            <p>Fetching user data comparison.</p>
+                            
+                            <div class="img-container">
+                                <strong>Option A: Using Promises</strong>
+                                <img src="jsoptionA.png" alt="Promise Fetch" class="img-content">
+                            </div>
+                            
+                            <div class="img-container">
+                                <strong>Option B: Using Async/Await</strong>
+                                <img src="jsoptionB.png" alt="Async Await Fetch" class="img-content">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lesson-item">
+                    <div class="indicator green-glow"></div>
+                    <div class="card">
+                        <div class="content-area">
+                            <h3 class="standard-title">6. Final Quiz</h3>
+                            
+                            <div class="quiz-container">
+                                <div class="quiz-question">
+                                    <p>1. What is the main problem with Synchronous code?</p>
+                                    <div class="options-grid">
+                                        <div class="option" onclick="selectOption(this)">A) It blocks the execution</div>
+                                        <div class="option" onclick="selectOption(this)">B) Too fast</div>
+                                        <div class="option" onclick="selectOption(this)">C) Uses too much memory</div>
+                                        <div class="option" onclick="selectOption(this)">D) Node.js only</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="quiz-question">
+                                    <p>2. JavaScript is known for being:</p>
+                                    <div class="options-grid">
+                                        <div class="option" onclick="selectOption(this)">A) Multi-threaded</div>
+                                        <div class="option" onclick="selectOption(this)">B) Single-threaded</div>
+                                        <div class="option" onclick="selectOption(this)">C) Non-threaded</div>
+                                        <div class="option" onclick="selectOption(this)">D) Triple-threaded</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="quiz-question">
+                                    <p>3. Where does code run in the Event Loop?</p>
+                                    <div class="options-grid">
+                                        <div class="option" onclick="selectOption(this)">A) Queue</div>
+                                        <div class="option" onclick="selectOption(this)">B) Call Stack</div>
+                                        <div class="option" onclick="selectOption(this)">C) Web APIs</div>
+                                        <div class="option" onclick="selectOption(this)">D) Cloud</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="quiz-question">
+                                    <p>4. Which state is NOT part of a Promise?</p>
+                                    <div class="options-grid">
+                                        <div class="option" onclick="selectOption(this)">A) Pending</div>
+                                        <div class="option" onclick="selectOption(this)">B) Fulfilled</div>
+                                        <div class="option" onclick="selectOption(this)">C) Paused</div>
+                                        <div class="option" onclick="selectOption(this)">D) Rejected</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="quiz-question">
+                                    <p>5. What does 'await' do?</p>
+                                    <div class="options-grid">
+                                        <div class="option" onclick="selectOption(this)">A) Skips code</div>
+                                        <div class="option" onclick="selectOption(this)">B) Pauses until resolved</div>
+                                        <div class="option" onclick="selectOption(this)">C) Cancels request</div>
+                                        <div class="option" onclick="selectOption(this)">D) Reloads page</div>
+                                    </div>
+                                </div>
+
+                                <button class="correction-btn" onclick="showCorrection()">CHECK CORRECTION</button>
+
+                                <div id="results" class="results-panel">
+                                    <h3>Official Answer Key:</h3>
+                                    <div id="answer-list"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../../../../theme.js"></script>
+    <script>
+        function selectOption(element) {
+            element.parentElement.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
+            element.classList.add('selected');
+        }
+
+        function showCorrection() {
+            const resultsPanel = document.getElementById('results');
+            const answerList = document.getElementById('answer-list');
+            const keys = ["1: A", "2: B", "3: B", "4: C", "5: B"];
+            
+            answerList.innerHTML = keys.map(k => `
+                <div class="answer-item">
+                    <span>Question ${k.split(':')[0]}</span>
+                    <span class="correct-tag">Correct: ${k.split(':')[1]}</span>
+                </div>
+            `).join('');
+            
+            resultsPanel.style.display = "block";
+            resultsPanel.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

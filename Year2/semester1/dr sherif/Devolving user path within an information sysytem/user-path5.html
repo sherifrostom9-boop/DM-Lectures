@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture 05 - Setup and Develop Back Office</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../../DrSherif.css">
+</head>
+<body>
+
+    <nav class="top-bar">
+        <a href="../../../../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <img src="../../../../logo.jpeg" alt="Logo" class="site-logo">
+            <h2>Digital Marketing</h2>
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="sun-icon" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <svg class="moon-icon" fill="currentColor" viewBox="0 0 24 24" style="display: none;">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+            </svg>
+        </button>
+    </nav>
+
+    <header class="hero">
+        <a href="devolopment-user-path.html" class="exit-link">← EXIT LESSON</a>
+        <div class="badge">Lecture 05</div>
+        <h1>Setup & Develop Back Office</h1>
+        <p>Hosting configuration, Agile methodology, professional networking, and deployment strategies</p>
+    </header>
+
+    <!-- Timeline Navigation -->
+    <nav class="timeline-nav">
+        <div class="timeline-line"></div>
+        <div class="step-node active" onclick="showStep(0)">
+            <div class="dot">1</div>
+            <div class="node-label">Hosting</div>
+        </div>
+        <div class="step-node" onclick="showStep(1)">
+            <div class="dot">2</div>
+            <div class="node-label">Config</div>
+        </div>
+        <div class="step-node" onclick="showStep(2)">
+            <div class="dot">3</div>
+            <div class="node-label">Platforms</div>
+        </div>
+        <div class="step-node" onclick="showStep(3)">
+            <div class="dot">4</div>
+            <div class="node-label">Agile</div>
+        </div>
+        <div class="step-node" onclick="showStep(4)">
+            <div class="dot">5</div>
+            <div class="node-label">Frameworks</div>
+        </div>
+        <div class="step-node" onclick="showStep(5)">
+            <div class="dot">6</div>
+            <div class="node-label">Networking</div>
+        </div>
+        <div class="step-node" onclick="showStep(6)">
+            <div class="dot">7</div>
+            <div class="node-label">Deployment</div>
+        </div>
+        <div class="step-node" onclick="showStep(7)">
+            <div class="dot">8</div>
+            <div class="node-label">Stages</div>
+        </div>
+        <div class="step-node" onclick="showStep(8)">
+            <div class="dot">9</div>
+            <div class="node-label">Netlify</div>
+        </div>
+    </nav>
+
+    <!-- All content steps -->
+    <div class="step-content active">
+        <!-- Step 1: Hosting Introduction -->
+        <h2>Configure a Hosting Solution</h2>
+        <div class="theory-box">
+            In today's technology landscape, configuring a hosting solution for web development depends on your project's <strong>technology stack</strong> and your required level of <strong>server control</strong>.
+        </div>
+        
+        <div class="highlight-box">
+            <strong>Industry Standard (2025):</strong> The current industry standard for a "developer-friendly" setup includes SSH access, Git-based deployment (CI/CD), and staging environments for testing.
+        </div>
+
+        <h3>Select by Development Use Case</h3>
+        <p>Match your specific project type to the most efficient 2025 platform:</p>
+
+        <div class="section-grid">
+            <div class="card">
+                <h3>WordPress & Client Management</h3>
+                <p><strong>Recommended:</strong> 10Web or WP Engine</p>
+                <ul class="details-list">
+                    <li>Managed server-side security</li>
+                    <li>Daily automated backups</li>
+                    <li>Performance tuning (Redis)</li>
+                    <li>Focus on code, not infrastructure</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>Modern Frontend / JAMstack</h3>
+                <p><strong>Recommended:</strong> Vercel or Netlify</p>
+                <ul class="details-list">
+                    <li>Instant Git-driven deploys</li>
+                    <li>Global CDN distribution</li>
+                    <li>Automatic preview branches</li>
+                    <li>Perfect for React, Next.js, Vue</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>Full-Stack Apps</h3>
+                <p><strong>Recommended:</strong> DigitalOcean or Render</p>
+                <ul class="details-list">
+                    <li>Node, Python, Go support</li>
+                    <li>Raw VPS for total control</li>
+                    <li>Managed databases available</li>
+                    <li>Background worker support</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>Raw Control & Low-Cost</h3>
+                <p><strong>Recommended:</strong> Hetzner</p>
+                <ul class="details-list">
+                    <li>Best price-to-performance ratio</li>
+                    <li>Unmanaged VPS and dedicated servers</li>
+                    <li>Complete infrastructure control</li>
+                    <li>Developer favorite for cost efficiency</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="step-content">
+        <!-- Step 2: Configuration Requirements -->
+        <h2>Core Configuration Requirements</h2>
+        <h3>2025 Checklist</h3>
+        <p>To ensure a professional workflow, your hosting plan should include these technical features:</p>
+
+        <div class="theory-box">
+            <h3><span class="step-badge">1</span> Secure Access</h3>
+            <p><strong>SSH and SFTP</strong> are essential; avoid any host limited to standard FTP. Secure access ensures encrypted file transfers and remote server management.</p>
+        </div>
+
+        <div class="theory-box">
+            <h3><span class="step-badge">2</span> Database Management</h3>
+            <p>Look for <strong>managed options</strong> (MySQL, PostgreSQL, or Redis) to avoid the overhead of manual database maintenance. Managed databases provide automatic backups, updates, and scaling.</p>
+        </div>
+
+        <div class="theory-box">
+            <h3><span class="step-badge">3</span> Performance Tools</h3>
+            <p>Integrated <strong>caching engines</strong> (Redis, Memcached) and the latest PHP/Node versions. Performance optimization tools can dramatically improve page load times and user experience.</p>
+        </div>
+
+        <div class="theory-box">
+            <h3><span class="step-badge">4</span> Security Features</h3>
+            <p>Ensure the plan includes:</p>
+            <ul class="details-list">
+                <li>Free SSL certificates (via Let's Encrypt)</li>
+                <li>Web Application Firewall (WAF)</li>
+                <li>DDoS protection</li>
+                <li>Automated security updates</li>
+                <li>Regular malware scanning</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="step-content">
+        <!-- Step 3: Platform Comparison & Implementation -->
+        <h2>Implementation Steps</h2>
+
+        <div class="theory-box">
+            <h3><span class="step-badge">1</span> Register a Domain</h3>
+            <p>Use a registrar like <strong>GoDaddy</strong> or <strong>Namecheap</strong> to secure your web address. Choose a memorable, brandable domain name that represents your project.</p>
+        </div>
+
+        <div class="theory-box">
+            <h3><span class="step-badge">2</span> Point DNS</h3>
+            <p>Update your <strong>nameservers or A records</strong> to connect your domain to the host. DNS propagation can take 24-48 hours, so plan accordingly.</p>
+        </div>
+
+        <div class="theory-box">
+            <h3><span class="step-badge">3</span> Containerize (Optional)</h3>
+            <p>For complex apps, use <strong>Docker</strong> to package your code, which simplifies deployment to providers like Google Cloud Run or DigitalOcean. Containers ensure consistency across development and production environments.</p>
+        </div>
+
+        <div class="theory-box">
+            <h3><span class="step-badge">4</span> Set Up Staging</h3>
+            <p><strong>Always deploy to a staging URL first</strong> to test features before pushing to the live production environment. This prevents bugs from affecting real users.</p>
+        </div>
+
+        <div class="highlight-box">
+            <strong>Best Practice:</strong> Never deploy directly to production without testing in a staging environment first. This simple step prevents the majority of deployment-related issues.
+        </div>
+    </div>
+
+    <div class="step-content">
+        <!-- Step 4: Agile Methodology -->
+        <h2>Agile Method for Project Management</h2>
+        
+        <div class="theory-box">
+            Managing a web project using <strong>Agile methodology</strong> involves an iterative and flexible approach that emphasizes collaboration, customer feedback, and continuous improvement to deliver a high-quality product incrementally.
+        </div>
+
+        <p>Instead of a single, linear plan, the work is broken into small cycles called <strong>sprints</strong>.</p>
+
+        <h3>Key Agile Concepts</h3>
+
+        <div class="theory-box">
+            <h3>🏃 Sprints / Iterations</h3>
+            <p><strong>Time-boxed Development Cycles</strong></p>
+            <p>Short, fixed-length periods (typically 1–4 weeks) during which a cross-functional team works to complete a specific set of tasks. Each sprint results in a potentially shippable product increment.</p>
+        </div>
+
+        <div class="theory-box">
+            <h3>📋 Product Backlog</h3>
+            <p><strong>Prioritized Task List</strong></p>
+            <p>A living, prioritized list of all desired features, bug fixes, enhancements, and tasks for the project, managed by the Product Owner. The backlog evolves as requirements change.</p>
+        </div>
+
+        <div class="theory-box">
+            <h3>📖 User Stories</h3>
+            <p><strong>User-Centric Requirements</strong></p>
+            <p>Requirements written from an end user's perspective, describing what they want to achieve and why, to keep the focus on customer value. Format: "As a [user], I want [goal] so that [benefit]".</p>
+        </div>
+
+        <div class="theory-box">
+            <h3>📊 Agile Board</h3>
+            <p><strong>Visual Task Management</strong></p>
+            <p>A visual tool (physical or digital) used to track task progress through stages like "To Do," "In Progress," and "Done". Provides transparency and helps identify bottlenecks.</p>
+        </div>
+
+        <div class="theory-box">
+            <h3>🗣️ Daily Stand-up (Scrum)</h3>
+            <p><strong>Quick Team Sync</strong></p>
+            <p>A brief, daily meeting (10-15 minutes) where team members discuss what they completed yesterday, what they are working on today, and any roadblocks. Keeps everyone aligned.</p>
+        </div>
+    </div>
+
+    <div class="step-content">
+        <!-- Step 5: Agile Frameworks & Tools -->
+        <h2>Agile Process Steps</h2>
+        <p>The process is cyclical and involves several key activities in each sprint:</p>
+
+        <div class="theory-box">
+            <h3><span class="step-badge">1</span> Project Visioning</h3>
+            <p>Define the overall project goals, scope, and target customer needs with stakeholders before the first sprint begins. This provides the "why" and "what" for the team.</p>
+        </div>
+
+        <div class="theory-box">
+            <h3><span class="step-badge">2</span> Product Roadmap & Backlog Creation</h3>
+            <p>The product owner develops a high-level roadmap and a detailed, prioritized product backlog based on the project vision. The highest priority items offer the most value to the customer.</p>
+        </div>
+
+        <div class="theory-box">
+            <h3><span class="step-badge">3</span> Sprint Planning</h3>
+            <p>At the start of each sprint, the team selects items from the top of the product backlog that they can realistically complete within that sprint's timeframe.</p>
+        </div>
+
+        <div class="theory-box">
+            <h3><span class="step-badge">4</span> Execution (Development & Testing)</h3>
+            <p>The development team works on the selected tasks, conducting development and testing concurrently within the sprint. Daily stand-ups ensure alignment and address issues promptly.</p>
+        </div>
+
+        <div class="theory-box">
+            <h3><span class="step-badge">5</span> Sprint Review</h3>
+            <p>At the end of the sprint, the team demonstrates the completed, working software increment to stakeholders and gathers feedback for future improvements.</p>
+        </div>
+
+        <div class="theory-box">
+            <h3><span class="step-badge">6</span> Sprint Retrospective</h3>
+            <p>Immediately following the review, the team reflects internally on the past sprint—what went well, what could be improved—and adjusts their processes for the next sprint.</p>
+        </div>
+
+        <h3>Popular Agile Frameworks</h3>
+
+        <div class="section-grid">
+            <div class="card">
+                <h3>Scrum</h3>
+                <p>The most popular framework, using time-boxed sprints, defined roles (Product Owner, Scrum Master, Development Team), and specific meetings.</p>
+            </div>
+
+            <div class="card">
+                <h3>Kanban</h3>
+                <p>Focuses on visualizing the workflow on a board and limiting work in progress (WIP) to optimize efficiency and maintain continuous flow.</p>
+            </div>
+
+            <div class="card full-width">
+                <h3>Lean</h3>
+                <p>Emphasizes maximizing value and minimizing waste, focusing only on necessary features to deliver a Minimum Viable Product (MVP) quickly for early feedback.</p>
+            </div>
+        </div>
+
+        <h3>Recommended Tools</h3>
+        <div class="section-grid">
+            <div class="card">
+                <h3>Project Management</h3>
+                <ul class="feature-list">
+                    <li>Jira - Comprehensive Agile platform</li>
+                    <li>Asana - User-friendly task management</li>
+                    <li>Trello - Visual board interface</li>
+                    <li>Miro - Collaborative whiteboard</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>Communication</h3>
+                <ul class="feature-list">
+                    <li>Slack - Team messaging and integration</li>
+                    <li>Microsoft Teams - Enterprise collaboration</li>
+                    <li>Discord - Community-focused chat</li>
+                    <li>Zoom - Video conferencing</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="step-content">
+        <!-- Step 6: Professional Networking -->
+        <h2>Create a Professional Network</h2>
+        
+        <div class="theory-box">
+            Initiating a professional network for websites in 2025 requires a <strong>dual approach</strong>: building your personal presence as a web professional and utilizing modern platforms designed for professional synergy.
+        </div>
+
+        <h3>1. Establish Your Digital Presence</h3>
+        <p>Your personal and professional websites are your primary networking tools in 2025.</p>
+
+        <div class="section-grid">
+            <div class="card">
+                <h3>Optimize Your Profile</h3>
+                <ul class="details-list">
+                    <li>Use LinkedIn to showcase expertise</li>
+                    <li>Professional photo and headline</li>
+                    <li>Updated portfolio and achievements</li>
+                    <li>Engage with industry content</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>Build a Portfolio</h3>
+                <ul class="details-list">
+                    <li>Use Hostinger (beginner-friendly)</li>
+                    <li>Wix (drag-and-drop interface)</li>
+                    <li>Webflow (advanced design control)</li>
+                    <li>Showcase your best work</li>
+                </ul>
+            </div>
+
+            <div class="card full-width">
+                <h3>Mobile-First Design</h3>
+                <p>Ensure your professional site is fully responsive, as mobile devices account for roughly 58% of global traffic in 2025. Test on multiple devices and screen sizes.</p>
+            </div>
+        </div>
+
+        <h3>2. Join Niche Professional Communities</h3>
+        <p>Broad platforms are starting points, but high-value networking in 2025 happens in targeted spaces.</p>
+
+        <div class="section-grid">
+            <div class="card">
+                <h3>Developer Networks</h3>
+                <ul class="feature-list">
+                    <li>GitHub - Code collaboration</li>
+                    <li>Stack Overflow - Technical Q&A</li>
+                    <li>Dev.to - Developer community</li>
+                    <li>Hashnode - Tech blogging</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>Creative Hubs</h3>
+                <ul class="feature-list">
+                    <li>Behance - Design portfolios</li>
+                    <li>Dribbble - Design showcase</li>
+                    <li>Awwwards - Web design inspiration</li>
+                    <li>Figma Community - Design resources</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>Real-Time Communities</h3>
+                <ul class="feature-list">
+                    <li>Industry-specific Slack channels</li>
+                    <li>Discord servers (tech communities)</li>
+                    <li>Online Geniuses (marketers)</li>
+                    <li>Women in Tech groups</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>Small Business Focused</h3>
+                <ul class="feature-list">
+                    <li>Alignable - Local B2B connections</li>
+                    <li>Meetup - Local professional groups</li>
+                    <li>Eventbrite - Industry events</li>
+                    <li>Chamber of Commerce</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3>3. Leverage AI-Driven Tools</h3>
+        <div class="section-grid">
+            <div class="card">
+                <h3>AI Matchmaking</h3>
+                <p>Use platforms like <strong>Lunchclub</strong> or <strong>Apt AI</strong> which use algorithms to introduce you to professionals with similar interests and goals.</p>
+            </div>
+
+            <div class="card">
+                <h3>Personal CRM</h3>
+                <p>Utilize tools like <strong>Clay</strong> to manage relationships across platforms, tracking professional milestones and job changes automatically.</p>
+            </div>
+        </div>
+
+        <h3>4. Engage in "Proof-of-Work" Networking</h3>
+        <p>Visibility is gained through active contribution rather than passive presence.</p>
+
+        <ul class="feature-list">
+            <li><strong>Publish Content:</strong> Share insights via Medium or LinkedIn Newsletters</li>
+            <li><strong>Volunteer & Speak:</strong> Offer expertise at webinars or industry events</li>
+            <li><strong>Contribute to Open Source:</strong> Demonstrate skills through public contributions</li>
+            <li><strong>Write Technical Blogs:</strong> Share knowledge and build authority</li>
+        </ul>
+    </div>
+
+    <div class="step-content">
+        <!-- Step 7: Deployment Introduction -->
+        <h2>Deployment in Web Development</h2>
+        
+        <div class="theory-box">
+            <strong>Deployment</strong> is the process of making a software application or website available for use on the internet or within a specific environment. After development and testing are complete, deployment involves moving the final version of the code from a local system to a live server, where real users can access and interact with it.
+        </div>
+
+        <div class="highlight-box">
+            <strong>Critical Statistic:</strong> Over 70% of software issues arise in post-deployment environments, highlighting the importance of proper deployment and monitoring practices.
+        </div>
+
+        <h3>Four Key Deployment Stages</h3>
+        <p>The standard deployment in Web development has four key stages: <strong>Local, Development, Staging, and Live</strong>.</p>
+
+        <div class="theory-box">
+            <h3><span class="step-badge">1</span> Local</h3>
+            <p>Developers begin by writing and testing code locally on their machines. This is where initial development and debugging occurs in a controlled environment.</p>
+        </div>
+
+        <div class="theory-box">
+            <h3><span class="step-badge">2</span> Development</h3>
+            <p>Once stable, the code is pushed to a shared Development environment where it is integrated with others' work and tested collaboratively. This catches integration issues early.</p>
+        </div>
+
+        <div class="theory-box">
+            <h3><span class="step-badge">3</span> Staging</h3>
+            <p>The code moves to Staging, a replica of the live environment, where final testing and quality assurance occur. This is the last check before production.</p>
+        </div>
+
+        <div class="theory-box">
+            <h3><span class="step-badge">4</span> Live (Production)</h3>
+            <p>If everything functions correctly, the code is finally deployed to the Live environment, making it accessible to end users. This is the production environment.</p>
+        </div>
+
+        <div class="highlight-box">
+            <strong>Key Principle:</strong> This structured flow ensures reliability, reduces bugs, and supports smooth, safe deployments. Never skip the staging step!
+        </div>
+    </div>
+
+    <div class="step-content">
+        <!-- Step 8: Deployment Stages Detail -->
+        <h2>Key Stages of Deployment</h2>
+        
+        <p>Deployment is not just about pushing code to a server — it's a structured process that ensures your application is released smoothly, functions correctly, and remains available to users.</p>
+
+        <div class="theory-box">
+            <h3><span class="step-badge">1</span> Planning Your Code</h3>
+            <p>This is the foundation of deployment. At this stage, teams identify what needs to be deployed, dependencies, potential risks, the timeline, and who is responsible for what. A clear plan ensures coordination and helps prevent last-minute issues.</p>
+        </div>
+
+        <div class="theory-box">
+            <h3><span class="step-badge">2</span> Development Phase</h3>
+            <p>Developers write and finalize code based on the features or fixes to be released. This includes updating files, creating new components, and integrating third-party services if needed.</p>
+        </div>
+
+        <div class="theory-box">
+            <h3><span class="step-badge">3</span> Testing the Application</h3>
+            <p>Testing ensures the application works as expected. It involves:</p>
+            <ul class="details-list">
+                <li><strong>Unit Testing:</strong> Checking individual components</li>
+                <li><strong>Integration Testing:</strong> Verifying how components interact</li>
+                <li><strong>User Acceptance Testing (UAT):</strong> Confirming software meets user expectations</li>
+            </ul>
+        </div>
+
+        <div class="theory-box">
+            <h3><span class="step-badge">4</span> Build the Application</h3>
+            <p>The code is packaged or compiled into a format that is ready for deployment. For web apps, this might mean bundling JavaScript files or generating static pages.</p>
+        </div>
+
+        <div class="theory-box">
+            <h3><span class="step-badge">5</span> Releasing the Build</h3>
+            <p>The application is deployed to a live environment (production) or a staging environment for final review. This can be a manual or automated process. It may also include setting up database migrations or background services.</p>
+        </div>
+
+        <div class="theory-box">
+            <h3><span class="step-badge">6</span> Monitoring the Application</h3>
+            <p>After deployment, continuous monitoring is necessary to ensure the system is stable and performing well. Monitoring tools help track performance, identify errors, and alert the team to issues in real-time.</p>
+        </div>
+
+        <div class="theory-box">
+            <h3><span class="step-badge">7</span> Feedback & Maintenance</h3>
+            <p>Once users interact with the deployed version, their feedback is collected for improvements. Teams also provide patches, bug fixes, and security updates as part of ongoing maintenance.</p>
+        </div>
+    </div>
+
+    <div class="step-content">
+        <!-- Step 9: Netlify Deployment Tutorial -->
+        <h2>Deploy with Netlify</h2>
+        
+        <p>Deploying a website means moving it from your development environment to a live server where real users can access it. Follow these essential steps for a smooth deployment using Netlify.</p>
+
+        <div class="theory-box">
+            <h3><span class="step-badge">1</span> Log in to Netlify</h3>
+            <p>Visit <strong>Netlify</strong> and log in or create a free account using your GitHub, GitLab, Bitbucket, or email credentials. Netlify offers generous free tier for personal projects.</p>
+        </div>
+
+        <div class="theory-box">
+            <h3><span class="step-badge">2</span> Go to Dashboard</h3>
+            <p>Once logged in, navigate to the Home page. Then go to the <strong>Sites tab</strong> from the top menu and click <strong>"Add new site"</strong>.</p>
+        </div>
+
+        <div class="theory-box">
+            <h3><span class="step-badge">3</span> Choose Deployment Method</h3>
+            <p>To deploy a project from GitHub, select the <strong>"Import an existing project"</strong> option. This enables automatic deployments when you push to your repository.</p>
+        </div>
+
+        <div class="theory-box">
+            <h3><span class="step-badge">4</span> Connect GitHub Account</h3>
+            <p>Click on the <strong>GitHub icon</strong>. This will redirect you to authorize Netlify to access your GitHub repositories. Follow the prompts to complete authorization.</p>
+        </div>
+
+        <div class="theory-box">
+            <h3><span class="step-badge">5</span> Select Repository</h3>
+            <p>After connecting, Netlify will display a list of your GitHub repositories. Choose the one you want to deploy. You can search if you have many repositories.</p>
+        </div>
+
+        <div class="theory-box">
+            <h3><span class="step-badge">6</span> Configure Site Settings</h3>
+            <p>Give your website a custom name using the <strong>"Site name"</strong> field (optional). Configure build settings if needed (Netlify auto-detects most frameworks). Leave other settings as default for now, then click the <strong>"Deploy site"</strong> button.</p>
+        </div>
+
+        <div class="theory-box">
+            <h3><span class="step-badge">7</span> Deployment Complete</h3>
+            <p>After a few seconds, Netlify will build and deploy your site. You'll see a green success message and a unique URL generated for your live project (e.g., <code>yourproject.netlify.app</code>).</p>
+        </div>
+
+        <div class="theory-box">
+            <h3><span class="step-badge">8</span> View Your Live Site</h3>
+            <p>Click the generated URL to view your deployed website. <strong>Congratulations — your project is now live on the internet!</strong></p>
+        </div>
+
+        <div class="highlight-box">
+            <h3>Automatic Deployments</h3>
+            <p>One of Netlify's best features: every time you push changes to your connected GitHub repository, Netlify automatically rebuilds and redeploys your site. This creates a seamless CI/CD workflow!</p>
+        </div>
+
+        <div class="section-grid">
+            <div class="card">
+                <h3>Custom Domain</h3>
+                <p>You can add your own custom domain in Netlify's domain settings. Netlify provides free SSL certificates automatically.</p>
+            </div>
+
+            <div class="card">
+                <h3>Environment Variables</h3>
+                <p>Store sensitive data like API keys in Netlify's environment variables section, keeping them secure and out of your codebase.</p>
+            </div>
+
+            <div class="card">
+                <h3>Preview Deployments</h3>
+                <p>Every pull request gets its own preview URL, making it easy to review changes before merging to production.</p>
+            </div>
+
+            <div class="card">
+                <h3>Rollback Option</h3>
+                <p>If something goes wrong, you can instantly rollback to any previous deployment with one click.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Contact: sherrost@yahoo.com | Tel: 01501827070 - 01017776756</p>
+        <p>Setup and Develop Back Office • Lecture 05</p>
+    </footer>
+
+    <script>
+        function showStep(index) {
+            document.querySelectorAll('.step-node').forEach((node, i) => {
+                node.classList.toggle('active', i === index);
+            });
+
+            document.querySelectorAll('.step-content').forEach((content, i) => {
+                content.classList.toggle('active', i === index);
+            });
+        }
+    </script>
+<script src="../../../../theme.js"></script>      
+</body>
+</html>

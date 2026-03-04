@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Year 2 - Digital Marketing</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ========== CONFIGURATION GÉNÉRALE ========== */
+        :root {
+            --primary-blue: #3b82f6;
+            --primary-purple: #7c3aed;
+            --dark-bg: #020617;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --border-light: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle at top, #1e1b4b, #020617);
+            color: #e5e7eb;
+            min-height: 100vh;
+        }
+
+        /* ========== BARRE DE NAVIGATION (TOP BAR) ========== */
+        .top-bar {
+            background: rgba(2, 6, 23, 0.8);
+            backdrop-filter: blur(12px);
+            padding: 10px 5%;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            border-bottom: 1px solid var(--border-light);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        /* CORRECTION DU LOGO */
+        .site-logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            object-fit: cover;
+            border: 2px solid var(--primary-blue);
+        }
+
+        /* ========== HERO SECTION ========== */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .module-nav-top {
+            margin-bottom: 30px;
+        }
+
+        .module-btn {
+            text-decoration: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: 0.3s;
+            border: 1px solid var(--border-light);
+        }
+
+        .module-btn:hover {
+            background: rgba(255, 255, 255, 0.2) !important;
+            transform: translateX(-5px);
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin: 10px 0;
+            background: linear-gradient(to right, #fff, var(--primary-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* ========== SEMESTER PICKER ========== */
+        .semester-picker {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .picker-btn {
+            text-decoration: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            font-weight: 700;
+            border: 1px solid var(--border-light);
+            transition: all 0.3s ease;
+        }
+
+        .picker-btn:hover {
+            background: rgba(59, 130, 246, 0.1);
+            border-color: var(--primary-blue);
+        }
+
+        .picker-btn.active {
+            background: var(--primary-blue);
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+            border-color: var(--primary-blue);
+        }
+
+        /* ========== CONTENU ========== */
+        .year2-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .english-word {
+            letter-spacing: 5px;
+            color: var(--primary-blue);
+            font-weight: 800;
+            font-size: 0.9rem;
+        }
+
+        /* Mise en page responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .semester-picker { flex-direction: column; align-items: center; }
+        }
+
+        /* ========== BARRE DE NAVIGATION (TOP BAR) ========== */
+        .top-bar {
+            background: rgba(2, 6, 23, 0.8);
+            backdrop-filter: blur(12px);
+            padding: 10px 5%;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            border-bottom: 1px solid var(--border-light);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        /* CORRECTION DU LOGO */
+        .site-logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            object-fit: cover;
+            border: 2px solid var(--primary-blue);
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <nav class="top-bar">
+        <a href="../index.html" class="logo-link">
+            <img src="../logo.jpeg" alt="Logo" class="site-logo">
+        </a>
+        <a href="../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <h2 style="color: white; margin: 0;">Marketing Digital</h2>
+        </a>
+    </nav>
+
+    <header class="hero">
+        <div class="module-nav-top">
+            <a href="index.html" class="module-btn" style="background: rgba(255,255,255,0.1);">← Back to Curriculum</a>
+        </div>
+        <h1>Year 2</h1>
+        <p>Select your semester to view the modules</p>
+        
+        <div class="semester-picker">
+            <a href="semester1/dr farid/y2.s1.html" id="btn1" class="picker-btn" onclick="showSem(1)">Semester 1</a>
+            <a href="semester2/dr farid/y2s2.html" id="btn2" class="picker-btn active" onclick="showSem(2)">Semester 2</a>
+        </div>
+
+        <p style="margin-top: 40px; color: #94a3b8; max-width: 600px; margin-left: auto; margin-right: auto;">
+            Data Modelling is the "blueprint" phase of your backend structure.
+        </p>
+    </header>
+
+    <section class="year2-container">
+        <header class="section-header" style="text-align: center; margin-bottom: 50px;">
+            <div class="english-word">YEAR 2</div>
+        </header>
+    </section>
+
+    <script>
+        function showSem(num) {
+            // Note: Les IDs content-sem1/2 doivent exister dans tes autres fichiers 
+            // pour que cette fonction soit pleinement utile sur une page unique.
+            const btn1 = document.getElementById('btn1');
+            const btn2 = document.getElementById('btn2');
+            
+            btn1.classList.remove('active');
+            btn2.classList.remove('active');
+
+            document.getElementById('btn' + num).classList.add('active');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geometric Transformations</title>
+    <link href="../../../../DrSherif.css" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="top-bar">
+        <a href="../../../../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <img src="../../../../logo.jpeg" alt="Logo" class="site-logo">
+            <h2>Digital Marketing</h2>
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="sun-icon" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <svg class="moon-icon" fill="currentColor" viewBox="0 0 24 24" style="display: none;">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+            </svg>
+        </button>
+    </nav>
+
+<div class="container" style="padding-top: 140px;">
+    <header>
+        <a href="informationrep.html" class="back-link">← EXIT LESSON</a>
+        <div class="label">Information Representation and Processing</div>
+        <h1>Geometric Transformations</h1>
+        <p class="subtitle">CSS Transform Properties and 2D/3D Transformations</p>
+    </header>
+
+    <div class="section-grid">
+        <!-- Introduction -->
+        <div class="card full-width">
+            <h2>📐 What are Geometric Transformations?</h2>
+            
+            <div style="background: rgba(59, 130, 246, 0.15); border: 2px solid var(--primary-blue); padding: 25px; border-radius: 8px; margin: 20px 0;">
+                <p style="font-size: 1.1rem;"><strong>Geometric transformations of the plane and space</strong> involve changes in the <strong>position, size, or shape</strong> of geometric figures.</p>
+            </div>
+
+            <p>In web development, CSS transforms allow you to modify elements in 2D or 3D space without affecting the normal document flow.</p>
+        </div>
+
+        <!-- Key Concepts -->
+        <div class="card full-width">
+            <h2>🔑 Key Transformation Concepts</h2>
+
+            <div class="section-grid">
+                <div class="card" style="background: rgba(59, 130, 246, 0.05); border: 2px solid var(--accent-green);">
+                    <h3 style="color: var(--accent-green); margin-top: 0;">📍 Translation</h3>
+                    <p>Moves a figure along a fixed line <strong>without changing its size or shape</strong>.</p>
+                </div>
+
+                <div class="card" style="background: rgba(59, 130, 246, 0.05); border: 2px solid var(--accent-green);">
+                    <h3 style="color: var(--accent-green); margin-top: 0;">🪞 Reflection</h3>
+                    <p>Flips a figure across a line, creating a <strong>mirror image</strong> while preserving size and shape.</p>
+                </div>
+
+                <div class="card" style="background: rgba(59, 130, 246, 0.05); border: 2px solid var(--accent-green);">
+                    <h3 style="color: var(--accent-green); margin-top: 0;">🔄 Rotation</h3>
+                    <p>Turns a figure around a <strong>fixed point</strong>, maintaining the figure's size and shape.</p>
+                </div>
+
+                <div class="card" style="background: rgba(59, 130, 246, 0.05); border: 2px solid var(--accent-green);">
+                    <h3 style="color: var(--accent-green); margin-top: 0;">📏 Dilation</h3>
+                    <p>Resizes a figure while <strong>preserving its shape</strong>, either increasing or decreasing its size.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2D Transform Example -->
+        <div class="card full-width">
+            <h2>🎨 2D Transform Example</h2>
+            
+            <p>This example demonstrates a basic 2D transformation with hover effects.</p>
+
+            <div style="background: var(--primary-blue); color: white; padding: 8px 15px; border-radius: 6px 6px 0 0; font-size: 0.85rem; font-weight: 600; margin-bottom: -5px; display: inline-block;">HTML + CSS - 2D Transform</div>
+            <div class="code-block"><span style="color: #7ee787;">&lt;div</span> <span style="color: #79c0ff;">class</span>=<span style="color: #a5d6ff;">"box2d"</span><span style="color: #7ee787;">&gt;</span>2D Transform<span style="color: #7ee787;">&lt;/div&gt;</span>
+
+<span style="color: #7ee787;">&lt;style&gt;</span>
+<span style="color: #d2a8ff;">.box2d</span> {
+    <span style="color: #79c0ff;">width</span>: <span style="color: #79c0ff;">120</span>px;
+    <span style="color: #79c0ff;">height</span>: <span style="color: #79c0ff;">120</span>px;
+    <span style="color: #79c0ff;">background</span>: <span style="color: #a5d6ff;">coral</span>;
+    <span style="color: #79c0ff;">color</span>: <span style="color: #a5d6ff;">white</span>;
+    <span style="color: #79c0ff;">display</span>: <span style="color: #a5d6ff;">flex</span>;
+    <span style="color: #79c0ff;">align-items</span>: <span style="color: #a5d6ff;">center</span>;
+    <span style="color: #79c0ff;">justify-content</span>: <span style="color: #a5d6ff;">center</span>;
+    <span style="color: #79c0ff;">transition</span>: <span style="color: #a5d6ff;">transform 0.5s ease</span>;
+}
+
+<span style="color: #d2a8ff;">.box2d:hover</span> {
+    <span style="color: #79c0ff;">transform</span>: <span style="color: #d2a8ff;">rotate</span>(<span style="color: #79c0ff;">45</span>deg) <span style="color: #d2a8ff;">scale</span>(<span style="color: #79c0ff;">1.2</span>) <span style="color: #d2a8ff;">translate</span>(<span style="color: #79c0ff;">20</span>px, <span style="color: #79c0ff;">10</span>px);
+}
+<span style="color: #7ee787;">&lt;/style&gt;</span></div>
+
+            <div class="success-box" style="background: rgba(78, 217, 194, 0.1); border-left: 4px solid var(--accent-green); padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <strong>✅ What this does:</strong>
+                <ul style="margin-top: 10px; padding-left: 20px;">
+                    <li style="margin-bottom: 8px;"><code>rotate(45deg)</code> - Rotates the element 45 degrees</li>
+                    <li style="margin-bottom: 8px;"><code>scale(1.2)</code> - Increases size by 20%</li>
+                    <li style="margin-bottom: 8px;"><code>translate(20px, 10px)</code> - Moves right 20px, down 10px</li>
+                    <li style="margin-bottom: 8px;"><code>transition</code> - Animates the transformation smoothly</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Mouse Over Event -->
+        <div class="card full-width">
+            <h2>🖱️ Mouse Over Event Example</h2>
+            
+            <p>This example uses JavaScript to change image size when hovering.</p>
+
+            <div style="background: var(--primary-blue); color: white; padding: 8px 15px; border-radius: 6px 6px 0 0; font-size: 0.85rem; font-weight: 600; margin-bottom: -5px; display: inline-block;">HTML + JavaScript - Mouse Events</div>
+            <div class="code-block"><span style="color: #7ee787;">&lt;!DOCTYPE html&gt;</span>
+<span style="color: #7ee787;">&lt;html&gt;</span>
+<span style="color: #7ee787;">&lt;body&gt;</span>
+
+<span style="color: #7ee787;">&lt;h1&gt;</span>HTML DOM Events<span style="color: #7ee787;">&lt;/h1&gt;</span>
+<span style="color: #7ee787;">&lt;h2&gt;</span>The onmouseover Event<span style="color: #7ee787;">&lt;/h2&gt;</span>
+
+<span style="color: #7ee787;">&lt;img</span> <span style="color: #79c0ff;">onmouseover</span>=<span style="color: #a5d6ff;">"bigImg(this)"</span> <span style="color: #79c0ff;">onmouseout</span>=<span style="color: #a5d6ff;">"normalImg(this)"</span> 
+     <span style="color: #79c0ff;">border</span>=<span style="color: #a5d6ff;">"0"</span> <span style="color: #79c0ff;">src</span>=<span style="color: #a5d6ff;">"smily.jpg"</span> <span style="color: #79c0ff;">alt</span>=<span style="color: #a5d6ff;">"Smiley"</span> 
+     <span style="color: #79c0ff;">width</span>=<span style="color: #a5d6ff;">"32"</span> <span style="color: #79c0ff;">height</span>=<span style="color: #a5d6ff;">"32"</span><span style="color: #7ee787;">&gt;</span>
+
+<span style="color: #7ee787;">&lt;p&gt;</span>The function bigImg() is triggered when the user moves the mouse pointer over the image.<span style="color: #7ee787;">&lt;/p&gt;</span>
+<span style="color: #7ee787;">&lt;p&gt;</span>The function normalImg() is triggered when the mouse pointer is moved out of the image.<span style="color: #7ee787;">&lt;/p&gt;</span>
+
+<span style="color: #7ee787;">&lt;script&gt;</span>
+<span style="color: #ff7b72;">function</span> <span style="color: #d2a8ff;">bigImg</span>(x) {
+    x.style.height = <span style="color: #a5d6ff;">"64px"</span>;
+    x.style.width = <span style="color: #a5d6ff;">"64px"</span>;
+}
+
+<span style="color: #ff7b72;">function</span> <span style="color: #d2a8ff;">normalImg</span>(x) {
+    x.style.height = <span style="color: #a5d6ff;">"32px"</span>;
+    x.style.width = <span style="color: #a5d6ff;">"32px"</span>;
+}
+<span style="color: #7ee787;">&lt;/script&gt;</span>
+
+<span style="color: #7ee787;">&lt;/body&gt;</span>
+<span style="color: #7ee787;">&lt;/html&gt;</span></div>
+
+            <div class="info-box" style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid var(--primary-blue); padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <strong>💡 How it works:</strong>
+                <ul style="margin-top: 10px; padding-left: 20px;">
+                    <li style="margin-bottom: 8px;"><code>onmouseover</code> - Triggers when mouse enters the element</li>
+                    <li style="margin-bottom: 8px;"><code>onmouseout</code> - Triggers when mouse leaves the element</li>
+                    <li style="margin-bottom: 8px;"><code>bigImg(this)</code> - Doubles the image size to 64x64px</li>
+                    <li style="margin-bottom: 8px;"><code>normalImg(this)</code> - Returns to original 32x32px size</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Rotate X -->
+        <div class="card full-width">
+            <h2>🔄 Rotate X-Axis Method</h2>
+            
+            <p>The <code>rotateX()</code> method rotates an element around its <strong>X-axis</strong> at a given degree.</p>
+
+            <div style="background: var(--primary-blue); color: white; padding: 8px 15px; border-radius: 6px 6px 0 0; font-size: 0.85rem; font-weight: 600; margin-bottom: -5px; display: inline-block;">HTML + CSS - rotateX()</div>
+            <div class="code-block"><span style="color: #7ee787;">&lt;!DOCTYPE html&gt;</span>
+<span style="color: #7ee787;">&lt;html&gt;</span>
+<span style="color: #7ee787;">&lt;head&gt;</span>
+<span style="color: #7ee787;">&lt;style&gt;</span>
+<span style="color: #d2a8ff;">div</span> {
+    <span style="color: #79c0ff;">width</span>: <span style="color: #79c0ff;">150</span>px;
+    <span style="color: #79c0ff;">height</span>: <span style="color: #79c0ff;">150</span>px;
+    <span style="color: #79c0ff;">background-color</span>: <span style="color: #a5d6ff;">yellow</span>;
+    <span style="color: #79c0ff;">border</span>: <span style="color: #79c0ff;">1</span>px <span style="color: #a5d6ff;">solid black</span>;
+}
+
+<span style="color: #d2a8ff;">#myDiv</span> {
+    <span style="color: #79c0ff;">transform</span>: <span style="color: #d2a8ff;">rotateX</span>(<span style="color: #79c0ff;">150</span>deg);
+}
+<span style="color: #7ee787;">&lt;/style&gt;</span>
+<span style="color: #7ee787;">&lt;/head&gt;</span>
+<span style="color: #7ee787;">&lt;body&gt;</span>
+
+<span style="color: #7ee787;">&lt;h1&gt;</span>The rotateX() Method<span style="color: #7ee787;">&lt;/h1&gt;</span>
+
+<span style="color: #7ee787;">&lt;p&gt;</span>The rotateX() method rotates an element around its X-axis at a given degree.<span style="color: #7ee787;">&lt;/p&gt;</span>
+
+<span style="color: #7ee787;">&lt;div&gt;</span>This a normal div element.<span style="color: #7ee787;">&lt;/div&gt;</span>
+
+<span style="color: #7ee787;">&lt;div</span> <span style="color: #79c0ff;">id</span>=<span style="color: #a5d6ff;">"myDiv"</span><span style="color: #7ee787;">&gt;</span>
+This div element is rotated 150 degrees.
+<span style="color: #7ee787;">&lt;/div&gt;</span>
+
+<span style="color: #7ee787;">&lt;/body&gt;</span>
+<span style="color: #7ee787;">&lt;/html&gt;</span></div>
+
+            <div class="success-box" style="background: rgba(78, 217, 194, 0.1); border-left: 4px solid var(--accent-green); padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <strong>✅ Result:</strong> The div with id "myDiv" will appear rotated 150 degrees along the X-axis, creating a 3D perspective effect.
+            </div>
+        </div>
+
+        <!-- Rotate Y -->
+        <div class="card full-width">
+            <h2>🔄 Rotate Y-Axis Method</h2>
+            
+            <p>The <code>rotateY()</code> method rotates an element around its <strong>Y-axis</strong> at a given degree.</p>
+
+            <div style="background: var(--primary-blue); color: white; padding: 8px 15px; border-radius: 6px 6px 0 0; font-size: 0.85rem; font-weight: 600; margin-bottom: -5px; display: inline-block;">HTML + CSS - rotateY()</div>
+            <div class="code-block"><span style="color: #7ee787;">&lt;!DOCTYPE html&gt;</span>
+<span style="color: #7ee787;">&lt;html&gt;</span>
+<span style="color: #7ee787;">&lt;head&gt;</span>
+<span style="color: #7ee787;">&lt;style&gt;</span>
+<span style="color: #d2a8ff;">div</span> {
+    <span style="color: #79c0ff;">width</span>: <span style="color: #79c0ff;">150</span>px;
+    <span style="color: #79c0ff;">height</span>: <span style="color: #79c0ff;">150</span>px;
+    <span style="color: #79c0ff;">background-color</span>: <span style="color: #a5d6ff;">yellow</span>;
+    <span style="color: #79c0ff;">border</span>: <span style="color: #79c0ff;">1</span>px <span style="color: #a5d6ff;">solid black</span>;
+}
+
+<span style="color: #d2a8ff;">#myDiv</span> {
+    <span style="color: #79c0ff;">transform</span>: <span style="color: #d2a8ff;">rotateY</span>(<span style="color: #79c0ff;">150</span>deg);
+}
+<span style="color: #7ee787;">&lt;/style&gt;</span>
+<span style="color: #7ee787;">&lt;/head&gt;</span>
+<span style="color: #7ee787;">&lt;body&gt;</span>
+
+<span style="color: #7ee787;">&lt;h1&gt;</span>The rotateY() Method<span style="color: #7ee787;">&lt;/h1&gt;</span>
+
+<span style="color: #7ee787;">&lt;p&gt;</span>The rotateY() method rotates an element around its Y-axis at a given degree.<span style="color: #7ee787;">&lt;/p&gt;</span>
+
+<span style="color: #7ee787;">&lt;div&gt;</span>This a normal div element.<span style="color: #7ee787;">&lt;/div&gt;</span>
+
+<span style="color: #7ee787;">&lt;div</span> <span style="color: #79c0ff;">id</span>=<span style="color: #a5d6ff;">"myDiv"</span><span style="color: #7ee787;">&gt;</span>
+This div element is rotated 150 degrees.
+<span style="color: #7ee787;">&lt;/div&gt;</span>
+
+<span style="color: #7ee787;">&lt;/body&gt;</span>
+<span style="color: #7ee787;">&lt;/html&gt;</span></div>
+
+            <div class="success-box" style="background: rgba(78, 217, 194, 0.1); border-left: 4px solid var(--accent-green); padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <strong>✅ Result:</strong> The div rotates along the Y-axis, creating a horizontal flip effect with 3D perspective.
+            </div>
+        </div>
+
+        <!-- Rotate Z -->
+        <div class="card full-width">
+            <h2>🔄 Rotate Z-Axis Method</h2>
+            
+            <p>The <code>rotateZ()</code> method rotates an element around its <strong>Z-axis</strong> at a given degree.</p>
+
+            <div style="background: var(--primary-blue); color: white; padding: 8px 15px; border-radius: 6px 6px 0 0; font-size: 0.85rem; font-weight: 600; margin-bottom: -5px; display: inline-block;">HTML + CSS - rotateZ()</div>
+            <div class="code-block"><span style="color: #7ee787;">&lt;!DOCTYPE html&gt;</span>
+<span style="color: #7ee787;">&lt;html&gt;</span>
+<span style="color: #7ee787;">&lt;head&gt;</span>
+<span style="color: #7ee787;">&lt;style&gt;</span>
+<span style="color: #d2a8ff;">div</span> {
+    <span style="color: #79c0ff;">width</span>: <span style="color: #79c0ff;">150</span>px;
+    <span style="color: #79c0ff;">height</span>: <span style="color: #79c0ff;">150</span>px;
+    <span style="color: #79c0ff;">background-color</span>: <span style="color: #a5d6ff;">yellow</span>;
+    <span style="color: #79c0ff;">border</span>: <span style="color: #79c0ff;">1</span>px <span style="color: #a5d6ff;">solid black</span>;
+}
+
+<span style="color: #d2a8ff;">#myDiv</span> {
+    <span style="color: #79c0ff;">transform</span>: <span style="color: #d2a8ff;">rotateZ</span>(<span style="color: #79c0ff;">90</span>deg);
+}
+<span style="color: #7ee787;">&lt;/style&gt;</span>
+<span style="color: #7ee787;">&lt;/head&gt;</span>
+<span style="color: #7ee787;">&lt;body&gt;</span>
+
+<span style="color: #7ee787;">&lt;h1&gt;</span>The rotateZ() Method<span style="color: #7ee787;">&lt;/h1&gt;</span>
+
+<span style="color: #7ee787;">&lt;p&gt;</span>The rotateZ() method rotates an element around its Z-axis at a given degree.<span style="color: #7ee787;">&lt;/p&gt;</span>
+
+<span style="color: #7ee787;">&lt;div&gt;</span>This a normal div element.<span style="color: #7ee787;">&lt;/div&gt;</span>
+
+<span style="color: #7ee787;">&lt;div</span> <span style="color: #79c0ff;">id</span>=<span style="color: #a5d6ff;">"myDiv"</span><span style="color: #7ee787;">&gt;</span>
+This div element is rotated 90 degrees.
+<span style="color: #7ee787;">&lt;/div&gt;</span>
+
+<span style="color: #7ee787;">&lt;/body&gt;</span>
+<span style="color: #7ee787;">&lt;/html&gt;</span></div>
+
+            <div class="success-box" style="background: rgba(78, 217, 194, 0.1); border-left: 4px solid var(--accent-green); padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <strong>✅ Result:</strong> This rotates the element in the plane of the screen (standard 2D rotation), turning it 90 degrees clockwise.
+            </div>
+        </div>
+
+        <!-- Transform CSS Multiple Properties -->
+        <div class="card full-width">
+            <h2>🎯 Transform CSS - Multiple Transformations</h2>
+            
+            <p>You can combine multiple transform functions in a single property.</p>
+
+            <div style="background: var(--primary-blue); color: white; padding: 8px 15px; border-radius: 6px 6px 0 0; font-size: 0.85rem; font-weight: 600; margin-bottom: -5px; display: inline-block;">HTML + CSS - Combined Transforms</div>
+            <div class="code-block"><span style="color: #7ee787;">&lt;style&gt;</span>
+<span style="color: #d2a8ff;">div.a</span> {
+    <span style="color: #79c0ff;">width</span>: <span style="color: #79c0ff;">150</span>px;
+    <span style="color: #79c0ff;">height</span>: <span style="color: #79c0ff;">80</span>px;
+    <span style="color: #79c0ff;">background-color</span>: <span style="color: #a5d6ff;">yellow</span>;
+    <span style="color: #79c0ff;">transform</span>: <span style="color: #d2a8ff;">rotate</span>(<span style="color: #79c0ff;">20</span>deg);
+}
+
+<span style="color: #d2a8ff;">div.b</span> {
+    <span style="color: #79c0ff;">width</span>: <span style="color: #79c0ff;">150</span>px;
+    <span style="color: #79c0ff;">height</span>: <span style="color: #79c0ff;">80</span>px;
+    <span style="color: #79c0ff;">background-color</span>: <span style="color: #a5d6ff;">yellow</span>;
+    <span style="color: #79c0ff;">transform</span>: <span style="color: #d2a8ff;">skewY</span>(<span style="color: #79c0ff;">20</span>deg);
+}
+
+<span style="color: #d2a8ff;">div.c</span> {
+    <span style="color: #79c0ff;">width</span>: <span style="color: #79c0ff;">150</span>px;
+    <span style="color: #79c0ff;">height</span>: <span style="color: #79c0ff;">80</span>px;
+    <span style="color: #79c0ff;">background-color</span>: <span style="color: #a5d6ff;">yellow</span>;
+    <span style="color: #79c0ff;">transform</span>: <span style="color: #d2a8ff;">scaleY</span>(<span style="color: #79c0ff;">1.5</span>);
+}
+<span style="color: #7ee787;">&lt;/style&gt;</span>
+
+<span style="color: #7ee787;">&lt;body&gt;</span>
+<span style="color: #7ee787;">&lt;h1&gt;</span>The transform Property<span style="color: #7ee787;">&lt;/h1&gt;</span>
+
+<span style="color: #7ee787;">&lt;h2&gt;</span>transform: rotate(20deg):<span style="color: #7ee787;">&lt;/h2&gt;</span>
+<span style="color: #7ee787;">&lt;div</span> <span style="color: #79c0ff;">class</span>=<span style="color: #a5d6ff;">"a"</span><span style="color: #7ee787;">&gt;</span>Hello World!<span style="color: #7ee787;">&lt;/div&gt;</span>
+
+<span style="color: #7ee787;">&lt;h2&gt;</span>transform: skewY(20deg):<span style="color: #7ee787;">&lt;/h2&gt;</span>
+<span style="color: #7ee787;">&lt;div</span> <span style="color: #79c0ff;">class</span>=<span style="color: #a5d6ff;">"b"</span><span style="color: #7ee787;">&gt;</span>Hello World!<span style="color: #7ee787;">&lt;/div&gt;</span>
+
+<span style="color: #7ee787;">&lt;h2&gt;</span>transform: scaleY(1.5):<span style="color: #7ee787;">&lt;/h2&gt;</span>
+<span style="color: #7ee787;">&lt;div</span> <span style="color: #79c0ff;">class</span>=<span style="color: #a5d6ff;">"c"</span><span style="color: #7ee787;">&gt;</span>Hello World!<span style="color: #7ee787;">&lt;/div&gt;</span>
+
+<span style="color: #7ee787;">&lt;/body&gt;</span></div>
+
+            <div class="info-box" style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid var(--primary-blue); padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <strong>💡 Transform Functions:</strong>
+                <ul style="margin-top: 10px; padding-left: 20px;">
+                    <li style="margin-bottom: 8px;"><code>rotate(20deg)</code> - Rotates the element 20 degrees</li>
+                    <li style="margin-bottom: 8px;"><code>skewY(20deg)</code> - Skews the element along the Y-axis</li>
+                    <li style="margin-bottom: 8px;"><code>scaleY(1.5)</code> - Scales the element 1.5x vertically</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Transform Origin Property -->
+        <div class="card full-width">
+            <h2>🎯 The Transform-Origin Property</h2>
+            
+            <p>The <code>transform-origin</code> property allows you to change the position of transformed elements.</p>
+
+            <div style="background: var(--primary-blue); color: white; padding: 8px 15px; border-radius: 6px 6px 0 0; font-size: 0.85rem; font-weight: 600; margin-bottom: -5px; display: inline-block;">HTML + CSS - transform-origin</div>
+            <div class="code-block"><span style="color: #7ee787;">&lt;style&gt;</span>
+<span style="color: #d2a8ff;">#div1</span> {
+    <span style="color: #79c0ff;">position</span>: <span style="color: #a5d6ff;">relative</span>;
+    <span style="color: #79c0ff;">height</span>: <span style="color: #79c0ff;">200</span>px;
+    <span style="color: #79c0ff;">width</span>: <span style="color: #79c0ff;">200</span>px;
+    <span style="color: #79c0ff;">margin</span>: <span style="color: #79c0ff;">100</span>px;
+    <span style="color: #79c0ff;">padding</span>: <span style="color: #79c0ff;">10</span>px;
+    <span style="color: #79c0ff;">border</span>: <span style="color: #79c0ff;">1</span>px <span style="color: #a5d6ff;">solid black</span>;
+}
+
+<span style="color: #d2a8ff;">#div2</span> {
+    <span style="color: #79c0ff;">padding</span>: <span style="color: #79c0ff;">50</span>px;
+    <span style="color: #79c0ff;">position</span>: <span style="color: #a5d6ff;">absolute</span>;
+    <span style="color: #79c0ff;">border</span>: <span style="color: #79c0ff;">1</span>px <span style="color: #a5d6ff;">solid black</span>;
+    <span style="color: #79c0ff;">background-color</span>: <span style="color: #a5d6ff;">red</span>;
+    <span style="color: #79c0ff;">transform</span>: <span style="color: #d2a8ff;">rotate</span>(<span style="color: #79c0ff;">45</span>deg);
+    <span style="color: #79c0ff;">transform-origin</span>: <span style="color: #79c0ff;">20%</span> <span style="color: #79c0ff;">40%</span>;
+}
+<span style="color: #7ee787;">&lt;/style&gt;</span>
+
+<span style="color: #7ee787;">&lt;body&gt;</span>
+<span style="color: #7ee787;">&lt;h1&gt;</span>The transform-origin Property<span style="color: #7ee787;">&lt;/h1&gt;</span>
+
+<span style="color: #7ee787;">&lt;div</span> <span style="color: #79c0ff;">id</span>=<span style="color: #a5d6ff;">"div1"</span><span style="color: #7ee787;">&gt;</span>
+    <span style="color: #7ee787;">&lt;div</span> <span style="color: #79c0ff;">id</span>=<span style="color: #a5d6ff;">"div2"</span><span style="color: #7ee787;">&gt;</span>HELLO<span style="color: #7ee787;">&lt;/div&gt;</span>
+<span style="color: #7ee787;">&lt;/div&gt;</span>
+
+<span style="color: #7ee787;">&lt;/body&gt;</span></div>
+
+            <div class="success-box" style="background: rgba(78, 217, 194, 0.1); border-left: 4px solid var(--accent-green); padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <strong>✅ What this does:</strong>
+                <ul style="margin-top: 10px; padding-left: 20px;">
+                    <li style="margin-bottom: 8px;">Sets the rotation point to 20% from left, 40% from top</li>
+                    <li style="margin-bottom: 8px;">Default is <code>50% 50%</code> (center of element)</li>
+                    <li style="margin-bottom: 8px;">Can use: percentages, pixels, or keywords (left, right, top, bottom, center)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Complete Transform Example -->
+        <div class="card full-width">
+            <h2>🚀 Complete Transform Example with Hover Effects</h2>
+            
+            <p>This comprehensive example demonstrates multiple transformations on hover.</p>
+
+            <div style="background: var(--primary-blue); color: white; padding: 8px 15px; border-radius: 6px 6px 0 0; font-size: 0.85rem; font-weight: 600; margin-bottom: -5px; display: inline-block;">HTML + CSS - Complete Example (Part 1)</div>
+            <div class="code-block"><span style="color: #7ee787;">&lt;!DOCTYPE html&gt;</span>
+<span style="color: #7ee787;">&lt;html</span> <span style="color: #79c0ff;">lang</span>=<span style="color: #a5d6ff;">"en"</span><span style="color: #7ee787;">&gt;</span>
+<span style="color: #7ee787;">&lt;head&gt;</span>
+<span style="color: #7ee787;">&lt;meta</span> <span style="color: #79c0ff;">charset</span>=<span style="color: #a5d6ff;">"UTF-8"</span><span style="color: #7ee787;">&gt;</span>
+<span style="color: #7ee787;">&lt;meta</span> <span style="color: #79c0ff;">name</span>=<span style="color: #a5d6ff;">"viewport"</span> <span style="color: #79c0ff;">content</span>=<span style="color: #a5d6ff;">"width=device-width, initial-scale=1.0"</span><span style="color: #7ee787;">&gt;</span>
+<span style="color: #7ee787;">&lt;title&gt;</span>Geometric Transformations Example<span style="color: #7ee787;">&lt;/title&gt;</span>
+<span style="color: #7ee787;">&lt;style&gt;</span>
+<span style="color: #d2a8ff;">body</span> {
+    <span style="color: #79c0ff;">font-family</span>: <span style="color: #a5d6ff;">Arial, sans-serif</span>;
+    <span style="color: #79c0ff;">background</span>: <span style="color: #a5d6ff;">#f4f4f4</span>;
+    <span style="color: #79c0ff;">text-align</span>: <span style="color: #a5d6ff;">center</span>;
+    <span style="color: #79c0ff;">padding</span>: <span style="color: #79c0ff;">20</span>px;
+}
+
+<span style="color: #d2a8ff;">.container</span> {
+    <span style="color: #79c0ff;">display</span>: <span style="color: #a5d6ff;">flex</span>;
+    <span style="color: #79c0ff;">flex-wrap</span>: <span style="color: #a5d6ff;">wrap</span>;
+    <span style="color: #79c0ff;">justify-content</span>: <span style="color: #a5d6ff;">center</span>;
+    <span style="color: #79c0ff;">gap</span>: <span style="color: #79c0ff;">20</span>px;
+}
+
+<span style="color: #d2a8ff;">.box</span> {
+    <span style="color: #79c0ff;">width</span>: <span style="color: #79c0ff;">120</span>px;
+    <span style="color: #79c0ff;">height</span>: <span style="color: #79c0ff;">120</span>px;
+    <span style="color: #79c0ff;">background</span>: <span style="color: #a5d6ff;">#3498db</span>;
+    <span style="color: #79c0ff;">color</span>: <span style="color: #a5d6ff;">white</span>;
+    <span style="color: #79c0ff;">display</span>: <span style="color: #a5d6ff;">flex</span>;
+    <span style="color: #79c0ff;">align-items</span>: <span style="color: #a5d6ff;">center</span>;
+    <span style="color: #79c0ff;">justify-content</span>: <span style="color: #a5d6ff;">center</span>;
+    <span style="color: #79c0ff;">font-weight</span>: <span style="color: #a5d6ff;">bold</span>;
+    <span style="color: #79c0ff;">border-radius</span>: <span style="color: #79c0ff;">8</span>px;
+    <span style="color: #79c0ff;">transition</span>: <span style="color: #a5d6ff;">transform 0.6s ease</span>;
+    <span style="color: #79c0ff;">cursor</span>: <span style="color: #a5d6ff;">pointer</span>;
+}</div>
+
+            <div style="background: var(--primary-blue); color: white; padding: 8px 15px; border-radius: 6px 6px 0 0; font-size: 0.85rem; font-weight: 600; margin-bottom: -5px; display: inline-block; margin-top: 15px;">Complete Example (Part 2) - Hover Effects</div>
+            <div class="code-block"><span style="color: #8b949e; font-style: italic;">/* Transformations on hover */</span>
+<span style="color: #d2a8ff;">.translate:hover</span> {
+    <span style="color: #79c0ff;">transform</span>: <span style="color: #d2a8ff;">translate</span>(<span style="color: #79c0ff;">50</span>px, <span style="color: #79c0ff;">20</span>px);
+}
+
+<span style="color: #d2a8ff;">.rotate:hover</span> {
+    <span style="color: #79c0ff;">transform</span>: <span style="color: #d2a8ff;">rotate</span>(<span style="color: #79c0ff;">45</span>deg);
+}
+
+<span style="color: #d2a8ff;">.scale:hover</span> {
+    <span style="color: #79c0ff;">transform</span>: <span style="color: #d2a8ff;">scale</span>(<span style="color: #79c0ff;">1.5</span>);
+}
+
+<span style="color: #d2a8ff;">.skew:hover</span> {
+    <span style="color: #79c0ff;">transform</span>: <span style="color: #d2a8ff;">skew</span>(<span style="color: #79c0ff;">20</span>deg, <span style="color: #79c0ff;">10</span>deg);
+}
+
+<span style="color: #d2a8ff;">.combined:hover</span> {
+    <span style="color: #79c0ff;">transform</span>: <span style="color: #d2a8ff;">translate</span>(<span style="color: #79c0ff;">20</span>px, <span style="color: #79c0ff;">20</span>px) <span style="color: #d2a8ff;">rotate</span>(<span style="color: #79c0ff;">30</span>deg) <span style="color: #d2a8ff;">scale</span>(<span style="color: #79c0ff;">1.2</span>) <span style="color: #d2a8ff;">skew</span>(<span style="color: #79c0ff;">10</span>deg, <span style="color: #79c0ff;">5</span>deg);
+}
+<span style="color: #7ee787;">&lt;/style&gt;</span>
+<span style="color: #7ee787;">&lt;/head&gt;</span>
+<span style="color: #7ee787;">&lt;body&gt;</span>
+
+<span style="color: #7ee787;">&lt;h1&gt;</span>CSS Geometric Transformations<span style="color: #7ee787;">&lt;/h1&gt;</span>
+<span style="color: #7ee787;">&lt;p&gt;</span>Hover over each box to see the transformation.<span style="color: #7ee787;">&lt;/p&gt;</span>
+
+<span style="color: #7ee787;">&lt;div</span> <span style="color: #79c0ff;">class</span>=<span style="color: #a5d6ff;">"container"</span><span style="color: #7ee787;">&gt;</span>
+    <span style="color: #7ee787;">&lt;div</span> <span style="color: #79c0ff;">class</span>=<span style="color: #a5d6ff;">"box translate"</span><span style="color: #7ee787;">&gt;</span>Translate<span style="color: #7ee787;">&lt;/div&gt;</span>
+    <span style="color: #7ee787;">&lt;div</span> <span style="color: #79c0ff;">class</span>=<span style="color: #a5d6ff;">"box rotate"</span><span style="color: #7ee787;">&gt;</span>Rotate<span style="color: #7ee787;">&lt;/div&gt;</span>
+    <span style="color: #7ee787;">&lt;div</span> <span style="color: #79c0ff;">class</span>=<span style="color: #a5d6ff;">"box scale"</span><span style="color: #7ee787;">&gt;</span>Scale<span style="color: #7ee787;">&lt;/div&gt;</span>
+    <span style="color: #7ee787;">&lt;div</span> <span style="color: #79c0ff;">class</span>=<span style="color: #a5d6ff;">"box skew"</span><span style="color: #7ee787;">&gt;</span>Skew<span style="color: #7ee787;">&lt;/div&gt;</span>
+    <span style="color: #7ee787;">&lt;div</span> <span style="color: #79c0ff;">class</span>=<span style="color: #a5d6ff;">"box combined"</span><span style="color: #7ee787;">&gt;</span>Combined<span style="color: #7ee787;">&lt;/div&gt;</span>
+<span style="color: #7ee787;">&lt;/div&gt;</span>
+
+<span style="color: #7ee787;">&lt;/body&gt;</span>
+<span style="color: #7ee787;">&lt;/html&gt;</span></div>
+
+            <div class="success-box" style="background: rgba(78, 217, 194, 0.1); border-left: 4px solid var(--accent-green); padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <strong>✅ Transform Types Demonstrated:</strong>
+                <ul style="margin-top: 10px; padding-left: 20px;">
+                    <li style="margin-bottom: 8px;"><strong>Translate:</strong> Moves 50px right, 20px down</li>
+                    <li style="margin-bottom: 8px;"><strong>Rotate:</strong> Rotates 45 degrees</li>
+                    <li style="margin-bottom: 8px;"><strong>Scale:</strong> Enlarges to 1.5x size</li>
+                    <li style="margin-bottom: 8px;"><strong>Skew:</strong> Distorts 20deg horizontally, 10deg vertically</li>
+                    <li style="margin-bottom: 8px;"><strong>Combined:</strong> Applies all transformations together</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Key Takeaways -->
+        <div class="card full-width">
+            <h2>🎓 Key Takeaways</h2>
+            
+            <div class="section-grid">
+                <div class="success-box" style="background: rgba(78, 217, 194, 0.1); border-left: 4px solid var(--accent-green); padding: 20px; border-radius: 8px;">
+                    <h4 style="margin-top: 0;">✅ Translation</h4>
+                    <p>Use <code>translate(x, y)</code> to move elements without affecting document flow.</p>
+                </div>
+
+                <div class="success-box" style="background: rgba(78, 217, 194, 0.1); border-left: 4px solid var(--accent-green); padding: 20px; border-radius: 8px;">
+                    <h4 style="margin-top: 0;">✅ Rotation</h4>
+                    <p>Use <code>rotate()</code>, <code>rotateX()</code>, <code>rotateY()</code>, <code>rotateZ()</code> for 2D and 3D rotations.</p>
+                </div>
+
+                <div class="success-box" style="background: rgba(78, 217, 194, 0.1); border-left: 4px solid var(--accent-green); padding: 20px; border-radius: 8px;">
+                    <h4 style="margin-top: 0;">✅ Scale</h4>
+                    <p>Use <code>scale()</code>, <code>scaleX()</code>, <code>scaleY()</code> to resize elements proportionally.</p>
+                </div>
+
+                <div class="success-box" style="background: rgba(78, 217, 194, 0.1); border-left: 4px solid var(--accent-green); padding: 20px; border-radius: 8px;">
+                    <h4 style="margin-top: 0;">✅ Skew</h4>
+                    <p>Use <code>skew()</code>, <code>skewX()</code>, <code>skewY()</code> to slant elements along axes.</p>
+                </div>
+
+                <div class="success-box" style="background: rgba(78, 217, 194, 0.1); border-left: 4px solid var(--accent-green); padding: 20px; border-radius: 8px; grid-column: 1 / -1;">
+                    <h4 style="margin-top: 0;">✅ Combining Transformations</h4>
+                    <p>Multiple transforms can be chained: <code>transform: translate() rotate() scale()</code></p>
+                    <p><strong>Order matters!</strong> Transformations are applied from right to left.</p>
+                </div>
+
+                <div class="success-box" style="background: rgba(78, 217, 194, 0.1); border-left: 4px solid var(--accent-green); padding: 20px; border-radius: 8px; grid-column: 1 / -1;">
+                    <h4 style="margin-top: 0;">✅ Transform Origin</h4>
+                    <p>Use <code>transform-origin</code> to change the pivot point of transformations.</p>
+                    <p>Default is center (50% 50%), but can be set to any position.</p>
+                </div>
+            </div>
+
+            <div class="info-box" style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid var(--primary-blue); padding: 20px; border-radius: 8px; margin-top: 25px;">
+                <strong>💡 Best Practices:</strong>
+                <ul style="margin-top: 10px; padding-left: 20px;">
+                    <li style="margin-bottom: 8px;">Use <code>transition</code> property to animate transformations smoothly</li>
+                    <li style="margin-bottom: 8px;">Combine transforms in a single property for better performance</li>
+                    <li style="margin-bottom: 8px;">Remember: transforms don't affect document layout</li>
+                    <li style="margin-bottom: 8px;">Use 3D transforms (rotateX, rotateY) for depth effects</li>
+                    <li style="margin-bottom: 8px;">Test browser compatibility for complex 3D transforms</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p><strong>UFE Digital Marketing - Web Development Course</strong></p>
+        <p>Tel: 01501827070 - 01017776756 | E-mail: sherrost@yahoo.com</p>
+        <p>© 2025 UFE Digital Marketing. All rights reserved.</p>
+    </footer>
+</div>
+
+<script src="../../../../theme.js"></script>
+
+</body>
+</html>

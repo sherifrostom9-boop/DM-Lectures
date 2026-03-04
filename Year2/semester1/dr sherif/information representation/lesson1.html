@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vector Representations - Curves in Computer Graphics</title>
+    <link href="../../../../DrSherif.css" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="top-bar">
+        <a href="../../../../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <img src="../../../../logo.jpeg" alt="Logo" class="site-logo">
+            <h2>Digital Marketing</h2>
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="sun-icon" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <svg class="moon-icon" fill="currentColor" viewBox="0 0 24 24" style="display: none;">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+            </svg>
+        </button>
+    </nav>
+
+<div class="container" style="padding-top: 140px;">
+    <header>
+        <a href="informationrep.html" class="back-link">← EXIT LESSON</a>
+        <div class="label">Information Representation Lecture 1</div>
+        <h1>Vector Representations</h1>
+        <p class="subtitle">Curves in Computer Graphics - Types, Properties, and Implementation</p>
+    </header>
+
+    <div class="section-grid">
+        <!-- Introduction -->
+        <div class="card full-width">
+            <h2>📘 Introduction</h2>
+            <p>In computer graphics, we often need to draw different types of objects onto the screen. Objects are not flat all the time and we need to draw <strong>curves</strong> many times to draw an object.</p>
+
+            <div class="info-box" style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid var(--primary-blue); padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <strong>💡 What is a Curve?</strong><br>
+                The curve is an <strong>infinitely large set of points</strong>. Each point has two neighbors except endpoints.
+            </div>
+
+            <h3 style="color: var(--accent-green); margin-top: 25px; margin-bottom: 15px; font-size: 1.3rem;">Canvas Example - Drawing a Half Circle</h3>
+            <div style="background: var(--primary-blue); color: white; padding: 8px 15px; border-radius: 6px 6px 0 0; font-size: 0.85rem; font-weight: 600; margin-bottom: -5px; display: inline-block;">HTML5 Canvas</div>
+            <div class="code-block"><span style="color: #7ee787;">&lt;canvas</span> <span style="color: #79c0ff;">id</span>=<span style="color: #a5d6ff;">"arcCanvas"</span> <span style="color: #79c0ff;">width</span>=<span style="color: #a5d6ff;">"300"</span> <span style="color: #79c0ff;">height</span>=<span style="color: #a5d6ff;">"200"</span><span style="color: #7ee787;">&gt;&lt;/canvas&gt;</span>
+<span style="color: #7ee787;">&lt;script&gt;</span>
+<span style="color: #ff7b72;">const</span> ctx = <span style="color: #ff7b72;">document</span>.<span style="color: #d2a8ff;">getElementById</span>(<span style="color: #a5d6ff;">'arcCanvas'</span>).<span style="color: #d2a8ff;">getContext</span>(<span style="color: #a5d6ff;">'2d'</span>);
+ctx.<span style="color: #d2a8ff;">beginPath</span>();
+ctx.<span style="color: #d2a8ff;">arc</span>(<span style="color: #79c0ff;">150</span>, <span style="color: #79c0ff;">100</span>, <span style="color: #79c0ff;">70</span>, <span style="color: #79c0ff;">0</span>, Math.PI, <span style="color: #ff7b72;">false</span>); <span style="color: #8b949e; font-style: italic;">// Half circle</span>
+ctx.strokeStyle = <span style="color: #a5d6ff;">'blue'</span>;
+ctx.lineWidth = <span style="color: #79c0ff;">3</span>;
+ctx.<span style="color: #d2a8ff;">stroke</span>();
+<span style="color: #7ee787;">&lt;/script&gt;</span></div>
+        </div>
+
+        <!-- Types of Curves -->
+        <div class="card full-width">
+            <h2>🎨 Types of Curves</h2>
+            
+            <div class="section-grid">
+                <div class="card" style="background: rgba(59, 130, 246, 0.1); border: 2px solid var(--primary-blue);">
+                    <h3 style="color: var(--primary-blue); margin-top: 0;">1. Implicit Curves</h3>
+                    <p>Set of zeros of a function</p>
+                </div>
+
+                <div class="card" style="background: rgba(16, 185, 129, 0.1); border: 2px solid var(--accent-green);">
+                    <h3 style="color: var(--accent-green); margin-top: 0;">2. Explicit Curves</h3>
+                    <p>Dependent variable in terms of independent</p>
+                </div>
+
+                <div class="card" style="background: rgba(245, 158, 11, 0.1); border: 2px solid #f59e0b;">
+                    <h3 style="color: #f59e0b; margin-top: 0;">3. Parametric Curves</h3>
+                    <p>Coordinates as functions of a parameter</p>
+                </div>
+
+                <div class="card" style="background: rgba(139, 92, 246, 0.1); border: 2px solid #8b5cf6;">
+                    <h3 style="color: #8b5cf6; margin-top: 0;">4. Bezier Curves</h3>
+                    <p>Splines with control points</p>
+                </div>
+
+                <div class="card" style="background: rgba(236, 72, 153, 0.1); border: 2px solid #ec4899;">
+                    <h3 style="color: #ec4899; margin-top: 0;">5. B-spline Curves</h3>
+                    <p>Flexible curves with local control</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Implicit Curves -->
+        <div class="card full-width">
+            <h2>🔵 Implicit Curves</h2>
+            
+            <p>An <strong>implicit curve</strong> or surface is the <strong>set of zeros</strong> of a function of <strong>2 or 3 variables</strong>.</p>
+
+            <h3 style="color: var(--accent-green); margin-top: 25px; margin-bottom: 15px; font-size: 1.3rem;">Key Characteristics</h3>
+            <ul style="padding-left: 25px; color: var(--text-dim); margin-bottom: 20px;">
+                <li style="margin-bottom: 12px;">We use implicit curve functions to define <strong>lines</strong> and <strong>planes</strong></li>
+                <li style="margin-bottom: 12px;">Provides <strong>no control over tangents</strong> at connection points when joining several implicit functions</li>
+                <li style="margin-bottom: 12px;">Implicit functions are <strong>hard to find</strong> for many shapes</li>
+                <li style="margin-bottom: 12px;">Use a function that states which points are <strong>on and off the curves</strong></li>
+            </ul>
+
+            <h3 style="color: var(--accent-green); margin-top: 25px; margin-bottom: 15px; font-size: 1.3rem;">Examples</h3>
+
+            <div style="background: rgba(168, 85, 247, 0.1); border: 2px dashed #a855f7; padding: 20px; border-radius: 8px; margin: 20px 0; text-align: center; font-family: 'Georgia', serif; font-size: 1.2rem; font-style: italic;">
+                <strong>All Lines:</strong> Ax + By + C = 0
+            </div>
+
+            <div style="background: rgba(168, 85, 247, 0.1); border: 2px dashed #a855f7; padding: 20px; border-radius: 8px; margin: 20px 0; text-align: center; font-family: 'Georgia', serif; font-size: 1.2rem; font-style: italic;">
+                <strong>Any Plane:</strong> Ax + By + Cz + D = 0<br>
+                <small style="font-size: 0.8rem;">with constants a, b, c, and d</small>
+            </div>
+
+            <div style="background: rgba(168, 85, 247, 0.1); border: 2px dashed #a855f7; padding: 20px; border-radius: 8px; margin: 20px 0; text-align: center; font-family: 'Georgia', serif; font-size: 1.2rem; font-style: italic;">
+                <strong>Sphere:</strong> x² + y² + z² - R² = 0<br>
+                <small style="font-size: 0.8rem;">centered at origin with radius R</small>
+            </div>
+
+            <div style="background: rgba(168, 85, 247, 0.1); border: 2px dashed #a855f7; padding: 20px; border-radius: 8px; margin: 20px 0; text-align: center; font-family: 'Georgia', serif; font-size: 1.2rem; font-style: italic;">
+                <strong>Circle:</strong> X² + Y² - R² = 0
+            </div>
+
+            <div style="background: rgba(251, 191, 36, 0.1); border-left: 4px solid #fbbf24; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <strong>⚠️ Limitations:</strong>
+                <ul style="margin-top: 10px; padding-left: 20px;">
+                    <li style="margin-bottom: 8px;">In three dimensions, f(X,Y,Z) defines a surface</li>
+                    <li style="margin-bottom: 8px;">Curves in 3D are not so easily represented in implicit form</li>
+                    <li style="margin-bottom: 8px;">In general, we cannot solve for points that satisfy the implicit form</li>
+                </ul>
+            </div>
+
+            <h3 style="color: var(--accent-green); margin-top: 25px; margin-bottom: 15px; font-size: 1.3rem;">Canvas Implementation</h3>
+            <div style="background: var(--primary-blue); color: white; padding: 8px 15px; border-radius: 6px 6px 0 0; font-size: 0.85rem; font-weight: 600; margin-bottom: -5px; display: inline-block;">JavaScript - Drawing with Implicit Function</div>
+            <div class="code-block"><span style="color: #ff7b72;">const</span> canvas = <span style="color: #ff7b72;">document</span>.<span style="color: #d2a8ff;">getElementById</span>(<span style="color: #a5d6ff;">"curveCanvas"</span>);
+<span style="color: #ff7b72;">const</span> ctx = canvas.<span style="color: #d2a8ff;">getContext</span>(<span style="color: #a5d6ff;">"2d"</span>);
+
+<span style="color: #ff7b72;">function</span> <span style="color: #d2a8ff;">f</span>(x, y) {
+    <span style="color: #8b949e; font-style: italic;">// Example: circle x² + y² = 100</span>
+    <span style="color: #ff7b72;">return</span> x*x + y*y - <span style="color: #79c0ff;">100</span>;
+}
+
+ctx.fillStyle = <span style="color: #a5d6ff;">"blue"</span>;
+<span style="color: #ff7b72;">for</span> (<span style="color: #ff7b72;">let</span> px = <span style="color: #79c0ff;">0</span>; px < canvas.width; px++) {
+    <span style="color: #ff7b72;">for</span> (<span style="color: #ff7b72;">let</span> py = <span style="color: #79c0ff;">0</span>; py < canvas.height; py++) {
+        <span style="color: #ff7b72;">let</span> x = px - <span style="color: #79c0ff;">200</span>;
+        <span style="color: #ff7b72;">let</span> y = py - <span style="color: #79c0ff;">200</span>;
+        <span style="color: #ff7b72;">if</span> (Math.<span style="color: #d2a8ff;">abs</span>(<span style="color: #d2a8ff;">f</span>(x, y)) < <span style="color: #79c0ff;">1</span>) {
+            ctx.<span style="color: #d2a8ff;">fillRect</span>(px, py, <span style="color: #79c0ff;">1</span>, <span style="color: #79c0ff;">1</span>);
+        }
+    }
+}</div>
+        </div>
+
+        <!-- Explicit Curves -->
+        <div class="card full-width">
+            <h2>🟢 Explicit Curves</h2>
+
+            <p>Gives the value of one variable (the <strong>dependent variable</strong>) in terms of the other (the <strong>independent variable</strong>).</p>
+
+            <h3 style="color: var(--accent-green); margin-top: 25px; margin-bottom: 15px; font-size: 1.3rem;">Limitations</h3>
+            <ul style="padding-left: 25px; color: var(--text-dim); margin-bottom: 20px;">
+                <li style="margin-bottom: 12px;">Do not allow for <strong>multiple values</strong> for a given argument</li>
+                <li style="margin-bottom: 12px;"><strong>Cannot describe vertical tangents</strong>, as infinite slopes are hard to represent</li>
+                <li style="margin-bottom: 12px;"><strong>Cannot represent all curves</strong> (vertical lines, circles)</li>
+            </ul>
+
+            <h3 style="color: var(--accent-green); margin-top: 25px; margin-bottom: 15px; font-size: 1.3rem;">Forms</h3>
+
+            <div style="background: rgba(168, 85, 247, 0.1); border: 2px dashed #a855f7; padding: 20px; border-radius: 8px; margin: 20px 0; text-align: center; font-family: 'Georgia', serif; font-size: 1.2rem; font-style: italic;">
+                <strong>Most familiar form in 2D:</strong><br>
+                Y = f(x)<br>
+                <small>where y is dependent, x is independent</small>
+            </div>
+
+            <div class="section-grid">
+                <div style="background: rgba(168, 85, 247, 0.1); border: 2px dashed #a855f7; padding: 20px; border-radius: 8px; text-align: center; font-family: 'Georgia', serif; font-size: 1.2rem; font-style: italic;">
+                    <strong>Curves:</strong><br>
+                    Z = f(x)
+                </div>
+
+                <div style="background: rgba(168, 85, 247, 0.1); border: 2px dashed #a855f7; padding: 20px; border-radius: 8px; text-align: center; font-family: 'Georgia', serif; font-size: 1.2rem; font-style: italic;">
+                    <strong>Surfaces:</strong><br>
+                    Z = f(x, y)
+                </div>
+            </div>
+        </div>
+
+        <!-- Parametric Curves -->
+        <div class="card full-width">
+            <h2>🟡 Parametric Curves</h2>
+
+            <p>Curves have a <strong>parametric form</strong> called parametric curves. A curve in the plane is said to be parameterized if the set of coordinates on the curve (x, y, z) is represented as a function of a <strong>variable t</strong>.</p>
+
+            <div style="background: #f59e0b; color: white; padding: 20px; border-radius: 8px; margin: 20px 0; font-weight: 600; text-align: center;">
+                The variable <strong>t</strong> is called a PARAMETER and the relations between x, y, z, and t are called a PARAMETRIC EQUATION
+            </div>
+
+            <h3 style="color: var(--accent-green); margin-top: 25px; margin-bottom: 15px; font-size: 1.3rem;">Mathematical Representation</h3>
+
+            <div style="background: rgba(168, 85, 247, 0.1); border: 2px dashed #a855f7; padding: 20px; border-radius: 8px; margin: 20px 0; text-align: center; font-family: 'Georgia', serif; font-size: 1.2rem; font-style: italic;">
+                p(t) = f(t), g(t)<br>
+                or<br>
+                p(t) = x(t), y(t)
+            </div>
+
+            <h3 style="color: var(--accent-green); margin-top: 25px; margin-bottom: 15px; font-size: 1.3rem;">Key Features</h3>
+            <ul style="padding-left: 25px; color: var(--text-dim); margin-bottom: 20px;">
+                <li style="margin-bottom: 12px;">The parametric form of a curve is a function that assigns a <strong>position to values of the free parameters</strong></li>
+                <li style="margin-bottom: 12px;">The parametric function is a <strong>vector-valued function</strong></li>
+                <li style="margin-bottom: 12px;">This example is a 2D curve, so the output is a <strong>2D vector</strong>; in 3D it would be a <strong>3-vector</strong></li>
+                <li style="margin-bottom: 12px;">It is <strong>simple and flexible</strong></li>
+                <li style="margin-bottom: 12px;">The parametric form is suitable for representing <strong>closed</strong> and <strong>multivalued curves</strong></li>
+                <li style="margin-bottom: 12px;">Each coordinate of a point on a curve is represented as a function of a <strong>single parameter</strong></li>
+            </ul>
+
+            <div class="success-box" style="background: rgba(78, 217, 194, 0.1); border-left: 4px solid var(--accent-green); padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <strong>✅ Advantages:</strong>
+                <ul style="margin-top: 10px; padding-left: 20px;">
+                    <li style="margin-bottom: 8px;">Can represent any curve including vertical lines and circles</li>
+                    <li style="margin-bottom: 8px;">Easy to compute points along the curve</li>
+                    <li style="margin-bottom: 8px;">Natural for animation (t represents time)</li>
+                    <li style="margin-bottom: 8px;">Can handle multivalued functions</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Bezier Curves -->
+        <div class="card full-width">
+            <h2>🟣 Bezier Curves</h2>
+
+            <p>A <strong>Bezier curve</strong> is particularly a kind of <strong>spline</strong> generated from a set of control points by forming a set of polynomial functions.</p>
+
+            <div class="info-box" style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid var(--primary-blue); padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <strong>💡 History:</strong> Discovered by the French engineer <strong>Pierre Bézier</strong>. These functions are computed from the coordinates of the control points.
+            </div>
+
+            <h3 style="color: var(--accent-green); margin-top: 25px; margin-bottom: 15px; font-size: 1.3rem;">Mathematical Formula</h3>
+            <div style="background: rgba(168, 85, 247, 0.1); border: 2px dashed #a855f7; padding: 20px; border-radius: 8px; margin: 20px 0; text-align: center; font-family: 'Georgia', serif; font-size: 1.2rem; font-style: italic;">
+                Σ (k=0 to n) P<sub>i</sub> B<sub>i,n</sub>(t)<br><br>
+                B<sub>i,n</sub>(t) = (n choose i) × (1-t)<sup>n-i</sup> × t<sup>i</sup>
+            </div>
+
+            <h3 style="color: var(--accent-green); margin-top: 25px; margin-bottom: 15px; font-size: 1.3rem;">Characteristics</h3>
+            <ul style="padding-left: 25px; color: var(--text-dim); margin-bottom: 20px;">
+                <li style="margin-bottom: 12px;">These curves can be generated under the <strong>control of other points</strong></li>
+                <li style="margin-bottom: 12px;">Tangents by using <strong>control points</strong> are used to generate curves</li>
+                <li style="margin-bottom: 12px;">It is an <strong>approximate spline curve</strong></li>
+                <li style="margin-bottom: 12px;">A Bezier curve is defined by the <strong>defining polygon</strong></li>
+                <li style="margin-bottom: 12px;">Has properties that make them <strong>highly useful and convenient</strong> for curve and surface design</li>
+            </ul>
+
+            <h3 style="color: var(--accent-green); margin-top: 25px; margin-bottom: 15px; font-size: 1.3rem;">Simple Bezier - Linear (2 Points)</h3>
+            <div style="background: var(--primary-blue); color: white; padding: 8px 15px; border-radius: 6px 6px 0 0; font-size: 0.85rem; font-weight: 600; margin-bottom: -5px; display: inline-block;">HTML5 Canvas - Draw a Line</div>
+            <div class="code-block"><span style="color: #7ee787;">&lt;canvas</span> <span style="color: #79c0ff;">id</span>=<span style="color: #a5d6ff;">"myCanvas"</span> <span style="color: #79c0ff;">width</span>=<span style="color: #a5d6ff;">"200"</span> <span style="color: #79c0ff;">height</span>=<span style="color: #a5d6ff;">"100"</span> 
+        <span style="color: #79c0ff;">style</span>=<span style="color: #a5d6ff;">"border:1px solid #000000;"</span><span style="color: #7ee787;">&gt;&lt;/canvas&gt;</span>
+
+<span style="color: #7ee787;">&lt;script&gt;</span>
+<span style="color: #ff7b72;">const</span> canvas = <span style="color: #ff7b72;">document</span>.<span style="color: #d2a8ff;">getElementById</span>(<span style="color: #a5d6ff;">"myCanvas"</span>);
+<span style="color: #ff7b72;">const</span> ctx = canvas.<span style="color: #d2a8ff;">getContext</span>(<span style="color: #a5d6ff;">"2d"</span>);
+
+<span style="color: #8b949e; font-style: italic;">// Define a new path</span>
+ctx.<span style="color: #d2a8ff;">beginPath</span>();
+
+<span style="color: #8b949e; font-style: italic;">// Set a start-point (P0)</span>
+ctx.<span style="color: #d2a8ff;">moveTo</span>(<span style="color: #79c0ff;">0</span>, <span style="color: #79c0ff;">0</span>);
+
+<span style="color: #8b949e; font-style: italic;">// Set an end-point (P1)</span>
+ctx.<span style="color: #d2a8ff;">lineTo</span>(<span style="color: #79c0ff;">200</span>, <span style="color: #79c0ff;">100</span>);
+
+<span style="color: #8b949e; font-style: italic;">// Draw it</span>
+ctx.<span style="color: #d2a8ff;">stroke</span>();
+<span style="color: #7ee787;">&lt;/script&gt;</span></div>
+
+            <h3 style="color: var(--accent-green); margin-top: 25px; margin-bottom: 15px; font-size: 1.3rem;">Quadratic Bezier Curve (3 Control Points)</h3>
+            <p>Quadratic Bezier curve is determined by <strong>three control points</strong>: P0, P1, P2</p>
+
+            <div style="background: var(--primary-blue); color: white; padding: 8px 15px; border-radius: 6px 6px 0 0; font-size: 0.85rem; font-weight: 600; margin-bottom: -5px; display: inline-block;">HTML5 Canvas - Quadratic Curve</div>
+            <div class="code-block"><span style="color: #7ee787;">&lt;canvas</span> <span style="color: #79c0ff;">id</span>=<span style="color: #a5d6ff;">"myCanvas"</span> <span style="color: #79c0ff;">width</span>=<span style="color: #a5d6ff;">"300"</span> <span style="color: #79c0ff;">height</span>=<span style="color: #a5d6ff;">"150"</span> 
+        <span style="color: #79c0ff;">style</span>=<span style="color: #a5d6ff;">"border:1px solid #000000;"</span><span style="color: #7ee787;">&gt;&lt;/canvas&gt;</span>
+
+<span style="color: #7ee787;">&lt;script&gt;</span>
+<span style="color: #ff7b72;">const</span> canvas = <span style="color: #ff7b72;">document</span>.<span style="color: #d2a8ff;">getElementById</span>(<span style="color: #a5d6ff;">"myCanvas"</span>);
+<span style="color: #ff7b72;">const</span> ctx = canvas.<span style="color: #d2a8ff;">getContext</span>(<span style="color: #a5d6ff;">"2d"</span>);
+
+ctx.<span style="color: #d2a8ff;">beginPath</span>();
+ctx.<span style="color: #d2a8ff;">moveTo</span>(<span style="color: #79c0ff;">10</span>, <span style="color: #79c0ff;">100</span>);
+ctx.<span style="color: #d2a8ff;">quadraticCurveTo</span>(<span style="color: #79c0ff;">250</span>, <span style="color: #79c0ff;">170</span>, <span style="color: #79c0ff;">230</span>, <span style="color: #79c0ff;">20</span>);
+ctx.<span style="color: #d2a8ff;">stroke</span>();
+<span style="color: #7ee787;">&lt;/script&gt;</span></div>
+
+            <h3 style="color: var(--accent-green); margin-top: 25px; margin-bottom: 15px; font-size: 1.3rem;">Cubic Bezier Curve (4 Control Points)</h3>
+            <p>The cubic Bezier curve is determined by <strong>four control points</strong>: P0, P1, P2, P3</p>
+
+            <div style="background: var(--primary-blue); color: white; padding: 8px 15px; border-radius: 6px 6px 0 0; font-size: 0.85rem; font-weight: 600; margin-bottom: -5px; display: inline-block;">HTML5 Canvas - Cubic Bezier Curve</div>
+            <div class="code-block"><span style="color: #7ee787;">&lt;canvas</span> <span style="color: #79c0ff;">id</span>=<span style="color: #a5d6ff;">"myCanvas"</span> <span style="color: #79c0ff;">width</span>=<span style="color: #a5d6ff;">"300"</span> <span style="color: #79c0ff;">height</span>=<span style="color: #a5d6ff;">"170"</span> 
+        <span style="color: #79c0ff;">style</span>=<span style="color: #a5d6ff;">"border:1px solid #000000;"</span><span style="color: #7ee787;">&gt;&lt;/canvas&gt;</span>
+
+<span style="color: #7ee787;">&lt;script&gt;</span>
+<span style="color: #ff7b72;">const</span> canvas = <span style="color: #ff7b72;">document</span>.<span style="color: #d2a8ff;">getElementById</span>(<span style="color: #a5d6ff;">"myCanvas"</span>);
+<span style="color: #ff7b72;">const</span> ctx = canvas.<span style="color: #d2a8ff;">getContext</span>(<span style="color: #a5d6ff;">"2d"</span>);
+
+ctx.<span style="color: #d2a8ff;">beginPath</span>();
+ctx.<span style="color: #d2a8ff;">moveTo</span>(<span style="color: #79c0ff;">20</span>, <span style="color: #79c0ff;">20</span>);
+ctx.<span style="color: #d2a8ff;">bezierCurveTo</span>(<span style="color: #79c0ff;">110</span>, <span style="color: #79c0ff;">150</span>, <span style="color: #79c0ff;">180</span>, <span style="color: #79c0ff;">10</span>, <span style="color: #79c0ff;">210</span>, <span style="color: #79c0ff;">140</span>);
+ctx.<span style="color: #d2a8ff;">stroke</span>();
+<span style="color: #7ee787;">&lt;/script&gt;</span></div>
+        </div>
+
+        <!-- Bezier Properties -->
+        <div class="card full-width">
+            <h2>🔷 Properties of Bezier Curves</h2>
+
+            <ol style="padding-left: 25px; color: var(--text-dim); margin-bottom: 20px;">
+                <li style="margin-bottom: 12px;">Bezier curves are <strong>widely available and used in various CAD systems</strong>, in general graphics packages such as GL</li>
+                
+                <li style="margin-bottom: 12px;">The <strong>slope at beginning</strong> of the curve is along the line joining the <strong>first two control points</strong> and the <strong>slope at the end</strong> of the curve is along the line joining the <strong>last two points</strong></li>
+                
+                <li style="margin-bottom: 12px;">Bezier curve <strong>always passes through the first and last points</strong><br>
+                <em>i.e., p(0) = p0, p(1) = pn</em></li>
+                
+                <li style="margin-bottom: 12px;">The curves lie <strong>entirely within the convex hull</strong> formed by the four control points</li>
+                
+                <li style="margin-bottom: 12px;">The <strong>degree of polynomial</strong> defining the curve segment is <strong>one less than the number</strong> of defining the polygon</li>
+            </ol>
+
+            <div style="background: rgba(251, 191, 36, 0.1); border-left: 4px solid #fbbf24; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <strong>⚠️ Important Note:</strong> Bezier curves exhibit <strong>global control points</strong>, which means moving control points alters the shape of the <strong>whole curve</strong>.
+            </div>
+        </div>
+
+        <!-- Spline Varieties -->
+        <div class="card full-width">
+            <h2>📐 Different Varieties of Spline Curves</h2>
+            
+            <p>Different varieties of spline curves are used in graphics applications:</p>
+
+            <div class="section-grid">
+                <div class="info-box" style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid var(--primary-blue); padding: 20px; border-radius: 8px;">
+                    <strong>1. Hermit Spline</strong>
+                </div>
+                <div class="info-box" style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid var(--primary-blue); padding: 20px; border-radius: 8px;">
+                    <strong>2. Relaxed End Spline</strong>
+                </div>
+                <div class="info-box" style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid var(--primary-blue); padding: 20px; border-radius: 8px;">
+                    <strong>3. Cyclic Spline</strong>
+                </div>
+                <div class="info-box" style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid var(--primary-blue); padding: 20px; border-radius: 8px;">
+                    <strong>4. Anti-Cyclic Spline</strong>
+                </div>
+                <div class="info-box" style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid var(--primary-blue); padding: 20px; border-radius: 8px; grid-column: 1 / -1;">
+                    <strong>5. Normalized Spline</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- B-spline Curves -->
+        <div class="card full-width">
+            <h2>🔶 B-spline Curves</h2>
+
+            <h3 style="color: var(--accent-green); margin-top: 25px; margin-bottom: 15px; font-size: 1.3rem;">Mathematical Foundation</h3>
+            <div style="background: rgba(168, 85, 247, 0.1); border: 2px dashed #a855f7; padding: 20px; border-radius: 8px; margin: 20px 0; text-align: center; font-family: 'Georgia', serif; font-size: 1.2rem; font-style: italic;">
+                Σ (i=1 to n+1) n<sub>i,k</sub>(u) = 1
+            </div>
+
+            <p><strong>Where:</strong></p>
+            <ul style="padding-left: 25px; color: var(--text-dim); margin-bottom: 20px;">
+                <li style="margin-bottom: 12px;">n+1 = number of control points</li>
+                <li style="margin-bottom: 12px;">k = order of B-spline curve</li>
+            </ul>
+
+            <h3 style="color: var(--accent-green); margin-top: 25px; margin-bottom: 15px; font-size: 1.3rem;">Key Properties</h3>
+
+            <ul style="padding-left: 25px; color: var(--text-dim); margin-bottom: 20px;">
+                <li style="margin-bottom: 12px;">The sum of the B-spline basic function at any parametric 'u' equals <strong>1</strong></li>
+                
+                <li style="margin-bottom: 12px;">We can <strong>add/modify any number of control points</strong> to change the shape of the curve <strong>without affecting the degree of polynomial</strong></li>
+                
+                <li style="margin-bottom: 12px;">Control points affect the shape of the curve <strong>only over range of parameter values</strong> where its associated basic function is non-zero</li>
+                
+                <li style="margin-bottom: 12px;">The polynomial curve has degree <strong>(d-1)</strong> and <strong>C<sup>d-2</sup> continuity</strong> over the range of u</li>
+                
+                <li style="margin-bottom: 12px;">Each blending function is defined over <strong>d sub-intervals</strong> of the total range of u</li>
+                
+                <li style="margin-bottom: 12px;">The selected set of subintervals endpoints u is referred to as a <strong>knot vector</strong></li>
+                
+                <li style="margin-bottom: 12px;">The basic function is <strong>positive or zero</strong> for all parameter values</li>
+                
+                <li style="margin-bottom: 12px;">Except for k=1, each basis function has <strong>one maximum value</strong></li>
+            </ul>
+
+            <div class="success-box" style="background: rgba(78, 217, 194, 0.1); border-left: 4px solid var(--accent-green); padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <strong>✅ Advantages of B-splines:</strong>
+                <ul style="margin-top: 10px; padding-left: 20px;">
+                    <li style="margin-bottom: 8px;">Local control (moving a control point affects only a portion of the curve)</li>
+                    <li style="margin-bottom: 8px;">Flexible degree independent of number of control points</li>
+                    <li style="margin-bottom: 8px;">Always lies within convex hull of control points</li>
+                    <li style="margin-bottom: 8px;">Numerically stable</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Comparison Table -->
+        <div class="card full-width">
+            <h2>⚖️ Curve Types Comparison</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Curve Type</th>
+                        <th>Advantages</th>
+                        <th>Disadvantages</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Implicit</strong></td>
+                        <td>Easy to define lines/planes</td>
+                        <td>Hard to find for complex shapes, no tangent control</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Explicit</strong></td>
+                        <td>Simple to understand</td>
+                        <td>Cannot represent vertical lines, circles</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Parametric</strong></td>
+                        <td>Flexible, can represent any curve</td>
+                        <td>Requires parameter selection</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Bezier</strong></td>
+                        <td>Intuitive control, smooth curves</td>
+                        <td>Global control (moving one point affects entire curve)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>B-spline</strong></td>
+                        <td>Local control, flexible degree</td>
+                        <td>More complex to understand and implement</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Summary -->
+        <div class="card full-width">
+            <h2>📝 Summary</h2>
+
+            <div class="section-grid">
+                <div class="success-box" style="background: rgba(78, 217, 194, 0.1); border-left: 4px solid var(--accent-green); padding: 20px; border-radius: 8px;">
+                    <strong>✅ Implicit Curves</strong><br>
+                    f(x,y) = 0 or f(x,y,z) = 0<br>
+                    Best for: Lines, planes, circles, spheres
+                </div>
+
+                <div class="success-box" style="background: rgba(78, 217, 194, 0.1); border-left: 4px solid var(--accent-green); padding: 20px; border-radius: 8px;">
+                    <strong>✅ Explicit Curves</strong><br>
+                    y = f(x) or z = f(x,y)<br>
+                    Best for: Simple functions
+                </div>
+
+                <div class="success-box" style="background: rgba(78, 217, 194, 0.1); border-left: 4px solid var(--accent-green); padding: 20px; border-radius: 8px;">
+                    <strong>✅ Parametric Curves</strong><br>
+                    p(t) = [x(t), y(t), z(t)]<br>
+                    Best for: Animation, complex curves
+                </div>
+
+                <div class="success-box" style="background: rgba(78, 217, 194, 0.1); border-left: 4px solid var(--accent-green); padding: 20px; border-radius: 8px;">
+                    <strong>✅ Bezier Curves</strong><br>
+                    Control point based splines<br>
+                    Best for: CAD, graphic design
+                </div>
+
+                <div class="success-box" style="background: rgba(78, 217, 194, 0.1); border-left: 4px solid var(--accent-green); padding: 20px; border-radius: 8px;">
+                    <strong>✅ B-spline Curves</strong><br>
+                    Local control, flexible splines<br>
+                    Best for: Complex modeling
+                </div>
+            </div>
+
+            <div class="info-box" style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid var(--primary-blue); padding: 20px; border-radius: 8px; margin-top: 25px;">
+                <strong>💡 Key Takeaway:</strong> The choice of curve representation depends on the application requirements. Parametric curves (especially Bezier and B-splines) are most commonly used in computer graphics due to their flexibility and control.
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p><strong>UFE Digital Marketing - Information Representation and Processing</strong></p>
+        <p>Tel: 01501827070 - 01017776756 | E-mail: sherrost@yahoo.com</p>
+        <p>© 2025 UFE Digital Marketing. All rights reserved.</p>
+    </footer>
+</div>
+
+<script src="../../../../theme.js"></script>
+
+</body>
+</html>

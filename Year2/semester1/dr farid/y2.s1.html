@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semester 2 - Courses</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ========== CONFIGURATION GÉNÉRALE ========== */
+        :root {
+            --primary-blue: #3b82f6;
+            --primary-purple: #7c3aed;
+            --dark-bg: #020617;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --border-light: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle at top, #1e1b4b, #020617);
+            color: #e5e7eb;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ========== BARRE DE NAVIGATION (NAVBAR) ========== */
+        .navbar {
+            background: rgba(2, 6, 23, 0.85);
+            backdrop-filter: blur(12px);
+            padding: 15px 5%;
+            border-bottom: 1px solid var(--border-light);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* CORRECTION DU LOGO */
+        .main-logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            object-fit: cover;
+            border: 1px solid var(--primary-blue);
+        }
+
+        .logo-text {
+            font-weight: 800;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+        /* ========== CAROUSEL / GRID SECTION ========== */
+        .carousel-section {
+            padding: 80px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .carousel-track {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .subject-link {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ========== COURSE CARDS ========== */
+        .course-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-light);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-blue);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .course-card:hover .card-image img {
+            transform: scale(1.1);
+        }
+
+        .card-content {
+            padding: 30px;
+        }
+
+        .module-tag {
+            background: rgba(59, 130, 246, 0.2);
+            color: var(--primary-blue);
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .course-card h3 {
+            margin: 15px 0 10px 0;
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        .course-card p {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .carousel-track {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ========== BARRE DE NAVIGATION (TOP BAR) ========== */
+        .top-bar {
+            background: rgba(2, 6, 23, 0.8);
+            backdrop-filter: blur(12px);
+            padding: 10px 5%;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            border-bottom: 1px solid var(--border-light);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        /* CORRECTION DU LOGO */
+        .site-logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            object-fit: cover;
+            border: 2px solid var(--primary-blue);
+        }
+
+    </style>
+</head>
+<body>
+
+    <nav class="top-bar">
+        <a href="../../../index.html" class="logo-link">
+            <img src="../../../logo.jpeg" alt="Logo" class="site-logo">
+        </a>
+        <a href="../../../index.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <h2 style="color: white; margin: 0;">Marketing Digital</h2>
+        </a>
+    </nav>
+
+    <section class="carousel-section">
+        <header style="margin-bottom: 50px; text-align: center;">
+            <h1 style="font-size: 3rem; margin-bottom: 10px;">Semester 2</h1>
+            <p style="color: #94a3b8;">Select a module to continue your learning journey.</p>
+        </header>
+
+        <div class="carousel-viewport">
+            <div class="carousel-track">
+                
+                <a href="Personal and professional project.html" class="subject-link">
+                    <div class="course-card backend">
+                        <div class="card-image">
+                            <img src="project.jpeg" alt="Back-end Development">
+                        </div>
+                        <div class="card-content">
+                            <span class="module-tag">Module 01</span>
+                            <h3>Personal and Professional Project</h3>
+                            <p>Explore lessons on Logic, Reusability, and Clean Code.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="frontend.html" class="subject-link">
+                    <div class="course-card frontend">
+                        <div class="card-image">
+                            <img src="managment.jpeg" alt="Front-end Development">
+                        </div>
+                        <div class="card-content">
+                            <span class="module-tag">Module 02</span>
+                            <h3>Project management</h3>
+                            <p>Advanced UI/UX patterns, state management, and component lifecycle.</p>
+                        </div>
+                    </div>
+                </a>
+                <br>
+
+               
+    <section class="stats-container">
+    <div class="stats-grid">
+        <div class="stat-item">
+            <div class="stat-value" id="courses-count">12</div>
+            <div class="stat-label">Modules au total</div>
+        </div>
+        
+        <div class="stat-item">
+            <div class="progress-circle-box">
+                <svg class="progress-svg" viewBox="0 0 100 100">
+                    <circle class="bg" cx="50" cy="50" r="45"></circle>
+                    <circle class="meter" cx="50" cy="50" r="45" style="stroke-dashoffset: 141;"></circle>
+                </svg>
+                <div class="progress-text">50%</div>
+            </div>
+            <div class="stat-label" style="margin-top: 10px;">Année complétée</div>
+        </div>
+
+        <div class="stat-item">
+            <div class="stat-value">04</div>
+            <div class="stat-label">Certifications à venir</div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .stats-container {
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 30px;
+        background: rgba(255, 255, 255, 0.02);
+        border-radius: 24px;
+        border: 1px solid var(--border-light);
+    }
+
+    .stats-grid {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 30px;
+    }
+
+    .stat-item {
+        text-align: center;
+        min-width: 150px;
+    }
+
+    .stat-value {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: var(--primary-blue);
+        margin-bottom: 5px;
+    }
+
+    .stat-label {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #94a3b8;
+    }
+
+    /* Cercle de progression SVG */
+    .progress-circle-box {
+        position: relative;
+        width: 80px;
+        height: 80px;
+        margin: 0 auto;
+    }
+
+    .progress-svg {
+        transform: rotate(-90deg);
+    }
+
+    .progress-svg circle {
+        fill: none;
+        stroke-width: 8;
+        stroke-linecap: round;
+    }
+
+    .progress-svg circle.bg {
+        stroke: rgba(255, 255, 255, 0.05);
+    }
+
+    .progress-svg circle.meter {
+        stroke: var(--primary-purple);
+        stroke-dasharray: 283; /* Circonférence du cercle */
+        transition: stroke-dashoffset 1s ease-out;
+    }
+
+    .progress-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-weight: 800;
+        font-size: 1rem;
+        color: white;
+    }
+</style>
+
+</body>
+</html>
